@@ -1,0 +1,78 @@
+version: '2'
+
+services:
+
+  postgres:
+    build: postgres/
+    restart: always
+    environment:
+      POSTGRES_USERNAME: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  solr:
+    image: solr:6.1
+    restart: always
+  
+  redis:
+    image: redis:3.2
+  
+  tomcat:
+    image: tomcat:8.5
+    depends_on:
+      - fedora_commons
+      - postgres
+    ports:
+      - "8080:8080"
+    environment:
+      JAVA_OPTS: >
+        -Dfile.encoding=UTF-8
+        -Dfcrepo.home=/mnt/data/fcrepo
+        -Dfcrepo.ispn.alternative.cache=ispn.alt.cache
+        -Dfcrepo.ispn.binary.cache=ispn.binary.cache
+        -Dfcrepo.ispn.cache=ispn.cache
+        -Dfcrepo.ispn.binary.alternative.cache=ispn.binary.alt.cache
+        -Dfcrepo.ispn.repo.cache=ispn.repo.cache
+        -Dfcrepo.ispn.postgresql.username=${POSTGRES_USERNAME}
+        -Dfcrepo.ispn.postgresql.password=${POSTGRES_PASSWORD}
+        -Dfcrepo.ispn.postgresql.host=postgres
+        -Dfcrepo.ispn.postgresql.port=5432
+        -Dfcrepo.modeshape.configuration=classpath:/config/jdbc-postgresql/repository.json
+        -Dfcrepo.modeshape.index.directory=modeshape.index
+        -Dfcrepo.binary.directory=binary.store
+        -Dfcrepo.activemq.directory=activemq
+        -Dcom.arjuna.ats.arjuna.common.ObjectStoreEnvironmentBean.default.objectStoreDir=arjuna.common.object.store
+        -Dcom.arjuna.ats.arjuna.objectstore.objectStoreDir=arjuna.object.store
+        -Dnet.sf.ehcache.skipUpdateCheck=true
+        -Dfcrepo.audit.container=/audit
+        -XX:+UseConcMarkSweepGC
+        -XX:+CMSClassUnloadingEnabled
+        -XX:ConcGCThreads=5
+        -XX:MaxGCPauseMillis=200
+        -XX:ParallelGCThreads=20
+        -XX:MaxMetaspaceSize=512M
+        -Xms1024m
+        -Xmx2048m
+      #   -Dfcrepo.activemq.configuration=file:/etc/fcrepo/activemq.xml
+      #   -Dfcrepo.ispn.configuration=/etc/fcrepo/infinispan.xml
+      #   -Dfcrepo.auth.webac.authorization=/etc/fcrepo/root-authentication.ttl
+      #   -Dfcrepo.spring.audit.configuration=file:/etc/fcrepo/audit.xml
+      #   -Dlogback.configurationFile=/etc/fcrepo/logback.xml
+    volumes:
+      - webapps:/usr/local/tomcat/webapps/
+      - fcrepo4_data:/mnt/data/fcrepo/
+      - fcrepo4_etc:/etc/fcrepo/
+
+  fedora_commons:
+    build: fedora_commons/
+    volumes:
+      - webapps:/webapps/
+
+volumes:
+  webapps: {}
+  fcrepo4_data: {}
+  fcrepo4_etc: {}
+  postgres_data: {}
