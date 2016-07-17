@@ -20,6 +20,9 @@ services:
   redis:
     image: redis:3.2
   
+  modeshape:
+    image: jboss/modeshape
+  
   tomcat:
     image: tomcat:8.5
     depends_on:
