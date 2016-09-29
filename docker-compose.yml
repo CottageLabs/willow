@@ -3,17 +3,13 @@ version: '2'
 services:
   db:
     image: postgres:9.5
-    restart: always
-    environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=ispn
+    env_file: .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./db/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
   
   solr:
     image: solr:6.1
-    restart: always
   
   redis:
     image: redis:3.2
@@ -21,9 +17,27 @@ services:
   modeshape:
     image: jboss/modeshape
   
+  willow:
+    build: willow/
+    env_file: .env
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    ports:
+      - 3000:3000
+    links:
+      - redis
+      - db
+    volumes_from:
+      - bundle
+  
+  bundle: # cache gems to speed up bundle install time
+    image: willow_willow
+    command: echo "configured bundle cache"
+    volumes:
+      - /bundle
+  
   tomcat:
     build: fedora_commons/
-    depends_on:
+    links:
       - db
     ports:
       - "8080:8080"
