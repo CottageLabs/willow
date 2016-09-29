@@ -28,3 +28,14 @@
     ```$ docker-compose up```
 6. If everything is successful, after a few minutes you should be able to navigate to `http://<docker_machine_ip>:8080/fcrepo/` and see Fedora Commons 4.x running
     ![Fedora Commons screenshot](docs/images/fedora.png "Fedora Commons screenshot")
+=======
+[clio](https://github.com/CottageLabs/clio) is an implementation of the Fedora/Hydra stack by [Cottage Labs](http://cottagelabs.com/). It is built with Docker containers, which simplify development and deployment onto live services.
+
+
+### Tips for  Ubuntu
+
+Follow docker-compose's documentation for installing it on Ubuntu at the link above. Then download the code and setup the environment as previously described.
+
+Depending on how/where you have installed docker-compose and docker, you *may* need to run with `sudo` priviliages (e.g. ```$ sudo docker-compose up```).
+
+The Docker machine IP address is probably just your localhost, so try the URL `http://localhost:8080/fcrepo/` after the system has built.
