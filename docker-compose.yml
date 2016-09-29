@@ -6,10 +6,15 @@ services:
     env_file: .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./db/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
+      - ./init/db/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
   
   solr:
-    image: solr:6.1
+    image: solr:6.2
+    volumes:
+      - solr_data:/opt/solr/server/solr/mycores
+      - ./init/solr/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
+    ports:
+      - "8983:8983"
   
   redis:
     image: redis:3.2
@@ -17,25 +22,13 @@ services:
   modeshape:
     image: jboss/modeshape
   
-  willow:
-    build: willow/
-    env_file: .env
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
-    ports:
-      - 3000:3000
-    links:
-      - redis
-      - db
-    volumes_from:
-      - bundle
-  
-  bundle: # cache gems to speed up bundle install time
+  bundle: # cache for gems to speed up bundle install time
     image: willow_willow
     command: echo "configured bundle cache"
     volumes:
       - /bundle
   
-  tomcat:
+  fedora:
     build: fedora_commons/
     links:
       - db
@@ -79,9 +72,24 @@ services:
        - webapps:/usr/local/tomcat/webapps/
        - fcrepo4_data:/mnt/data/fcrepo/
        - fcrepo4_etc:/etc/fcrepo/
+  
+  willow:
+    build: willow/
+    env_file: .env
+    command: ./startup.sh
+    ports:
+      - "3000:3000"
+    links:
+      - redis
+      - solr
+      - db
+      - fedora
+    volumes_from:
+      - bundle
 
 volumes:
   webapps: {}
   fcrepo4_data: {}
   fcrepo4_etc: {}
   postgres_data: {}
+  solr_data: {}

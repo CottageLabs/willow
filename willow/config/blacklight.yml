@@ -1,0 +1,10 @@
+development:
+  adapter: solr
+  url: http://solr:8983/solr/willow_development
+test: &test
+  adapter: solr
+  url: http://solr:8983/solr/willow_test
+production:
+  adapter: solr
+  url: http://solr:8983/solr/willow_production
+
