@@ -1,18 +1,16 @@
 version: '2'
 
 services:
-
-  postgres:
-    build: postgres/
+  db:
+    image: postgres:9.5
     restart: always
     environment:
-      POSTGRES_USERNAME: ${POSTGRES_USERNAME}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-    ports:
-      - "5432:5432"
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=ispn
     volumes:
       - postgres_data:/var/lib/postgresql/data
-
+  
   solr:
     image: solr:6.1
     restart: always
@@ -24,10 +22,9 @@ services:
     image: jboss/modeshape
   
   tomcat:
-    image: tomcat:8.5
+    build: fedora_commons/
     depends_on:
-      - fedora_commons
-      - postgres
+      - db
     ports:
       - "8080:8080"
     environment:
@@ -39,9 +36,9 @@ services:
         -Dfcrepo.ispn.cache=ispn.cache
         -Dfcrepo.ispn.binary.alternative.cache=ispn.binary.alt.cache
         -Dfcrepo.ispn.repo.cache=ispn.repo.cache
-        -Dfcrepo.ispn.postgresql.username=${POSTGRES_USERNAME}
+        -Dfcrepo.ispn.postgresql.username=${POSTGRES_USER}
         -Dfcrepo.ispn.postgresql.password=${POSTGRES_PASSWORD}
-        -Dfcrepo.ispn.postgresql.host=postgres
+        -Dfcrepo.ispn.postgresql.host=db
         -Dfcrepo.ispn.postgresql.port=5432
         -Dfcrepo.modeshape.configuration=classpath:/config/jdbc-postgresql/repository.json
         -Dfcrepo.modeshape.index.directory=modeshape.index
@@ -65,14 +62,9 @@ services:
       #   -Dfcrepo.spring.audit.configuration=file:/etc/fcrepo/audit.xml
       #   -Dlogback.configurationFile=/etc/fcrepo/logback.xml
     volumes:
-      - webapps:/usr/local/tomcat/webapps/
-      - fcrepo4_data:/mnt/data/fcrepo/
-      - fcrepo4_etc:/etc/fcrepo/
-
-  fedora_commons:
-    build: fedora_commons/
-    volumes:
-      - webapps:/webapps/
+       - webapps:/usr/local/tomcat/webapps/
+       - fcrepo4_data:/mnt/data/fcrepo/
+       - fcrepo4_etc:/etc/fcrepo/
 
 volumes:
   webapps: {}

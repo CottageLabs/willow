@@ -1,6 +1,7 @@
-FROM ubuntu:14.04
+FROM tomcat:8.5
 
-MAINTAINER Martyn Whitwell "martyn@cottagelabs.com"
+# Download Fedora Commons 4.6, update default context file
+ADD context.xml /usr/local/tomcat/conf/context.xml
+ADD https://github.com/fcrepo4/fcrepo4/releases/download/fcrepo-4.6.0/fcrepo-webapp-4.6.0.war /usr/local/tomcat/webapps/fcrepo.war
 
-# Download Fedora Commons
-ADD https://github.com/fcrepo4/fcrepo4/releases/download/fcrepo-4.5.1/fcrepo-webapp-4.5.1.war /webapps/fcrepo.war
+
