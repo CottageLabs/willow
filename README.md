@@ -19,14 +19,18 @@
     $ cd willow
     ```
 
-  4. Create a `.env` file to set the postgres database username and password; you can use the `example.env` file as a template:
+  4. Create a `.env` file to set the postgres database username and password, and also the Rails session keys; you can use the `example.env` file as a template:
     ```
     POSTGRES_USER=postgres
     POSTGRES_PASSWORD=password
+    SECRET_KEY_BASE_DEVELOPMENT=<a very long random hexadecimal number, e.g. 1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef>
+    SECRET_KEY_BASE_TEST=<a very long random hexadecimal number, e.g. 1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef>
+    SECRET_KEY_BASE_PRODUCTION=<a very long random hexadecimal number, e.g. 1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef>
     ```
 
-  5. Run docker-compose to download, build and initialise the infrastructure
+  5. Run docker-compose to build, and download and initialise the infrastructure
     ```bash
+    $ docker-compose build
     $ docker-compose up
     ```
     
