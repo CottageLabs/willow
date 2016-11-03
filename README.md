@@ -34,7 +34,7 @@
     $ docker-compose up
     ```
     
-  6. If everything is successful, after a few minutes you should be able to navigate to `http://<docker_machine_ip>:8080/fcrepo/` and see Fedora Commons 4.x running
+  6. If everything is successful, after a few minutes you should be able to navigate to `http://<docker_machine_ip>:8080/fcrepo/` (e.g. http://192.168.99.100:8080/fcrepo/) and see Fedora Commons 4.x running
     ![Fedora Commons screenshot](docs/images/fedora.png "Fedora Commons screenshot")
 
 

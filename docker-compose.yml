@@ -13,6 +13,7 @@ services:
     volumes:
       - solr_data:/opt/solr/server/solr/mycores
       - ./init/solr/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
+      - ./willow/solr/config/:/opt/solr/server/solr/willow_config
     ports:
       - "8983:8983"
   
