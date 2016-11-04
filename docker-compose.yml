@@ -87,6 +87,8 @@ services:
       - fedora
     volumes_from:
       - bundle
+    volumes:
+      - ./willow:/willow
 
 volumes:
   webapps: {}

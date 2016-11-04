@@ -15,15 +15,10 @@ RUN apt-get install -y libqt4-webkit libqt4-dev xvfb
 RUN apt-get install -y nodejs
 
 ENV APP_HOME /willow
-
-RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
-ADD Gemfile* $APP_HOME/
 
 ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile \
   BUNDLE_JOBS=2 \
   BUNDLE_PATH=/bundle
 
 RUN bundle install
-
-ADD . $APP_HOME

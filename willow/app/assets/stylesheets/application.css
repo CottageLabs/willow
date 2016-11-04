@@ -13,3 +13,150 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  font-family: "Raleway";
+}
+
+#logo {
+  font-size: 36px;
+  color: white;
+  font-weight: bold;
+}
+
+#home_header {
+  background-image: url("/assets/willow5.jpg");
+  margin-right: -15px;
+  margin-left: -15px;
+  border: 0;
+  height: 360px;
+}
+
+.navbar.navbar-default.navbar-static-top {
+  background: #c9d2d4;
+  color: #555;
+  font-size: 18px;
+  margin-bottom: 0;
+}
+
+footer.navbar.navbar-inverse {
+  font-size: 18px;
+  color: #aaa;
+  margin-top: 50px;
+  min-height: 200px;
+  padding-top: 50px;
+  padding-bottom: 50px
+}
+
+footer.navbar.navbar-inverse a {
+  color: white;
+  font-weight: bold;
+}
+
+footer.navbar.navbar-inverse a:hover {
+  text-decoration: underline;
+	
+}
+
+.navbar-text.text-left {
+  margin-left: 150px;
+}
+
+.navbar-text.text-right {
+  margin-right: 150px;
+}
+
+#masthead {
+  min-height: 50px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+ul.nav.navbar-nav.col-sm-5.col-md-6 {
+  padding-left: 15px;
+}
+
+
+#user_utility_links {
+  margin: 0;  
+}
+
+#tabtoolbar {
+  background-color: #222;
+}
+
+#tabtoolbar li {
+ padding-right: 2px;
+}
+
+#tabtoolbar a {
+  color: white;
+  font-weight: bold;
+  height: 52px;
+}
+
+#tabtoolbar > ul > li.active > a {
+  background-color: #c9d2d4;
+  color: #222;
+  border-radius: 5px 5px 0 0;
+}
+
+#tabtoolbar a:hover, a:focus {
+  background-color: #c9d2d4;
+  color: #222;
+  border-radius: 5px 5px 0 0;
+}
+
+#tabtoolbar > #user_utility_links > li.dropdown.open > a:active, #tabtoolbar > #user_utility_links > li.dropdown.open > a:visited, #tabtoolbar > #user_utility_links > li.dropdown.open > a:focus {
+  background-color: #c9d2d4;
+  color: #222;
+  border-radius: 5px 5px 0 0;
+}
+
+#tabtoolbar > #user_utility_links > li.dropdown.open > ul.dropdown-menu.dropdown-menu-right > li > a {
+  color: black;
+
+}
+
+div.home_marketing_text {
+  background-color: white;
+  color: black;
+  text-shadow: none;
+  opacity: 0.9;
+  letter-spacing: 0;
+}
+
+@media only screen and (min-width:1800px){
+  div.home_marketing_text {
+    width: 1203px
+  }
+}
+
+div.home_marketing_text p {
+  padding-top: 10px;
+}
+
+div.home_share_work {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+div.home_share_work p.text-center a{
+  color: #222;
+  text-decoration: underline;
+}
+
+#cl-name {
+  color: white;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
