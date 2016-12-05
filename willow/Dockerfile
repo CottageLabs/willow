@@ -2,21 +2,25 @@ FROM ruby:2.3
 
 RUN apt-get update -qq && apt-get install -y --no-install-recommends build-essential
 
-# for postgres
+# install postgres
 RUN apt-get install -y --no-install-recommends libpq-dev
 
-# for nokogiri
+# install nokogiri
 RUN apt-get install -y --no-install-recommends libxml2-dev libxslt1-dev
 
-# for capybara-webkit
+# install capybara-webkit
 RUN apt-get install -y --no-install-recommends libqt4-webkit libqt4-dev xvfb
 
-# for a JS runtime
+# install for a JS runtime
 RUN apt-get install -y --no-install-recommends nodejs
 
-# for imagemagick
+# install imagemagick
 RUN apt-get install -y --no-install-recommends imagemagick
 
+# install libreoffice
+RUN apt-get install -y --no-install-recommends libreoffice
+
+# install FITS
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		bzip2 \
 		unzip \
@@ -64,6 +68,8 @@ RUN unzip /fits/fits-1.0.2.zip -d /fits
 
 RUN chmod a+x /fits/fits-1.0.2/fits.sh
 
+ENV PATH /fits/fits-1.0.2/:$PATH
+
 ENV APP_HOME /willow
 
 RUN mkdir $APP_HOME
@@ -74,8 +80,6 @@ ADD Gemfile* $APP_HOME/
 ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile \
   BUNDLE_JOBS=2 \
   BUNDLE_PATH=/bundle
-
-ENV PATH /fits/fits-1.0.2/:$PATH
 
 RUN bundle install
 
