@@ -14,9 +14,10 @@ RUN apt-get install -y --no-install-recommends libqt4-webkit libqt4-dev xvfb
 # for a JS runtime
 RUN apt-get install -y --no-install-recommends nodejs
 
-ENV APP_HOME /willow
+# for imagemagick
+RUN apt-get install -y --no-install-recommends imagemagick
 
-RUN echo clear cache!
+ENV APP_HOME /willow
 
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
