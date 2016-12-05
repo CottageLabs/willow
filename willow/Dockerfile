@@ -62,10 +62,9 @@ RUN set -x \
 # see CA_CERTIFICATES_JAVA_VERSION notes above
 RUN /var/lib/dpkg/info/ca-certificates-java.postinst configure
 
-ADD http://projects.iq.harvard.edu/files/fits/files/fits-1.0.2.zip /fits/fits-1.0.2.zip
-
+RUN mkdir /fits/
+RUN wget http://projects.iq.harvard.edu/files/fits/files/fits-1.0.2.zip -O /fits/fits-1.0.2.zip
 RUN unzip /fits/fits-1.0.2.zip -d /fits
-
 RUN chmod a+x /fits/fits-1.0.2/fits.sh
 
 ENV PATH /fits/fits-1.0.2/:$PATH
