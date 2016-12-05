@@ -2,3 +2,4 @@
 .env
 env.sh
 .idea
+/willow/fits.log
