@@ -16,8 +16,11 @@ RUN apt-get install -y nodejs
 
 ENV APP_HOME /willow
 
+RUN echo clear cache!
+
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
+
 ADD Gemfile* $APP_HOME/
 
 ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile \
@@ -26,4 +29,4 @@ ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile \
 
 RUN bundle install
 
-ADD . $APP_HOME
+ADD startup.sh $APP_HOME/
