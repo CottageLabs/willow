@@ -1,18 +1,18 @@
 FROM ruby:2.3
 
-RUN apt-get update -qq && apt-get install -y build-essential
+RUN apt-get update -qq && apt-get install -y --no-install-recommends build-essential
 
 # for postgres
-RUN apt-get install -y libpq-dev
+RUN apt-get install -y --no-install-recommends libpq-dev
 
 # for nokogiri
-RUN apt-get install -y libxml2-dev libxslt1-dev
+RUN apt-get install -y --no-install-recommends libxml2-dev libxslt1-dev
 
 # for capybara-webkit
-RUN apt-get install -y libqt4-webkit libqt4-dev xvfb
+RUN apt-get install -y --no-install-recommends libqt4-webkit libqt4-dev xvfb
 
 # for a JS runtime
-RUN apt-get install -y nodejs
+RUN apt-get install -y --no-install-recommends nodejs
 
 ENV APP_HOME /willow
 
