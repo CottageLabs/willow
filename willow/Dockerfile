@@ -72,6 +72,8 @@ ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile \
   BUNDLE_JOBS=2 \
   BUNDLE_PATH=/bundle
 
+ENV PATH /fits/fits-1.0.2/:$PATH
+
 RUN bundle install
 
 ADD startup.sh $APP_HOME/
