@@ -65,6 +65,7 @@ RUN chmod a+x /fits/fits-1.0.2/fits.sh
 
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
+
 ADD Gemfile* $APP_HOME/
 
 ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile \
@@ -73,4 +74,4 @@ ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile \
 
 RUN bundle install
 
-ADD . $APP_HOME
+ADD startup.sh $APP_HOME/
