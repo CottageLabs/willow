@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
  *= require_self
  */
 
@@ -25,7 +26,6 @@ body {
 }
 
 #home_header {
-  background-image: url("/assets/willow5.jpg");
   margin-right: -15px;
   margin-left: -15px;
   border: 0;
@@ -151,8 +151,6 @@ div.home_share_work p.text-center a{
   font-size: 36px;
   font-weight: bold;
 }
-
-
 
 
 

@@ -33,7 +33,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'sufia', '7.1.0'
+gem 'sufia', '7.2.0'
+
+gem 'flipflop', git: 'https://github.com/jcoyne/flipflop.git', branch: 'hydra'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
