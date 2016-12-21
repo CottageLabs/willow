@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd /willow 
+cd /willow
+ls -al
 
 echo Creating tmp
 mkdir -p tmp/pids
