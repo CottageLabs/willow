@@ -74,8 +74,7 @@ ENV APP_HOME /willow
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
-ADD * $APP_HOME/
-ADD .* $APP_HOME/
+ADD . $APP_HOME/
 RUN ls -al $APP_HOME
 RUN pwd
 
