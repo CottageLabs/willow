@@ -70,7 +70,6 @@ services:
       #   -Dfcrepo.spring.audit.configuration=file:/etc/fcrepo/audit.xml
       #   -Dlogback.configurationFile=/etc/fcrepo/logback.xml
     volumes:
-       - webapps:/usr/local/tomcat/webapps/
        - fcrepo4_data:/mnt/data/fcrepo/
        - fcrepo4_etc:/etc/fcrepo/
   
