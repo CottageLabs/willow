@@ -12,10 +12,13 @@ services:
     image: solr:6.2
     volumes:
       - solr_data:/opt/solr/server/solr/mycores
-      - ./init/solr/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
-      - ./willow/solr/config/:/opt/solr/server/solr/willow_config
     ports:
       - "8983:8983"
+    entrypoint:
+      - docker-entrypoint.sh
+      - solr-precreate
+      - willow_development
+      - /opt/solr/server/solr/willow_config
   
   redis:
     image: redis:3.2
