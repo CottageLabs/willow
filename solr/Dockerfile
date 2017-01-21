@@ -1,4 +1,5 @@
 FROM solr:6.2
 
 ADD /willow/solr/config/ /opt/solr/server/solr/willow_config
-ADD /solr/chown_solr_data_volume_dir.sh /docker-entrypoint-initdb.d/chown_solr_data_volume_dir.sh
+RUN mkdir -p /opt/solr/server/solr/mycores
+chown 8983:8983 /opt/solr/server/solr/mycores
