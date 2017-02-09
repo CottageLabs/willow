@@ -4,6 +4,7 @@ cd /willow
 
 echo Creating tmp and log
 mkdir -p tmp/pids log
+rm  -f tmp/pids/*
 
 echo "Mounting willow source code as a Docker volume with symlinks, except certain temporary directories and other files"
 
