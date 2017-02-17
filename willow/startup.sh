@@ -25,7 +25,8 @@ if [ -n "$FEDORA" ] ; then
         echo "Fedora reindex completed"
     fi
 else
-    echo "WARNING: Fedora is not running"
+    echo "ERROR: Fedora is not running"
+    exit 1
 fi
 
 echo "Starting Willow"
