@@ -1,10 +1,8 @@
-version: '2'
+version: '2.1'
 
 services:
   db:
-    build:
-      context: .
-      dockerfile: db/Dockerfile
+    build: db/
     env_file: .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -78,6 +76,9 @@ services:
     volumes:
        - fcrepo4_data:/mnt/data/fcrepo/
        - fcrepo4_etc:/etc/fcrepo/
+    depends_on:
+      db:
+        condition: service_started
   
   willow:
     build: willow/
@@ -90,6 +91,12 @@ services:
       - solr
       - db
       - fedora
+    depends_on:
+      fedora:
+        condition: service_healthy
+
+
+
     volumes_from:
       - bundle
     volumes:
