@@ -32,6 +32,12 @@ services:
     command: echo "configured bundle cache"
     volumes:
       - /bundle
+
+  geoblacklight_bundle: # cache for gems to speed up bundle install time
+    image: willow_geoblacklight
+    command: echo "configured bundle cache"
+    volumes:
+      - /geoblacklight_bundle
   
   fedora:
     build: fedora_commons/
@@ -100,32 +106,23 @@ services:
       - ./willow:/willow_source
 
   geoblacklight:
-    build: geoblacklight-docker/images/geoblacklight
+    build: geoblacklight/
+    command: ./startup.sh
+    ports:
+      - "3010:3010"
     environment:
       RAILS_ENV: development
       SOLR_URL: http://solr:8983/solr/geoblacklight
       GEOBLACKLIGHT_DATABASE_USER: postgres
-      GEOBLACKLIGHT_DATABASE_PASSWORD: postgres
+      GEOBLACKLIGHT_DATABASE_PASSWORD: password
+    volumes_from:
+      - geoblacklight_bundle
     volumes:
-      - ./geoblacklight-docker/apps/full/geoblacklight/database.yml:/usr/src/geoblacklight/config/database.yml
-      - ./geoblacklight-docker/apps/full/geoblacklight/start.sh:/usr/src/geoblacklight/start.sh
+      - ./geoblacklight:/geoblacklight_source
     links:
       - solr
-      - geoserver
       - db
 
-  geoserver:
-    build: geoblacklight-docker/images/geoserver
-    volumes:
-      - ./geoblacklight-docker/apps/full/data/geoserver:/usr/local/tomcat/webapps/geoserver/data
-      - ./geoblacklight-docker/apps/full/data/images:/usr/local/tomcat/webapps/geoserver/images
-    links:
-      - db
-
-  loris:
-    image: lorisimageserver/loris
-    volumes:
-      - ./geoblacklight-docker/apps/full/data/images:/usr/local/share/images
 
 volumes:
   webapps: {}
