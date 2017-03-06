@@ -8,6 +8,11 @@ mkdir -p tmp/pids
 
 # TODO: merge this file back into startup.sh and use e.g. environmental variables to detect state
 
+echo $BUNDLE_APP_CONFIG
+echo $BUNDLE_BIN
+echo $BUNDLE_GEMFILE
+echo "Bundle path: $BUNDLE_PATH"
+
 echo "Migrating data..."
 bundle exec rake db:migrate
 
