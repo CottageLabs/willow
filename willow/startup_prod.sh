@@ -8,6 +8,7 @@ mkdir -p tmp/pids
 
 # TODO: merge this file back into startup.sh and use e.g. environmental variables to detect state
 
+bundler -v
 echo $BUNDLE_APP_CONFIG
 echo $BUNDLE_BIN
 echo $BUNDLE_GEMFILE
