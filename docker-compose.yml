@@ -94,13 +94,38 @@ services:
     depends_on:
       fedora:
         condition: service_healthy
-
-
-
     volumes_from:
       - bundle
     volumes:
       - ./willow:/willow_source
+
+  geoblacklight:
+    build: geoblacklight-docker/images/geoblacklight
+    environment:
+      RAILS_ENV: development
+      SOLR_URL: http://solr:8983/solr/geoblacklight
+      GEOBLACKLIGHT_DATABASE_USER: postgres
+      GEOBLACKLIGHT_DATABASE_PASSWORD: postgres
+    volumes:
+      - ./geoblacklight-docker/apps/full/geoblacklight/database.yml:/usr/src/geoblacklight/config/database.yml
+      - ./geoblacklight-docker/apps/full/geoblacklight/start.sh:/usr/src/geoblacklight/start.sh
+    links:
+      - solr
+      - geoserver
+      - db
+
+  geoserver:
+    build: geoblacklight-docker/images/geoserver
+    volumes:
+      - ./geoblacklight-docker/apps/full/data/geoserver:/usr/local/tomcat/webapps/geoserver/data
+      - ./geoblacklight-docker/apps/full/data/images:/usr/local/tomcat/webapps/geoserver/images
+    links:
+      - db
+
+  loris:
+    image: lorisimageserver/loris
+    volumes:
+      - ./geoblacklight-docker/apps/full/data/images:/usr/local/share/images
 
 volumes:
   webapps: {}
