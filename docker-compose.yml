@@ -16,10 +16,7 @@ services:
     ports:
       - "8983:8983"
     entrypoint:
-      - docker-entrypoint.sh
-      - solr-precreate
-      - willow_development
-      - /opt/solr/server/solr/willow_config
+      - /opt/solr/server/solr/prepare.sh
   
   redis:
     image: redis:3.2
@@ -107,14 +104,10 @@ services:
 
   geoblacklight:
     build: geoblacklight/
+    env_file: .env
     command: ./startup.sh
     ports:
       - "3010:3010"
-    environment:
-      RAILS_ENV: development
-      SOLR_URL: http://solr:8983/solr/geoblacklight
-      GEOBLACKLIGHT_DATABASE_USER: postgres
-      GEOBLACKLIGHT_DATABASE_PASSWORD: password
     volumes_from:
       - geoblacklight_bundle
     volumes:

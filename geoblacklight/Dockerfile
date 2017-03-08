@@ -7,6 +7,8 @@ RUN apt-get install -y --no-install-recommends libsqlite3-dev
 RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
 RUN apt-get install -y --no-install-recommends nodejs
 
+RUN echo 'deb http://deb.debian.org/debian jessie-backports main' > /etc/apt/sources.list.d/jessie-backports.list
+
 # add a simple script that can auto-detect the appropriate JAVA_HOME value
 # based on whether the JDK or only the JRE is installed
 RUN { \

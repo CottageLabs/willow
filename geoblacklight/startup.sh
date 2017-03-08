@@ -13,5 +13,9 @@ find ../geoblacklight_source/ -maxdepth 1 ! -name "log" ! -name "tmp" ! -name "s
 echo "Migrating data..."
 bundle exec rake db:migrate
 
+echo "Seeding Solr with some data"
+bundle exec rake geoblacklight:solr:seed
+
 echo "Starting Geoblacklight"
-bundle exec rake geoblacklight:server
+bundle exec rails s -p 3010 -b '0.0.0.0'
+
