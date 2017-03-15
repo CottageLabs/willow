@@ -13,6 +13,8 @@ echo $BUNDLE_APP_CONFIG
 echo $BUNDLE_BIN
 echo $BUNDLE_GEMFILE
 echo "Bundle path: $BUNDLE_PATH"
+ls -al $BUNDLE_PATH
+ls -al $BUNDLE_PATH/gems
 
 echo "Migrating data..."
 bundle exec rake db:migrate
