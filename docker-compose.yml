@@ -16,10 +16,7 @@ services:
     ports:
       - "8983:8983"
     entrypoint:
-      - docker-entrypoint.sh
-      - solr-precreate
-      - willow_development
-      - /opt/solr/server/solr/willow_config
+      - /opt/solr/server/solr/prepare.sh
   
   redis:
     image: redis:3.2
@@ -32,6 +29,12 @@ services:
     command: echo "configured bundle cache"
     volumes:
       - /bundle
+
+  geoblacklight_bundle: # cache for gems to speed up bundle install time
+    image: willow_geoblacklight
+    command: echo "configured bundle cache"
+    volumes:
+      - /geoblacklight_bundle
   
   fedora:
     build: fedora_commons/
@@ -94,13 +97,25 @@ services:
     depends_on:
       fedora:
         condition: service_healthy
-
-
-
     volumes_from:
       - bundle
     volumes:
       - ./willow:/willow_source
+
+  geoblacklight:
+    build: geoblacklight/
+    env_file: .env
+    command: ./startup.sh
+    ports:
+      - "3010:3010"
+    volumes_from:
+      - geoblacklight_bundle
+    volumes:
+      - ./geoblacklight:/geoblacklight_source
+    links:
+      - solr
+      - db
+
 
 volumes:
   webapps: {}
