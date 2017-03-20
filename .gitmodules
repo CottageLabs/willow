@@ -1,0 +1,3 @@
+[submodule "geoblacklight"]
+	path = geoblacklight
+	url = git@github.com:CottageLabs/geoblacklight.git
