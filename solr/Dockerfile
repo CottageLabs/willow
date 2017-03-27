@@ -1,11 +1,16 @@
-FROM solr:6.2
+FROM solr:6.4
 
-# ADD willow/solr/config/ /opt/solr/server/solr/willow_config
+ENV SOLR_HOME=/solr_home
 
-# ADD geoblacklight/solr/config /opt/solr/server/solr/geoblacklight_config
+ADD willow/solr/config/ $SOLR_HOME/willow_config
+ADD geoblacklight/solr/config $SOLR_HOME/geoblacklight_config
+ADD solr/entrypoint.sh /
 
-# ADD init/solr/docker-entrypoint-initdb.d/ /docker-entrypoint-initdb.d/
+USER root
+RUN chown -R solr:solr $SOLR_HOME
 
-# ADD solr/prepare.sh /opt/solr/server/solr
 
-# RUN ls -l /opt/solr/server/solr/
+USER solr
+RUN cp /opt/solr/server/solr/solr.xml $SOLR_HOME
+ENTRYPOINT ["/entrypoint.sh"]
+
