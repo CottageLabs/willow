@@ -12,11 +12,9 @@ services:
       context: .
       dockerfile: solr/Dockerfile
     volumes:
-      - solr_data:/opt/solr/server/solr/mycores
+      - solr_home:/solr_home
     ports:
       - "8983:8983"
-    entrypoint:
-      - /opt/solr/server/solr/prepare.sh
   
   redis:
     image: redis:3.2
@@ -63,6 +61,7 @@ services:
         -Dcom.arjuna.ats.arjuna.objectstore.objectStoreDir=arjuna.object.store
         -Dnet.sf.ehcache.skipUpdateCheck=true
         -Dfcrepo.audit.container=/audit
+        -Djava.security.egd=file:/dev/./urandom
         -XX:+UseConcMarkSweepGC
         -XX:+CMSClassUnloadingEnabled
         -XX:ConcGCThreads=5
@@ -122,4 +121,4 @@ volumes:
   fcrepo4_data: {}
   fcrepo4_etc: {}
   postgres_data: {}
-  solr_data: {}
+  solr_home: {}
