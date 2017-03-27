@@ -15,8 +15,9 @@ services:
       - solr_data:/opt/solr/server/solr/mycores
     ports:
       - "8983:8983"
-    entrypoint:
-      - /opt/solr/server/solr/prepare.sh
+      
+    # entrypoint:
+    #  - /opt/solr/server/solr/prepare.sh
   
   redis:
     image: redis:3.2
