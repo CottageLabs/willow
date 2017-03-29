@@ -1,23 +1,28 @@
-FROM tomcat:7
+FROM tomcat:9
 
+
+# Don't change this, as Tomcat installs to this path
 ENV FCREPO4_HOME=/fcrepo4_home
 
 # multi-tenant tomcat
 ENV CATALINA_BASE=$FCREPO4_HOME
 
-RUN mkdir -p $FCREPO4_HOME/bin $FCREPO4_HOME/conf $FCREPO4_HOME/lib $FCREPO4_HOME/logs $FCREPO4_HOME/webapps  $FCREPO_HOME/work  $FCREPO4_HOME/temp
-
-COPY context.xml $FCREPO4_HOME/conf/context.xml
-COPY setenv.sh $FCREPO4_HOME/bin/setenv.sh
+RUN mkdir -p $FCREPO4_HOME/bin $FCREPO4_HOME/conf $FCREPO4_HOME/lib $FCREPO4_HOME/logs $FCREPO4_HOME/webapps $FCREPO_HOME/work $FCREPO4_HOME/temp
+COPY conf $FCREPO4_HOME/conf
+COPY setenv.sh $CATALINA_HOME/bin/setenv.sh
 
 ADD https://github.com/fcrepo4/fcrepo4/releases/download/fcrepo-4.7.2/fcrepo-webapp-4.7.2.war $FCREPO4_HOME/webapps/ROOT.war
 
 
-RUN ls -la $FCREPO4_HOME/webapps/
 
 
 
 
+# custom configuration
+#
+
+# RUN rm -Rf $CATALINA_HOME/webapps/
+# RUN ls -la $FCREPO4_HOME/webapps/
 
 
 # Add Fedora Commons 4.7.2, update default context file, example data and wait-for-it script
