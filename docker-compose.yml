@@ -76,9 +76,10 @@ services:
       #   -Dfcrepo.spring.audit.configuration=file:/etc/fcrepo/audit.xml
       #   -Dlogback.configurationFile=/etc/fcrepo/logback.xml
     volumes:
-       - fcrepo4_home:/fcrepo4_home
+       - fcrepo4_home:/fcrepo4_home/
        - fcrepo4_data:/mnt/data/fcrepo/
        - fcrepo4_etc:/etc/fcrepo/
+       #- /Users/martyn/temp/fcrepo4_home_temp:/fcrepo4_home_temp/
     depends_on:
       db:
         condition: service_started
