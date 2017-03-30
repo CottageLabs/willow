@@ -19,10 +19,7 @@ services:
   redis:
     image: redis:3.2
   
-  modeshape:
-    image: jboss/modeshape
-  
-  bundle: # cache for gems to speed up bundle install time
+  willow_bundle: # cache for gems to speed up bundle install time
     image: willow_willow
     command: echo "configured bundle cache"
     volumes:
@@ -35,54 +32,18 @@ services:
       - /geoblacklight_bundle
   
   fedora:
+    env_file: .env
     build: fedora_commons/
     links:
       - db
     ports:
       - "8080:8080"
-    #environment:
-      #      JAVA_OPTS: >
-      #        -Dfile.encoding=UTF-8
-      #        -Dfcrepo.home=/mnt/data/fcrepo
-      #        -Dfcrepo.ispn.alternative.cache=ispn.alt.cache
-      #        -Dfcrepo.ispn.binary.cache=ispn.binary.cache
-      #        -Dfcrepo.ispn.cache=ispn.cache
-      #        -Dfcrepo.ispn.binary.alternative.cache=ispn.binary.alt.cache
-      #        -Dfcrepo.ispn.repo.cache=ispn.repo.cache
-      #        -Dfcrepo.ispn.postgresql.username=${POSTGRES_USER}
-      #        -Dfcrepo.ispn.postgresql.password=${POSTGRES_PASSWORD}
-      #        -Dfcrepo.ispn.postgresql.host=db
-      #        -Dfcrepo.ispn.postgresql.port=5432
-      #        -Dfcrepo.modeshape.configuration=classpath:/config/jdbc-postgresql/repository.json
-      #        -Dfcrepo.modeshape.index.directory=modeshape.index
-      #        -Dfcrepo.binary.directory=binary.store
-      #        -Dfcrepo.activemq.directory=activemq
-      #        -Dcom.arjuna.ats.arjuna.common.ObjectStoreEnvironmentBean.default.objectStoreDir=arjuna.common.object.store
-      #        -Dcom.arjuna.ats.arjuna.objectstore.objectStoreDir=arjuna.object.store
-      #        -Dnet.sf.ehcache.skipUpdateCheck=true
-      #        -Dfcrepo.audit.container=/audit
-      #        -Djava.security.egd=file:/dev/./urandom
-      #        -XX:+UseConcMarkSweepGC
-      #        -XX:+CMSClassUnloadingEnabled
-      #        -XX:ConcGCThreads=5
-      #        -XX:MaxGCPauseMillis=200
-      #        -XX:ParallelGCThreads=20
-      #        -XX:MaxMetaspaceSize=512M
-      #        -Xms1024m
-      #        -Xmx2048m
-      #   -Dfcrepo.activemq.configuration=file:/etc/fcrepo/activemq.xml
-      #   -Dfcrepo.ispn.configuration=/etc/fcrepo/infinispan.xml
-      #   -Dfcrepo.auth.webac.authorization=/etc/fcrepo/root-authentication.ttl
-      #   -Dfcrepo.spring.audit.configuration=file:/etc/fcrepo/audit.xml
-      #   -Dlogback.configurationFile=/etc/fcrepo/logback.xml
     volumes:
        - fcrepo4_home:/fcrepo4_home/
-       - fcrepo4_data:/mnt/data/fcrepo/
-       - fcrepo4_etc:/etc/fcrepo/
-       #- /Users/martyn/temp/fcrepo4_home_temp:/fcrepo4_home_temp/
+       - fcrepo4_data:/fcrepo4_data/
     depends_on:
       db:
-        condition: service_started
+        condition: service_healthy
   
   willow:
     build: willow/
@@ -99,7 +60,7 @@ services:
       fedora:
         condition: service_healthy
     volumes_from:
-      - bundle
+      - willow_bundle
     volumes:
       - ./willow:/willow_source
 
@@ -122,6 +83,5 @@ volumes:
   webapps: {}
   fcrepo4_home: {}
   fcrepo4_data: {}
-  fcrepo4_etc: {}
   postgres_data: {}
   solr_home: {}
