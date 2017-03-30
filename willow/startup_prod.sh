@@ -20,7 +20,7 @@ echo "Migrating data..."
 bundle exec rake db:migrate
 
 # check that Fedora is running
-FEDORA=$(curl --silent --connect-timeout 30 "http://fedora:8080/fcrepo/" | grep "Fedora Commons Repository")
+FEDORA=$(curl --silent --connect-timeout 30 "http://fedora:8080/" | grep "Fedora Commons Repository")
 if [ -n "$FEDORA" ] ; then
     # check that Solr is populated (by reading the numFound attribute)
     DOCS=$(curl --silent --connect-timeout 10 "http://solr:8983/solr/willow_development/select?q=*:*&wt=xml" | grep -oP 'numFound="\K[^"]*')
