@@ -23,7 +23,7 @@ services:
     image: willow_willow
     command: echo "configured bundle cache"
     volumes:
-      - /bundle
+      - /willow_bundle
 
   geoblacklight_bundle: # cache for gems to speed up bundle install time
     image: willow_geoblacklight
@@ -59,6 +59,8 @@ services:
     depends_on:
       fedora:
         condition: service_healthy
+      db:
+        condition: service_healthy
     volumes_from:
       - willow_bundle
     volumes:
@@ -78,9 +80,7 @@ services:
       - solr
       - db
 
-
 volumes:
-  webapps: {}
   fcrepo4_home: {}
   fcrepo4_data: {}
   postgres_data: {}
