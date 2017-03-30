@@ -14,7 +14,7 @@ else
     echo "Initialising Fedora for data load"
     # start Tomcat and Fedora in the background so that this script can continue to run
     catalina.sh start
-    wait-for-it.sh localhost:8080 --strict --timeout=30 -- echo "Tomcat is running"
+    wait-for-it.sh localhost:8080 --strict --timeout=120 -- echo "Tomcat is running"
 
     # Wait a few seconds whilst Fedora deploys
     sleep 5
