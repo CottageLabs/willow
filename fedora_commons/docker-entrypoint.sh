@@ -1,37 +1,38 @@
-#!/bin/sh
+#!/bin/bash
 
-echo Initialising Fedora
+set -e
 
-# check to see if a marker file exists indicating the data has already been restored
-if [ ! -e /mnt/data/fcrepo/.example_willow_objects ] ;  then
-    echo "Restoring willow objects to Fedora"
+if [[ "$VERBOSE" = "yes" ]]; then
+    set -x
+fi
+
+fedora_created=$FCREPO4_HOME/fedora_created
+
+if [ -f $fedora_created ]; then
+    echo "Skipping fedora data load"
+else
+    echo "Initialising Fedora for data load"
     # start Tomcat and Fedora in the background so that this script can continue to run
     catalina.sh start
-    wait-for-it.sh "localhost:8080" -t 30 --quiet
-    if [ "$?" -eq "0" ] ; then
-        # Tomcat is running, now check whether Fedora is running
-        # wait a few more seconds for Fedora to boot
-        sleep 2
-        # verify Fedora is running
-        FEDORA=$(curl --silent --connect-timeout 30 "http://localhost:8080/fcrepo/" | grep "Fedora Commons Repository")
-        if [ -n "$FEDORA" ] ; then
-            echo "Restoring data..."
+    sleep 10 # need to wait for Fedora to deploy
 
-            curl --silent --connect-timeout 60 -X POST -d"/tmp/example_willow_objects" "http://localhost:8080/fcrepo/rest/fcr:restore"
+    # Check that the Fedora Commons Rest interface is running
+    FEDORA=$(curl --connect-timeout 60 -I -s -L http://localhost:8080/rest/ | grep -o "HTTP/1.1 200")
 
-            # wait a moment
-            sleep 1
-            echo "All restored"
+    if [ "$FEDORA" = "HTTP/1.1 200" ] ; then
+        echo "Restoring data..."
+        curl --silent --connect-timeout 30 -X POST -d"/tmp/example_willow_objects" "http://localhost:8080/rest/fcr:restore"
 
-            mkdir -p /mnt/data/fcrepo/
-            date >> /mnt/data/fcrepo/.example_willow_objects
-        else
-            echo "Failed to start Fedora"
-        fi
-        echo "Stopping Tomcat"
+        # wait a moment
+        sleep 1
+        echo "All restored"
+        touch $fedora_created
+
         catalina.sh stop
     else
-        echo "Failed to start Tomcat"
+        echo "ERROR: Fedora not running at http://localhost:8080/rest/, data not restored"
+        catalina.sh stop
+        exit 1
     fi
 fi
 
