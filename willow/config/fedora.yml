@@ -1,15 +1,15 @@
 development:
   user: fedoraAdmin
   password: fedoraAdmin
-  url: http://fedora:8080/fcrepo/rest
+  url: http://fedora:8080/rest
   base_path: /willow_development
 test:
   user: fedoraAdmin
   password: fedoraAdmin
-  url: http://fedora:8080/fcrepo/rest
+  url: http://fedora:8080/rest
   base_path: /willow_test
 production:
   user: fedoraAdmin
   password: fedoraAdmin
-  url: http://fedora:8080/fcrepo/rest
+  url: http://fedora:8080/rest
   base_path: /willow_production
