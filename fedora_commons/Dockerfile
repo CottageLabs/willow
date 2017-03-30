@@ -13,6 +13,7 @@ ADD https://s3.eu-west-2.amazonaws.com/cl-willow/example_willow_objects.tar.gz /
 RUN cd /tmp/ && tar -xzvf example_willow_objects.tar.gz && rm -f /tmp/example_willow_objects.tar.gz && cd /
 
 COPY docker-healthcheck.sh /usr/local/bin/
+COPY wait-for-it.sh /usr/local/bin/
 COPY docker-entrypoint.sh /
 
 ENTRYPOINT ["/docker-entrypoint.sh"]

@@ -14,15 +14,16 @@ else
     echo "Initialising Fedora for data load"
     # start Tomcat and Fedora in the background so that this script can continue to run
     catalina.sh start
-    sleep 10 # need to wait for Fedora to deploy
+    wait-for-it.sh localhost:8080 --strict --timeout=30 -- echo "Tomcat is running"
 
-    # Check that the Fedora Commons Rest interface is running
+    # Wait a few seconds whilst Fedora deploys
+    sleep 5
+
+    echo "Verifying Fedora Commons Rest interface is running"
     FEDORA=$(curl --connect-timeout 60 -I -s -L http://localhost:8080/rest/ | grep -o "HTTP/1.1 200")
-
     if [ "$FEDORA" = "HTTP/1.1 200" ] ; then
-        echo "Restoring data..."
+        echo "Restoring Fedora data..."
         curl --silent --connect-timeout 30 -X POST -d"/tmp/example_willow_objects" "http://localhost:8080/rest/fcr:restore"
-
         # wait a moment
         sleep 1
         echo "All restored"
@@ -30,8 +31,8 @@ else
 
         catalina.sh stop
     else
-        echo "ERROR: Fedora not running at http://localhost:8080/rest/, data not restored"
         catalina.sh stop
+        echo "ERROR: Fedora did not respond as expected, data not restored"
         exit 1
     fi
 fi
