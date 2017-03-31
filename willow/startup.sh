@@ -21,7 +21,7 @@ if [ -n "$FEDORA" ] ; then
 
     if [ "$DOCS" -eq "0" ] ; then
         echo "Reindexing Fedora... (this can take a few minutes)"
-        bundle exec rails runner "ActiveFedora::Base.reindex_everything"
+        # bundle exec rails runner "ActiveFedora::Base.reindex_everything"
         echo "Fedora reindex completed"
     fi
 else
