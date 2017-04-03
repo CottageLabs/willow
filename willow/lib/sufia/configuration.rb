@@ -9,7 +9,7 @@ module Sufia
 
     attr_writer :banner_image
     def banner_image
-      @banner_image ||= "/assets/images/willow5.jpg"
+      @banner_image ||= "https://cloud.githubusercontent.com/assets/4950775/24611147/02ee9496-1879-11e7-89f4-ec17e1e7dfa7.jpg"
     end
 
     attr_writer :persistent_hostpath
@@ -127,17 +127,17 @@ module Sufia
       @owner_permission_levels ||= { "Edit Access" => "edit" }
     end
 
-    # # TODO: Delegate to curation_concerns when https://github.com/projecthydra/curation_concerns/pull/848 is merged
-    # attr_writer :translate_uri_to_id
-    # def translate_uri_to_id
-    #   @translate_uri_to_id ||= ActiveFedora::Noid.config.translate_uri_to_id
-    # end
-    #
-    # # TODO: Delegate to curation_concerns when https://github.com/projecthydra/curation_concerns/pull/848 is merged
-    # attr_writer :translate_id_to_uri
-    # def translate_id_to_uri
-    #   @translate_id_to_uri ||= ActiveFedora::Noid.config.translate_id_to_uri
-    # end
+    # TODO: Delegate to curation_concerns when https://github.com/projecthydra/curation_concerns/pull/848 is merged
+    attr_writer :translate_uri_to_id
+    def translate_uri_to_id
+      @translate_uri_to_id ||= ActiveFedora::Noid.config.translate_uri_to_id
+    end
+
+    # TODO: Delegate to curation_concerns when https://github.com/projecthydra/curation_concerns/pull/848 is merged
+    attr_writer :translate_id_to_uri
+    def translate_id_to_uri
+      @translate_id_to_uri ||= ActiveFedora::Noid.config.translate_id_to_uri
+    end
 
     attr_writer :contact_email
     def contact_email
