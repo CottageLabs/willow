@@ -20,9 +20,17 @@ if [ -n "$FEDORA" ] ; then
     DOCS=$(curl --silent --connect-timeout 10 "http://solr:8983/solr/willow_development/select?q=*:*&wt=xml" | grep -oP 'numFound="\K[^"]*')
 
     if [ "$DOCS" -eq "0" ] ; then
-        echo "Reindexing Fedora... (this can take a few minutes)"
-        # bundle exec rails runner "ActiveFedora::Base.reindex_everything"
-        echo "Fedora reindex completed"
+        echo "Reindexing Solr... (this can take a few minutes)"
+        bundle exec rails runner "ActiveFedora::Base.reindex_everything()"
+
+        echo "Optimising Solr index..."
+        bundle exec rails runner "ActiveFedora::SolrService.instance.conn.optimize()"
+
+        # Solr will crash with a Java stack-overflow error if you rebuild suggestions. Suspect a bug in the Solr FuzzyLookupFactory, disabling for now.
+        # echo "Rebuilding suggestions..."
+        # bundle exec rails runner "ActiveFedora::SolrService.instance.conn.suggest({:data => \"suggest.build=true\", :method => :post})"
+
+        echo "Solr reindex completed"
     fi
 else
     echo "ERROR: Fedora is not running"
