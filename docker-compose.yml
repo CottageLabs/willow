@@ -50,7 +50,7 @@ services:
     env_file: .env
     command: ./startup.sh
     ports:
-      - "3000:3000"
+      - "${WILLOW_EXPOSED_PORT:-3000}:3000"
     links:
       - redis
       - solr
@@ -71,7 +71,7 @@ services:
     env_file: .env
     command: ./startup.sh
     ports:
-      - "3010:3010"
+      - "${GEOBLACKLIGHT_EXPOSED_PORT:-3010}:3010"
     volumes_from:
       - geoblacklight_bundle
     volumes:
