@@ -48,7 +48,6 @@ services:
   willow:
     build: willow/
     env_file: .env
-    command: ./startup.sh
     ports:
       - "${WILLOW_EXPOSED_PORT:-3000}:3000"
     links:
