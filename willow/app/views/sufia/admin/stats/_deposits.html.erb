@@ -5,13 +5,11 @@
       <% if usr[:user].present? %>
         <li>
           <a href="<%= sufia.profile_path(usr[:key]) %>" title="View user's profile"><%= usr[:user].name %></a>
-          <% num_files = usr[:deposits]%>
-          deposited <%= pluralize(num_files, "file") %>
+          deposited <%= pluralize(usr[:deposits], "file") %>
         </li>
       <% else %>
         <li>
-          <% num_files = usr[:deposits]%>
-          usr[:key] deposited deposited <%= pluralize(num_files, "file") %>
+          <%= usr[:key] %> deposited <%= pluralize(usr[:deposits], "file") %>
         </li>
       <% end %>
   <% end %>
