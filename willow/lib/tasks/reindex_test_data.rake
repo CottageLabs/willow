@@ -44,12 +44,28 @@ namespace :willow do
 
       # Unfortunately, we also need to re-create the derivatives, otherwise restored images will not have thumbnails.
       # So lets do it the hard way by downloading the original from Fedora and re-processing it.
-      if obj.respond_to?(:thumbnail) && obj.thumbnail.present? && obj.thumbnail.original_file.present?
-        thumbnail = open(obj.thumbnail.current_content_version_uri)
-        obj.thumbnail.create_derivatives(thumbnail.path)
-        obj.thumbnail.update_index
-        thumbnail.close
+      if obj.is_a? FileSet
+        if obj.original_file.present?
+          file = obj.original_file
+        elsif obj.files.present?
+          file = obj.files.first
+        else
+          file = nil
+        end
+
+        if file.present?
+          tempfile = open(file.uri)
+          CreateDerivativesJob.perform_now(obj, file.id, tempfile)
+          tempfile.close()
+        end
       end
+
+      # if obj.respond_to?(:thumbnail) && obj.thumbnail.present? && obj.thumbnail.original_file.present?
+      #   thumbnail = open(obj.thumbnail.uri.to_s)
+      #   obj.thumbnail.create_derivatives(thumbnail.path)
+      #   obj.thumbnail.update_index
+      #   thumbnail.close
+      # end
 
       obj.update_index
       if i % 100 == 0
