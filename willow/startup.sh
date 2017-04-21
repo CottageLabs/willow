@@ -13,11 +13,16 @@ find ../willow_source/ -maxdepth 1 ! -name "log" ! -name "tmp" ! -name "startup.
 echo "Migrating data..."
 bundle exec rake db:migrate
 
+if [ "$RAILS_ENV" = "production" ]; then
+    echo "Compiling assets..."
+    bundle exec rake assets:clean assets:precompile
+fi
+
 # check that Fedora is running
 FEDORA=$(curl --silent --connect-timeout 30 "http://fedora:8080/" | grep "Fedora Commons Repository")
 if [ -n "$FEDORA" ] ; then
     # check that Solr is populated (by reading the numFound attribute)
-    DOCS=$(curl --silent --connect-timeout 10 "http://solr:8983/solr/willow_development/select?q=*:*&wt=xml" | grep -oP 'numFound="\K[^"]*')
+    DOCS=$(curl --silent --connect-timeout 10 "http://solr:8983/solr/willow_$RAILS_ENV/select?q=*:*&wt=xml" | grep -oP 'numFound="\K[^"]*')
 
     if [ "$DOCS" -eq "0" ] ; then
         echo "Reindexing Fedora... (this can take a few minutes)"
