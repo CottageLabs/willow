@@ -414,6 +414,7 @@ GEM
     posix-spawn (0.3.13)
     power_converter (0.1.2)
     public_suffix (2.0.5)
+    puma (3.8.2)
     qa (0.11.1)
       activerecord-import
       deprecation
@@ -646,6 +647,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   pg (~> 0.19.0)
+  puma (~> 3.8.2)
   rails (= 5.0.1)
   rsolr (~> 1.0)
   rspec-rails
