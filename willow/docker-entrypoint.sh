@@ -13,6 +13,12 @@ find ../willow_source/ -maxdepth 1 ! -name "log" ! -name "tmp" ! -name "startup.
 echo "Running database migrations..."
 bundle exec rake db:migrate
 
+if [ "$RAILS_ENV" = "production" ]; then
+    echo "Compiling assets..."
+    bundle exec rake assets:clean assets:precompile
+fi
+
+# TODO: create seed test data rather than reindexing pre-cooked data
 ## check that Fedora is running
 #FEDORA=$(curl --silent --connect-timeout 30 "http://fedora:8080/" | grep "Fedora Commons Repository")
 #if [ -n "$FEDORA" ] ; then

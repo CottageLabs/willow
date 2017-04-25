@@ -19,3 +19,6 @@
 #Ignore uploads
 /public/system/avatars/*
 !/public/system/avatars/.keep
+
+# ignore compiled assets
+/public/assets/
