@@ -6,6 +6,7 @@ if [[ "$VERBOSE" = "yes" ]]; then
     set -x
 fi
 
+# TODO: create seed test data rather than reindexing pre-cooked data
 #fedora_created=$FCREPO4_HOME/fedora_created
 #
 #if [ -f $fedora_created ]; then

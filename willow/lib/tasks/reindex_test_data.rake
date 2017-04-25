@@ -60,6 +60,7 @@ namespace :willow do
         end
       end
 
+      # TODO: this does not work reliably enough and only some derivatives are regenerated. Find a better method.
       # if obj.respond_to?(:thumbnail) && obj.thumbnail.present? && obj.thumbnail.original_file.present?
       #   thumbnail = open(obj.thumbnail.uri.to_s)
       #   obj.thumbnail.create_derivatives(thumbnail.path)
