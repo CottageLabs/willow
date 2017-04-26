@@ -23,7 +23,7 @@ fi
 FEDORA=$(curl --silent --connect-timeout 30 "http://fedora:8080/" | grep "Fedora Commons Repository")
 if [ -n "$FEDORA" ] ; then
    echo "(Re)seeding test data... (this can take a few minutes)"
-   bundle exec rake willow:seed_test_data
+   bundle exec rake willow:seed_test_data["$WILLOW_EMAIL","$WILLOW_PASSWORD","$WILLOW_NAME"]
 else
     echo "ERROR: Fedora is not running"
     exit 1
