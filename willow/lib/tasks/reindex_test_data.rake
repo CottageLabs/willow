@@ -1,5 +1,5 @@
 namespace :willow do
-  desc "Reindex Willow test data (do not run on production!)"
+  desc "Reindex Willow test data (very slow - do not run on large data sets!)"
   task :"reindex_test_data" => :environment do
 
     # setup logging
