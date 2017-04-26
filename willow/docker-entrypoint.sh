@@ -8,7 +8,7 @@ rm  -f tmp/pids/*
 
 echo "Mounting willow source code as a Docker volume with symlinks, except certain temporary directories and other files"
 
-find ../willow_source/ -maxdepth 1 ! -name "log" ! -name "tmp" ! -name "startup.sh" -exec ln -sf {} ';'
+find ../willow_source/ -maxdepth 1 ! -name "log" ! -name "tmp" ! -name "docker-entrypoint.sh" -exec ln -sf {} ';'
 
 echo "Running database migrations..."
 bundle exec rake db:migrate
