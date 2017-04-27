@@ -22,16 +22,21 @@ ENV LANG=C.UTF-8 \
 
 
 # Installing libraries and dependencies
-RUN apt-get update -qq && apt-get install -y --no-install-recommends \
+RUN apt-get update -qq && \
+    apt-get install -y --no-install-recommends \
     libpq-dev \
     libxml2-dev libxslt1-dev \
     libqt4-webkit libqt4-dev xvfb \
     nodejs \
     imagemagick \
     libreoffice \
+    ghostscript \
+    ffmpeg \
+    ufraw \
     bzip2 unzip xz-utils \
     openjdk-8-jre-headless="$JAVA_DEBIAN_VERSION" \
     ca-certificates-java="$CA_CERTIFICATES_JAVA_VERSION" \
+    && apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 
 # add a simple script that can auto-detect the appropriate JAVA_HOME value
