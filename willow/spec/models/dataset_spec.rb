@@ -163,17 +163,97 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         creator_attributes: [{
-            first_name: ['Foo', 'Baz'],
+            first_name: ['Foo'],
             last_name: 'Bar',
             orcid: '0000-0000-0000-0000',
             role: 'Author'
           }]
       }
       @doc = @obj.to_solr
-      expect(@doc['creator_sim']).to eq ['Foo Baz Bar']
-      expect(@doc['creator_tesim']).to eq ['Foo Baz Bar']
+      expect(@doc['creator_sim']).to eq ['Foo Bar']
+      expect(@doc['creator_tesim']).to eq ['Foo Bar']
       expect(@doc).to include('person_tesim')
     end
+  end
+
+  describe 'nested attributes for relation' do
+    it 'accepts relation attributes' do
+      @obj = Dataset.new
+      @obj.attributes = {
+        title: ['test title'],
+        relation_attributes: [
+          {
+            label: 'A relation label',
+            url: 'http://example.com/relation'
+          }
+        ]
+      }
+      @obj.save!
+      @obj.reload
+      expect(@obj.relation.size).to eq 1
+      expect(@obj.relation.first).to be_kind_of ActiveTriples::Resource
+      expect(@obj.relation.first.id).to include('#relation')
+      expect(@obj.relation.first.label).to eq ['A relation label']
+      expect(@obj.relation.first.url).to eq ['http://example.com/relation']
+    end
+
+    it 'rejectss relation if blank' do
+      @obj = Dataset.new
+      @obj.attributes = {
+        title: ['test title'],
+        relation_attributes: [
+          {
+            label: 'Test label'
+          },
+          {
+            label: '',
+            url: nil,
+          }
+        ]
+      }
+      @obj.save!
+      @obj.reload
+      expect(@obj.relation.size).to eq(0)
+    end
+
+    it 'destroys relation' do
+      @obj = Dataset.new
+      @obj.attributes = {
+        title: ['test title'],
+        relation_attributes: [{
+            label: 'test label',
+            url: 'http://example.com/relation'
+          }]
+      }
+      @obj.save!
+      @obj.reload
+      expect(@obj.relation.size).to eq(1)
+      @obj.attributes = {
+        relation_attributes: [{
+            id: @obj.relation.first.id,
+            label: 'test label',
+            url: 'http://example.com/relation',
+            _destroy: "1"
+          }]
+      }
+      @obj.save!
+      @obj.reload
+      expect(@obj.relation.size).to eq(0)
+    end
+
+    it 'indexes relation' do
+      @obj = Dataset.new
+      @obj.attributes = {
+        title: ['test dataset'],
+        relation_attributes: [{
+          label: 'test label',
+          url: 'http://example.com/relation'
+        }]
+      }
+      @doc = @obj.to_solr
+      expect(@doc['relation_tesim']).to eq ['http://example.com/relation']
+    end
+
   end
 
 end

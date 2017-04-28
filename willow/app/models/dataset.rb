@@ -12,6 +12,7 @@ class Dataset < ActiveFedora::Base
 
   property :license, predicate: ::RDF::Vocab::DC.license, class_name:"LicenseStatement"
   property :creator, predicate: ::RDF::Vocab::DC.license, class_name:"PersonStatement"
+  property :relation, predicate: ::RDF::Vocab::DC.relation, class_name:"RelationStatement"
 
   # must be included after all properties are declared
   include NestedAttributes
@@ -24,6 +25,7 @@ class Dataset < ActiveFedora::Base
       creators = creator.map { |c| (c.first_name + c.last_name).join(' ') }
       doc[Solrizer.solr_name('creator', :facetable)] = creators
       doc[Solrizer.solr_name('creator', :stored_searchable)] = creators
+      doc[Solrizer.solr_name('relation', :stored_searchable)] = relation.map { |r| r.url.first }
     end
   end
 
