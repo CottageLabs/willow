@@ -11,7 +11,7 @@ class Dataset < ActiveFedora::Base
   validates :title, presence: { message: 'Your work must have a title.' }
 
   property :license, predicate: ::RDF::Vocab::DC.license, class_name:"LicenseStatement"
-  property :creator, predicate: ::RDF::Vocab::DC.license, class_name:"Person"
+  property :creator, predicate: ::RDF::Vocab::DC.license, class_name:"PersonStatement"
 
   # must be included after all properties are declared
   include NestedAttributes

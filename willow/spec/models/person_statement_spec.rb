@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-describe Person do
+describe PersonStatement do
   before do
     class ExampleWork < ActiveFedora::Base
-      property :creator, predicate: ::RDF::Vocab::DC.creator, class_name:"Person"
+      property :creator, predicate: ::RDF::Vocab::DC.creator, class_name:"PersonStatement"
       accepts_nested_attributes_for :creator, reject_if: proc {
        |attributes| (Array(attributes[:first_name]).all?(&:blank?) &&
         Array(attributes[:last_name]).all?(&:blank?)) ||

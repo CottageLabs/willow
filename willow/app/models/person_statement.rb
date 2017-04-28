@@ -1,4 +1,4 @@
-class Person < ActiveTriples::Resource
+class PersonStatement < ActiveTriples::Resource
 
   configure type: ::RDF::Vocab::FOAF.Person
   property :first_name, predicate: ::RDF::Vocab::FOAF.givenName
