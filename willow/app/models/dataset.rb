@@ -10,11 +10,16 @@ class Dataset < ActiveFedora::Base
   # self.valid_child_concerns = []
   validates :title, presence: { message: 'Your work must have a title.' }
 
-  property :license, predicate: ::RDF::Vocab::DC.license, class_name:"LicenseStatement" do |index|
-    index.as :stored_searchable, :facetable, using: :pref_label
-  end
+  property :license, predicate: ::RDF::Vocab::DC.license, class_name:"LicenseStatement"
 
   # must be included after all properties are declared
   include NestedAttributes
+
+  def to_solr(solr_doc = {})
+    super(solr_doc).tap do |doc|
+      doc[Solrizer.solr_name('license', :stored_searchable)] = license.to_json
+      doc[Solrizer.solr_name('license', :facetable)] = license.map { |l| l.label.first }
+    end
+  end
 
 end
