@@ -11,6 +11,7 @@ class Dataset < ActiveFedora::Base
   validates :title, presence: { message: 'Your work must have a title.' }
 
   property :license, predicate: ::RDF::Vocab::DC.license, class_name:"LicenseStatement"
+  property :creator, predicate: ::RDF::Vocab::DC.license, class_name:"Person"
 
   # must be included after all properties are declared
   include NestedAttributes
@@ -19,6 +20,9 @@ class Dataset < ActiveFedora::Base
     super(solr_doc).tap do |doc|
       doc[Solrizer.solr_name('license', :stored_searchable)] = license.to_json
       doc[Solrizer.solr_name('license', :facetable)] = license.map { |l| l.label.first }
+      doc[Solrizer.solr_name('creator', :stored_searchable)] = creator.to_json
+      doc[Solrizer.solr_name('creator', :facetable)] = creator.map {
+        |c| (c.first_name.first + ' ' + c.last_name.first).strip }
     end
   end
 

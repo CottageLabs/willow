@@ -8,7 +8,9 @@ module NestedAttributes
     id_blank = proc { |attributes| attributes[:id].blank? }
 
     accepts_nested_attributes_for :license, reject_if: :license_blank, allow_destroy: true
+    accepts_nested_attributes_for :creator, reject_if: :creator_blank, allow_destroy: true
 
+    # license_blank
     resource_class.send(:define_method, :license_blank) do |attributes|
       license_attributes.all? do |key|
         Array(attributes[key]).all?(&:blank?)
@@ -17,6 +19,14 @@ module NestedAttributes
 
     resource_class.send(:define_method, :license_attributes) do
       [:label, :definition, :webpage]
+    end
+
+    # creator_blank
+    resource_class.send(:define_method, :creator_blank) do |attributes|
+      (Array(attributes[:first_name]).all?(&:blank?) &&
+      Array(attributes[:last_name]).all?(&:blank?)) ||
+      Array(attributes[:role]).all?(&:blank?) ||
+      Array(attributes[:orcid]).all?(&:blank?)
     end
   end
 end
