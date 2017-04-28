@@ -20,9 +20,10 @@ class Dataset < ActiveFedora::Base
     super(solr_doc).tap do |doc|
       doc[Solrizer.solr_name('license', :stored_searchable)] = license.to_json
       doc[Solrizer.solr_name('license', :facetable)] = license.map { |l| l.label.first }
-      doc[Solrizer.solr_name('creator', :stored_searchable)] = creator.to_json
-      doc[Solrizer.solr_name('creator', :facetable)] = creator.map {
-        |c| (c.first_name.first + ' ' + c.last_name.first).strip }
+      doc[Solrizer.solr_name('person', :stored_searchable)] = creator.to_json
+      creators = creator.map { |c| (c.first_name + c.last_name).join(' ') }
+      doc[Solrizer.solr_name('creator', :facetable)] = creators
+      doc[Solrizer.solr_name('creator', :stored_searchable)] = creators
     end
   end
 
