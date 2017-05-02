@@ -13,19 +13,27 @@ class Dataset < ActiveFedora::Base
   property :license, predicate: ::RDF::Vocab::DC.license, class_name:"LicenseStatement"
   property :creator, predicate: ::RDF::Vocab::DC.license, class_name:"PersonStatement"
   property :relation, predicate: ::RDF::Vocab::DC.relation, class_name:"RelationStatement"
+  property :publication, predicate: ::RDF::Vocab::DC.isReferencedBy, class_name: "PublicationStatement"
 
   # must be included after all properties are declared
   include NestedAttributes
 
   def to_solr(solr_doc = {})
     super(solr_doc).tap do |doc|
+      # license
       doc[Solrizer.solr_name('license', :stored_searchable)] = license.to_json
       doc[Solrizer.solr_name('license', :facetable)] = license.map { |l| l.label.first }
+      # creator
       doc[Solrizer.solr_name('person', :stored_searchable)] = creator.to_json
       creators = creator.map { |c| (c.first_name + c.last_name).join(' ') }
       doc[Solrizer.solr_name('creator', :facetable)] = creators
       doc[Solrizer.solr_name('creator', :stored_searchable)] = creators
+      # relation
       doc[Solrizer.solr_name('relation', :stored_searchable)] = relation.map { |r| r.url.first }
+      # publication
+      doc[Solrizer.solr_name('publication', :stored_searchable)] = publication.map { |p| p.title.first }
+      doc[Solrizer.solr_name('journal', :stored_searchable)] = publication.map { |p| p.journal.first }
+      doc[Solrizer.solr_name('journal', :facetable)] = publication.map { |p| p.journal.first }
     end
   end
 

@@ -10,6 +10,7 @@ module NestedAttributes
     accepts_nested_attributes_for :license, reject_if: :license_blank, allow_destroy: true
     accepts_nested_attributes_for :creator, reject_if: :creator_blank, allow_destroy: true
     accepts_nested_attributes_for :relation, reject_if: :relation_blank, allow_destroy: true
+    accepts_nested_attributes_for :publication, reject_if: :all_blank, allow_destroy: true
 
     # license_blank - similar to all_blank for defined license attributes
     resource_class.send(:define_method, :license_blank) do |attributes|

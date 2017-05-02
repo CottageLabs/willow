@@ -116,7 +116,7 @@ RSpec.describe Dataset do
       expect(@obj.creator[1].id).to include('#person')
     end
 
-    it 'reject person if blank' do
+    it 'rejects person if blank' do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test dataset'],
@@ -253,7 +253,90 @@ RSpec.describe Dataset do
       @doc = @obj.to_solr
       expect(@doc['relation_tesim']).to eq ['http://example.com/relation']
     end
+  end
 
+    describe 'nested attributes for publication' do
+    it 'accepts publication attributes' do
+      @obj = Dataset.new
+      @obj.attributes = {
+        title: ['test title'],
+        publication_attributes: [
+          {
+            title: 'A publication title',
+            journal: 'A journal for the publication',
+            url: 'http://example.com/publication'
+          }
+        ]
+      }
+      @obj.save!
+      @obj.reload
+      expect(@obj.publication.size).to eq 1
+      expect(@obj.publication.first).to be_kind_of ActiveTriples::Resource
+      expect(@obj.publication.first.id).to include('#publication')
+      expect(@obj.publication.first.title).to eq ['A publication title']
+      expect(@obj.publication.first.journal).to eq ['A journal for the publication']
+      expect(@obj.publication.first.url).to eq ['http://example.com/publication']
+    end
+
+    it 'rejects publication if all blank' do
+      @obj = Dataset.new
+      @obj.attributes = {
+        title: ['test title'],
+        publication_attributes: [
+          {
+            title: 'Test title'
+          },
+          {
+            title: '',
+            url: nil,
+          }
+        ]
+      }
+      @obj.save!
+      @obj.reload
+      expect(@obj.publication.size).to eq(1)
+    end
+
+    it 'destroys publication' do
+      @obj = Dataset.new
+      @obj.attributes = {
+        title: ['test title'],
+        publication_attributes: [{
+            title: 'test title',
+            url: 'http://example.com/publication'
+          }]
+      }
+      @obj.save!
+      @obj.reload
+      expect(@obj.publication.size).to eq(1)
+      @obj.attributes = {
+        publication_attributes: [{
+            id: @obj.publication.first.id,
+            title: 'test title',
+            url: 'http://example.com/publication',
+            _destroy: "1"
+          }]
+      }
+      @obj.save!
+      @obj.reload
+      expect(@obj.publication.size).to eq(0)
+    end
+
+    it 'indexes publication' do
+      @obj = Dataset.new
+      @obj.attributes = {
+        title: ['test dataset'],
+        publication_attributes: [{
+          title: 'test title',
+          journal: 'A journal for the publication',
+          url: 'http://example.com/publication'
+        }]
+      }
+      @doc = @obj.to_solr
+      expect(@doc['publication_tesim']).to eq ['test title']
+      expect(@doc['journal_sim']).to eq ['A journal for the publication']
+      expect(@doc['journal_tesim']).to eq ['A journal for the publication']
+    end
   end
 
 end
