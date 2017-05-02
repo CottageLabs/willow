@@ -62,6 +62,7 @@ describe RelationStatement do
     }
     @obj.save!
     @obj.reload
+    expect(@obj.relation.size).to eq(1)
     @obj.attributes = {
       relation_attributes: [
         {
