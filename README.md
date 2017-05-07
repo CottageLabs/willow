@@ -37,6 +37,9 @@ POSTGRES_PASSWORD=password
 SECRET_KEY_BASE_DEVELOPMENT=<a very long random hexadecimal number, e.g. 1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef>
 SECRET_KEY_BASE_TEST=<a very long random hexadecimal number, e.g. 1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef>
 SECRET_KEY_BASE_PRODUCTION=<a very long random hexadecimal number, e.g. 1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef>
+WILLOW_EMAIL=<some email address, default is "admin@willow">
+WILLOW_PASSWORD=<some password, default is "password">
+WILLOW_ADMIN=<some name, default is "Willow Admin">
 ```
   
 7. Initiate the Geoblacklight submodule
@@ -48,8 +51,7 @@ $ git submodule init && git submodule update
 8. Run docker-compose to build, and download and initialise the infrastructure
 
 ```bash
-$ docker-compose build
-$ docker-compose up
+$ docker-compose down && docker-compose build && docker-compose up 
 ```
   
 9. If everything is successful, after a few minutes you should be able to see Fedora Commons running.
