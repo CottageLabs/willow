@@ -11,6 +11,7 @@ module NestedAttributes
     accepts_nested_attributes_for :creator, reject_if: :creator_blank, allow_destroy: true
     accepts_nested_attributes_for :relation, reject_if: :relation_blank, allow_destroy: true
     accepts_nested_attributes_for :publication, reject_if: :all_blank, allow_destroy: true
+    accepts_nested_attributes_for :admin_metadata, reject_if: :admin_metadata_blank, allow_destroy: true
 
     # license_blank - similar to all_blank for defined license attributes
     resource_class.send(:define_method, :license_blank) do |attributes|
@@ -35,6 +36,11 @@ module NestedAttributes
     resource_class.send(:define_method, :relation_blank) do |attributes|
       Array(attributes[:label]).all?(&:blank?) ||
       Array(attributes[:url]).all?(&:blank?)
+    end
+
+    # admin_metadata_blank
+    resource_class.send(:define_method, :admin_metadata_blank) do |attributes|
+      Array(attributes[:question]).all?(&:blank?)
     end
   end
 end

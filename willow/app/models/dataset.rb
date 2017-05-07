@@ -14,6 +14,7 @@ class Dataset < ActiveFedora::Base
   property :creator, predicate: ::RDF::Vocab::DC.license, class_name:"PersonStatement"
   property :relation, predicate: ::RDF::Vocab::DC.relation, class_name:"RelationStatement"
   property :publication, predicate: ::RDF::Vocab::DC.isReferencedBy, class_name: "PublicationStatement"
+  property :admin_metadata, predicate: ::RDF::Vocab::MODS.adminMetadata, class_name: "AdministrativeStatement"
 
   # must be included after all properties are declared
   include NestedAttributes
