@@ -16,16 +16,5 @@ class PersonStatement < ActiveTriples::Resource
     super
   end
 
-  def final_parent
-    parent
-  end
-
-  def persisted?
-    !new_record?
-  end
-
-  def new_record?
-    id.start_with?('#')
-  end
-
+  include CommonMethods
 end
