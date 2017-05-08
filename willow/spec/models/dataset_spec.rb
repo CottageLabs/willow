@@ -116,13 +116,95 @@ RSpec.describe Dataset do
       expect(@obj.creator[1].id).to include('#person')
     end
 
-    it 'rejects person if blank' do
+    it 'rejects person if first name and last name are blank' do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test dataset'],
-        creator_attributes: [{
+        creator_attributes: [
+          {
             first_name: 'Foo',
-        }]
+            orcid: '0000-0000-0000-0000',
+            role: 'Author'
+          },
+          {
+            last_name: 'Bar',
+            orcid: '0000-0000-0000-0000',
+            role: 'Author'
+          },
+          {
+            first_name: '',
+            last_name: nil,
+            orcid: '0000-0000-0000-0000',
+            role: 'Author'
+          },
+          {
+            orcid: '0000-0000-0000-0000',
+            role: 'Author'
+          }
+        ]
+      }
+      @obj.save!
+      @obj.reload
+      expect(@obj.creator.size).to eq(2)
+    end
+
+    it 'rejects person if orcid is blank' do
+      @obj = Dataset.new
+      @obj.attributes = {
+        title: ['test dataset'],
+        creator_attributes: [
+          {
+            first_name: 'Foo',
+            last_name: 'Bar',
+            role: 'Author'
+          },
+          {
+            first_name: 'Foo',
+            last_name: 'Bar',
+            orcid: '',
+            role: 'Author'
+          }
+        ]
+      }
+      @obj.save!
+      @obj.reload
+      expect(@obj.creator.size).to eq(0)
+    end
+
+    it 'rejects person if role is blank' do
+      @obj = Dataset.new
+      @obj.attributes = {
+        title: ['test dataset'],
+        creator_attributes: [
+          {
+            first_name: 'Foo',
+            last_name: 'Bar',
+            orcid: '0000-0000-0000-0000'
+          },
+          {
+            first_name: 'Foo',
+            last_name: 'Bar',
+            orcid: '0000-0000-0000-0000',
+            role: nil
+          }
+        ]
+      }
+      @obj.save!
+      @obj.reload
+      expect(@obj.creator.size).to eq(0)
+    end
+
+    it 'rejects person if all are blank' do
+      @obj = Dataset.new
+      @obj.attributes = {
+        title: ['test dataset'],
+        creator_attributes: [
+          {
+            first_name: '',
+            last_name: nil,
+            role: nil
+          }
+        ]
       }
       @obj.save!
       @obj.reload
@@ -197,7 +279,7 @@ RSpec.describe Dataset do
       expect(@obj.relation.first.url).to eq ['http://example.com/relation']
     end
 
-    it 'rejectss relation if blank' do
+    it 'rejectss relation if any blank' do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test title'],
@@ -355,68 +437,54 @@ RSpec.describe Dataset do
       expect(@obj.admin_metadata.first).to be_kind_of ActiveTriples::Resource
       expect(@obj.admin_metadata.first.id).to include('#admin_metadata')
       expect(@obj.admin_metadata.first.question).to eq ['An admin question needing an answer']
-      expect(@obj.admin_metadata.first.response).to eq 'Response to admin question']
+      expect(@obj.admin_metadata.first.response).to eq ['Response to admin question']
     end
 
-    it 'rejects publication if all blank' do
+    it 'rejects attributes if question blank' do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test title'],
-        publication_attributes: [
+        admin_metadata_attributes: [
           {
-            title: 'Test title'
+            question: 'An admin question needing an answer'
           },
           {
-            title: '',
-            url: nil,
+            response: 'a response'
+          },
+          {
+            question: '',
+            response: nil
           }
         ]
       }
       @obj.save!
       @obj.reload
-      expect(@obj.publication.size).to eq(1)
+      expect(@obj.admin_metadata.size).to eq(1)
     end
 
-    it 'destroys publication' do
+    it 'destroys admin_metadata' do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test title'],
-        publication_attributes: [{
-            title: 'test title',
-            url: 'http://example.com/publication'
+        admin_metadata_attributes: [{
+            question: 'An admin question needing an answer',
+            response: 'Response to admin question'
           }]
       }
       @obj.save!
       @obj.reload
-      expect(@obj.publication.size).to eq(1)
+      expect(@obj.admin_metadata.size).to eq(1)
       @obj.attributes = {
-        publication_attributes: [{
-            id: @obj.publication.first.id,
-            title: 'test title',
-            url: 'http://example.com/publication',
+        admin_metadata_attributes: [{
+            id: @obj.admin_metadata.first.id,
+            question: 'An admin question needing an answer',
+            response: 'Response to admin question',
             _destroy: "1"
           }]
       }
       @obj.save!
       @obj.reload
-      expect(@obj.publication.size).to eq(0)
-    end
-
-    it 'indexes publication' do
-      @obj = Dataset.new
-      @obj.attributes = {
-        title: ['test dataset'],
-        publication_attributes: [{
-          title: 'test title',
-          journal: 'A journal for the publication',
-          url: 'http://example.com/publication'
-        }]
-      }
-      @doc = @obj.to_solr
-      expect(@doc['publication_tesim']).to eq ['test title']
-      expect(@doc['journal_sim']).to eq ['A journal for the publication']
-      expect(@doc['journal_tesim']).to eq ['A journal for the publication']
+      expect(@obj.admin_metadata.size).to eq(0)
     end
   end
-
 end
