@@ -1,4 +1,5 @@
 class PublicationStatement < ActiveTriples::Resource
+  include CommonMethods
 
   configure type: ::RDF::Vocab::BIBO.AcademicArticle
   property :title, predicate: ::RDF::Vocab::DC.title
@@ -15,5 +16,4 @@ class PublicationStatement < ActiveTriples::Resource
     super
   end
 
-  include CommonMethods
 end

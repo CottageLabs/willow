@@ -1,4 +1,5 @@
 class RelationStatement < ActiveTriples::Resource
+  include CommonMethods
 
   configure type: ::RDF::Vocab::PROV.Association
   property :label, predicate: ::RDF::Vocab::SKOS.prefLabel
@@ -14,5 +15,4 @@ class RelationStatement < ActiveTriples::Resource
     super
   end
 
-  include CommonMethods
 end

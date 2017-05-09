@@ -1,4 +1,5 @@
 class LicenseStatement < ActiveTriples::Resource
+  include CommonMethods
 
   configure type: ::RDF::Vocab::DC.RightsStatement
   property :label, predicate: ::RDF::Vocab::SKOS.prefLabel
@@ -21,5 +22,4 @@ class LicenseStatement < ActiveTriples::Resource
     super
   end
 
-  include CommonMethods
 end

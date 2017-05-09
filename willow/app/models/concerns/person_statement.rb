@@ -1,4 +1,5 @@
 class PersonStatement < ActiveTriples::Resource
+  include CommonMethods
 
   configure type: ::RDF::Vocab::FOAF.Person
   property :first_name, predicate: ::RDF::Vocab::FOAF.givenName
@@ -16,5 +17,4 @@ class PersonStatement < ActiveTriples::Resource
     super
   end
 
-  include CommonMethods
 end

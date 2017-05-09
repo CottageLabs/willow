@@ -1,4 +1,5 @@
 class AdministrativeStatement < ActiveTriples::Resource
+  include CommonMethods
 
   # configure type: ::RDF::Vocab::MODS.adminMetadata
   property :question, predicate: ::RDF::Vocab::DISCO.question
@@ -14,5 +15,4 @@ class AdministrativeStatement < ActiveTriples::Resource
     super
   end
 
-  include CommonMethods
 end
