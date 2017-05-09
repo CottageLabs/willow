@@ -33,7 +33,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'sufia', '7.3.0'
+gem 'sufia', '7.3.1'
 
 gem 'blacklight_advanced_search', '~> 6.0'
 
