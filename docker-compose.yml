@@ -65,13 +65,12 @@ services:
   geoblacklight:
     build: geoblacklight/
     env_file: .env
-    command: ./startup.sh
     ports:
       - "${GEOBLACKLIGHT_EXPOSED_PORT:-3010}:3010"
     volumes_from:
       - bundle_cache
     volumes:
-      - ./geoblacklight:/geoblacklight_source
+      - ./geoblacklight:/geoblacklight
     links:
       - solr
       - db
