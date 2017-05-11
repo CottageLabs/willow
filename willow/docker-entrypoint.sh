@@ -1,16 +1,13 @@
 #!/bin/bash
 
-cd /willow 
+echo "Creating tmp and log, clearing out PIDs"
+mkdir -p $APP_HOME/tmp/pids $APP_HOME/log
+rm  -f $APP_HOME/tmp/pids/*
 
-echo Creating tmp and log
-mkdir -p tmp/pids log
-rm  -f tmp/pids/*
+# Install any missing gems
+bundle check || bundle install
 
-echo "Mounting willow source code as a Docker volume with symlinks, except certain temporary directories and other files"
-
-find ../willow_source/ -maxdepth 1 ! -name "log" ! -name "tmp" ! -name "docker-entrypoint.sh" -exec ln -sf {} ';'
-
-echo "Running database migrations..."
+# Run any pending migrations
 bundle exec rake db:migrate
 
 if [ "$RAILS_ENV" = "production" ]; then
@@ -18,7 +15,6 @@ if [ "$RAILS_ENV" = "production" ]; then
     bundle exec rake assets:clean assets:precompile
 fi
 
-# TODO: create seed test data rather than reindexing pre-cooked data
 # check that Fedora is running
 FEDORA=$(curl --silent --connect-timeout 30 "http://fedora:8080/" | grep "Fedora Commons Repository")
 if [ -n "$FEDORA" ] ; then

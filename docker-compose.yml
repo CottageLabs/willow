@@ -20,18 +20,13 @@ services:
     build: redis/
     volumes:
       - redis_data:/data
-  
-  willow_bundle: # cache for gems to speed up bundle install time
-    image: willow_willow
-    command: echo "configured bundle cache"
-    volumes:
-      - /willow_bundle
 
-  geoblacklight_bundle: # cache for gems to speed up bundle install time
-    image: willow_geoblacklight
-    command: echo "configured bundle cache"
+  # cache for gems to speed up bundle install time
+  #used by willow and geoblacklight
+  bundle_cache:
+    image: busybox # tiny linux
     volumes:
-      - /geoblacklight_bundle
+      - bundle_cache:/bundle
   
   fedora:
     env_file: .env
@@ -63,20 +58,19 @@ services:
       db:
         condition: service_healthy
     volumes_from:
-      - willow_bundle
+      - bundle_cache
     volumes:
-      - ./willow:/willow_source
+      - ./willow:/willow
 
   geoblacklight:
     build: geoblacklight/
     env_file: .env
-    command: ./startup.sh
     ports:
       - "${GEOBLACKLIGHT_EXPOSED_PORT:-3010}:3010"
     volumes_from:
-      - geoblacklight_bundle
+      - bundle_cache
     volumes:
-      - ./geoblacklight:/geoblacklight_source
+      - ./geoblacklight:/geoblacklight
     links:
       - solr
       - db
@@ -87,3 +81,4 @@ volumes:
   fcrepo4_data: {}
   postgres_data: {}
   solr_home: {}
+  bundle_cache: {}
