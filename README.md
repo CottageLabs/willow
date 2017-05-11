@@ -39,7 +39,15 @@ SECRET_KEY_BASE_TEST=<a very long random hexadecimal number, e.g. 1234567890abcd
 SECRET_KEY_BASE_PRODUCTION=<a very long random hexadecimal number, e.g. 1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef>
 WILLOW_EMAIL=<some email address, default is "admin@willow">
 WILLOW_PASSWORD=<some password, default is "password">
-WILLOW_ADMIN=<some name, default is "Willow Admin">
+WILLOW_NAME=<some name, default is "Willow Admin">
+```
+
+If running in a production environment, then you should also set:
+```bash
+WILLOW_EXPOSED_PORT=80
+RAILS_ENV=production
+RACK_ENV=production
+RAILS_SERVE_STATIC_FILES=true
 ```
   
 7. Initiate the Geoblacklight submodule
@@ -53,6 +61,12 @@ $ git submodule init && git submodule update
 ```bash
 $ docker-compose down && docker-compose build && docker-compose up 
 ```
+
+And to completely wipe the system and data, and start from a blank slate:
+```bash
+$ docker-compose down --volumes && docker-compose build && docker-compose up 
+```
+
   
 9. If everything is successful, after a few minutes you should be able to see Fedora Commons running.
   - Mac: `http://<docker_machine_ip>:8080/` (e.g. http://192.168.99.100:8080/)
