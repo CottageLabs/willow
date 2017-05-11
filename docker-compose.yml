@@ -61,6 +61,7 @@ services:
       - bundle_cache
     volumes:
       - ./willow:/willow
+      - ./willow_sword:/willow_sword
 
   geoblacklight:
     build: geoblacklight/
