@@ -40,4 +40,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.web_console.whitelisted_ips = '172.18.0.1'
+
+  # Disable whiny messages in the development environment
+  config.web_console.whiny_requests = false
 end
