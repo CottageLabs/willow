@@ -34,7 +34,8 @@ RUN echo 'deb http://deb.debian.org/debian jessie-backports main' > /etc/apt/sou
     && apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& /var/lib/dpkg/info/ca-certificates-java.postinst configure \
-    && mkdir -p /fits/ \
+
+RUN mkdir -p /fits/ \
     && wget http://projects.iq.harvard.edu/files/fits/files/fits-1.0.2.zip -O /fits/fits-1.0.2.zip \
     && unzip /fits/fits-1.0.2.zip -d /fits \
     && chmod a+x /fits/fits-1.0.2/fits.sh \
