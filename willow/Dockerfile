@@ -18,7 +18,7 @@ ENV LANG=C.UTF-8 \
 
 RUN echo 'deb http://deb.debian.org/debian jessie-backports main' > /etc/apt/sources.list.d/jessie-backports.list \
     && apt-get update -qq \
-    && apt-get install -y --no-install-recommends  \
+    && apt-get install -y --no-install-recommends \
     libpq-dev \
     libxml2-dev libxslt1-dev \
     libqt4-webkit libqt4-dev xvfb \
@@ -33,8 +33,9 @@ RUN echo 'deb http://deb.debian.org/debian jessie-backports main' > /etc/apt/sou
     && apt-get install -t jessie-backports -y --no-install-recommends openjdk-8-jre-headless ca-certificates-java \
     && apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* \
-	&& /var/lib/dpkg/info/ca-certificates-java.postinst configure \
-    && mkdir -p /fits/ \
+	&& /var/lib/dpkg/info/ca-certificates-java.postinst configure
+
+RUN mkdir -p /fits/ \
     && wget http://projects.iq.harvard.edu/files/fits/files/fits-1.0.2.zip -O /fits/fits-1.0.2.zip \
     && unzip /fits/fits-1.0.2.zip -d /fits \
     && chmod a+x /fits/fits-1.0.2/fits.sh \
