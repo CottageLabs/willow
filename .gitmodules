@@ -1,3 +1,7 @@
 [submodule "geoblacklight"]
 	path = geoblacklight
 	url = https://github.com/CottageLabs/geoblacklight.git
+
+[submodule "willow_sword"]
+	path = willow_sword
+	url = https://github.com/CottageLabs/willow_sword.git

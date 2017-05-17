@@ -1,3 +1,9 @@
+PATH
+  remote: ../willow_sword
+  specs:
+    willow_sword (0.1.0)
+      rails (~> 5.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -657,6 +663,7 @@ DEPENDENCIES
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
+  willow_sword!
 
 BUNDLED WITH
    1.14.6
