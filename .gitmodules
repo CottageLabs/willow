@@ -4,4 +4,4 @@
 
 [submodule "willow_sword"]
 	path = willow_sword
-	url = git@github.com:CottageLabs/willow_sword.git
+	url = https://github.com/CottageLabs/willow_sword.git
