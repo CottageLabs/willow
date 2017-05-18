@@ -56,7 +56,6 @@ services:
       - redis
     volumes:
       - ./willow:/willow
-      # - willow_bundle:/bundle
       #- ./willow_sword:/willow_sword
     deploy:
       resources:
