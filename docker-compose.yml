@@ -1,4 +1,4 @@
-version: '2.1'
+version: '3'
 
 services:
   db:
@@ -20,13 +20,6 @@ services:
     build: redis/
     volumes:
       - redis_data:/data
-
-  # cache for gems to speed up bundle install time
-  #used by willow and geoblacklight
-  bundle_cache:
-    image: busybox # tiny linux
-    volumes:
-      - bundle_cache:/bundle
   
   fedora:
     env_file: .env
@@ -39,10 +32,14 @@ services:
        - fcrepo4_home:/fcrepo4_home/
        - fcrepo4_data:/fcrepo4_data/
     depends_on:
-      db:
-        condition: service_healthy
+      - db
+    deploy:
+      resources:
+        reservations:
+          memory: 500M
   
   willow:
+    image: cottagelabs/willow
     build: willow/
     env_file: .env
     ports:
@@ -53,24 +50,26 @@ services:
       - db
       - fedora
     depends_on:
-      fedora:
-        condition: service_healthy
-      db:
-        condition: service_healthy
-    volumes_from:
-      - bundle_cache
+      - fedora
+      - db
+      - solr
+      - redis
     volumes:
       - ./willow:/willow
-      - ./willow_sword:/willow_sword
+      # - willow_bundle:/bundle
+      #- ./willow_sword:/willow_sword
+    deploy:
+      resources:
+        reservations:
+          memory: 500M
 
   geoblacklight:
     build: geoblacklight/
     env_file: .env
     ports:
       - "${GEOBLACKLIGHT_EXPOSED_PORT:-3010}:3010"
-    volumes_from:
-      - bundle_cache
     volumes:
+      - geoblacklight_bundle:/bundle
       - ./geoblacklight:/geoblacklight
     links:
       - solr
@@ -82,4 +81,5 @@ volumes:
   fcrepo4_data: {}
   postgres_data: {}
   solr_home: {}
-  bundle_cache: {}
+  willow_bundle: {}
+  geoblacklight_bundle: {}

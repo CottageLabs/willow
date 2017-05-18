@@ -4,7 +4,12 @@ echo "Creating tmp and log, clearing out PIDs"
 mkdir -p $APP_HOME/tmp/pids $APP_HOME/log
 rm  -f $APP_HOME/tmp/pids/*
 
-# Install any missing gems
+ls -la $APP_HOME/willow_sword
+
+echo "Switching to local willow_sword"
+bundle config local.willow_sword $APP_HOME/willow_sword
+
+# Verify all the gems are installed
 bundle check || bundle install
 
 # Run any pending migrations

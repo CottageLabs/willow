@@ -45,7 +45,6 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-
 end
 
 
@@ -63,5 +62,6 @@ gem 'hydra-role-management'
 gem 'puma', '~> 3.8.2'
 gem 'tinymce-rails-imageupload', '4.0.17.beta.2' # we need this specific version to fix an asset compilation problem
 
-
-gem 'willow_sword', path: '../willow_sword'
+# override this for a local folder with the command:
+# $ bundle config local.willow_sword $APP_HOME/willow_sword
+gem 'willow_sword', git: "https://github.com/cottagelabs/willow_sword.git", branch: "master"

@@ -1,0 +1,78 @@
+version: '3'
+
+services:
+  db:
+    build: db/
+    image: willow-db
+    env_file: .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  
+  # solr:
+  #   build:
+  #     context: .
+  #     dockerfile: solr/Dockerfile
+  #   volumes:
+  #     - solr_home:/solr_home
+  #   ports:
+  #     - "8983:8983"
+  
+  # redis:
+  #   build: redis/
+  #   volumes:
+  #     - redis_data:/data
+
+  # fedora:
+  #   env_file: .env
+  #   build: fedora_commons/
+  #   links:
+  #     - db
+  #   ports:
+  #     - "8080:8080"
+  #   volumes:
+  #      - fcrepo4_home:/fcrepo4_home/
+  #      - fcrepo4_data:/fcrepo4_data/
+  #   depends_on:
+  #     - db
+  #
+  # willow:
+  #   build: willow/
+  #   env_file: .env
+  #   ports:
+  #     - "${WILLOW_EXPOSED_PORT:-3000}:3000"
+  #   links:
+  #     - redis
+  #     - solr
+  #     - db
+  #     - fedora
+  #   depends_on:
+  #     - fedora
+  #     - db
+  #     - solr
+  #   volumes:
+  #     - willow_bundle:/bundle
+  #     - ./willow:/willow
+  #     - ./willow_sword:/willow_sword
+  #
+  # geoblacklight:
+  #   build: geoblacklight/
+  #   env_file: .env
+  #   ports:
+  #     - "${GEOBLACKLIGHT_EXPOSED_PORT:-3010}:3010"
+  #   volumes:
+  #     - geoblacklight_bundle:/bundle
+  #     - ./geoblacklight:/geoblacklight
+  #   links:
+  #     - solr
+  #     - db
+  #   depends_on:
+  #     - db
+
+volumes:
+  redis_data: {}
+  fcrepo4_home: {}
+  fcrepo4_data: {}
+  postgres_data: {}
+  solr_home: {}
+  willow_bundle: {}
+  geoblacklight_bundle: {}

@@ -32,17 +32,85 @@ RUN echo 'deb http://deb.debian.org/debian jessie-backports main' > /etc/apt/sou
     # install open-jdk and ca-certs from jessie-backports
     && apt-get install -t jessie-backports -y --no-install-recommends openjdk-8-jre-headless ca-certificates-java \
     && apt-get clean \
-	&& rm -rf /var/lib/apt/lists/* \
-	&& /var/lib/dpkg/info/ca-certificates-java.postinst configure
+    && rm -rf /var/lib/apt/lists/* \
+    && /var/lib/dpkg/info/ca-certificates-java.postinst configure
 
 RUN mkdir -p /fits/ \
-    && wget http://projects.iq.harvard.edu/files/fits/files/fits-1.0.2.zip -O /fits/fits-1.0.2.zip \
-    && unzip /fits/fits-1.0.2.zip -d /fits \
+    && wget -q http://projects.iq.harvard.edu/files/fits/files/fits-1.0.2.zip -O /fits/fits-1.0.2.zip \
+    && unzip -q /fits/fits-1.0.2.zip -d /fits \
     && chmod a+x /fits/fits-1.0.2/fits.sh \
     && rm /fits/fits-1.0.2.zip
 
-ADD docker-entrypoint.sh $APP_HOME/docker-entrypoint.sh
-
 WORKDIR $APP_HOME
 
+# Keep in mind that re-installing all the gems takes a long time, so try to ensure its only done when necessary (e.g. on changes to Gemfile)
+COPY Gemfile* $APP_HOME/
+RUN mkdir -p $BUNDLE_PATH \
+    && bundle install
+
+ADD docker-entrypoint.sh $APP_HOME/docker-entrypoint.sh
+
 ENTRYPOINT $APP_HOME/docker-entrypoint.sh
+
+
+
+
+
+
+# Now override willow_sword to use the local version
+
+#
+#
+## willow_sword
+#
+#COPY willow_sword $APP_HOME/willow_sword
+#
+#RUN ls -la $APP_HOME/
+
+#
+#ADD app $APP_HOME/
+#RUN bundle install
+#
+#ADD bin $APP_HOME/
+#RUN bundle install
+#
+#ADD config $APP_HOME/
+#RUN bundle install
+#
+#ADD db $APP_HOME/
+#RUN bundle install
+#
+#ADD lib $APP_HOME/
+#RUN bundle install
+#
+#ADD public $APP_HOME/
+#RUN bundle install
+#
+#ADD solr $APP_HOME/
+#RUN bundle install
+#
+#ADD spec $APP_HOME/
+#RUN bundle install
+#
+#ADD test $APP_HOME/
+#RUN bundle install
+#
+#ADD vendor $APP_HOME/
+#RUN bundle install
+#
+#ADD Rakefile $APP_HOME/
+#RUN bundle install
+#
+#ADD README* $APP_HOME/
+#RUN bundle install
+#
+#RUN ls -la $APP_HOME/
+#
+##VOLUME $APP_HOME
+#
+##COPY Gemfile Gemfile.lock willow_sword/ $APP_HOME/
+##RUN mkdir -p $BUNDLE_PATH \
+##    && bundle install \
+##    && bundle check
+##VOLUME $BUNDLE_PATH
+#
