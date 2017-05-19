@@ -4,8 +4,6 @@ echo "Creating tmp and log, clearing out PIDs"
 mkdir -p $APP_HOME/tmp/pids $APP_HOME/log
 rm  -f $APP_HOME/tmp/pids/*
 
-ls -la $APP_HOME/willow_sword
-
 if [ "$LOCAL_WILLOW_SWORD" = "true" ] ; then
     echo "Switching to local willow_sword"
     bundle config local.willow_sword ../willow_sword
