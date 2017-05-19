@@ -6,21 +6,33 @@ services:
     env_file: .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
-  
+    deploy:
+      resources:
+        reservations:
+          memory: 250M
+
   solr:
     build:
-      context: .
-      dockerfile: solr/Dockerfile
+      context: solr/
+      #dockerfile: solr/Dockerfile
     volumes:
       - solr_home:/solr_home
     ports:
       - "8983:8983"
+    deploy:
+      resources:
+        reservations:
+          memory: 250M
   
   redis:
     build: redis/
     volumes:
       - redis_data:/data
-  
+    deploy:
+      resources:
+        reservations:
+          memory: 250M
+
   fedora:
     env_file: .env
     build: fedora_commons/
@@ -73,6 +85,11 @@ services:
     links:
       - solr
       - db
+    deploy:
+      resources:
+        reservations:
+          memory: 250M
+
 
 volumes:
   redis_data: {}
