@@ -1,5 +1,5 @@
 log/
 tmp/
-.git
 .env
+.git
 public/assets/

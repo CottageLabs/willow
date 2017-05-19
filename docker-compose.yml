@@ -68,7 +68,7 @@ services:
       - redis
     volumes:
       - ./willow:/willow
-      #- ./willow_sword:/willow_sword
+      - ./willow_sword:/willow_sword
     deploy:
       resources:
         reservations:

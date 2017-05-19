@@ -42,18 +42,27 @@ WILLOW_PASSWORD=<some password, default is "password">
 WILLOW_NAME=<some name, default is "Willow Admin">
 ```
 
-If running in a production environment, then you should also set:
+If running in a production environment and wish to serve Willow on port 80, then you should also set:
 ```bash
 WILLOW_EXPOSED_PORT=80
 RAILS_ENV=production
 RACK_ENV=production
 RAILS_SERVE_STATIC_FILES=true
 ```
+
+Finally, for development purposes you will probably want to ensure the system is seeded and also running a local version of the willow_sword gem:
+```bash
+# use local willow_sword submodule during development, rather than gem in github; set to false to disable
+LOCAL_WILLOW_SWORD=true
+
+# Seed willow data by default; set to false to disable
+WILLOW_SEED=true
+```
   
-7. Initiate the Geoblacklight submodule
+7. Initiate the Geoblacklight and willow_sword submodules
 
 ```bash
-$ git submodule init && git submodule update
+$ git submodule update --init --recursive
 ```
 
 8. Run docker-compose to build, and download and initialise the infrastructure

@@ -6,13 +6,15 @@ rm  -f $APP_HOME/tmp/pids/*
 
 ls -la $APP_HOME/willow_sword
 
-echo "Switching to local willow_sword"
-bundle config local.willow_sword $APP_HOME/willow_sword
+if [ "$LOCAL_WILLOW_SWORD" = "true" ] ; then
+    echo "Switching to local willow_sword"
+    bundle config local.willow_sword ../willow_sword
+fi
 
 # Verify all the gems are installed
-bundle check || bundle install
+bundle check
 
-# Run any pending migrations
+## Run any pending migrations
 bundle exec rake db:migrate
 
 if [ "$RAILS_ENV" = "production" ]; then
@@ -23,8 +25,10 @@ fi
 # check that Fedora is running
 FEDORA=$(curl --silent --connect-timeout 30 "http://fedora:8080/" | grep "Fedora Commons Repository")
 if [ -n "$FEDORA" ] ; then
-   echo "(Re)seeding test data... (this can take a few minutes)"
-   bundle exec rake willow:seed_test_data["$WILLOW_EMAIL","$WILLOW_PASSWORD","$WILLOW_NAME"]
+    if [ "$WILLOW_SEED" != "false" ] ; then
+        echo "(Re)seeding Willow test data... (this can take a few minutes)"
+        bundle exec rake willow:seed_test_data["$WILLOW_EMAIL","$WILLOW_PASSWORD","$WILLOW_NAME"]
+    fi
 else
     echo "ERROR: Fedora is not running"
     exit 1
