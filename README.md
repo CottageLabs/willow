@@ -29,63 +29,89 @@ $ git clone https://github.com/CottageLabs/willow.git
 $ cd willow
 ```
 
-6. Create a `.env` file to set the postgres database username and password, and also the Rails session keys; you can use the `example.env` file as a template:
-
-```bash
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=password
-SECRET_KEY_BASE_DEVELOPMENT=<a very long random hexadecimal number, e.g. 1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef>
-SECRET_KEY_BASE_TEST=<a very long random hexadecimal number, e.g. 1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef>
-SECRET_KEY_BASE_PRODUCTION=<a very long random hexadecimal number, e.g. 1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef>
-WILLOW_EMAIL=<some email address, default is "admin@willow">
-WILLOW_PASSWORD=<some password, default is "password">
-WILLOW_NAME=<some name, default is "Willow Admin">
-```
-
-If running in a production environment and wish to serve Willow on port 80, then you should also set:
-```bash
-WILLOW_EXPOSED_PORT=80
-RAILS_ENV=production
-RACK_ENV=production
-RAILS_SERVE_STATIC_FILES=true
-```
-
-Finally, for development purposes you will probably want to ensure the system is seeded and also running a local version of the willow_sword gem:
-```bash
-# use local willow_sword submodule during development, rather than gem in github; set to false to disable
-LOCAL_WILLOW_SWORD=true
-
-# Seed willow data by default; set to false to disable
-WILLOW_SEED=true
-```
-  
-7. Initiate the Geoblacklight and willow_sword submodules
+6. Initiate the Geoblacklight and willow_sword submodules
 
 ```bash
 $ git submodule update --init --recursive
 ```
 
-8. Run docker-compose to build, and download and initialise the infrastructure
+7. Create three environmental variable files: `.env`, `.env.production` and `.env.development`,  to set the postgres database username and password and also other keys. You can use the `example.env`, `example.env.production` and `example.env.development` files as templates:
 
+__example .env file__
 ```bash
-$ docker-compose down && docker-compose build && docker-compose up 
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=password
+
+# this should be a very long random key. You can use "$ bundle exec rake secret" to generate one.
+SECRET_KEY_BASE_TEST=fb350a4ff22efffba83ff0d73e6a73b0bbca9cdb22683c61e49d8f57280a3988e8c79323c48382a0c565b3db1d7f8bf0924d27542c3322db898948f50530879e
+
+
+# ------------ OPTIONAL PARAMETERS BELOW HERE -------------
+
+WILLOW_EMAIL=<some email address, default is "admin@willow">
+WILLOW_PASSWORD=<some password, default is "password">
+WILLOW_NAME=<some name, default is "Willow Admin">
+
+# Serve Willow on port 80 (default is 3000)
+WILLOW_EXPOSED_PORT=80
+
+# Serve Geoblacklight on port 81 (default is 3010)
+GEOBLACKLIGHT_EXPOSED_PORT=81
 ```
 
-And to completely wipe the system and data, and start from a blank slate:
+__example .env.production file__
 ```bash
-$ docker-compose down --volumes && docker-compose build && docker-compose up 
+# this should be a very long random key. You can use "$ bundle exec rake secret" to generate one.
+SECRET_KEY_BASE_PRODUCTION=
+
+# Do not seed Willow data
+WILLOW_SEED=false
+
+# Do not seed Geoblacklight data
+GEOBLACKLIGHT_SEED=false
+
+# Serve static assets
+RAILS_SERVE_STATIC_FILES=true
 ```
 
+__example .env.development file__
+```bash
+# this should be a very long random key. You can use "$ bundle exec rake secret" to generate one.
+SECRET_KEY_BASE_DEVELOPMENT=17fc18b3926912d145c29687e324cc351ab3ac7482487e393d9dfccb4bbaea2dc9960dc2d4a154052832971602af315eb79cbb1b9879b5861a102c3bf9f32a2f
+
+# Set to true to seed Willow data
+WILLOW_SEED=true
+
+# Set to true to seed Geoblacklight data
+GEOBLACKLIGHT_SEED=true
+```
   
-9. If everything is successful, after a few minutes you should be able to see Fedora Commons running.
-  - Mac: `http://<docker_machine_ip>:8080/` (e.g. http://192.168.99.100:8080/)
-  - Linux: http://localhost:8080/
-  
-![Fedora Commons screenshot](docs/images/fedora.png "Fedora Commons screenshot")
-  
-10. You should also be able to see the Willow and Geoblacklight installations:
+
+8. Run `docker-compose up` to download, build and initialise the infrastructure
+
+__development mode__
+```bash
+$ docker-compose up
+```
+
+__production mode__
+
+To run the system in production mode, you should ignore the `docker-compose.override.yml` file, e.g.
+```bash
+$ docker-compose -f docker-compose.yml up
+```
+
+Note that once the system has been built, the image will be cached. You can force a rebuild with `docker-compose build` or `docker-compose up --build`.
+
+
+And to start from a blank slate by completely wiping the system and data, run `docker-compose down --volumes` first:
+```bash
+$ docker-compose down --volumes && docker-compose up --build 
+```
+
+10. If everything is successful, after a few minutes you should be able to see Willow running.
   - Willow:
-    - Mac: http://192.168.99.100:3000
+    - Mac: http://192.168.99.100:3000 (or possibly port 80 depending on your `env` files)
     - Linux: http://localhost:3000
 
   ![Willow screenshot](docs/images/willow.png "Willow screenshot")
@@ -95,3 +121,7 @@ $ docker-compose down --volumes && docker-compose build && docker-compose up
     - Linux: http://localhost:3010
     
     
+11. To get a bash prompt within the Willow container (e.g. to run rake tasks), you can run:
+```bash
+$ docker-compose run willow bash
+```

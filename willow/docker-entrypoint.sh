@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Creating log folder"
-mkdir -p $WILLOW_WORKDIR/log
+mkdir -p $APP_WORKDIR/log
 
 
 if [ "$RAILS_ENV" = "production" ]; then
@@ -13,7 +13,7 @@ else
     bundle config local.willow_sword /willow_sword
 
     # install any missing development gems (as we can tweak the development container without rebuilding it)
-    bundle install --without production
+    bundle check || bundle install --without production
 fi
 
 ## Run any pending migrations
@@ -22,7 +22,7 @@ bundle exec rake db:migrate
 # check that Fedora is running
 FEDORA=$(curl --silent --connect-timeout 30 "http://fedora:8080/" | grep "Fedora Commons Repository")
 if [ -n "$FEDORA" ] ; then
-    if [ "$WILLOW_SEED" != "false" ] ; then
+    if [ "$WILLOW_SEED" = "true" ] ; then
         echo "(Re)seeding Willow test data... (this can take a few minutes)"
         bundle exec rake willow:seed_test_data["$WILLOW_EMAIL","$WILLOW_PASSWORD","$WILLOW_NAME"]
     fi

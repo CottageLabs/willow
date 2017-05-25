@@ -13,8 +13,8 @@ ENV RAILS_ENV="$RAILS_ENV" \
     RAILS_LOG_TO_STDOUT=yes_please \
     PATH=/fits/fits-1.0.2/:$PATH \
     BUNDLE_JOBS=2 \
-    WILLOW_PRODUCTION=/willow.production/ \
-    WILLOW_WORKDIR="/willow.$RAILS_ENV"
+    APP_PRODUCTION=/willow.production/ \
+    APP_WORKDIR="/willow.$RAILS_ENV"
 
 # Add backports to apt-get sources
 # Install libraries, dependencies, java and fits
@@ -45,11 +45,11 @@ RUN mkdir -p /fits/ \
     && rm /fits/fits-1.0.2.zip
 
 
-# copy gems to willow.production
-COPY Gemfile Gemfile.lock $WILLOW_PRODUCTION
+# copy gemfiles to production folder
+COPY Gemfile Gemfile.lock $APP_PRODUCTION
 
 # install gems to system - use flags dependent on RAILS_ENV
-RUN cd $WILLOW_PRODUCTION && \
+RUN cd $APP_PRODUCTION && \
     bundle config build.nokogiri --use-system-libraries \
     && if [ "$RAILS_ENV" = "production" ]; then \
             bundle install --without development test; \
@@ -58,15 +58,15 @@ RUN cd $WILLOW_PRODUCTION && \
         fi
 
 # copy the application
-COPY . $WILLOW_PRODUCTION
+COPY . $APP_PRODUCTION
 COPY docker-entrypoint.sh /bin/
 
 # generate production assets if production environment
 RUN if [ "$RAILS_ENV" = "production" ]; then \
-        cd $WILLOW_PRODUCTION \
+        cd $APP_PRODUCTION \
         && SECRET_KEY_BASE_PRODUCTION=0 bundle exec rake assets:clean assets:precompile; \
     fi
 
-WORKDIR $WILLOW_WORKDIR
+WORKDIR $APP_WORKDIR
 
 CMD ["/bin/docker-entrypoint.sh"]
