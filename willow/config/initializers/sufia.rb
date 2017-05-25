@@ -1,8 +1,6 @@
 Sufia.config do |config|
   # Injected via `rails g sufia:work Work`
   config.register_curation_concern :work
-  # Injected via `rails g sufia:work MyWorkType`
-  config.register_curation_concern :my_work_type
   # Injected via `rails g sufia:work Dataset`
   config.register_curation_concern :dataset
   # Email recipient of messages sent via the contact form
