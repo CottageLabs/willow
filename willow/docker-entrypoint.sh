@@ -1,24 +1,23 @@
 #!/bin/bash
 
-echo "Creating tmp and log, clearing out PIDs"
-mkdir -p $APP_HOME/tmp/pids $APP_HOME/log
-rm  -f $APP_HOME/tmp/pids/*
+echo "Creating log folder"
+mkdir -p $WILLOW_WORKDIR/log
 
-if [ "$LOCAL_WILLOW_SWORD" = "true" ] ; then
-    echo "Switching to local willow_sword"
-    bundle config local.willow_sword ../willow_sword
+
+if [ "$RAILS_ENV" = "production" ]; then
+    # Verify all the production gems are installed
+    bundle check
+else
+    # use local willow sword
+    echo "Switching to local /willow_sword.development"
+    bundle config local.willow_sword /willow_sword
+
+    # install any missing development gems (as we can tweak the development container without rebuilding it)
+    bundle install --without production
 fi
-
-# Verify all the gems are installed
-bundle check
 
 ## Run any pending migrations
 bundle exec rake db:migrate
-
-if [ "$RAILS_ENV" = "production" ]; then
-    echo "Compiling assets..."
-    bundle exec rake assets:clean assets:precompile
-fi
 
 # check that Fedora is running
 FEDORA=$(curl --silent --connect-timeout 30 "http://fedora:8080/" | grep "Fedora Commons Repository")
@@ -33,4 +32,5 @@ else
 fi
 
 echo "Starting Willow"
-bundle exec rails server -p 3000 -b '0.0.0.0'
+rm -f /tmp/willow.pid
+bundle exec rails server -p 3000 -b '0.0.0.0' --pid /tmp/willow.pid

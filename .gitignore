@@ -1,5 +1,6 @@
-
 .env
+.env.*
 env.sh
 .idea
+tmp/
 /willow/fits.log

@@ -1,0 +1,32 @@
+version: '3'
+
+# these are the DEVELOPMENT overrides to docker-compose.yml
+
+services:
+  solr:
+    ports:
+      - "8983:8983"
+
+  fedora:
+    ports:
+      - "8080:8080"
+
+  willow:
+    build:
+      args:
+        - RAILS_ENV=development
+    env_file:
+      - .env.development
+    volumes:
+      - ./willow:/willow.development
+      - ./willow_sword:/willow_sword # necessary for running wilow_sword locally. NB: it must be named "/willow_sword".
+      - ./.git:/.git                 # necessary for running wilow_sword locally
+
+  geoblacklight:
+    build:
+      args:
+        - RAILS_ENV=development
+    env_file:
+      - .env.development
+    volumes:
+      - ./geoblacklight:/geoblacklight.development
