@@ -17,6 +17,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
+    restart: on-failure
     deploy:
       resources:
         reservations:
@@ -27,6 +28,7 @@ services:
     build: solr/
     volumes:
       - solr_home:/solr_home
+    restart: on-failure
     deploy:
       resources:
         reservations:
@@ -37,6 +39,7 @@ services:
     build: redis/
     volumes:
       - redis_data:/data
+    restart: on-failure
     deploy:
       resources:
         reservations:
@@ -53,6 +56,7 @@ services:
        - fcrepo4_data:/fcrepo4_data/
     depends_on:
       - db
+    restart: on-failure
     deploy:
       resources:
         reservations:
@@ -79,6 +83,7 @@ services:
       - db
       - solr
       - redis
+    restart: on-failure
     deploy:
       resources:
         reservations:
@@ -99,6 +104,7 @@ services:
     links:
       - solr
       - db
+    restart: on-failure
     deploy:
       resources:
         reservations:
