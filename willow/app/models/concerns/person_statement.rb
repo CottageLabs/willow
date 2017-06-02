@@ -7,6 +7,12 @@ class PersonStatement < ActiveTriples::Resource
   property :orcid, predicate: ::RDF::Vocab::DataCite.orcid
   property :role, predicate: ::RDF::Vocab::MODS.roleRelationship
 
+  ROLE_QUALIFIERS = ['Author', 'Creator', 'Editor'].freeze
+
+  def self.role_qualifiers
+    ROLE_QUALIFIERS
+  end
+
   ## Necessary to get AT to create hash URIs.
   def initialize(uri, parent)
     if uri.try(:node?)

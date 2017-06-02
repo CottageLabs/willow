@@ -30,4 +30,9 @@ describe LicenseStatement do
     expect(@obj.license.first.definition).to eq ['A definition of the license']
     expect(@obj.license.first.webpage).to eq ['http://example.com/license']
   end
+
+  it 'defines qualifiers' do
+    expect(LicenseStatement.qualifiers).to be_kind_of Array
+    expect(LicenseStatement.qualifiers).not_to be_empty
+  end
 end
