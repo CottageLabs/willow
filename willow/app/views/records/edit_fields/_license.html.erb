@@ -1,0 +1,3 @@
+<div class="license-editor">
+  <%= f.input :license, as: :license_statement, wrapper_html: {class: 'license-statement form-group', data: {name: :license}}, input_html: { class: 'form-control' }, required: f.object.required?(:license) %>
+</div>
