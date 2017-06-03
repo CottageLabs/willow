@@ -7,11 +7,17 @@ module NestedAttributes
   included do
     id_blank = proc { |attributes| attributes[:id].blank? }
 
+    accepts_nested_attributes_for :other_title, reject_if: :other_title_blank, allow_destroy: true
     accepts_nested_attributes_for :license, reject_if: :license_blank, allow_destroy: true
     accepts_nested_attributes_for :creator, reject_if: :creator_blank, allow_destroy: true
     accepts_nested_attributes_for :relation, reject_if: :relation_blank, allow_destroy: true
     accepts_nested_attributes_for :publication, reject_if: :all_blank, allow_destroy: true
     accepts_nested_attributes_for :admin_metadata, reject_if: :admin_metadata_blank, allow_destroy: true
+
+    # other_title_blank
+    resource_class.send(:define_method, :other_title_blank) do |attributes|
+      Array(attributes[:title]).all?(&:blank?)
+    end
 
     # license_blank - similar to all_blank for defined license attributes
     resource_class.send(:define_method, :license_blank) do |attributes|

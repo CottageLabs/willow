@@ -10,6 +10,10 @@ class Dataset < ActiveFedora::Base
   # self.valid_child_concerns = []
   validates :title, presence: { message: 'Your work must have a title.' }
 
+  property :doi, predicate: ::RDF::Vocab::Identifiers.doi, multiple: false do |index|
+    index.as :stored_searchable, :facetable
+  end
+  property :other_title, predicate: ::RDF::Vocab::Bibframe.titleVariation, class_name:"OtherTitleStatement"
   property :license, predicate: ::RDF::Vocab::DC.license, class_name:"LicenseStatement"
   property :creator, predicate: ::RDF::Vocab::DC.license, class_name:"PersonStatement"
   property :relation, predicate: ::RDF::Vocab::DC.relation, class_name:"RelationStatement"
@@ -21,6 +25,8 @@ class Dataset < ActiveFedora::Base
 
   def to_solr(solr_doc = {})
     super(solr_doc).tap do |doc|
+      # other title
+      doc[Solrizer.solr_name('other_title', :stored_searchable)] = other_title.map { |r| r.title.first }
       # license
       doc[Solrizer.solr_name('license', :stored_searchable)] = license.to_json
       doc[Solrizer.solr_name('license', :facetable)] = license.map { |l| l.label.first }

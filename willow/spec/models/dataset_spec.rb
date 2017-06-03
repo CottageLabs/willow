@@ -19,6 +19,82 @@ RSpec.describe Dataset do
       ('ActiveFedora::RecordInvalid: Validation failed: Title Your work must have a title.')
   end
 
+  describe 'nested attributes for other title' do
+    it 'accepts other title attributes' do
+      @obj = Dataset.new
+      @obj.attributes = {
+        title: ['test dataset'],
+        other_title_attributes: [{
+            title: 'Another title',
+            title_type: 'Title type'
+          }]
+      }
+      @obj.save!
+      @obj.reload
+      expect(@obj.other_title.first).to be_kind_of ActiveTriples::Resource
+      expect(@obj.other_title.first.id).to include('#title')
+      expect(@obj.other_title.first.title).to eq ['Another title']
+      expect(@obj.other_title.first.title_type).to eq ['Title type']
+    end
+
+    it 'rejects other title attributes if title is blank' do
+      @obj = Dataset.new
+      @obj.attributes = {
+        title: ['test dataset'],
+        other_title_attributes: [{
+            title: 'Another title',
+            title_type: 'Title type'
+          }, {
+            title: 'A third title'
+          }, {
+            title_type: 'Title type'
+          }
+        ]
+      }
+      @obj.save!
+      @obj.reload
+      expect(@obj.other_title.size).to eq(2)
+    end
+
+    it 'destroys other titles' do
+      @obj = Dataset.new
+      @obj.attributes = {
+        title: ['test dataset'],
+        other_title_attributes: [{
+          title: 'Another title',
+          title_type: 'Title type'
+        }]
+      }
+      @obj.save!
+      @obj.reload
+      @obj.attributes = {
+        other_title_attributes: [{
+          id: @obj.other_title.first.id,
+          title: 'Another title',
+          title_type: 'Title type',
+          _destroy: "1"
+        }]
+      }
+      @obj.save!
+      @obj.reload
+      expect(@obj.other_title.size).to eq(0)
+    end
+
+    it 'indexes the other titles' do
+      @obj = Dataset.new
+      @obj.attributes = {
+        title: ['test dataset'],
+        other_title_attributes: [{
+          title: 'Another title',
+          title_type: 'Title type'
+        }]
+      }
+      @doc = @obj.to_solr
+      expect(@doc).to include('other_title_tesim')
+      expect(@doc['other_title_tesim']).to eq ['Another title']
+    end
+  end
+
   describe 'nested attributes for license' do
     it 'accepts license attributes' do
       @obj = Dataset.new
@@ -99,6 +175,7 @@ RSpec.describe Dataset do
             first_name: 'Foo',
             last_name: 'Bar',
             orcid: '0000-0000-0000-0000',
+            affiliation: 'Author affiliation',
             role: 'Author'
           },
           {
@@ -185,6 +262,7 @@ RSpec.describe Dataset do
             first_name: 'Foo',
             last_name: 'Bar',
             orcid: '0000-0000-0000-0000',
+            affiliation: 'Author affiliation',
             role: nil
           }
         ]
@@ -219,6 +297,7 @@ RSpec.describe Dataset do
             first_name: 'Foo',
             last_name: 'Bar',
             orcid: '0000-0000-0000-0000',
+            affiliation: 'Author affiliation',
             role: 'Author'
           }]
       }
@@ -231,6 +310,7 @@ RSpec.describe Dataset do
             first_name: 'Foo',
             last_name: 'Bar',
             orcid: '0000-0000-0000-0000',
+            affiliation: 'Author affiliation',
             role: 'Author',
             _destroy: "1"
           }]

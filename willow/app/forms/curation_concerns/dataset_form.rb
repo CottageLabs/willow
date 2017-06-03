@@ -5,9 +5,19 @@ module CurationConcerns
     self.model_class = ::Dataset
     self.terms += [:license]
 
-    NESTED_ASSOCIATIONS = [:license,:creator].freeze
+    NESTED_ASSOCIATIONS = [:other_title,:license,:creator].freeze
 
     protected
+
+      def self.permitted_other_params
+        [:id,
+         :_destroy,
+         {
+           title: [],
+           title_type: [],
+         },
+        ]
+      end
 
       def self.permitted_license_params
         [:id,
@@ -27,13 +37,15 @@ module CurationConcerns
            first_name: [],
            last_name: [],
            orcid: [],
-           role: []
+           role: [],
+           affiliation: []
          },
         ]
       end
 
       def self.build_permitted_params
         permitted = super
+        permitted << { other_title_attributes: permitted_other_params }
         permitted << { license_attributes: permitted_license_params }
         permitted << { creator_attributes: permitted_creator_params }
         permitted
