@@ -1,0 +1,9 @@
+terms:
+  - id: AlternativeTitle
+    term: Alternative title
+  - id: Subtitle
+    term: Subtitle
+  - id: TranslatedTitle
+    term: Translated title
+  - id: Other
+    term: Other
