@@ -3,9 +3,12 @@
 module CurationConcerns
   class DatasetForm < Sufia::Forms::WorkForm
     self.model_class = ::Dataset
-    self.terms += [:license]
+    self.terms += [:doi, :publication_date, :other_title]
+    # self.terms -= [:rights]
+    self.required_fields += [:publisher, :publication_date, :resource_type]
+    self.required_fields -= [:keyword,]
 
-    NESTED_ASSOCIATIONS = [:other_title,:license,:creator].freeze
+    NESTED_ASSOCIATIONS = [:other_title, :rights, :creator].freeze
 
     protected
 
@@ -19,7 +22,7 @@ module CurationConcerns
         ]
       end
 
-      def self.permitted_license_params
+      def self.permitted_rights_params
         [:id,
          :_destroy,
          {
@@ -46,7 +49,7 @@ module CurationConcerns
       def self.build_permitted_params
         permitted = super
         permitted << { other_title_attributes: permitted_other_params }
-        permitted << { license_attributes: permitted_license_params }
+        permitted << { rights_attributes: permitted_rights_params }
         permitted << { creator_attributes: permitted_creator_params }
         permitted
       end

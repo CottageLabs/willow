@@ -1,18 +1,18 @@
-class LicenseStatementInput < NestedAttributesInput
+class RightsStatementInput < NestedAttributesInput
 
   protected
 
-    # The markup here is also duplicated in app/assets/javascripts/templates/editor/license_statement.hbs
+    # The markup here is also duplicated in app/assets/javascripts/templates/editor/rights_statement.hbs
     # Any changes to this markup should also be reflected there as well
     def build_components(attribute_name, value, index, options)
       out = ''
 
-      license_statement = value
+      rights_statement = value
 
       # --- label
       field = :label
       field_name = name_for(attribute_name, index, field)
-      field_value = license_statement.send(field).first
+      field_value = rights_statement.send(field).first
 
       out << "<div class='row'>"
       out << "  <div class='col-md-3'>"
@@ -20,14 +20,14 @@ class LicenseStatementInput < NestedAttributesInput
       out << '  </div>'
 
       out << "  <div class='col-md-6'>"
-      out << template.select_tag(field_name, template.options_for_select(license_statement_qualifier_options, field_value), include_blank: true, label: '', class: 'select form-control')
+      out << template.select_tag(field_name, template.options_for_select(rights_statement_qualifier_options, field_value), include_blank: true, label: '', class: 'select form-control')
       out << '  </div>'
       out << '</div>' # row
 
       # --- Definition
       field = :definition
       field_name = name_for(attribute_name, index, field)
-      field_value = license_statement.send(field).first
+      field_value = rights_statement.send(field).first
 
       out << "<div class='row'>"
       out << "  <div class='col-md-3'>"
@@ -44,7 +44,7 @@ class LicenseStatementInput < NestedAttributesInput
 
       # --- webpage
       field = :webpage
-      field_value = license_statement.send(field).first
+      field_value = rights_statement.send(field).first
       field_name = name_for(attribute_name, index, field)
 
       out << "  <div class='col-md-3'>"
@@ -66,7 +66,7 @@ class LicenseStatementInput < NestedAttributesInput
       out
     end
 
-    def license_statement_qualifier_options
-      LicenseStatement.qualifiers.map { |q| [q, q] }
+    def rights_statement_qualifier_options
+      RightsStatement.qualifiers.map { |q| [q, q] }
     end
 end

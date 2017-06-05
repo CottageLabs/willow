@@ -6,7 +6,8 @@ RSpec.describe Dataset do
   it 'has human readable type dataset' do
     @obj = Dataset.new
     @obj.attributes = {
-      title: ['test dataset']
+      title: ['test dataset'],
+      doi: '0000-0000-0000-0000'
     }
     @obj.save!
     @obj.reload
@@ -19,11 +20,61 @@ RSpec.describe Dataset do
       ('ActiveFedora::RecordInvalid: Validation failed: Title Your work must have a title.')
   end
 
+  describe 'doi' do
+    it 'requires doi' do
+      @obj = Dataset.new
+      @obj.attributes = {
+        title: ['test dataset']
+      }
+      expect { @obj.save! }.to raise_error
+        ('ActiveFedora::RecordInvalid: Validation failed: DOI Your work must have a doi.')
+    end
+
+    it 'has a single valued doi' do
+      @obj = Dataset.new
+      @obj.attributes = {
+        title: ['test dataset'],
+        doi: '0000-0000-0000-0000'
+      }
+      @obj.save!
+      @obj.reload
+      expect(@obj.doi).to be_kind_of String
+      expect(@obj.doi).to eq '0000-0000-0000-0000'
+    end
+  end
+
+  it 'has publisher' do
+    @obj = Dataset.new
+    @obj.attributes = {
+      title: ['test dataset'],
+      doi: '0000-0000-0000-0000',
+      publisher: ['Willow']
+    }
+    @obj.save!
+    @obj.reload
+    expect(@obj.publisher).to be_kind_of ActiveTriples::Relation
+    expect(@obj.publisher).to eq ['Willow']
+  end
+
+  it 'has publication date' do
+    @obj = Dataset.new
+    @obj.attributes = {
+      title: ['test dataset'],
+      doi: '0000-0000-0000-0000',
+      publication_date: ['2016-06-05']
+    }
+    @obj.save!
+    @obj.reload
+    expect(@obj.publication_date).to be_kind_of ActiveTriples::Relation
+    expect(@obj.publication_date).to eq ['2016-06-05']
+  end
+
   describe 'nested attributes for other title' do
     it 'accepts other title attributes' do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test dataset'],
+        doi: '0000-0000-0000-0000',
         other_title_attributes: [{
             title: 'Another title',
             title_type: 'Title type'
@@ -41,6 +92,7 @@ RSpec.describe Dataset do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test dataset'],
+        doi: '0000-0000-0000-0000',
         other_title_attributes: [{
             title: 'Another title',
             title_type: 'Title type'
@@ -60,6 +112,7 @@ RSpec.describe Dataset do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test dataset'],
+        doi: '0000-0000-0000-0000',
         other_title_attributes: [{
           title: 'Another title',
           title_type: 'Title type'
@@ -84,6 +137,7 @@ RSpec.describe Dataset do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test dataset'],
+        doi: '0000-0000-0000-0000',
         other_title_attributes: [{
           title: 'Another title',
           title_type: 'Title type'
@@ -95,74 +149,78 @@ RSpec.describe Dataset do
     end
   end
 
-  describe 'nested attributes for license' do
-    it 'accepts license attributes' do
+  describe 'nested attributes for rights' do
+    it 'accepts rights attributes' do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test dataset'],
-        license_attributes: [{
-            label: 'A license label',
-            definition: 'A definition of the license',
-            webpage: 'http://example.com/license'
+        doi: '0000-0000-0000-0000',
+        rights_attributes: [{
+            label: 'A rights label',
+            definition: 'A definition of the rights',
+            webpage: 'http://example.com/rights'
           }]
       }
       @obj.save!
       @obj.reload
-      expect(@obj.license.first).to be_kind_of ActiveTriples::Resource
-      expect(@obj.license.first.id).to include('#license')
-      expect(@obj.license.first.label).to eq ['A license label']
-      expect(@obj.license.first.definition).to eq ['A definition of the license']
-      expect(@obj.license.first.webpage).to eq ['http://example.com/license']
+      expect(@obj.rights.first).to be_kind_of ActiveTriples::Resource
+      expect(@obj.rights.first.id).to include('#rights')
+      expect(@obj.rights.first.label).to eq ['A rights label']
+      expect(@obj.rights.first.definition).to eq ['A definition of the rights']
+      expect(@obj.rights.first.webpage).to eq ['http://example.com/rights']
     end
 
-    it 'rejects lcense attributes if all blank' do
+    it 'rejects rights attributes if all blank' do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test dataset'],
-        license_attributes: [{
+        doi: '0000-0000-0000-0000',
+        rights_attributes: [{
             label: '',
           }]
       }
       @obj.save!
       @obj.reload
-      expect(@obj.license.size).to eq(0)
+      expect(@obj.rights.size).to eq(0)
     end
 
-    it 'destroys license' do
+    it 'destroys rights' do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test dataset'],
-        license_attributes: [{
+        doi: '0000-0000-0000-0000',
+        rights_attributes: [{
             label: 'test label'
           }]
       }
       @obj.save!
       @obj.reload
       @obj.attributes = {
-        license_attributes: [{
-            id: @obj.license.first.id,
+        rights_attributes: [{
+            id: @obj.rights.first.id,
             label: 'test label',
             _destroy: "1"
           }]
       }
       @obj.save!
       @obj.reload
-      expect(@obj.license.size).to eq(0)
+      expect(@obj.rights.size).to eq(0)
     end
 
-    it 'indexes the license' do
+    it 'indexes the rights' do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test dataset'],
-        license_attributes: [{
-            label: 'A license label',
-            definition: 'A definition of the license',
-            webpage: 'http://example.com/license'
+        doi: '0000-0000-0000-0000',
+        rights_attributes: [{
+            label: 'A rights label',
+            definition: 'A definition of the rights',
+            webpage: 'http://example.com/rights'
           }]
       }
       @doc = @obj.to_solr
-      expect(@doc['license_sim']).to eq ['A license label']
-      expect(@doc).to include('license_tesim')
+      expect(@doc['rights_sim']).to eq ['A rights label']
+      expect(@doc).to include('rights_tesim')
     end
   end
 
@@ -171,6 +229,7 @@ RSpec.describe Dataset do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test dataset'],
+        doi: '0000-0000-0000-0000',
         creator_attributes: [{
             first_name: 'Foo',
             last_name: 'Bar',
@@ -197,6 +256,7 @@ RSpec.describe Dataset do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test dataset'],
+        doi: '0000-0000-0000-0000',
         creator_attributes: [
           {
             first_name: 'Foo',
@@ -229,6 +289,7 @@ RSpec.describe Dataset do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test dataset'],
+        doi: '0000-0000-0000-0000',
         creator_attributes: [
           {
             first_name: 'Foo',
@@ -252,6 +313,7 @@ RSpec.describe Dataset do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test dataset'],
+        doi: '0000-0000-0000-0000',
         creator_attributes: [
           {
             first_name: 'Foo',
@@ -276,6 +338,7 @@ RSpec.describe Dataset do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test dataset'],
+        doi: '0000-0000-0000-0000',
         creator_attributes: [
           {
             first_name: '',
@@ -293,6 +356,7 @@ RSpec.describe Dataset do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test dataset'],
+        doi: '0000-0000-0000-0000',
         creator_attributes: [{
             first_name: 'Foo',
             last_name: 'Bar',
@@ -324,6 +388,7 @@ RSpec.describe Dataset do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test dataset'],
+        doi: '0000-0000-0000-0000',
         creator_attributes: [{
             first_name: ['Foo'],
             last_name: 'Bar',
@@ -343,6 +408,7 @@ RSpec.describe Dataset do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test title'],
+        doi: '0000-0000-0000-0000',
         relation_attributes: [
           {
             label: 'A relation label',
@@ -363,6 +429,7 @@ RSpec.describe Dataset do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test title'],
+        doi: '0000-0000-0000-0000',
         relation_attributes: [
           {
             label: 'Test label'
@@ -382,6 +449,7 @@ RSpec.describe Dataset do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test title'],
+        doi: '0000-0000-0000-0000',
         relation_attributes: [{
             label: 'test label',
             url: 'http://example.com/relation'
@@ -407,6 +475,7 @@ RSpec.describe Dataset do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test dataset'],
+        doi: '0000-0000-0000-0000',
         relation_attributes: [{
           label: 'test label',
           url: 'http://example.com/relation'
@@ -422,6 +491,7 @@ RSpec.describe Dataset do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test title'],
+        doi: '0000-0000-0000-0000',
         publication_attributes: [
           {
             title: 'A publication title',
@@ -444,6 +514,7 @@ RSpec.describe Dataset do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test title'],
+        doi: '0000-0000-0000-0000',
         publication_attributes: [
           {
             title: 'Test title'
@@ -463,6 +534,7 @@ RSpec.describe Dataset do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test title'],
+        doi: '0000-0000-0000-0000',
         publication_attributes: [{
             title: 'test title',
             url: 'http://example.com/publication'
@@ -488,6 +560,7 @@ RSpec.describe Dataset do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test dataset'],
+        doi: '0000-0000-0000-0000',
         publication_attributes: [{
           title: 'test title',
           journal: 'A journal for the publication',
@@ -506,6 +579,7 @@ RSpec.describe Dataset do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test title'],
+        doi: '0000-0000-0000-0000',
         admin_metadata_attributes: [{
           question: 'An admin question needing an answer',
           response: 'Response to admin question'
@@ -524,6 +598,7 @@ RSpec.describe Dataset do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test title'],
+        doi: '0000-0000-0000-0000',
         admin_metadata_attributes: [
           {
             question: 'An admin question needing an answer'
@@ -546,6 +621,7 @@ RSpec.describe Dataset do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test title'],
+        doi: '0000-0000-0000-0000',
         admin_metadata_attributes: [{
             question: 'An admin question needing an answer',
             response: 'Response to admin question'
