@@ -5,17 +5,6 @@ class OtherTitleStatement < ActiveTriples::Resource
   property :title, predicate: ::RDF::Vocab::Bibframe.title
   property :title_type, predicate: ::RDF::Vocab::Bibframe.titleQualifier
 
-  QUALIFIERS = [
-    'Alternative Title',
-    'Subtitle ',
-    'TranslatedTitle',
-    'Other',
-    ].freeze
-
-  def self.qualifiers
-    QUALIFIERS
-  end
-
   ## Necessary to get AT to create hash URIs.
   def initialize(uri, parent)
     if uri.try(:node?)

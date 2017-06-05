@@ -28,9 +28,4 @@ describe OtherTitleStatement do
     expect(@obj.other_title.first.title).to eq ['An alternate title']
     expect(@obj.other_title.first.title_type).to eq ['Alternate']
   end
-
-  it 'defines qualifiers' do
-    expect(OtherTitleStatement.qualifiers).to be_kind_of Array
-    expect(OtherTitleStatement.qualifiers).not_to be_empty
-  end
 end

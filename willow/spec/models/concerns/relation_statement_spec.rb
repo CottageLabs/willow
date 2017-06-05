@@ -36,9 +36,4 @@ describe RelationStatement do
     expect(@obj.relation.first.relationship_name).to eq ['Is part of']
     expect(@obj.relation.first.relationship_role).to eq ['http://example.com/isPartOf']
   end
-
-  it 'defines qualifiers' do
-    expect(RelationStatement.id_qualifiers).to be_kind_of Array
-    expect(RelationStatement.id_qualifiers).not_to be_empty
-  end
 end

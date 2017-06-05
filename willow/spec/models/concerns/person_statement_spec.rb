@@ -34,14 +34,4 @@ describe PersonStatement do
     expect(@obj.creator.first.affiliation).to eq ['author affiliation']
     expect(@obj.creator.first.role).to eq ['Author']
   end
-
-  it 'defines role qualifiers' do
-    expect(PersonStatement.role_qualifiers).to be_kind_of Hash
-    expect(PersonStatement.role_qualifiers).not_to be_empty
-  end
-
-  it 'defines identifier qualifiers' do
-    expect(PersonStatement.id_qualifiers).to be_kind_of Hash
-    expect(PersonStatement.id_qualifiers).not_to be_empty
-  end
 end

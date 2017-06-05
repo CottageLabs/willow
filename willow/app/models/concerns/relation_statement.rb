@@ -9,31 +9,6 @@ class RelationStatement < ActiveTriples::Resource
   property :relationship_name, predicate: ::RDF::Vocab::MODS.roleRelationshipName
   property :relationship_role, predicate: ::RDF::Vocab::MODS.roleRelationshipRole
 
-  ID_QUALIFIERS = [
-    'ARK',
-    'arXiv',
-    'bibcode',
-    'DOI',
-    'EAN13',
-    'EISSN',
-    'Handle',
-    'IGSN',
-    'ISBN',
-    'ISSN',
-    'ISTC',
-    'LISSN',
-    'LSID',
-    'PMID',
-    'PURL',
-    'UPC',
-    'URL',
-    'URN'
-  ]
-
-  def self.id_qualifiers
-    ID_QUALIFIERS
-  end
-
   ## Necessary to get AT to create hash URIs.
   def initialize(uri, parent)
     if uri.try(:node?)

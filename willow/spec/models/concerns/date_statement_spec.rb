@@ -28,9 +28,4 @@ describe DateStatement do
     expect(@obj.date.first.date).to eq ['2017-01-02']
     expect(@obj.date.first.description).to eq ['A description of the date']
   end
-
-  it 'defines qualifiers' do
-    expect(DateStatement.qualifiers).to be_kind_of Hash
-    expect(DateStatement.qualifiers).not_to be_empty
-  end
 end

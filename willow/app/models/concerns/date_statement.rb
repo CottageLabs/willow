@@ -5,23 +5,6 @@ class DateStatement < ActiveTriples::Resource
   property :date, predicate: ::RDF::Vocab::DC.date
   property :description, predicate: ::RDF::Vocab::DC.description
 
-  QUALIFIERS = {
-    'Accepted' => ::RDF::Vocab::DC.dateAccepted,
-    'Available' => 'Available',
-    'Copyrighted' => ::RDF::Vocab::Bibframe.copyrightDate,
-    'Collected' => 'Collected',
-    'Created' => ::RDF::Vocab::DC.created,
-    'Issued' => ::RDF::Vocab::DC.issued,
-    'Submitted' => ::RDF::Vocab::DC.dateSubmitted,
-    'Updated' => ::RDF::Vocab::Bibframe.changeDate,
-    'Valid' => ::RDF::Vocab::DC.valid
-  }
-
-  def self.qualifiers
-    QUALIFIERS
-  end
-
-
   ## Necessary to get AT to create hash URIs.
   def initialize(uri, parent)
     if uri.try(:node?)

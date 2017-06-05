@@ -30,9 +30,4 @@ describe RightsStatement do
     expect(@obj.rights.first.definition).to eq ['A definition of the rights']
     expect(@obj.rights.first.webpage).to eq ['http://example.com/rights']
   end
-
-  it 'defines qualifiers' do
-    expect(RightsStatement.qualifiers).to be_kind_of Array
-    expect(RightsStatement.qualifiers).not_to be_empty
-  end
 end

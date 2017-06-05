@@ -29,27 +29,6 @@ class Dataset < ActiveFedora::Base
   # must be included after all properties are declared
   include NestedAttributes
 
-  RESOURCE_TYPE_QUALIFIERS = [
-    'Audiovisual',
-    'Collection',
-    'Dataset',
-    'Event',
-    'Image',
-    'InteractiveResource',
-    'Model',
-    'PhysicalObject',
-    'Service',
-    'Software',
-    'Sound',
-    'Text',
-    'Workflow',
-    'Other',
-  ]
-
-  def self.resource_type_qualifiers
-    RESOURCE_TYPE_QUALIFIERS
-  end
-
   def to_solr(solr_doc = {})
     super(solr_doc).tap do |doc|
       # other title
