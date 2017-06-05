@@ -22,7 +22,30 @@ class PersonStatement < ActiveTriples::Resource
     'nii' => ::RDF::Vocab::DataCite.nii
   }
 
-  ROLE_QUALIFIERS = ['Author', 'Creator', 'Editor'].freeze
+  ROLE_QUALIFIERS = {
+    'Author' => 'Author',
+    'Contact Person' => 'ContactPerson',
+    'Data Collector' => 'DataCollector',
+    'Data Curator' => 'DataCurator',
+    'Data Manager' => 'DataManager',
+    'Distributor' => 'Distributor',
+    'Editor' => 'Editor',
+    'Hosting Institution' => 'HostingInstitution',
+    'Producer' => 'Producer',
+    'Project Leader' => 'ProjectLeader',
+    'Project Manager' => 'ProjectManager',
+    'Project Member' => 'ProjectMember',
+    'Registration Agency' => 'RegistrationAgency',
+    'Registration Authority' => 'RegistrationAuthority',
+    'Related Person' => 'RelatedPerson',
+    'Researcher' => 'Researcher',
+    'Research Group' => 'ResearchGroup',
+    'Rights Holder' => 'RightsHolder',
+    'Sponsor' => 'Sponsor',
+    'Supervisor' => 'Supervisor',
+    'Work Package Leader' => 'WorkPackageLeader',
+    'Other' => 'Other'
+  }.freeze
 
   def self.role_qualifiers
     ROLE_QUALIFIERS

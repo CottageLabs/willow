@@ -4,6 +4,35 @@ class RelationStatement < ActiveTriples::Resource
   configure type: ::RDF::Vocab::PROV.Association
   property :label, predicate: ::RDF::Vocab::SKOS.prefLabel
   property :url, predicate: ::RDF::Vocab::MODS.locationUrl
+  property :identifier, predicate: ::RDF::Vocab::DataCite.hasIdentifier
+  property :identifier_scheme, predicate: ::RDF::Vocab::DataCite.usesIdentifierScheme
+  property :relationship_name, predicate: ::RDF::Vocab::MODS.roleRelationshipName
+  property :relationship_role, predicate: ::RDF::Vocab::MODS.roleRelationshipRole
+
+  ID_QUALIFIERS = [
+    'ARK',
+    'arXiv',
+    'bibcode',
+    'DOI',
+    'EAN13',
+    'EISSN',
+    'Handle',
+    'IGSN',
+    'ISBN',
+    'ISSN',
+    'ISTC',
+    'LISSN',
+    'LSID',
+    'PMID',
+    'PURL',
+    'UPC',
+    'URL',
+    'URN'
+  ]
+
+  def self.id_qualifiers
+    ID_QUALIFIERS
+  end
 
   ## Necessary to get AT to create hash URIs.
   def initialize(uri, parent)

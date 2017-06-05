@@ -31,12 +31,12 @@ describe PersonStatement do
     expect(@obj.creator.first.first_name).to eq ['Foo']
     expect(@obj.creator.first.last_name).to eq ['Bar']
     expect(@obj.creator.first.orcid).to eq ['0000-0000-0000-0000']
-    expect(@obj.creator.first.affiliation).to eq ['author affiliation'bg]
+    expect(@obj.creator.first.affiliation).to eq ['author affiliation']
     expect(@obj.creator.first.role).to eq ['Author']
   end
 
   it 'defines role qualifiers' do
-    expect(PersonStatement.role_qualifiers).to be_kind_of Array
+    expect(PersonStatement.role_qualifiers).to be_kind_of Hash
     expect(PersonStatement.role_qualifiers).not_to be_empty
   end
 

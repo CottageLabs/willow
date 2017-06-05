@@ -15,15 +15,12 @@ class Dataset < ActiveFedora::Base
   property :publisher, predicate: ::RDF::Vocab::DC.publisher do |index|
     index.as :stored_searchable, :facetable
   end
-  property :publication_date, predicate: ::RDF::Vocab::DC.date do |index|
-    index.as :stored_searchable
-  end
-  property :creator, predicate: ::RDF::Vocab::DC.license, class_name:"PersonStatement"
   property :other_title, predicate: ::RDF::Vocab::Bibframe.titleVariation, class_name:"OtherTitleStatement"
+  property :date, predicate: ::RDF::Vocab::DC.date, class_name:"DateStatement"
+  property :creator, predicate: ::RDF::Vocab::DC.license, class_name:"PersonStatement"
   property :rights, predicate: ::RDF::Vocab::DC.rights, class_name:"RightsStatement"
-
+  property :subject, predicate: ::RDF::Vocab::DC.subject, class_name:"SubjectStatement"
   property :relation, predicate: ::RDF::Vocab::DC.relation, class_name:"RelationStatement"
-  property :publication, predicate: ::RDF::Vocab::DC.isReferencedBy, class_name: "PublicationStatement"
   property :admin_metadata, predicate: ::RDF::Vocab::MODS.adminMetadata, class_name: "AdministrativeStatement"
 
   validates :title, presence: { message: 'Your work must have a title.' }
@@ -57,20 +54,24 @@ class Dataset < ActiveFedora::Base
     super(solr_doc).tap do |doc|
       # other title
       doc[Solrizer.solr_name('other_title', :stored_searchable)] = other_title.map { |r| r.title.first }
-      # rights
-      doc[Solrizer.solr_name('rights', :stored_searchable)] = rights.to_json
-      doc[Solrizer.solr_name('rights', :facetable)] = rights.map { |l| l.label.first }
+      # date
+      # TODO: index by description of date
+      doc[Solrizer.solr_name('date', :stored_searchable)] = date.map { |d| d.date.first }
       # creator
       doc[Solrizer.solr_name('person', :stored_searchable)] = creator.to_json
       creators = creator.map { |c| (c.first_name + c.last_name).join(' ') }
       doc[Solrizer.solr_name('creator', :facetable)] = creators
       doc[Solrizer.solr_name('creator', :stored_searchable)] = creators
+      # rights
+      doc[Solrizer.solr_name('rights', :stored_searchable)] = rights.to_json
+      doc[Solrizer.solr_name('rights', :facetable)] = rights.map { |r| r.label.first }
+      # subject
+      doc[Solrizer.solr_name('subject', :stored_searchable)] = subject.map { |s| s.label.first }
+      doc[Solrizer.solr_name('subject', :facetable)] = subject.map { |s| s.label.first }
       # relation
-      doc[Solrizer.solr_name('relation', :stored_searchable)] = relation.map { |r| r.url.first }
-      # publication
-      doc[Solrizer.solr_name('publication', :stored_searchable)] = publication.map { |p| p.title.first }
-      doc[Solrizer.solr_name('journal', :stored_searchable)] = publication.map { |p| p.journal.first }
-      doc[Solrizer.solr_name('journal', :facetable)] = publication.map { |p| p.journal.first }
+      doc[Solrizer.solr_name('related_item', :stored_searchable)] = relation.to_json
+      doc[Solrizer.solr_name('related_item_url', :facetable)] = relation.map { |r| r.url.first }
+      doc[Solrizer.solr_name('related_item_id', :facetable)] = relation.map { |r| r.identifier.first }
     end
   end
 
