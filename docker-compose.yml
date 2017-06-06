@@ -16,7 +16,6 @@ services:
       - .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
     restart: on-failure
     deploy:
       resources:

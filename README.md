@@ -89,19 +89,27 @@ GEOBLACKLIGHT_SEED=true
 
 8. Run `docker-compose up` to download, build and initialise the infrastructure
 
-__development mode__
+The system can be built and run in either *development* mode (allowing changes on the fly) or in *production* mode (where code and assets are pre-built and cannot be changed on startup).
+ 
+To enable development mode, you should symlink the file `docker-compose.development.yml` to `docker-compose.override.yml`.
+Conversely, to enable production mode, simply delete the `docker-compose.override.yml` file if it exists.
+
+__enabling development mode__
 ```bash
-$ docker-compose up
+$ ln -sf docker-compose.development.yml docker-compose.override.yml
 ```
 
-__production mode__
-
-To run the system in production mode, you should ignore the `docker-compose.override.yml` file, e.g.
+__enabling production mode__
 ```bash
-$ docker-compose -f docker-compose.yml up
+$ rm -f docker-compose.override.yml
 ```
 
-Note that once the system has been built, the image will be cached. You can force a rebuild with `docker-compose build` or `docker-compose up --build`.
+To build and run the system, issue the `up` command to docker-compose: 
+```bash
+$ docker-compose up --build
+```
+
+Note that once the system has been built, the image will be cached. You can force a rebuild with `docker-compose up --build`.
 
 
 And to start from a blank slate by completely wiping the system and data, run `docker-compose down --volumes` first:
@@ -109,7 +117,8 @@ And to start from a blank slate by completely wiping the system and data, run `d
 $ docker-compose down --volumes && docker-compose up --build 
 ```
 
-10. If everything is successful, after a few minutes you should be able to see Willow running.
+
+9. If everything is successful, after a few minutes you should be able to see Willow running.
   - Willow:
     - Mac: http://192.168.99.100:3000 (or possibly port 80 depending on your `env` files)
     - Linux: http://localhost:3000
@@ -121,7 +130,7 @@ $ docker-compose down --volumes && docker-compose up --build
     - Linux: http://localhost:3010
     
     
-11. To get a bash prompt within the Willow container (e.g. to run rake tasks), you can run:
+10. To get a bash prompt within the Willow container (e.g. to run rake tasks), you can run:
 ```bash
 $ docker-compose run willow bash
 ```

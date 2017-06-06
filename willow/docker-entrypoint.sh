@@ -31,6 +31,6 @@ else
     exit 1
 fi
 
-echo "Starting Willow"
+echo "--------- Starting Willow in $RAILS_ENV mode ---------"
 rm -f /tmp/willow.pid
 bundle exec rails server -p 3000 -b '0.0.0.0' --pid /tmp/willow.pid

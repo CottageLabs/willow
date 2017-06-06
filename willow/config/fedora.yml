@@ -12,4 +12,4 @@ production:
   user: fedoraAdmin
   password: fedoraAdmin
   url: http://fedora:8080/rest
-  base_path: /willow_development  # TODO: change this back to production once the data-restore problems are fully resolved
+  base_path: /willow_production
