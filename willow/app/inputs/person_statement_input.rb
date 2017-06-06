@@ -80,7 +80,7 @@ protected
     out << '  </div>'
 
     out << "  <div class='col-md-9'>"
-    out << template.select_tag(field_name, template.options_for_select(person_statement_role_qualifier_options, field_value), include_blank: true, label: '', class: 'select form-control')
+    out << template.select_tag(field_name, template.options_for_select(AgentRolesService.select_all_options, field_value), prompt: 'Select role played', label: '', class: 'select form-control')
     out << '  </div>'
 
     # --- delete checkbox
@@ -93,9 +93,4 @@ protected
     out << '</div>' # last row
     out
   end
-
-  def person_statement_role_qualifier_options
-    PersonStatement.role_qualifiers.map { |q| [q, q] }
-  end
-
 end

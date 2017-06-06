@@ -3,12 +3,14 @@
 module CurationConcerns
   class DatasetForm < Sufia::Forms::WorkForm
     self.model_class = ::Dataset
-    self.terms += [:doi, :publication_date, :other_title]
+    self.terms += [:resource_type, :doi, :other_title, :date, :relation, :admin_metadata]
+    self.terms -= [:contributor, :date_created, :identifier, :based_near, :related_url]
     # self.terms -= [:rights]
-    self.required_fields += [:publisher, :publication_date, :resource_type]
-    self.required_fields -= [:keyword,]
+    self.required_fields += [:publisher, :date, :resource_type]
+    self.required_fields -= [:keyword, :rights]
 
-    NESTED_ASSOCIATIONS = [:other_title, :rights, :creator].freeze
+    NESTED_ASSOCIATIONS = [:other_title, :date, :creator, :rights, :subject,
+      :relation, :admin_metadata].freeze
 
     protected
 

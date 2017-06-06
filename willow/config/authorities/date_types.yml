@@ -11,7 +11,9 @@ terms:
     term: Created
   - id: http://purl.org/dc/terms/issued
     term: Issued
-  - id: http://purl.org/dc/terms/dateSubmitted
+  - id: http://purl.org/dc/terms/issued
+    term: Published
+  - id: http://bibframe.org/vocab/providerDate
     term: Submitted
   - id: http://bibframe.org/vocab/changeDate
     term: Updated
