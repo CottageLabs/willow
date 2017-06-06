@@ -1,5 +1,7 @@
-PATH
-  remote: ../willow_sword
+GIT
+  remote: https://github.com/cottagelabs/willow_sword.git
+  revision: d8988a5bc68b68a27e6d27731071528d2cfa1879
+  branch: master
   specs:
     willow_sword (0.1.0)
       rails (~> 5.0.1)

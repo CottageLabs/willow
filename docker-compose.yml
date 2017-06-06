@@ -1,50 +1,75 @@
-version: '2.1'
+version: '3'
+
+# These are the PRODUCTION defaults for docker-compose.yml
+# It is intended to be run in production mode via Docker stack, not docker-compose.
+# There are development overrides specified in docker-compose.override.yml, which are intended to be run in docker-compose.
+# In addition, your system should have three files for environmental variables, none of which should be committed to git:
+#  .env
+#  .env.produciton
+#  .env.development
 
 services:
   db:
+    image: cottagelabs/willow-db
     build: db/
-    env_file: .env
+    env_file:
+      - .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
-  
+    restart: on-failure
+    deploy:
+      resources:
+        reservations:
+          memory: 250M
+
   solr:
-    build:
-      context: .
-      dockerfile: solr/Dockerfile
+    image: cottagelabs/willow-solr
+    build: solr/
     volumes:
       - solr_home:/solr_home
-    ports:
-      - "8983:8983"
+    restart: on-failure
+    deploy:
+      resources:
+        reservations:
+          memory: 250M
   
   redis:
+    image: cottagelabs/willow-redis
     build: redis/
     volumes:
       - redis_data:/data
+    restart: on-failure
+    deploy:
+      resources:
+        reservations:
+          memory: 250M
 
-  # cache for gems to speed up bundle install time
-  #used by willow and geoblacklight
-  bundle_cache:
-    image: busybox # tiny linux
-    volumes:
-      - bundle_cache:/bundle
-  
   fedora:
-    env_file: .env
+    image: cottagelabs/willow-fedora
     build: fedora_commons/
+    env_file: .env
     links:
       - db
-    ports:
-      - "8080:8080"
     volumes:
        - fcrepo4_home:/fcrepo4_home/
        - fcrepo4_data:/fcrepo4_data/
     depends_on:
-      db:
-        condition: service_healthy
+      - db
+    restart: on-failure
+    deploy:
+      resources:
+        reservations:
+          memory: 500M
   
   willow:
-    build: willow/
-    env_file: .env
+    image: cottagelabs/willow
+    build:
+      context: willow/
+      args:
+        - RAILS_ENV=production
+    env_file:
+      - .env
+      - .env.production
     ports:
       - "${WILLOW_EXPOSED_PORT:-3000}:3000"
     links:
@@ -53,28 +78,37 @@ services:
       - db
       - fedora
     depends_on:
-      fedora:
-        condition: service_healthy
-      db:
-        condition: service_healthy
-    volumes_from:
-      - bundle_cache
-    volumes:
-      - ./willow:/willow
-      - ./willow_sword:/willow_sword
+      - fedora
+      - db
+      - solr
+      - redis
+    restart: on-failure
+    deploy:
+      resources:
+        reservations:
+          memory: 500M
+
 
   geoblacklight:
-    build: geoblacklight/
-    env_file: .env
+    image: cottagelabs/willow-geoblacklight
+    build:
+      context: geoblacklight/
+      args:
+        - RAILS_ENV=production
+    env_file:
+      - .env
+      - .env.production
     ports:
       - "${GEOBLACKLIGHT_EXPOSED_PORT:-3010}:3010"
-    volumes_from:
-      - bundle_cache
-    volumes:
-      - ./geoblacklight:/geoblacklight
     links:
       - solr
       - db
+    restart: on-failure
+    deploy:
+      resources:
+        reservations:
+          memory: 250M
+
 
 volumes:
   redis_data: {}
@@ -82,4 +116,3 @@ volumes:
   fcrepo4_data: {}
   postgres_data: {}
   solr_home: {}
-  bundle_cache: {}

@@ -4,3 +4,4 @@ env.sh
 .idea
 tmp/
 /willow/fits.log
+/docker-compose.override.yml
