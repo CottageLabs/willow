@@ -3,5 +3,8 @@ cd /home/willow/willow
 git checkout master
 git pull --recurse-submodules
 git submodule update --recursive --init
-ln -sf ../envfile .env
+ln -sf ../env.general .env
+ln -sf ../env.production .env.production
+ln -sf ../env.development .env.development
+rm -f docker-compose.override.yml
 docker-compose down --remove-orphans && docker-compose build && docker-compose up -d
