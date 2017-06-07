@@ -1,3 +1,11 @@
 <div class="date-editor">
-  <%= f.input :date, as: :date_statement, wrapper_html: {class: 'multi_value managed', data: {name: :date}}, required: f.object.required?(:date) %>
+  <%= f.input :date,
+    as: :date_statement,
+    input_html: {
+      class: 'form-control',
+      multiple: true,
+      data: {name: :date}
+    },
+    required: f.object.required?(:date)
+  %>
 </div>

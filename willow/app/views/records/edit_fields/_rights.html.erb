@@ -1,4 +1,11 @@
 <div class="rights-editor">
-  <%= f.input :rights, as: :rights_statement, wrapper_html: {class: 'multi_value managed', data: {name: :rights}}, required: f.object.required?(:rights) %>
+  <%= f.input :rights,
+    as: :rights_statement,
+    input_html: {
+      class: 'form-control',
+      multiple: true,
+      data: {name: :rights}
+    },
+    required: f.object.required?(:rights)
+  %>
 </div>
-

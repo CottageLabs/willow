@@ -1,3 +1,11 @@
 <div class="other-title-editor">
-  <%= f.input :other_title, as: :other_title_statement, wrapper_html: {class: 'multi_value managed', data: {name: :other_title}}, required: f.object.required?(:other_title) %>
+  <%= f.input :other_title,
+    as: :other_title_statement,
+    input_html: {
+      class: 'form-control',
+      multiple: true,
+      data: {name: :other_title}
+    },
+    required: f.object.required?(:other_title)
+  %>
 </div>

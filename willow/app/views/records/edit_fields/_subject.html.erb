@@ -1,3 +1,11 @@
 <div class="subject-editor">
-  <%= f.input :subject, as: :subject_statement, wrapper_html: {class: 'multi_value managed', data: {name: :subject}}, required: f.object.required?(:subject) %>
+  <%= f.input :subject,
+    as: :subject_statement,
+    input_html: {
+      class: 'form-control',
+      multiple: true,
+      data: {name: :subject}
+    },
+    required: f.object.required?(:subject)
+  %>
 </div>

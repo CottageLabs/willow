@@ -19,7 +19,41 @@ module CurationConcerns
          :_destroy,
          {
            title: [],
-           title_type: [],
+           title_type: []
+         },
+        ]
+      end
+
+      def self.permitted_date_params
+        [:id,
+         :_destroy,
+         {
+           date: [],
+           description: []
+         },
+        ]
+      end
+
+      def self.permitted_relation_params
+        [:id,
+         :_destroy,
+         {
+           label: [],
+           url: [],
+           identifier: [],
+           identifier_scheme: [],
+           relationship_name: [],
+           relationship_role: []
+         },
+        ]
+      end
+
+      def self.permitted_admin_params
+        [:id,
+         :_destroy,
+         {
+           question: [],
+           response: []
          },
         ]
       end
@@ -30,7 +64,7 @@ module CurationConcerns
          {
            label: [],
            definition: [],
-           webpage: [],
+           webpage: []
          },
         ]
       end
@@ -48,11 +82,27 @@ module CurationConcerns
         ]
       end
 
+      def self.permitted_subject_params
+        [:id,
+         :_destroy,
+         {
+           label: [],
+           definition: [],
+           classification: [],
+           homepage: []
+         },
+        ]
+      end
+
       def self.build_permitted_params
         permitted = super
         permitted << { other_title_attributes: permitted_other_params }
+        permitted << { date_attributes: permitted_date_params }
+        permitted << { relation_attributes: permitted_relation_params }
+        permitted << { admin_metadata_attributes: permitted_admin_params }
         permitted << { rights_attributes: permitted_rights_params }
         permitted << { creator_attributes: permitted_creator_params }
+        permitted << { subject_attributes: permitted_subject_params }
         permitted
       end
 
