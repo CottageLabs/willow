@@ -45,6 +45,8 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+  # helps enforce good coding standards
+  gem 'rubocop', '~> 0.49.1', require: false
 end
 
 
