@@ -6,8 +6,8 @@ module CurationConcerns
     include CurationConcerns::CurationConcernController
     # Adds Sufia behaviors to the controller.
     include Sufia::WorksControllerBehavior
-    # Adds Willow messages to the controller
-    include Sufia::Notifications
+    # Adds Sufia work notifications to the controller
+    include Sufia::Notifications::Work
 
     self.curation_concern_type = Work
   end
