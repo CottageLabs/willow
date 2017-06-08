@@ -209,14 +209,15 @@ RSpec.describe Dataset do
         doi: '0000-0000-0000-0000',
         date_attributes: [{
           date: '2017-01-01',
-          description: 'date definition',
+          description: 'http://purl.org/dc/terms/dateAccepted',
         }, {
           date: '2018-01-01'
         }]
       }
       @doc = @obj.to_solr
-      expect(@doc).to include('date_tesim')
+      expect(@doc).to include('date_ssm')
       expect(@doc['date_tesim']).to match_array(['2017-01-01', '2018-01-01'])
+      expect(@doc['date_accepted_ssi']).to match_array(['2017-01-01'])
     end
   end
 
@@ -290,7 +291,7 @@ RSpec.describe Dataset do
           }]
       }
       @doc = @obj.to_solr
-      expect(@doc['rights_sim']).to eq ['A rights label']
+      expect(@doc['rights_sim']).to eq ['http://example.com/rights']
       expect(@doc).to include('rights_tesim')
     end
   end
@@ -470,7 +471,7 @@ RSpec.describe Dataset do
       @doc = @obj.to_solr
       expect(@doc['creator_sim']).to eq ['Foo Bar']
       expect(@doc['creator_tesim']).to eq ['Foo Bar']
-      expect(@doc).to include('person_tesim')
+      expect(@doc).to include('creator_ssm')
     end
   end
 
@@ -747,9 +748,9 @@ RSpec.describe Dataset do
         }]
       }
       @doc = @obj.to_solr
-      expect(@doc).to include('related_item_tesim')
-      expect(@doc['related_item_url_sim']).to eq ['http://example.com/relation']
-      expect(@doc['related_item_id_sim']).to eq ['123456']
+      expect(@doc).to include('relation_ssm')
+      expect(@doc['relation_url_sim']).to eq ['http://example.com/relation']
+      expect(@doc['relation_id_sim']).to eq ['123456']
     end
   end
 
