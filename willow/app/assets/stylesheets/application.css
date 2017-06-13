@@ -33,7 +33,6 @@ body {
 }
 
 .navbar.navbar-default.navbar-static-top {
-  background: #c9d2d4;
   color: #555;
   font-size: 18px;
   margin-bottom: 0;
@@ -96,20 +95,20 @@ ul.nav.navbar-nav.col-sm-5.col-md-6 {
 }
 
 #tabtoolbar > ul > li.active > a {
-  background-color: #c9d2d4;
-  color: #222;
+  background-color: #6b6b6b;
+  color: white;
   border-radius: 5px 5px 0 0;
 }
 
 #tabtoolbar a:hover, a:focus {
-  background-color: #c9d2d4;
-  color: #222;
+  background-color: #6b6b6b;
+  color: white;
   border-radius: 5px 5px 0 0;
 }
 
 #tabtoolbar > #user_utility_links > li.dropdown.open > a:active, #tabtoolbar > #user_utility_links > li.dropdown.open > a:visited, #tabtoolbar > #user_utility_links > li.dropdown.open > a:focus {
-  background-color: #c9d2d4;
-  color: #222;
+  background-color: #6b6b6b;
+  color: white;
   border-radius: 5px 5px 0 0;
 }
 
