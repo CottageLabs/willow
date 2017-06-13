@@ -1,0 +1,11 @@
+<div class="admin-metadata-editor">
+  <%= f.input :admin_metadata,
+    as: :admin_metadata_statement,
+    input_html: {
+      class: 'form-control',
+      multiple: true,
+      data: {name: :admin_metadata}
+    },
+    required: f.object.required?(:admin_metadata)
+  %>
+</div>

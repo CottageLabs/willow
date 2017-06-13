@@ -19,6 +19,7 @@ describe PersonStatement do
           first_name: 'Foo',
           last_name: 'Bar',
           orcid: '0000-0000-0000-0000',
+          affiliation: 'author affiliation',
           role: 'Author'
         }
       ]
@@ -30,6 +31,7 @@ describe PersonStatement do
     expect(@obj.creator.first.first_name).to eq ['Foo']
     expect(@obj.creator.first.last_name).to eq ['Bar']
     expect(@obj.creator.first.orcid).to eq ['0000-0000-0000-0000']
+    expect(@obj.creator.first.affiliation).to eq ['author affiliation']
     expect(@obj.creator.first.role).to eq ['Author']
   end
 end

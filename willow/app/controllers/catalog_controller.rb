@@ -82,19 +82,31 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("language", :stored_searchable), label: "Language", itemprop: 'inLanguage', link_to_search: solr_name("language", :facetable)
     config.add_index_field solr_name("date_uploaded", :stored_sortable, type: :date), label: "Date Uploaded", itemprop: 'datePublished'
     config.add_index_field solr_name("date_modified", :stored_sortable, type: :date), label: "Date Modified", itemprop: 'dateModified'
-    config.add_index_field solr_name("date_created", :stored_searchable), label: "Date Created", itemprop: 'dateCreated'
+    config.add_index_field solr_name("date_created", :stored_sortable), label: "Date Created", itemprop: 'dateCreated'
+    # dataset date fields for search
+    config.add_index_field solr_name("date_accepted", :stored_sortable, type: :date), label: "Date accepted", itemprop: 'dateAccepted'
+    config.add_index_field solr_name("date_available", :stored_sortable, type: :date), label: "Date available", itemprop: 'dateAvailable'
+    config.add_index_field solr_name("date_copyrighted", :stored_sortable, type: :date), label: "Date copyrighted", itemprop: 'dateCopyrighted'
+    config.add_index_field solr_name("date_collected", :stored_sortable, type: :date), label: "Date collected", itemprop: 'dateCollected'
+    config.add_index_field solr_name("date_issued", :stored_sortable, type: :date), label: "Date issued", itemprop: 'dateIssued'
+    config.add_index_field solr_name("date_published", :stored_sortable, type: :date), label: "Date published", itemprop: 'datePublished'
+    config.add_index_field solr_name("date_submitted", :stored_sortable, type: :date), label: "Date submitted", itemprop: 'dateSubmitted'
+    config.add_index_field solr_name("date_updated", :stored_sortable, type: :date), label: "Date updated", itemprop: 'dateUpdated'
     config.add_index_field solr_name("rights", :stored_searchable), label: "Rights", helper_method: :rights_statement_links
     config.add_index_field solr_name("resource_type", :stored_searchable), label: "Resource Type", link_to_search: solr_name("resource_type", :facetable)
     config.add_index_field solr_name("file_format", :stored_searchable), label: "File Format", link_to_search: solr_name("file_format", :facetable)
     config.add_index_field solr_name("identifier", :stored_searchable), label: "Identifier", helper_method: :index_field_link, field_name: 'identifier'
+    # dataset fields for search
+    config.add_index_field solr_name("doi", :stored_searchable), label: "DOI"
+    config.add_index_field solr_name("other_title", :stored_searchable), label: "Alternate titles"
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
     config.add_show_field solr_name("title", :stored_searchable), label: "Title"
     config.add_show_field solr_name("description", :stored_searchable), label: "Description"
     config.add_show_field solr_name("keyword", :stored_searchable), label: "Keyword"
-    config.add_show_field solr_name("subject", :stored_searchable), label: "Subject"
-    config.add_show_field solr_name("creator", :stored_searchable), label: "Creator"
+    config.add_show_field solr_name("subject", :displayable), label: "Subject"
+    config.add_show_field solr_name("creator", :displayable), label: "Creator"
     config.add_show_field solr_name("contributor", :stored_searchable), label: "Contributor"
     config.add_show_field solr_name("publisher", :stored_searchable), label: "Publisher"
     config.add_show_field solr_name("based_near", :stored_searchable), label: "Location"
@@ -106,6 +118,13 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name("resource_type", :stored_searchable), label: "Resource Type"
     config.add_show_field solr_name("format", :stored_searchable), label: "File Format"
     config.add_show_field solr_name("identifier", :stored_searchable), label: "Identifier"
+
+    #Add dataset show fields
+    config.add_show_field solr_name("doi", :stored_searchable), label: "DOI"
+    config.add_show_field solr_name("other_title", :displayable), label: "Alternate titles"
+    config.add_show_field solr_name("date", :displayable), label: "Dates"
+    config.add_show_field solr_name("relation", :displayable), label: "Related items"
+    config.add_show_field solr_name("admin_metadata", :displayable), label: "Admin information"
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
@@ -262,6 +281,22 @@ class CatalogController < ApplicationController
 
     config.add_search_field('rights') do |field|
       solr_name = solr_name("rights", :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('other_title') do |field|
+      solr_name = solr_name("other_title", :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('doi') do |field|
+      solr_name = solr_name("doi", :facetable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name

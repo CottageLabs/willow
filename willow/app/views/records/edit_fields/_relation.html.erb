@@ -1,0 +1,11 @@
+<div class="relation-editor">
+  <%= f.input :relation,
+    as: :relation_statement,
+    input_html: {
+      class: 'form-control',
+      multiple: true,
+      data: {name: :relation}
+    },
+    required: f.object.required?(:relation)
+  %>
+</div>
