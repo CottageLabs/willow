@@ -1,0 +1,96 @@
+{
+  "users" : [
+    {
+      "email" : "admin@willow",
+      "password" : "password",
+      "name" : "Willow Admin",
+      "role" : "admin"
+    },
+    {
+      "email" : "user@willow",
+      "password" : "demouser",
+      "name" : "Demo User",
+      "role" : "user",
+      "depositor" : true
+    },
+    {
+      "email" : "workflow@willow",
+      "password": "workflow",
+      "name" : "Workflow Admin",
+      "role" : "admin"
+    }
+  ],
+
+  "site_text" : {
+    "marketing" : [
+      "<div style=\"font-size: 0.5em; padding: 1em; \"><p>Cottage Labs is pleased to offer repository solutions using ",
+      "cutting-edge open source technology <a href=\"https://projecthydra.org/\">Hydra</a> and <a href=\"http://fedorarepository.org/\">Fedora</a>. ",
+      "We can help you from initial requirements, through customisation and integration with your systems, to long term support and maintenance.</p>",
+      "<p>Whether you are a small institution looking to get the essential features out-of-the-box, or a large, research-intensive ",
+      "organisation looking for customisations and integration with local systems, don't hesitate to&nbsp;",
+      "<a href=\"mailto:willow@cottagelabs.com\">contact us</a> to find out what we can do for you.</p>",
+      "<p>Read more about <a href=\"https://cottagelabs.com/willow\">Willow</a> on our website or take a look around this demo system.</p></div>"
+    ],
+    "about" : [
+      "<p>We have a set of components from the Hydra ecosystem that we support, and we will:</p>",
+      "<ul>",
+      "<li>Help you understand your requirements, model your data, and plan your repository system around you</li>",
+      "<li>Host and maintain everything for you, as your fully featured repository system</li>",
+      "<li>Support, maintain and extend your existing system, if you prefer</li>",
+      "<li>Get you migrated from any legacy systems in place</li>",
+      "<li>Do bespoke development, and help you get integrated with 3rd party systems</li>",
+      "</ul>",
+      "<p>We can join you at any stage of your existing project, including:</p>",
+      "<ul>",
+      "<li>Initial requirements capture and analysis</li>",
+      "<li>Data modelling and system architecture</li>",
+      "<li>Implementation and deployment of the software stack</li>",
+      "<li>Bespoke development, creating or customising existing components</li>",
+      "<li>3rd party system integration - authentication, deposit environments, CRIS and CMS</li>",
+      "<li>Maintenance, upgrades and migrations</li>",
+      "</ul>",
+      "<p>Our developers have many years experience in the repository, research data management and research information space, and will bring that to your project.</p>",
+      "<p>Read more about&nbsp;<a href=\"https://cottagelabs.com/willow\">Willow</a>&nbsp;on our website or take a look around this demo system.</p>",
+      "<h2>About this demo</h2>",
+      "<p>The site you're looking at right now is built with&nbsp;<a href=\"http://sufia.io/\">Sufia</a>, a repository front-end which leverages the full power of&nbsp;<a href=\"https://projecthydra.org/\">Hydra</a>.</p>",
+      "<p>Sufia supports functionality such as:</p>",
+      "<ul>",
+      "<li>Deposit and deposit workflows</li>",
+      "<li>Access controls</li>",
+      "<li>User profiles</li>",
+      "<li>Collection and file management</li>",
+      "<li>Batch editing</li>",
+      "<li>Faceted search and browse</li>",
+      "<li>Preservation functions</li>",
+      "<li>... and much more; head over to their&nbsp;<a href=\"http://sufia.io/\">website</a>&nbsp;to learn more</li>",
+      "</ul>",
+      "<p>As we expand the components that form part of Willow, we'll add more to this demonstrator, so you can keep up to date with what's available.</p>"
+    ]
+  },
+
+  "collections" : [
+    {
+      "id": "department_of_physics",
+      "title": ["Department of Physics ePrints"],
+      "resource_type": ["Journal"],
+      "creator": [ "Physics Administrator" ],
+      "description": ["This is a collection of articles from the Department of Physics"],
+      "keyword": ["journal", "physics"],
+      "rights": ["https://creativecommons.org/licenses/by/3.0/"],
+      "publisher": ["University of Willow"],
+      "date_created": ["2012-04-22"],
+      "subject": ["physics"],
+      "language": ["English"],
+      "based_near": ["UK"],
+      "visibility": "open"
+    }
+  ],
+
+  "works" : [
+
+  ],
+
+  "administrative_sets" : [
+
+  ]
+}
