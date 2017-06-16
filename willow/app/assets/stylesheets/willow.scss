@@ -1,0 +1,13 @@
+div#announcement {
+  background: rgba(217, 217, 217, 0.1);
+
+  p {
+    color: black;
+    font-size: 12pt !important; // sufia has the font size for p elements set inline
+    padding: 10px;
+  }
+}
+
+.image-masthead .background-container {
+  background-image: none !important;
+}

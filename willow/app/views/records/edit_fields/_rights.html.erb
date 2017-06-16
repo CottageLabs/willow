@@ -1,6 +1,11 @@
-<% license_service = CurationConcerns::LicenseService.new %>
-<%= f.input :rights, as: :multi_value_select,
-    collection: license_service.select_active_options,
-    include_blank: true,
-    item_helper: license_service.method(:include_current_value),
-    input_html: { class: 'form-control' } %>
+<div class="rights-editor">
+  <%= f.input :rights,
+    as: :rights_statement,
+    input_html: {
+      class: 'form-control',
+      multiple: true,
+      data: {name: :rights}
+    },
+    required: f.object.required?(:rights)
+  %>
+</div>

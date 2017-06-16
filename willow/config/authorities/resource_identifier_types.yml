@@ -1,0 +1,37 @@
+terms:
+  - id: ARK
+    term: ARK
+  - id: arXiv
+    term: arXiv
+  - id: bibcode
+    term: bibcode
+  - id: DOI
+    term: DOI
+  - id: EAN13
+    term: EAN13
+  - id: EISSN
+    term: EISSN
+  - id: Handle
+    term: Handle
+  - id: IGSN
+    term: IGSN
+  - id: ISBN
+    term: ISBN
+  - id: ISSN
+    term: ISSN
+  - id: ISTC
+    term: ISTC
+  - id: LISSN
+    term: LISSN
+  - id: LSID
+    term: LSID
+  - id: PMID
+    term: PMID
+  - id: PURL
+    term: PURL
+  - id: UPC
+    term: UPC
+  - id: URL
+    term: URL
+  - id: URN
+    term: URN

@@ -10,5 +10,6 @@ module CurationConcerns
     include Sufia::Notifications::Work
 
     self.curation_concern_type = Dataset
+    self.show_presenter = DatasetPresenter
   end
 end
