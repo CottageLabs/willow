@@ -7,9 +7,14 @@ namespace :willow do
       seedfile = "/seed/demo.json"
     end
 
-    file = open(seedfile)
-    json = file.read
-    seed = JSON.parse(json)
+    if (File.exists?(seedfile))
+      puts("Running seedfile: #{seedfile}")
+    else
+      puts("ERROR: missing seedfile: #{seedfile}")
+      return
+    end
+
+    seed = JSON.parse(File.read(seedfile))
 
     ##############################################
     # make the requested users
