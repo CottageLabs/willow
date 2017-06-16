@@ -59,28 +59,105 @@ namespace :willow do
     # Create some collections
     ######
 
-    seed["collections"].each do |collection|
-      col = Collection.where(id: collection["id"]).first || Collection.create!(
-          id: collection["id"],
-          title: collection["title"],
-          resource_type: collection["resource_type"],
-          creator: collection["creator"],
-          description: collection["description"],
-          keyword: collection["keyword"],
-          rights: collection["rights"],
-          publisher: collection["publisher"],
-          date_created: collection["date_created"],
-          subject: collection["subject"],
-          language: collection["language"],
-          based_near: collection["based_near"],
-          visibility: "open",
-          edit_users: [depositor],
-          depositor: depositor.email
-      )
-      col.save!
+    cols = {}
+    if seed.has_key?("collections")
+      seed["collections"].each do |collection|
+        arguments = {}
+        collection["metadata"].each do |key, val|
+          arguments[key.to_sym] = val
+        end
+        col = Collection.where(id: collection["id"]).first || Collection.create!(
+            id: collection["id"],
+            edit_users: [depositor],
+            depositor: depositor.email,
+            **arguments
+        )
+        cols[collection["id"]] = col
+      end
     end
 
     # finished creating collections
+    ##############################################
+
+    ##############################################
+    # Create some works
+    ######
+
+    if seed.has_key?("works")
+      seed["works"].each do |work|
+        arguments = {}
+        work["metadata"].each do |key, val|
+          arguments[key.to_sym] = val
+        end
+
+        # first create the work
+        newWork = Work.where(id: work["id"]).first || Work.create!(
+          id: work["id"],
+          edit_users: [depositor],
+          depositor: depositor.email,
+          **arguments
+        )
+
+        # then add any files
+        if work.has_key?("files")
+          work["files"].each do |file|
+            fargs = {}
+            file["metadata"].each do |key, val|
+              fargs[key.to_sym] = val
+            end
+
+            fileset_id = "#{newWork.id}-#{file['id']}"
+            label = File.basename(file["path"])
+            fileset = FileSet.where(id: fileset_id).first || FileSet.create!(
+                id: fileset_id,
+                label: label,
+                title: ["Fileset #{fileset_id} - #{label}"],
+                edit_users: [depositor],
+                depositor: depositor.email,
+                **fargs
+            )
+
+            unless newWork.members.include?(fileset)
+              # NB ordered_members is important here; members will not appear in blacklight!
+              newWork.ordered_members << fileset
+              fileset.save!
+            end
+
+            unless fileset.files.any?
+              Hydra::Works::UploadFileToFileSet.call(fileset, open(file["path"]))
+              CreateDerivativesJob.perform_now(fileset, fileset.files.first.id)
+            end
+
+            unless newWork.representative_id.present?
+              newWork.representative_id = fileset.id
+              newWork.thumbnail_id = fileset.thumbnail_id
+              newWork.save!
+            end
+          end
+        end
+
+        # then add to any collections
+        if work.has_key?("collections")
+          work["collections"].each do |collection_id|
+            collection = cols[collection_id]
+            unless collection.members.include?(newWork)
+              collection.ordered_members << newWork
+              collection.save!
+            end
+          end
+        end
+
+        # feature the work if requested
+        if work.has_key?("featured") && work["featured"] == true
+          FeaturedWork.where(work_id: work["id"]).first_or_create!
+        end
+
+        newWork.save!
+
+      end
+    end
+
+    # finished creating works
     ##############################################
 
   end

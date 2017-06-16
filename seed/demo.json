@@ -71,23 +71,514 @@
   "collections" : [
     {
       "id": "department_of_physics",
-      "title": ["Department of Physics ePrints"],
-      "resource_type": ["Journal"],
-      "creator": [ "Physics Administrator" ],
-      "description": ["This is a collection of articles from the Department of Physics"],
-      "keyword": ["journal", "physics"],
-      "rights": ["https://creativecommons.org/licenses/by/3.0/"],
-      "publisher": ["University of Willow"],
-      "date_created": ["2012-04-22"],
-      "subject": ["physics"],
-      "language": ["English"],
-      "based_near": ["UK"],
-      "visibility": "open"
+      "metadata" : {
+        "title": ["Department of Physics"],
+        "resource_type": ["Journal"],
+        "creator": [ "Physics Administrator" ],
+        "description": ["This is a collection of articles from the Department of Physics"],
+        "keyword": ["journal", "physics"],
+        "rights": ["http://www.europeana.eu/portal/rights/rr-r.html"],
+        "publisher": ["University of Willow"],
+        "date_created": ["2012-04-22"],
+        "subject": ["willow journal"],
+        "language": ["English"],
+        "based_near": ["UK"],
+        "visibility": "open"
+      }
+    },
+    {
+      "id" : "biology",
+      "metadata" : {
+        "title": ["Subject: Biology"],
+        "resource_type": ["Journal"],
+        "creator": [ "Biology Administrator" ],
+        "description": ["This is a collection of resources in the Medical subject area"],
+        "keyword": ["medicine"],
+        "rights": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "publisher": ["University of Willow"],
+        "date_created": ["2013-05-12"],
+        "subject": ["medicine"],
+        "language": ["English"],
+        "based_near": ["UK"],
+        "visibility": "open"
+      }
+
+    },
+    {
+      "id" : "datasets",
+      "metadata" : {
+        "title": ["Datasets"],
+        "resource_type": ["Journal"],
+        "creator": [ "Dataset Administrator" ],
+        "description": ["This is a collection of datasets"],
+        "keyword": ["datasets"],
+        "rights": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "publisher": ["University of Willow"],
+        "date_created": ["2014-06-01"],
+        "subject": ["anything"],
+        "language": ["English"],
+        "based_near": ["UK"],
+        "visibility": "open"
+      }
+    },
+    {
+      "id" : "study_of_willows",
+      "metadata" : {
+        "title": ["A Study of Willows"],
+        "resource_type": ["Journal"],
+        "creator": [ "Josephine Bloggs" ],
+        "description": ["A study of a variety of different kinds of Willow"],
+        "keyword": ["willow"],
+        "rights": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "publisher": ["University of Willow"],
+        "date_created": ["2015-01-20"],
+        "subject": ["willow"],
+        "language": ["English"],
+        "based_near": ["UK"],
+        "visibility": "open"
+      }
     }
   ],
 
   "works" : [
-
+    {
+      "id" : "willow1",
+      "metadata" : {
+        "title": ["Willow Tree 1"],
+        "resource_type": ["Article"],
+        "creator": ["mattharvey1"],
+        "description": ["The Silhouette of a Willow"],
+        "keyword": ["willow", "tree"],
+        "rights": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "publisher": ["University of Willow"],
+        "date_created": ["2017-01-01"],
+        "subject": ["willow image"],
+        "language": ["English"],
+        "based_near": ["UK"],
+        "visibility": "open"
+      },
+      "files" : [
+        {
+          "id" : "file1",
+          "path" : "/seed/bitstreams/14137126974_ab12694d8e_k.jpg",
+          "metadata" : {
+            "creator" : ["mattharvey1"],
+            "visibility" : "open"
+          }
+        }
+      ],
+      "collections" : ["study_of_willows"],
+      "featured" : true
+    },
+    {
+      "id" : "willow2",
+      "metadata" : {
+        "title": ["Willow Tree 2"],
+        "resource_type": ["Article"],
+        "creator": ["oatsy40"],
+        "description": ["A large willow tree"],
+        "keyword": ["willow", "tree"],
+        "rights": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "publisher": ["University of Willow"],
+        "date_created": ["2017-01-01"],
+        "subject": ["willow image"],
+        "language": ["English"],
+        "based_near": ["UK"],
+        "visibility": "open"
+      },
+      "files" : [
+        {
+          "id" : "file1",
+          "path" : "/seed/bitstreams/14026066367_98eb32019d_k.jpg",
+          "metadata" : {
+            "creator" : ["oatsy40"],
+            "visibility" : "open"
+          }
+        }
+      ],
+      "collections" : ["study_of_willows"],
+      "featured" : false
+    },
+    {
+      "id" : "willow3",
+      "metadata" : {
+        "title": ["Willow Tree 3"],
+        "resource_type": ["Article"],
+        "creator": ["Alan Myers"],
+        "description": ["Willow Tree"],
+        "keyword": ["willow", "tree"],
+        "rights": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "publisher": ["University of Willow"],
+        "date_created": ["2017-01-01"],
+        "subject": ["willow image"],
+        "language": ["English"],
+        "based_near": ["UK"],
+        "visibility": "open"
+      },
+      "files" : [
+        {
+          "id" : "file1",
+          "path" : "/seed/bitstreams/16957893247_eeaa381d43_k.jpg",
+          "metadata" : {
+            "creator" : ["Alan Myers"],
+            "visibility" : "open"
+          }
+        }
+      ],
+      "collections" : ["study_of_willows"],
+      "featured" : false
+    },
+    {
+      "id" : "willow4",
+      "metadata" : {
+        "title": ["Willow Tree 4"],
+        "resource_type": ["Article"],
+        "creator": ["msmornington"],
+        "description": ["Willow Tree"],
+        "keyword": ["willow", "tree"],
+        "rights": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "publisher": ["University of Willow"],
+        "date_created": ["2017-01-01"],
+        "subject": ["willow image"],
+        "language": ["English"],
+        "based_near": ["UK"],
+        "visibility": "open"
+      },
+      "files" : [
+        {
+          "id" : "file1",
+          "path" : "/seed/bitstreams/1393385633_64a4f05158_b.jpg",
+          "metadata" : {
+            "creator" : ["msmornington"],
+            "visibility" : "open"
+          }
+        }
+      ],
+      "collections" : ["study_of_willows"],
+      "featured" : false
+    },
+    {
+      "id" : "willow5",
+      "metadata" : {
+        "title": ["Willow Tree 5"],
+        "resource_type": ["Article"],
+        "creator": ["Jennifer C"],
+        "description": ["Willow Tree"],
+        "keyword": ["willow", "tree"],
+        "rights": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "publisher": ["University of Willow"],
+        "date_created": ["2017-01-01"],
+        "subject": ["willow image"],
+        "language": ["English"],
+        "based_near": ["UK"],
+        "visibility": "open"
+      },
+      "files" : [
+        {
+          "id" : "file1",
+          "path" : "/seed/bitstreams/5223476236_192814d59e_b.jpg",
+          "metadata" : {
+            "creator" : ["msmornington"],
+            "visibility" : "open"
+          }
+        }
+      ],
+      "collections" : ["study_of_willows"],
+      "featured" : false
+    },
+    {
+      "id" : "learning_aim_reference_service",
+      "metadata" : {
+        "title": ["Learning Aim Reference Service"],
+        "resource_type": ["Article"],
+        "creator": ["Skills Funding Agency"],
+        "description": ["Learning Aim Reference Service (LARS) offers a web based search facility. It allows users to search by most commonly used fields for Qualifications, Units, Apprenticeship Frameworks and Apprenticeship Standards and their associated validity and funding details.  LARS downloads are available to allow colleges, training organisations and employers (providers) to interrogate the same LARS data set that is used in the Funding Information System (FIS)."],
+        "keyword": ["dataset"],
+        "rights": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "publisher": ["Skills Funding Agency"],
+        "date_created": ["2017-01-01"],
+        "subject": ["Education"],
+        "language": ["English"],
+        "based_near": ["UK"],
+        "visibility": "open"
+      },
+      "files" : [
+        {
+          "id" : "file1",
+          "path" : "/seed/bitstreams/Learning_aim_search_guidance_Dec_2015.pdf",
+          "metadata" : {
+            "visibility" : "open"
+          }
+        },
+        {
+          "id" : "file2",
+          "path" : "/seed/bitstreams/20160921_LARS_1516_CSV.Zip",
+          "metadata" : {
+            "visibility" : "open"
+          }
+        }
+      ],
+      "collections" : ["datasets"],
+      "featured" : true
+    },
+    {
+      "id" : "fe_data_library",
+      "metadata" : {
+        "title": ["FE data library: apprenticeships"],
+        "resource_type": ["Article"],
+        "creator": ["Skills Funding Agency"],
+        "keyword": ["dataset"],
+        "rights": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "publisher": ["Skills Funding Agency"],
+        "date_created": ["2017-01-01"],
+        "subject": ["Education"],
+        "language": ["English"],
+        "based_near": ["UK"],
+        "visibility": "open"
+      },
+      "files" : [
+        {
+          "id" : "file1",
+          "path" : "/seed/bitstreams/apprenticeships-achievements-by-geography-learner-demographics-and-sector-subject-area.xls",
+          "metadata" : {
+            "visibility" : "open"
+          }
+        },
+        {
+          "id" : "file2",
+          "path" : "/seed/bitstreams/apprenticeships-starts-by-constituency_v2.xlsx",
+          "metadata" : {
+            "visibility" : "open"
+          }
+        },
+        {
+          "id" : "file3",
+          "path" : "/seed/bitstreams/apprenticeships-starts-by-geography-learner-demographics-and-sector-subject-area.xls",
+          "metadata" : {
+            "visibility" : "open"
+          }
+        }
+      ],
+      "collections" : ["datasets"],
+      "featured" : false
+    },
+    {
+      "id" : "pupil_numbers_on_roll",
+      "metadata" : {
+        "title": ["Pupil numbers on roll"],
+        "description" : ["Number of pupils enrolled in Warwickshire schools by school from 2008 - 2010"],
+        "resource_type": ["Article"],
+        "creator": ["Warwickshire County Council"],
+        "keyword": ["dataset"],
+        "rights": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "publisher": ["Warwickshire County Council"],
+        "date_created": ["2017-01-01"],
+        "subject": ["Education"],
+        "language": ["English"],
+        "based_near": ["UK"],
+        "visibility": "open"
+      },
+      "files" : [
+        {
+          "id" : "file1",
+          "path" : "/seed/bitstreams/schools-number-on-roll-warwickshire-1998-2010.csv",
+          "metadata" : {
+            "visibility" : "open"
+          }
+        },
+        {
+          "id" : "file2",
+          "path" : "/seed/bitstreams/schools-number-on-roll-warwickshire-1998-2010.xml",
+          "metadata" : {
+            "visibility" : "open"
+          }
+        }
+      ],
+      "collections" : ["datasets"],
+      "featured" : false
+    },
+    {
+      "id" : "parallel_motion",
+      "metadata" : {
+        "title": ["Parallel Motion Simulation of Large-Scale Real-Time Crowd in a Hierarchical Environmental Model"],
+        "description" : ["This paper presents a parallel real-time crowd simulation method based on a hierarchical environmental model. A dynamical model of the complex environment should be constructed to simulate the state transition and propagation of individual motions. By modeling of a virtual environment where virtual crowds reside, we employ different parallel methods on a topological layer, a path layer and a perceptual layer. We propose a parallel motion path matching method based on the path layer and a parallel crowd simulation method based on the perceptual layer. The large-scale real-time crowd simulation becomes possible with these methods. Numerical experiments are carried out to demonstrate the methods and results."],
+        "resource_type": ["Article"],
+        "creator": ["Xin Wang", "Jianhua Zhang", "Massimo Scalia"],
+        "keyword": ["physics", "mathematics"],
+        "rights": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "publisher": ["Mathematical Problems in Engineering"],
+        "date_created": ["2017-01-01"],
+        "subject": ["Physics"],
+        "language": ["English"],
+        "based_near": ["UK"],
+        "visibility": "open"
+      },
+      "files" : [
+        {
+          "id" : "file1",
+          "path" : "/seed/bitstreams/918497.pdf",
+          "metadata" : {
+            "visibility" : "open"
+          }
+        },
+        {
+          "id" : "file2",
+          "path" : "/seed/bitstreams/918497.xml",
+          "metadata" : {
+            "visibility" : "open"
+          }
+        }
+      ],
+      "collections" : ["department_of_physics"],
+      "featured" : false
+    },
+    {
+      "id" : "kernel_method",
+      "metadata" : {
+        "title": ["The Solution of a Class of Third-Order Boundary Value Problems by the Reproducing Kernel Method"],
+        "description" : ["This paper expands the application of reproducing kernel method to a class of third-order boundary value problems with mixed nonlinear boundary conditions. The analytical solution is represented in the form of series in the reproducing kernel space. The n-term approximation is obtained and is proved to converge to the analytical solution. The numerical examples are given to demonstrate the computation efficiency of the presented method. Results obtained by the method indicate that the method is simple and effective."],
+        "resource_type": ["Article"],
+        "creator": ["Zhiyuan Li", "Yulan Wang", "Fugui Tan"],
+        "keyword": ["physics", "mathematics"],
+        "rights": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "publisher": ["Abstract and Applied Analysis"],
+        "date_created": ["2017-01-01"],
+        "subject": ["Physics"],
+        "language": ["English"],
+        "based_near": ["UK"],
+        "visibility": "open"
+      },
+      "files" : [
+        {
+          "id" : "file1",
+          "path" : "/seed/bitstreams/195310.pdf",
+          "metadata" : {
+            "visibility" : "open"
+          }
+        }
+      ],
+      "collections" : ["department_of_physics"],
+      "featured" : false
+    },
+    {
+      "id" : "legendre_polynomials",
+      "metadata" : {
+        "title": ["Bilateral generating functions for a new class of generalized Legendre polynominals"],
+        "description" : ["Recently Chatterjea (1) has proved a theorem to deduce a bilateral generating function for the Ultraspherical polynomials. In the present paper an attempt has been made to give a general version of Chatterjea's theorem. Finally, the theorem has been specialized to obtain a bilateral generating function for a class of polynomials {Pn(x;α,β)} introduced by Bhattacharjya (2)."],
+        "resource_type": ["Article"],
+        "creator": ["A. N. Srivastava", "S. D. Singh", "S. N. Singh"],
+        "keyword": ["physics", "mathematics"],
+        "rights": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "publisher": ["International Journal of Mathematics and Mathematical Sciences"],
+        "date_created": ["2017-01-01"],
+        "subject": ["Physics"],
+        "language": ["English"],
+        "based_near": ["UK"],
+        "visibility": "open"
+      },
+      "files" : [
+        {
+          "id" : "file1",
+          "path" : "/seed/bitstreams/854194.pdf",
+          "metadata" : {
+            "visibility" : "open"
+          }
+        }
+      ],
+      "collections" : ["department_of_physics"],
+      "featured" : false
+    },
+    {
+      "id" : "wild_grass",
+      "metadata" : {
+        "title": ["Lignocellulosic Fermentation of Wild Grass Employing Recombinant Hydrolytic Enzymes and Fermentative Microbes with Effective Bioethanol Recovery"],
+        "description" : ["Simultaneous saccharification and fermentation (SSF) studies of steam exploded and alkali pretreated different leafy biomass were accomplished by recombinant Clostridium thermocellum hydrolytic enzymes and fermentative microbes for bioethanol production. The recombinant C. thermocellum GH5 cellulase and GH43 hemicellulase genes expressed in Escherichia coli cells were grown in repetitive batch mode, with the aim of enhancing the cell biomass production and enzyme activity. In batch mode, the cell biomass (A600 nm) of E. coli cells and enzyme activities of GH5 cellulase and GH43 hemicellulase were 1.4 and 1.6 with 2.8 and 2.2 U·mg−1, which were augmented to 2.8 and 2.9 with 5.6 and 3.8 U·mg−1 in repetitive batch mode, respectively. Steam exploded wild grass (Achnatherum hymenoides) provided the best ethanol titres as compared to other biomasses. Mixed enzyme (GH5 cellulase, GH43 hemicellulase) mixed culture (Saccharomyces cerevisiae, Candida shehatae) system gave 2-fold higher ethanol titre than single enzyme (GH5 cellulase) single culture (Saccharomyces cerevisiae) system employing 1% (w/v) pretreated substrate. 5% (w/v) substrate gave 11.2 g·L−1 of ethanol at shake flask level which on scaling up to 2 L bioreactor resulted in 23 g·L−1 ethanol. 91.6% (v/v) ethanol was recovered by rotary evaporator with 21.2% purification efficiency."],
+        "resource_type": ["Article"],
+        "creator": ["Saprativ P. Das", "Arabinda Ghosh", "Ashutosh Gupta", "Arun Goyal", "Debasish Das"],
+        "keyword": ["biology"],
+        "rights": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "publisher": ["BioMed Research International"],
+        "date_created": ["2017-01-01"],
+        "subject": ["Biology"],
+        "language": ["English"],
+        "based_near": ["UK"],
+        "visibility": "open"
+      },
+      "files" : [
+        {
+          "id" : "file1",
+          "path" : "/seed/bitstreams/386063.pdf",
+          "metadata" : {
+            "visibility" : "open"
+          }
+        },
+        {
+          "id" : "file2",
+          "path" : "/seed/bitstreams/386063.epub",
+          "metadata" : {
+            "visibility" : "open"
+          }
+        }
+      ],
+      "collections" : ["biology"],
+      "featured" : true
+    },
+    {
+      "id" : "rare_species",
+      "metadata" : {
+        "title": ["Modeling Rare Species Distribution at the Edge: The Case for the Vulnerable Endemic Pyrenean Desman in France"],
+        "description" : ["The endemic Pyrenean Desman (Galemys pyrenaicus) is an elusive, rare, and vulnerable species declining over its entire and narrow range (Spain, Portugal, France, and Andorra). The principal set of conservation measures in France is a 5-years National Action Plan based on 25 conservation actions. Priority is given to update its present distribution and develop tools for predictive distribution models. We aim at building the first species distribution model and map for the northern edge of the range of the Desman and confronting the outputs of the model to target conservation efforts in the context of environmental change. Contrasting to former comparable studies, we derive a simpler model emphasizing the importance of factors linked to precipitation and not to the temperature. If temperature is one of the climate change key factors, depicted shrinkage in Desman distribution could be lower or null at the northern (French) edge suggesting thus a major role for this northern population in terms of conservation of the species. Finally, we question the applied issue of temporal and spatial transferability for such environmental favourability models when it is made at the edge of the distribution range."],
+        "resource_type": ["Article"],
+        "creator": ["M. Williams-Tripp", "F. J. N. D'Amico", "C. Pagé", "A. Bertrand", "M. Némoz", "J. A. Brown"],
+        "keyword": ["biology"],
+        "rights": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "publisher": ["The Scientific World Journal"],
+        "date_created": ["2017-01-01"],
+        "subject": ["Biology"],
+        "language": ["English"],
+        "based_near": ["UK"],
+        "visibility": "open"
+      },
+      "files" : [
+        {
+          "id" : "file1",
+          "path" : "/seed/bitstreams/612965.pdf",
+          "metadata" : {
+            "visibility" : "open"
+          }
+        }
+      ],
+      "collections" : ["biology"],
+      "featured" : true
+    },
+    {
+      "id" : "flemingia_macrophylla",
+      "metadata" : {
+        "title": ["Flemingia macrophylla Extract Ameliorates Experimental Osteoporosis in Ovariectomized Rats"],
+        "description" : ["Flemingia macrophylla (Leguminosae), a native plant of Taiwan, is used as folk medicine. An in vitro study showed that a 75% ethanolic extract of F. macrophylla (FME) inhibited osteoclast differentiation of cultured rat bone marrow cells, and the active component, lespedezaflavanone A (LDF-A), was isolated. It was found that oral administration of FME for 13 weeks suppressed bone loss in ovariectomized rats, an experimental model of osteoporosis. In addition, FME decreased urinary deoxypyridinoline concentrations but did not inhibit serum alkaline phosphatase activities, indicating that it ameliorated bone loss via inhibition of bone resorption. These results suggest that FME may represent a useful remedy for the treatment of bone resorption diseases, such as osteoporosis. In addition, LDF-A could be used as a marker compound to control the quality of FME."],
+        "resource_type": ["Article"],
+        "creator": ["Hui-Ya Ho", "Jin-Bin Wu", "Wen-Chuan Lin"],
+        "keyword": ["biology"],
+        "rights": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "publisher": ["Evidence-Based Complementary and Alternative Medicine"],
+        "date_created": ["2017-01-01"],
+        "subject": ["Biology"],
+        "language": ["English"],
+        "based_near": ["UK"],
+        "visibility": "open"
+      },
+      "files" : [
+        {
+          "id" : "file1",
+          "path" : "/seed/bitstreams/752302.pdf",
+          "metadata" : {
+            "visibility" : "open"
+          }
+        }
+      ],
+      "collections" : ["biology"],
+      "featured" : true
+    }
   ],
 
   "administrative_sets" : [
