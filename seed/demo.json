@@ -430,7 +430,7 @@
         }
       ],
       "collections" : ["department_of_physics"],
-      "featured" : false
+      "featured" : true
     },
     {
       "id" : "kernel_method",
@@ -549,18 +549,18 @@
         }
       ],
       "collections" : ["biology"],
-      "featured" : true
+      "featured" : false
     },
     {
-      "id" : "flemingia_macrophylla",
+      "id" : "bumble_bees",
       "metadata" : {
-        "title": ["Flemingia macrophylla Extract Ameliorates Experimental Osteoporosis in Ovariectomized Rats"],
-        "description" : ["Flemingia macrophylla (Leguminosae), a native plant of Taiwan, is used as folk medicine. An in vitro study showed that a 75% ethanolic extract of F. macrophylla (FME) inhibited osteoclast differentiation of cultured rat bone marrow cells, and the active component, lespedezaflavanone A (LDF-A), was isolated. It was found that oral administration of FME for 13 weeks suppressed bone loss in ovariectomized rats, an experimental model of osteoporosis. In addition, FME decreased urinary deoxypyridinoline concentrations but did not inhibit serum alkaline phosphatase activities, indicating that it ameliorated bone loss via inhibition of bone resorption. These results suggest that FME may represent a useful remedy for the treatment of bone resorption diseases, such as osteoporosis. In addition, LDF-A could be used as a marker compound to control the quality of FME."],
+        "title": ["Ambient Air Temperature Does Not Predict whether Small or Large Workers Forage in Bumble Bees (Bombus impatiens)"],
+        "description" : ["Bumble bees are important pollinators of crops and other plants. However, many aspects of their basic biology remain relatively unexplored. For example, one important and unusual natural history feature in bumble bees is the massive size variation seen between workers of the same nest. This size polymorphism may be an adaptation for division of labor, colony economics, or be nonadaptive. It was also suggested that perhaps this variation allows for niche specialization in workers foraging at different temperatures: larger bees might be better suited to forage at cooler temperatures and smaller bees might be better suited to forage at warmer temperatures. This we tested here using a large, enclosed growth chamber, where we were able to regulate the ambient temperature. We found no significant effect of ambient or nest temperature on the average size of bees flying to and foraging from a suspended feeder. Instead, bees of all sizes successfully flew and foraged between 16∘C and 36∘C. Thus, large bees foraged even at very hot temperatures, which we thought might cause overheating. Size variation therefore could not be explained in terms of niche specialization for foragers at different temperatures."],
         "resource_type": ["Article"],
-        "creator": ["Hui-Ya Ho", "Jin-Bin Wu", "Wen-Chuan Lin"],
+        "creator": ["Margaret J. Couvillon", "Ginny Fitzpatrick", "Anna Dornhaus"],
         "keyword": ["biology"],
         "rights": ["http://creativecommons.org/publicdomain/zero/1.0/"],
-        "publisher": ["Evidence-Based Complementary and Alternative Medicine"],
+        "publisher": ["Psyche : A Journal of Entomology"],
         "date_created": ["2017-01-01"],
         "subject": ["Biology"],
         "language": ["English"],
@@ -570,14 +570,14 @@
       "files" : [
         {
           "id" : "file1",
-          "path" : "/seed/bitstreams/752302.pdf",
+          "path" : "/seed/bitstreams/536430.pdf",
           "metadata" : {
             "visibility" : "open"
           }
         }
       ],
       "collections" : ["biology"],
-      "featured" : true
+      "featured" : false
     }
   ],
 
