@@ -11,7 +11,7 @@ module NestedAttributes
     accepts_nested_attributes_for :date, reject_if: :date_blank, allow_destroy: true
     accepts_nested_attributes_for :creator_nested, reject_if: :creator_blank, allow_destroy: true
     accepts_nested_attributes_for :rights_nested, reject_if: :rights_blank, allow_destroy: true
-    accepts_nested_attributes_for :subject, reject_if: :subject_blank, allow_destroy: true
+    accepts_nested_attributes_for :subject_nested, reject_if: :subject_blank, allow_destroy: true
     accepts_nested_attributes_for :relation, reject_if: :relation_blank, allow_destroy: true
     accepts_nested_attributes_for :admin_metadata, reject_if: :admin_metadata_blank, allow_destroy: true
 

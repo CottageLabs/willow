@@ -3,8 +3,8 @@ require 'rails_helper'
 describe SubjectStatement do
   before do
     class ExampleWork < ActiveFedora::Base
-      property :subject, predicate: ::RDF::Vocab::DC.subject, class_name:"SubjectStatement"
-      accepts_nested_attributes_for :subject
+      property :subject_nested, predicate: ::RDF::Vocab::DC.subject, class_name:"SubjectStatement"
+      accepts_nested_attributes_for :subject_nested
     end
   end
   after do
@@ -14,7 +14,7 @@ describe SubjectStatement do
   it 'creates a subject active triple resource with an id, label and url' do
     @obj = ExampleWork.new
     @obj.attributes = {
-      subject_attributes: [
+      subject_nested_attributes: [
         {
           label: 'A subject label',
           definition: 'The definition of the subject',
@@ -25,11 +25,11 @@ describe SubjectStatement do
     }
     @obj.save!
     @obj.reload
-    expect(@obj.subject.first).to be_kind_of ActiveTriples::Resource
-    expect(@obj.subject.first.id).to include('#subject')
-    expect(@obj.subject.first.label).to eq ['A subject label']
-    expect(@obj.subject.first.definition).to eq ['The definition of the subject']
-    expect(@obj.subject.first.classification).to eq ['LCSH']
-    expect(@obj.subject.first.homepage).to eq ['http://example.com/lcsh']
+    expect(@obj.subject_nested.first).to be_kind_of ActiveTriples::Resource
+    expect(@obj.subject_nested.first.id).to include('#subject')
+    expect(@obj.subject_nested.first.label).to eq ['A subject label']
+    expect(@obj.subject_nested.first.definition).to eq ['The definition of the subject']
+    expect(@obj.subject_nested.first.classification).to eq ['LCSH']
+    expect(@obj.subject_nested.first.homepage).to eq ['http://example.com/lcsh']
   end
 end

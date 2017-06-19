@@ -482,7 +482,7 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        subject_attributes: [{
+        subject_nested_attributes: [{
             label: 'Subject label',
             definition: 'Subject label definition',
             classification: 'LCSH',
@@ -491,12 +491,12 @@ RSpec.describe Dataset do
       }
       @obj.save!
       @obj.reload
-      expect(@obj.subject.first).to be_kind_of ActiveTriples::Resource
-      expect(@obj.subject.first.id).to include('#subject')
-      expect(@obj.subject.first.label).to eq ['Subject label']
-      expect(@obj.subject.first.definition).to eq ['Subject label definition']
-      expect(@obj.subject.first.classification).to eq ['LCSH']
-      expect(@obj.subject.first.homepage).to eq ['http://example.com/homepage']
+      expect(@obj.subject_nested.first).to be_kind_of ActiveTriples::Resource
+      expect(@obj.subject_nested.first.id).to include('#subject')
+      expect(@obj.subject_nested.first.label).to eq ['Subject label']
+      expect(@obj.subject_nested.first.definition).to eq ['Subject label definition']
+      expect(@obj.subject_nested.first.classification).to eq ['LCSH']
+      expect(@obj.subject_nested.first.homepage).to eq ['http://example.com/homepage']
     end
 
     it 'rejects subject attributes if label is blank' do
@@ -504,7 +504,7 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        subject_attributes: [{
+        subject_nested_attributes: [{
             label: 'Subject label',
             definition: 'Subject label definition',
             classification: 'LCSH',
@@ -518,7 +518,7 @@ RSpec.describe Dataset do
       }
       @obj.save!
       @obj.reload
-      expect(@obj.subject.size).to eq(1)
+      expect(@obj.subject_nested.size).to eq(1)
     end
 
     it 'destroys subject' do
@@ -526,7 +526,7 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        subject_attributes: [{
+        subject_nested_attributes: [{
           label: 'Subject label',
           definition: 'Subject label definition',
           classification: 'LCSH',
@@ -535,10 +535,10 @@ RSpec.describe Dataset do
       }
       @obj.save!
       @obj.reload
-      expect(@obj.subject.size).to eq(1)
+      expect(@obj.subject_nested.size).to eq(1)
       @obj.attributes = {
-        subject_attributes: [{
-          id: @obj.subject.first.id,
+        subject_nested_attributes: [{
+          id: @obj.subject_nested.first.id,
           label: 'Subject label',
           definition: 'Subject label definition',
           classification: 'LCSH',
@@ -548,7 +548,7 @@ RSpec.describe Dataset do
       }
       @obj.save!
       @obj.reload
-      expect(@obj.subject.size).to eq(0)
+      expect(@obj.subject_nested.size).to eq(0)
     end
 
     it 'indexes the subject' do
@@ -556,7 +556,7 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        subject_attributes: [{
+        subject_nested_attributes: [{
           label: 'Subject label',
           definition: 'Subject label definition',
           classification: 'LCSH',
@@ -566,10 +566,10 @@ RSpec.describe Dataset do
         }]
       }
       @doc = @obj.to_solr
-      expect(@doc).to include('subject_tesim')
-      expect(@doc).to include('subject_sim')
-      expect(@doc['subject_tesim']).to match_array(['Subject label', 'Subject label 2'])
-      expect(@doc['subject_sim']).to match_array(['Subject label', 'Subject label 2'])
+      expect(@doc).to include('subject_nested_tesim')
+      expect(@doc).to include('subject_nested_sim')
+      expect(@doc['subject_nested_tesim']).to match_array(['Subject label', 'Subject label 2'])
+      expect(@doc['subject_nested_sim']).to match_array(['Subject label', 'Subject label 2'])
     end
   end
 

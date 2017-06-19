@@ -53,8 +53,8 @@ class SolrDocument
     self[Solrizer.solr_name('relation', :displayable)]
   end
 
-  def subject
-    self[Solrizer.solr_name('relation', :displayable)]
+  def subject_nested
+    self[Solrizer.solr_name('subject_nested', :displayable)]
   end
 
   def admin_metadata
