@@ -1,8 +1,8 @@
 <%= presenter.attribute_to_html(:other_title, render_as: :other_title) %>
 <%= presenter.attribute_to_html(:creator_nested, render_as: :nested_creator, label: 'Creator') %>
 <%= presenter.attribute_to_html(:date, render_as: :nested_date) %>
-<%= presenter.attribute_to_html(:rights_nested, render_as: :rights, label: 'Rights') %>
-<%= presenter.attribute_to_html(:subject_nested, render_as: :nested_subject) %>
+<%= presenter.attribute_to_html(:rights_nested, render_as: :nested_rights, label: 'Rights') %>
+<%= presenter.attribute_to_html(:subject_nested, render_as: :nested_subject, label: 'Subject') %>
 <%= presenter.attribute_to_html(:publisher, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:language, render_as: :faceted) %>
 <%#= presenter.attribute_to_html(:identifier, render_as: :linked, search_field: 'identifier_tesim') %>
