@@ -302,7 +302,7 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        creator_attributes: [{
+        creator_nested_attributes: [{
             first_name: 'Foo',
             last_name: 'Bar',
             orcid: '0000-0000-0000-0000',
@@ -317,11 +317,11 @@ RSpec.describe Dataset do
       }
       @obj.save!
       @obj.reload
-      expect(@obj.creator.size).to eq(2)
-      expect(@obj.creator[0]).to be_kind_of ActiveTriples::Resource
-      expect(@obj.creator[0].id).to include('#person')
-      expect(@obj.creator[1]).to be_kind_of ActiveTriples::Resource
-      expect(@obj.creator[1].id).to include('#person')
+      expect(@obj.creator_nested.size).to eq(2)
+      expect(@obj.creator_nested[0]).to be_kind_of ActiveTriples::Resource
+      expect(@obj.creator_nested[0].id).to include('#person')
+      expect(@obj.creator_nested[1]).to be_kind_of ActiveTriples::Resource
+      expect(@obj.creator_nested[1].id).to include('#person')
     end
 
     it 'rejects person if first name and last name are blank' do
@@ -329,7 +329,7 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        creator_attributes: [
+        creator_nested_attributes: [
           {
             first_name: 'Foo',
             orcid: '0000-0000-0000-0000',
@@ -354,7 +354,7 @@ RSpec.describe Dataset do
       }
       @obj.save!
       @obj.reload
-      expect(@obj.creator.size).to eq(2)
+      expect(@obj.creator_nested.size).to eq(2)
     end
 
     it 'rejects person if orcid is blank' do
@@ -362,7 +362,7 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        creator_attributes: [
+        creator_nested_attributes: [
           {
             first_name: 'Foo',
             last_name: 'Bar',
@@ -378,7 +378,7 @@ RSpec.describe Dataset do
       }
       @obj.save!
       @obj.reload
-      expect(@obj.creator.size).to eq(0)
+      expect(@obj.creator_nested.size).to eq(0)
     end
 
     it 'rejects person if role is blank' do
@@ -386,7 +386,7 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        creator_attributes: [
+        creator_nested_attributes: [
           {
             first_name: 'Foo',
             last_name: 'Bar',
@@ -403,7 +403,7 @@ RSpec.describe Dataset do
       }
       @obj.save!
       @obj.reload
-      expect(@obj.creator.size).to eq(0)
+      expect(@obj.creator_nested.size).to eq(0)
     end
 
     it 'rejects person if all are blank' do
@@ -411,7 +411,7 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        creator_attributes: [
+        creator_nested_attributes: [
           {
             first_name: '',
             last_name: nil,
@@ -421,7 +421,7 @@ RSpec.describe Dataset do
       }
       @obj.save!
       @obj.reload
-      expect(@obj.creator.size).to eq(0)
+      expect(@obj.creator_nested.size).to eq(0)
     end
 
     it 'destroys creator' do
@@ -429,7 +429,7 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        creator_attributes: [{
+        creator_nested_attributes: [{
             first_name: 'Foo',
             last_name: 'Bar',
             orcid: '0000-0000-0000-0000',
@@ -439,10 +439,10 @@ RSpec.describe Dataset do
       }
       @obj.save!
       @obj.reload
-      expect(@obj.creator.size).to eq(1)
+      expect(@obj.creator_nested.size).to eq(1)
       @obj.attributes = {
-        creator_attributes: [{
-            id: @obj.creator.first.id,
+        creator_nested_attributes: [{
+            id: @obj.creator_nested.first.id,
             first_name: 'Foo',
             last_name: 'Bar',
             orcid: '0000-0000-0000-0000',
@@ -453,7 +453,7 @@ RSpec.describe Dataset do
       }
       @obj.save!
       @obj.reload
-      expect(@obj.creator.size).to eq(0)
+      expect(@obj.creator_nested.size).to eq(0)
     end
 
     it 'indexes the creator' do
@@ -461,7 +461,7 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        creator_attributes: [{
+        creator_nested_attributes: [{
             first_name: ['Foo'],
             last_name: 'Bar',
             orcid: '0000-0000-0000-0000',
@@ -469,9 +469,9 @@ RSpec.describe Dataset do
           }]
       }
       @doc = @obj.to_solr
-      expect(@doc['creator_sim']).to eq ['Foo Bar']
-      expect(@doc['creator_tesim']).to eq ['Foo Bar']
-      expect(@doc).to include('creator_ssm')
+      expect(@doc['creator_nested_sim']).to eq ['Foo Bar']
+      expect(@doc['creator_nested_tesim']).to eq ['Foo Bar']
+      expect(@doc).to include('creator_nested_ssm')
     end
   end
 

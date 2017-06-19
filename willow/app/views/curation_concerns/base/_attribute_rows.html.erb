@@ -1,5 +1,5 @@
 <%= presenter.attribute_to_html(:other_title, render_as: :other_title) %>
-<%= presenter.attribute_to_html(:creator, render_as: :nested_creator) %>
+<%= presenter.attribute_to_html(:creator_nested, render_as: :nested_creator, label: 'Creator') %>
 <%= presenter.attribute_to_html(:date, render_as: :nested_date) %>
 <%= presenter.attribute_to_html(:subject, render_as: :nested_subject) %>
 <%= presenter.attribute_to_html(:publisher, render_as: :faceted) %>

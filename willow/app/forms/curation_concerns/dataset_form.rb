@@ -3,13 +3,13 @@
 module CurationConcerns
   class DatasetForm < Sufia::Forms::WorkForm
     self.model_class = ::Dataset
-    self.terms += [:resource_type, :doi, :other_title, :date, :relation, :admin_metadata]
-    self.terms -= [:contributor, :date_created, :identifier, :based_near, :related_url]
+    self.terms += [:creator_nested, :resource_type, :doi, :other_title, :date, :relation, :admin_metadata]
+    self.terms -= [:creator, :contributor, :date_created, :identifier, :based_near, :related_url]
     # self.terms -= [:rights]
-    self.required_fields += [:publisher, :date, :resource_type]
-    self.required_fields -= [:keyword, :rights]
+    self.required_fields += [:creator_nested, :publisher, :date, :resource_type]
+    self.required_fields -= [:keyword, :rights, :creator]
 
-    NESTED_ASSOCIATIONS = [:other_title, :date, :creator, :rights, :subject,
+    NESTED_ASSOCIATIONS = [:other_title, :date, :creator_nested, :rights, :subject,
       :relation, :admin_metadata].freeze
 
     protected
@@ -101,7 +101,7 @@ module CurationConcerns
         permitted << { relation_attributes: permitted_relation_params }
         permitted << { admin_metadata_attributes: permitted_admin_params }
         permitted << { rights_attributes: permitted_rights_params }
-        permitted << { creator_attributes: permitted_creator_params }
+        permitted << { creator_nested_attributes: permitted_creator_params }
         permitted << { subject_attributes: permitted_subject_params }
         permitted
       end

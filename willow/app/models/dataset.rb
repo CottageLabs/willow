@@ -16,7 +16,7 @@ class Dataset < ActiveFedora::Base
   end
   property :other_title, predicate: ::RDF::Vocab::Bibframe.titleVariation, class_name:"OtherTitleStatement"
   property :date, predicate: ::RDF::Vocab::DC.date, class_name:"DateStatement"
-  property :creator, predicate: ::RDF::Vocab::DC.license, class_name:"PersonStatement"
+  property :creator_nested, predicate: ::RDF::Vocab::DC.license, class_name:"PersonStatement"
   property :rights, predicate: ::RDF::Vocab::DC.rights, class_name:"RightsStatement"
   property :subject, predicate: ::RDF::Vocab::DC.subject, class_name:"SubjectStatement"
   property :relation, predicate: ::RDF::Vocab::DC.relation, class_name:"RelationStatement"
@@ -43,10 +43,10 @@ class Dataset < ActiveFedora::Base
         end
       end
       # creator
-      creators = creator.map { |c| (c.first_name + c.last_name).join(' ') }
-      doc[Solrizer.solr_name('creator', :facetable)] = creators
-      doc[Solrizer.solr_name('creator', :stored_searchable)] = creators
-      doc[Solrizer.solr_name('creator', :displayable)] = creator.to_json
+      creators = creator_nested.map { |c| (c.first_name + c.last_name).join(' ') }
+      doc[Solrizer.solr_name('creator_nested', :facetable)] = creators
+      doc[Solrizer.solr_name('creator_nested', :stored_searchable)] = creators
+      doc[Solrizer.solr_name('creator_nested', :displayable)] = creator_nested.to_json
       # rights
       doc[Solrizer.solr_name('rights', :stored_searchable)] = rights.map { |r| r.webpage.first }
       doc[Solrizer.solr_name('rights', :facetable)] = rights.map { |r| r.webpage.first }

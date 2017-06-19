@@ -37,8 +37,8 @@ class SolrDocument
     self[Solrizer.solr_name('other_title', :displayable)]
   end
 
-  def creator
-    self[Solrizer.solr_name('creator', :displayable)]
+  def creator_nested
+    self[Solrizer.solr_name('creator_nested', :displayable)]
   end
 
   def date
