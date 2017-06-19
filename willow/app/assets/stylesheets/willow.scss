@@ -15,3 +15,10 @@ div#announcement {
 li.field-wrapper {
   list-style: none;
 }
+
+.fixedsticky-off, .fixedsticky-on {
+  position: sticky !important;
+}
+li.field-wrapper {
+  list-style: none;
+}
