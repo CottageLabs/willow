@@ -227,7 +227,7 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        rights_attributes: [{
+        rights_nested_attributes: [{
             label: 'A rights label',
             definition: 'A definition of the rights',
             webpage: 'http://example.com/rights'
@@ -235,11 +235,11 @@ RSpec.describe Dataset do
       }
       @obj.save!
       @obj.reload
-      expect(@obj.rights.first).to be_kind_of ActiveTriples::Resource
-      expect(@obj.rights.first.id).to include('#rights')
-      expect(@obj.rights.first.label).to eq ['A rights label']
-      expect(@obj.rights.first.definition).to eq ['A definition of the rights']
-      expect(@obj.rights.first.webpage).to eq ['http://example.com/rights']
+      expect(@obj.rights_nested.first).to be_kind_of ActiveTriples::Resource
+      expect(@obj.rights_nested.first.id).to include('#rights')
+      expect(@obj.rights_nested.first.label).to eq ['A rights label']
+      expect(@obj.rights_nested.first.definition).to eq ['A definition of the rights']
+      expect(@obj.rights_nested.first.webpage).to eq ['http://example.com/rights']
     end
 
     it 'rejects rights attributes if all blank' do
@@ -247,13 +247,13 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        rights_attributes: [{
+        rights_nested_attributes: [{
             label: '',
           }]
       }
       @obj.save!
       @obj.reload
-      expect(@obj.rights.size).to eq(0)
+      expect(@obj.rights_nested.size).to eq(0)
     end
 
     it 'destroys rights' do
@@ -261,22 +261,23 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        rights_attributes: [{
+        rights_nested_attributes: [{
             label: 'test label'
           }]
       }
       @obj.save!
       @obj.reload
+      expect(@obj.rights_nested.size).to eq(1)
       @obj.attributes = {
-        rights_attributes: [{
-            id: @obj.rights.first.id,
+        rights_nested_attributes: [{
+            id: @obj.rights_nested.first.id,
             label: 'test label',
             _destroy: "1"
           }]
       }
       @obj.save!
       @obj.reload
-      expect(@obj.rights.size).to eq(0)
+      expect(@obj.rights_nested.size).to eq(0)
     end
 
     it 'indexes the rights' do
@@ -284,15 +285,15 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        rights_attributes: [{
+        rights_nested_attributes: [{
             label: 'A rights label',
             definition: 'A definition of the rights',
             webpage: 'http://example.com/rights'
           }]
       }
       @doc = @obj.to_solr
-      expect(@doc['rights_sim']).to eq ['http://example.com/rights']
-      expect(@doc).to include('rights_tesim')
+      expect(@doc['rights_nested_sim']).to eq ['http://example.com/rights']
+      expect(@doc).to include('rights_nested_tesim')
     end
   end
 

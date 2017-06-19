@@ -17,7 +17,7 @@ class Dataset < ActiveFedora::Base
   property :other_title, predicate: ::RDF::Vocab::Bibframe.titleVariation, class_name:"OtherTitleStatement"
   property :date, predicate: ::RDF::Vocab::DC.date, class_name:"DateStatement"
   property :creator_nested, predicate: ::RDF::Vocab::DC.license, class_name:"PersonStatement"
-  property :rights, predicate: ::RDF::Vocab::DC.rights, class_name:"RightsStatement"
+  property :rights_nested, predicate: ::RDF::Vocab::DC.rights, class_name:"RightsStatement"
   property :subject, predicate: ::RDF::Vocab::DC.subject, class_name:"SubjectStatement"
   property :relation, predicate: ::RDF::Vocab::DC.relation, class_name:"RelationStatement"
   property :admin_metadata, predicate: ::RDF::Vocab::MODS.adminMetadata, class_name: "AdministrativeStatement"
@@ -48,9 +48,9 @@ class Dataset < ActiveFedora::Base
       doc[Solrizer.solr_name('creator_nested', :stored_searchable)] = creators
       doc[Solrizer.solr_name('creator_nested', :displayable)] = creator_nested.to_json
       # rights
-      doc[Solrizer.solr_name('rights', :stored_searchable)] = rights.map { |r| r.webpage.first }
-      doc[Solrizer.solr_name('rights', :facetable)] = rights.map { |r| r.webpage.first }
-      doc[Solrizer.solr_name('rights', :displayable)] = rights.to_json
+      doc[Solrizer.solr_name('rights_nested', :stored_searchable)] = rights_nested.map { |r| r.webpage.first }
+      doc[Solrizer.solr_name('rights_nested', :facetable)] = rights_nested.map { |r| r.webpage.first }
+      doc[Solrizer.solr_name('rights_nested', :displayable)] = rights_nested.to_json
       # subject
       doc[Solrizer.solr_name('subject', :stored_searchable)] = subject.map { |s| s.label.first }
       doc[Solrizer.solr_name('subject', :facetable)] = subject.map { |s| s.label.first }

@@ -1,6 +1,7 @@
 <%= presenter.attribute_to_html(:other_title, render_as: :other_title) %>
 <%= presenter.attribute_to_html(:creator_nested, render_as: :nested_creator, label: 'Creator') %>
 <%= presenter.attribute_to_html(:date, render_as: :nested_date) %>
+<%= presenter.attribute_to_html(:rights_nested, render_as: :rights, label: 'Rights') %>
 <%= presenter.attribute_to_html(:subject, render_as: :nested_subject) %>
 <%= presenter.attribute_to_html(:publisher, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:language, render_as: :faceted) %>
@@ -14,3 +15,4 @@
 <%= presenter.attribute_to_html(:relation, render_as: :relation) %>
 <%= presenter.attribute_to_html(:admin_metadata, render_as: :admin_metadata) %>
 <%= presenter.attribute_to_html(:source) %>
+

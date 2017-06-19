@@ -45,6 +45,10 @@ class SolrDocument
     self[Solrizer.solr_name('date', :displayable)]
   end
 
+  def rights_nested
+    self[Solrizer.solr_name('rights_nested', :displayable)]
+  end
+
   def relation
     self[Solrizer.solr_name('relation', :displayable)]
   end
