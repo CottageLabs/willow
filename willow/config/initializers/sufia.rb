@@ -3,6 +3,8 @@ Sufia.config do |config|
   config.register_curation_concern :work
   # Injected via `rails g sufia:work Dataset`
   config.register_curation_concern :dataset
+  # Injected via `rails g sufia:work Article`
+  config.register_curation_concern :article
   # Email recipient of messages sent via the contact form
   # config.contact_email = "repo-admin@example.org"
 
