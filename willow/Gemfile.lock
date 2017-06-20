@@ -658,6 +658,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-sdk (~> 2.9.15)
   blacklight_advanced_search (~> 6.0)
   byebug
   coffee-rails (~> 4.1.0)
@@ -684,4 +685,4 @@ DEPENDENCIES
   willow_sword!
 
 BUNDLED WITH
-   1.14.6
+   1.15.0
