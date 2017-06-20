@@ -10,12 +10,12 @@ module Sufia
 
           # verify that the Amazon AWS credentials are set
           unless ENV['AWS_ACCESS_KEY_ID'].present?
-            Rails.logger.warn('Cannot register Kinesis subscriber because env variable AWS_ACCESS_KEY_ID is not set')
+            puts('Cannot register Kinesis subscriber because env variable AWS_ACCESS_KEY_ID is not set')
             return
           end
 
           unless ENV['AWS_SECRET_ACCESS_KEY'].present?
-            Rails.logger.warn('Cannot register Kinesis subscriber because env variable AWS_SECRET_ACCESS_KEY is not set')
+            puts('Cannot register Kinesis subscriber because env variable AWS_SECRET_ACCESS_KEY is not set')
             return
           end
 
