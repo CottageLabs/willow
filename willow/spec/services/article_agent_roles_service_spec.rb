@@ -9,13 +9,13 @@ describe ArticleAgentRolesService do
 
   describe "#select_all_options" do
     it "returns all terms" do
-      expect(described_class.select_all_options).to include(["Data curator", "DataCurator"])
+      expect(described_class.select_all_options).to include(["Work package leader", "WorkPackageLeader"])
     end
   end
 
   describe "#label" do
     it "resolves for ids of all terms" do
-      expect(described_class.label('DataCollector')).to eq("Data collector")
+      expect(described_class.label('RightsHolder')).to eq("Rights holder")
     end
   end
 end
