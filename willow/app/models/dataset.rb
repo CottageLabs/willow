@@ -22,8 +22,8 @@ class Dataset < ActiveFedora::Base
   property :relation, predicate: ::RDF::Vocab::DC.relation, class_name:"RelationStatement"
   property :admin_metadata, predicate: ::RDF::Vocab::MODS.adminMetadata, class_name: "AdministrativeStatement"
 
-  validates :title, presence: { message: 'Your work must have a title.' }
-  validates :doi, presence: { message: 'Your work must have a doi.' }
+  validates :title, presence: { message: 'Your dataset must have a title.' }
+  validates :doi, presence: { message: 'Your dataset must have a doi.' }
 
   # must be included after all properties are declared
   include NestedAttributes
