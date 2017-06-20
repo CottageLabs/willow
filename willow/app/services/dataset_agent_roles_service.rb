@@ -1,6 +1,6 @@
-module AgentRolesService
+module DatasetAgentRolesService
   mattr_accessor :authority
-  self.authority = Qa::Authorities::Local.subauthority_for('agent_roles')
+  self.authority = Qa::Authorities::Local.subauthority_for('dataset_agent_roles')
 
   def self.select_all_options
     authority.all.map do |element|

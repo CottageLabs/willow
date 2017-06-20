@@ -80,7 +80,7 @@ protected
     out << '  </div>'
 
     out << "  <div class='col-md-9'>"
-    out << template.select_tag(field_name, template.options_for_select(AgentRolesService.select_all_options, field_value), prompt: 'Select role played', label: '', class: 'select form-control')
+    out << template.select_tag(field_name, template.options_for_select(DatasetAgentRolesService.select_all_options, field_value), prompt: 'Select role played', label: '', class: 'select form-control')
     out << '  </div>'
 
     # --- delete checkbox
