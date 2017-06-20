@@ -1,0 +1,13 @@
+terms:
+  - id: paid
+    term: paid
+  - id: partially waived
+    term: partially waived
+  - id: fully waived
+    term: fully waived
+  - id: not charged
+    term: not charged
+  - id: not required
+    term: not required
+  - id: unknown
+    term: unknown
