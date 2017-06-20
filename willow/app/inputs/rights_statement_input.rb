@@ -21,35 +21,35 @@ class RightsStatementInput < NestedAttributesInput
       out << '</div>' # row
 
       # # --- Definition
-      # field = :definition
-      # field_name = name_for(attribute_name, index, field)
-      # field_value = rights_statement.send(field).first
+      field = :definition
+      field_name = name_for(attribute_name, index, field)
+      field_value = rights_statement.send(field).first
 
-      # out << "<div class='row'>"
-      # out << "  <div class='col-md-3'>"
-      # out << template.label_tag(field_name, field.to_s.humanize, required: false)
-      # out << '  </div>'
+      out << "<div class='row'>"
+      out << "  <div class='col-md-3'>"
+      out << template.label_tag(field_name, 'License statement', required: false)
+      out << '  </div>'
 
-      # out << "  <div class='col-md-6'>"
-      # out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name))
-      # out << '  </div>'
-      # out << '</div>' # row
+      out << "  <div class='col-md-6'>"
+      out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name))
+      out << '  </div>'
+      out << '</div>' # row
 
       # last row
-      # out << "<div class='row'>"
+      out << "<div class='row'>"
 
-      # --- webpage
-      # field = :webpage
-      # field_value = rights_statement.send(field).first
-      # field_name = name_for(attribute_name, index, field)
+      # --- start date
+      field = :start_date
+      field_value = rights_statement.send(field).first
+      field_name = name_for(attribute_name, index, field)
 
-      # out << "  <div class='col-md-3'>"
-      # out << template.label_tag(field_name, field.to_s.humanize, required: false)
-      # out << '  </div>'
+      out << "  <div class='col-md-3'>"
+      out << template.label_tag(field_name, field.to_s.humanize, required: false)
+      out << '  </div>'
 
-      # out << "  <div class='col-md-6'>"
-      # out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name))
-      # out << '  </div>'
+      out << "  <div class='col-md-6'>"
+      out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name))
+      out << '  </div>'
 
       # delete checkbox
       # if !value.new_record?
@@ -58,7 +58,7 @@ class RightsStatementInput < NestedAttributesInput
       #   out << '  </div>'
       # end
 
-      # out << '</div>' # last row
-      # out
+      out << '</div>' # last row
+      out
     end
 end
