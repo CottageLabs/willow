@@ -10,8 +10,7 @@ namespace :willow do
     if (File.exists?(seedfile))
       puts("Running seedfile: #{seedfile}")
     else
-      puts("ERROR: missing seedfile: #{seedfile}")
-      return
+      abort("ERROR: missing seedfile: #{seedfile}")
     end
 
     seed = JSON.parse(File.read(seedfile))
