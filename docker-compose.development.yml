@@ -42,3 +42,6 @@ services:
     volumes:
       - ./geoblacklight:/geoblacklight.development
     restart: "no"
+
+  ssl:
+    image: alpine # no ssl in development mode

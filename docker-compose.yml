@@ -70,11 +70,7 @@ services:
     env_file:
       - .env
       - .env.production
-    environment:
-      VIRTUAL_HOST: 'willow.local, localhost, willow.cottagelabs.com, 192.168.99.*'
-      LETSENCRYPT_HOST: willow.cottagelabs.com
-      LETSENCRYPT_EMAIL: willow@cottagelabs.com
-      LETSENCRYPT_TEST: 'true'
+      - .env.willow.hosting
     ports:
       - "3000:3000"
     links:
@@ -114,8 +110,6 @@ services:
         reservations:
           memory: 250M
 
-
-
   nginx:
     image: nginx
     container_name: nginx
@@ -140,8 +134,10 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./nginx/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl
 
-  letsencrypt-nginx-proxy-companion:
+  ssl:
     image: jrcs/letsencrypt-nginx-proxy-companion
+    depends_on:
+      - nginx
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - nginx_conf:/etc/nginx/conf.d

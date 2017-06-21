@@ -35,7 +35,7 @@ $ cd willow
 $ git submodule update --init --recursive
 ```
 
-7. Create three environmental variable files: `.env`, `.env.production` and `.env.development`,  to set the postgres database username and password and also other keys. You can use the `example.env`, `example.env.production` and `example.env.development` files as templates:
+7. Create four environmental variable files: `.env`, `.env.production`, `.env.development` and `.env.willow.hosting`,  to set the postgres database username and password and also other keys. You can use the `example.env`, `example.env.production`, `example.env.development` and `example.env.willow.hosting` files as templates:
 
 __example .env file__
 ```bash
@@ -84,6 +84,16 @@ WILLOW_SEED=true
 
 # Set to true to seed Geoblacklight data
 GEOBLACKLIGHT_SEED=true
+```
+  
+__example .env.willow.hosting file__
+```bash
+# the hostname where Willow will be served from, e.g. willow.cottagelabs.com or localhost
+VIRTUAL_HOST: 'willow.local, localhost, willow.cottagelabs.com, 192.168.99.*'
+# For internet-visible production instances, an SSL certificate will be obtained from LetsEncrypt with the following settings:
+LETSENCRYPT_HOST=willow.cottagelabs.com
+LETSENCRYPT_EMAIL=someone@example.com
+LETSENCRYPT_TEST='true'
 ```
   
 
