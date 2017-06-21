@@ -26,7 +26,7 @@ class Dataset < ActiveFedora::Base
   validates :doi, presence: { message: 'Your dataset must have a doi.' }
 
   # must be included after all properties are declared
-  include NestedAttributes
+  include DatasetNestedAttributes
 
   def to_solr(solr_doc = {})
     super(solr_doc).tap do |doc|
