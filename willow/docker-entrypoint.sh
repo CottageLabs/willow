@@ -19,6 +19,9 @@ fi
 ## Run any pending migrations
 bundle exec rake db:migrate
 
+# Load workflows
+bundle exec rake curation_concerns:workflow:load
+
 # check that Fedora is running
 FEDORA=$(curl --silent --connect-timeout 30 "http://fedora:8080/" | grep "Fedora Commons Repository")
 if [ -n "$FEDORA" ] ; then

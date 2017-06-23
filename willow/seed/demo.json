@@ -582,6 +582,26 @@
   ],
 
   "administrative_sets" : [
+    {
+      "id" : "admin_set/one_step",
+      "metadata" : {
+        "title": ["One Step Admin Set"],
+        "description": ["An administrative set using the one-step mediated workflow"],
+        "creator": ["admin@willow"]
+      },
+      "permission_template": {
+        "workflow_name": "one_step_mediated_deposit",
+        "permission_template_access" : [
+          {
+            "agent_type": "user", "agent_id": "user@willow", "access": "deposit"
+          }
+        ]
+      }
+    }
+  ],
 
+  "workflow_responsibilities" : [
+    {"user_email": "user@willow", "workflow_name": "one_step_mediated_deposit", "role_name": "depositing"},
+    {"user_email": "workflow@willow", "workflow_name": "one_step_mediated_deposit", "role_name": "approving"}
   ]
 }

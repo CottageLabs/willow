@@ -59,6 +59,74 @@ namespace :willow do
     # finished populating site text
     ##############################################
 
+
+    ##############################################
+    # Create administrative sets
+    ######
+
+    administrative_sets = {}
+    if seed.has_key?("administrative_sets")
+      seed["administrative_sets"].each do |administrative_set|
+        arguments = {}
+        administrative_set["metadata"].each do |key, val|
+          arguments[key.to_sym] = val
+        end
+
+        as = AdminSet.where(id: administrative_set["id"]).first || AdminSet.create!(
+          id: administrative_set["id"],
+          **arguments)
+
+        if administrative_set.has_key?("permission_template")
+          pt = Sufia::PermissionTemplate
+                   .where(admin_set_id: administrative_set["id"],
+                          workflow_name: administrative_set["permission_template"]["workflow_name"])
+                   .first_or_create!
+
+          if administrative_set["permission_template"].has_key?("permission_template_access")
+            administrative_set["permission_template"]["permission_template_access"].each do |pta|
+              Sufia::PermissionTemplateAccess
+                  .where(permission_template: pt,
+                         agent_type: pta["agent_type"],
+                         agent_id: pta["agent_id"],
+                         access: pta["access"])
+                  .first_or_create!
+            end
+          end
+        end
+
+        administrative_sets[administrative_set["id"]] = as
+      end
+    end
+
+    # finished administrative sets
+    ##############################################
+
+
+
+    ##############################################
+    # Configure workflow_responsabilities
+    ######
+
+    if seed.has_key?("workflow_responsibilities")
+      seed["workflow_responsibilities"].each do |workflow_responsibility|
+        user = User.where(email: workflow_responsibility["user_email"]).first
+        agent = Sipity::Agent.where(proxy_for: user).first_or_create!
+        workflow = Sipity::Workflow.where(name: workflow_responsibility["workflow_name"]).first
+        role = Sipity::Role.where(name: workflow_responsibility["role_name"]).first
+        workflow_role = Sipity::WorkflowRole.where(workflow: workflow, role: role).first
+
+        if user.present? && agent.present? && workflow.present? && role.present? && workflow_role.present?
+          Sipity::WorkflowResponsibility.where(agent: agent, workflow_role: workflow_role).first_or_create!
+        else
+          abort("Unable to create workflow_responsibility : user: #{user}, agent: #{agent}, workflow: #{workflow}, role: #{role}, workflow_role: #{workflow_role}")
+        end
+      end
+    end
+
+    # finished workflow_responsabilities
+    ##############################################
+
+
     ##############################################
     # Create some collections
     ######
@@ -158,6 +226,7 @@ namespace :willow do
 
         newWork.save!
 
+        break # TODO: REMOVE THIS LINE
       end
     end
 
