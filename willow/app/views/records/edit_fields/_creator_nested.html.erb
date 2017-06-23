@@ -1,0 +1,12 @@
+<div class="creator-nested-editor">
+  <%= f.input :creator_nested,
+    as: :person_statement,
+    input_html: {
+      class: 'form-control',
+      multiple: true,
+      data: {name: :creator_nested},
+    },
+    required: f.object.required?(:creator_nested),
+    label: 'Creator'
+  %>
+</div>

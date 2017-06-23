@@ -82,6 +82,8 @@ services:
       - db
       - solr
       - redis
+    volumes:
+      - derivatives:/derivatives
     restart: on-failure
     deploy:
       resources:
@@ -116,3 +118,4 @@ volumes:
   fcrepo4_data: {}
   postgres_data: {}
   solr_home: {}
+  derivatives: {}
