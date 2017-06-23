@@ -6,30 +6,32 @@ RSpec.describe Dataset do
   it 'has human readable type dataset' do
     @obj = Dataset.new
     @obj.attributes = {
-      title: ['test dataset'],
-      doi: '0000-0000-0000-0000'
+      title: ['test dataset']
     }
     @obj.save!
     @obj.reload
     expect(@obj.human_readable_type).to eq('Dataset')
   end
 
-  it 'requires title' do
-    @obj = Dataset.new
-    expect { @obj.save! }.to raise_error
-      ('ActiveFedora::RecordInvalid: Validation failed: Title Your work must have a title.')
-  end
+  describe 'title:' do
+    it 'requires title' do
+      @obj = Dataset.new
+      expect { @obj.save! }.to raise_error
+        ('ActiveFedora::RecordInvalid: Validation failed: Title Your work must have a title.')
+    end
 
-  describe 'doi' do
-    it 'requires doi' do
+    it 'has a multi valued title field' do
       @obj = Dataset.new
       @obj.attributes = {
         title: ['test dataset']
       }
-      expect { @obj.save! }.to raise_error
-        ('ActiveFedora::RecordInvalid: Validation failed: DOI Your work must have a doi.')
+      @obj.save!
+      @obj.reload
+      expect(@obj.title).to eq ['test dataset']
     end
+  end
 
+  describe 'doi:' do
     it 'has a single valued doi' do
       @obj = Dataset.new
       @obj.attributes = {
@@ -56,7 +58,7 @@ RSpec.describe Dataset do
     expect(@obj.publisher).to eq ['Willow']
   end
 
-  describe 'nested attributes for other title' do
+  describe 'nested attributes for other title:' do
     it 'accepts other title attributes' do
       @obj = Dataset.new
       @obj.attributes = {
@@ -136,7 +138,7 @@ RSpec.describe Dataset do
     end
   end
 
-  describe 'nested attributes for date' do
+  describe 'nested attributes for date:' do
     it 'accepts date attributes' do
       @obj = Dataset.new
       @obj.attributes = {
@@ -221,7 +223,7 @@ RSpec.describe Dataset do
     end
   end
 
-  describe 'nested attributes for rights' do
+  describe 'nested attributes for rights:' do
     it 'accepts rights attributes' do
       @obj = Dataset.new
       @obj.attributes = {
@@ -297,7 +299,7 @@ RSpec.describe Dataset do
     end
   end
 
-  describe 'nested attributes for creator' do
+  describe 'nested attributes for creator:' do
     it 'accepts person attributes' do
       @obj = Dataset.new
       @obj.attributes = {
@@ -476,7 +478,7 @@ RSpec.describe Dataset do
     end
   end
 
-  describe 'nested attributes for subject' do
+  describe 'nested attributes for subject:' do
     it 'accepts subject attributes' do
       @obj = Dataset.new
       @obj.attributes = {
