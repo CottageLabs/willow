@@ -583,11 +583,13 @@
 
   "administrative_sets" : [
     {
-      "id" : "admin_set/one_step",
+      "id" : "willow_admin_set",
       "metadata" : {
-        "title": ["One Step Admin Set"],
+        "title": ["Willow administrative set"],
         "description": ["An administrative set using the one-step mediated workflow"],
-        "creator": ["admin@willow"]
+        "creator": ["admin@willow"],
+        "read_groups": ["public"],
+        "edit_groups": ["admin"]
       },
       "permission_template": {
         "workflow_name": "one_step_mediated_deposit",

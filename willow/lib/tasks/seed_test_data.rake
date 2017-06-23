@@ -226,7 +226,7 @@ namespace :willow do
 
         newWork.save!
 
-        break # TODO: REMOVE THIS LINE
+        # break # this line is handy for running seeds quickly, as it creates just one work
       end
     end
 
