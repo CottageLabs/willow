@@ -19,12 +19,15 @@ fi
 ## Run any pending migrations
 bundle exec rake db:migrate
 
+# Load workflows
+bundle exec rake curation_concerns:workflow:load
+
 # check that Fedora is running
 FEDORA=$(curl --silent --connect-timeout 30 "http://fedora:8080/" | grep "Fedora Commons Repository")
 if [ -n "$FEDORA" ] ; then
     if [ "$WILLOW_SEED" = "true" ] ; then
         echo "(Re)seeding Willow test data... (this can take a few minutes)"
-        bundle exec rake willow:seed_test_data["$WILLOW_EMAIL","$WILLOW_PASSWORD","$WILLOW_NAME"]
+        bundle exec rake willow:seed_test_data["$WILLOW_SEED_FILE"]
     fi
 else
     echo "ERROR: Fedora is not running"

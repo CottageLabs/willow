@@ -227,7 +227,7 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        rights_attributes: [{
+        rights_nested_attributes: [{
             label: 'A rights label',
             definition: 'A definition of the rights',
             webpage: 'http://example.com/rights'
@@ -235,11 +235,11 @@ RSpec.describe Dataset do
       }
       @obj.save!
       @obj.reload
-      expect(@obj.rights.first).to be_kind_of ActiveTriples::Resource
-      expect(@obj.rights.first.id).to include('#rights')
-      expect(@obj.rights.first.label).to eq ['A rights label']
-      expect(@obj.rights.first.definition).to eq ['A definition of the rights']
-      expect(@obj.rights.first.webpage).to eq ['http://example.com/rights']
+      expect(@obj.rights_nested.first).to be_kind_of ActiveTriples::Resource
+      expect(@obj.rights_nested.first.id).to include('#rights')
+      expect(@obj.rights_nested.first.label).to eq ['A rights label']
+      expect(@obj.rights_nested.first.definition).to eq ['A definition of the rights']
+      expect(@obj.rights_nested.first.webpage).to eq ['http://example.com/rights']
     end
 
     it 'rejects rights attributes if all blank' do
@@ -247,13 +247,13 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        rights_attributes: [{
+        rights_nested_attributes: [{
             label: '',
           }]
       }
       @obj.save!
       @obj.reload
-      expect(@obj.rights.size).to eq(0)
+      expect(@obj.rights_nested.size).to eq(0)
     end
 
     it 'destroys rights' do
@@ -261,22 +261,23 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        rights_attributes: [{
+        rights_nested_attributes: [{
             label: 'test label'
           }]
       }
       @obj.save!
       @obj.reload
+      expect(@obj.rights_nested.size).to eq(1)
       @obj.attributes = {
-        rights_attributes: [{
-            id: @obj.rights.first.id,
+        rights_nested_attributes: [{
+            id: @obj.rights_nested.first.id,
             label: 'test label',
             _destroy: "1"
           }]
       }
       @obj.save!
       @obj.reload
-      expect(@obj.rights.size).to eq(0)
+      expect(@obj.rights_nested.size).to eq(0)
     end
 
     it 'indexes the rights' do
@@ -284,15 +285,15 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        rights_attributes: [{
+        rights_nested_attributes: [{
             label: 'A rights label',
             definition: 'A definition of the rights',
             webpage: 'http://example.com/rights'
           }]
       }
       @doc = @obj.to_solr
-      expect(@doc['rights_sim']).to eq ['http://example.com/rights']
-      expect(@doc).to include('rights_tesim')
+      expect(@doc['rights_nested_sim']).to eq ['http://example.com/rights']
+      expect(@doc).to include('rights_nested_tesim')
     end
   end
 
@@ -302,7 +303,7 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        creator_attributes: [{
+        creator_nested_attributes: [{
             first_name: 'Foo',
             last_name: 'Bar',
             orcid: '0000-0000-0000-0000',
@@ -317,11 +318,11 @@ RSpec.describe Dataset do
       }
       @obj.save!
       @obj.reload
-      expect(@obj.creator.size).to eq(2)
-      expect(@obj.creator[0]).to be_kind_of ActiveTriples::Resource
-      expect(@obj.creator[0].id).to include('#person')
-      expect(@obj.creator[1]).to be_kind_of ActiveTriples::Resource
-      expect(@obj.creator[1].id).to include('#person')
+      expect(@obj.creator_nested.size).to eq(2)
+      expect(@obj.creator_nested[0]).to be_kind_of ActiveTriples::Resource
+      expect(@obj.creator_nested[0].id).to include('#person')
+      expect(@obj.creator_nested[1]).to be_kind_of ActiveTriples::Resource
+      expect(@obj.creator_nested[1].id).to include('#person')
     end
 
     it 'rejects person if first name and last name are blank' do
@@ -329,7 +330,7 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        creator_attributes: [
+        creator_nested_attributes: [
           {
             first_name: 'Foo',
             orcid: '0000-0000-0000-0000',
@@ -354,7 +355,7 @@ RSpec.describe Dataset do
       }
       @obj.save!
       @obj.reload
-      expect(@obj.creator.size).to eq(2)
+      expect(@obj.creator_nested.size).to eq(2)
     end
 
     it 'rejects person if orcid is blank' do
@@ -362,7 +363,7 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        creator_attributes: [
+        creator_nested_attributes: [
           {
             first_name: 'Foo',
             last_name: 'Bar',
@@ -378,7 +379,7 @@ RSpec.describe Dataset do
       }
       @obj.save!
       @obj.reload
-      expect(@obj.creator.size).to eq(0)
+      expect(@obj.creator_nested.size).to eq(0)
     end
 
     it 'rejects person if role is blank' do
@@ -386,7 +387,7 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        creator_attributes: [
+        creator_nested_attributes: [
           {
             first_name: 'Foo',
             last_name: 'Bar',
@@ -403,7 +404,7 @@ RSpec.describe Dataset do
       }
       @obj.save!
       @obj.reload
-      expect(@obj.creator.size).to eq(0)
+      expect(@obj.creator_nested.size).to eq(0)
     end
 
     it 'rejects person if all are blank' do
@@ -411,7 +412,7 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        creator_attributes: [
+        creator_nested_attributes: [
           {
             first_name: '',
             last_name: nil,
@@ -421,7 +422,7 @@ RSpec.describe Dataset do
       }
       @obj.save!
       @obj.reload
-      expect(@obj.creator.size).to eq(0)
+      expect(@obj.creator_nested.size).to eq(0)
     end
 
     it 'destroys creator' do
@@ -429,7 +430,7 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        creator_attributes: [{
+        creator_nested_attributes: [{
             first_name: 'Foo',
             last_name: 'Bar',
             orcid: '0000-0000-0000-0000',
@@ -439,10 +440,10 @@ RSpec.describe Dataset do
       }
       @obj.save!
       @obj.reload
-      expect(@obj.creator.size).to eq(1)
+      expect(@obj.creator_nested.size).to eq(1)
       @obj.attributes = {
-        creator_attributes: [{
-            id: @obj.creator.first.id,
+        creator_nested_attributes: [{
+            id: @obj.creator_nested.first.id,
             first_name: 'Foo',
             last_name: 'Bar',
             orcid: '0000-0000-0000-0000',
@@ -453,7 +454,7 @@ RSpec.describe Dataset do
       }
       @obj.save!
       @obj.reload
-      expect(@obj.creator.size).to eq(0)
+      expect(@obj.creator_nested.size).to eq(0)
     end
 
     it 'indexes the creator' do
@@ -461,7 +462,7 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        creator_attributes: [{
+        creator_nested_attributes: [{
             first_name: ['Foo'],
             last_name: 'Bar',
             orcid: '0000-0000-0000-0000',
@@ -469,9 +470,9 @@ RSpec.describe Dataset do
           }]
       }
       @doc = @obj.to_solr
-      expect(@doc['creator_sim']).to eq ['Foo Bar']
-      expect(@doc['creator_tesim']).to eq ['Foo Bar']
-      expect(@doc).to include('creator_ssm')
+      expect(@doc['creator_nested_sim']).to eq ['Foo Bar']
+      expect(@doc['creator_nested_tesim']).to eq ['Foo Bar']
+      expect(@doc).to include('creator_nested_ssm')
     end
   end
 
@@ -481,7 +482,7 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        subject_attributes: [{
+        subject_nested_attributes: [{
             label: 'Subject label',
             definition: 'Subject label definition',
             classification: 'LCSH',
@@ -490,12 +491,12 @@ RSpec.describe Dataset do
       }
       @obj.save!
       @obj.reload
-      expect(@obj.subject.first).to be_kind_of ActiveTriples::Resource
-      expect(@obj.subject.first.id).to include('#subject')
-      expect(@obj.subject.first.label).to eq ['Subject label']
-      expect(@obj.subject.first.definition).to eq ['Subject label definition']
-      expect(@obj.subject.first.classification).to eq ['LCSH']
-      expect(@obj.subject.first.homepage).to eq ['http://example.com/homepage']
+      expect(@obj.subject_nested.first).to be_kind_of ActiveTriples::Resource
+      expect(@obj.subject_nested.first.id).to include('#subject')
+      expect(@obj.subject_nested.first.label).to eq ['Subject label']
+      expect(@obj.subject_nested.first.definition).to eq ['Subject label definition']
+      expect(@obj.subject_nested.first.classification).to eq ['LCSH']
+      expect(@obj.subject_nested.first.homepage).to eq ['http://example.com/homepage']
     end
 
     it 'rejects subject attributes if label is blank' do
@@ -503,7 +504,7 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        subject_attributes: [{
+        subject_nested_attributes: [{
             label: 'Subject label',
             definition: 'Subject label definition',
             classification: 'LCSH',
@@ -517,7 +518,7 @@ RSpec.describe Dataset do
       }
       @obj.save!
       @obj.reload
-      expect(@obj.subject.size).to eq(1)
+      expect(@obj.subject_nested.size).to eq(1)
     end
 
     it 'destroys subject' do
@@ -525,7 +526,7 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        subject_attributes: [{
+        subject_nested_attributes: [{
           label: 'Subject label',
           definition: 'Subject label definition',
           classification: 'LCSH',
@@ -534,10 +535,10 @@ RSpec.describe Dataset do
       }
       @obj.save!
       @obj.reload
-      expect(@obj.subject.size).to eq(1)
+      expect(@obj.subject_nested.size).to eq(1)
       @obj.attributes = {
-        subject_attributes: [{
-          id: @obj.subject.first.id,
+        subject_nested_attributes: [{
+          id: @obj.subject_nested.first.id,
           label: 'Subject label',
           definition: 'Subject label definition',
           classification: 'LCSH',
@@ -547,7 +548,7 @@ RSpec.describe Dataset do
       }
       @obj.save!
       @obj.reload
-      expect(@obj.subject.size).to eq(0)
+      expect(@obj.subject_nested.size).to eq(0)
     end
 
     it 'indexes the subject' do
@@ -555,7 +556,7 @@ RSpec.describe Dataset do
       @obj.attributes = {
         title: ['test dataset'],
         doi: '0000-0000-0000-0000',
-        subject_attributes: [{
+        subject_nested_attributes: [{
           label: 'Subject label',
           definition: 'Subject label definition',
           classification: 'LCSH',
@@ -565,10 +566,10 @@ RSpec.describe Dataset do
         }]
       }
       @doc = @obj.to_solr
-      expect(@doc).to include('subject_tesim')
-      expect(@doc).to include('subject_sim')
-      expect(@doc['subject_tesim']).to match_array(['Subject label', 'Subject label 2'])
-      expect(@doc['subject_sim']).to match_array(['Subject label', 'Subject label 2'])
+      expect(@doc).to include('subject_nested_tesim')
+      expect(@doc).to include('subject_nested_sim')
+      expect(@doc['subject_nested_tesim']).to match_array(['Subject label', 'Subject label 2'])
+      expect(@doc['subject_nested_sim']).to match_array(['Subject label', 'Subject label 2'])
     end
   end
 

@@ -3,8 +3,8 @@ require 'rails_helper'
 describe PersonStatement do
   before do
     class ExampleWork < ActiveFedora::Base
-      property :creator, predicate: ::RDF::Vocab::DC.creator, class_name:"PersonStatement"
-      accepts_nested_attributes_for :creator
+      property :creator_nested, predicate: ::RDF::Vocab::DC.creator, class_name:"PersonStatement"
+      accepts_nested_attributes_for :creator_nested
     end
   end
   after do
@@ -14,7 +14,7 @@ describe PersonStatement do
   it 'creates a person active triple resource with an id, first name, last name, orcid and role' do
     @obj = ExampleWork.new
     @obj.attributes = {
-      creator_attributes: [
+      creator_nested_attributes: [
         {
           first_name: 'Foo',
           last_name: 'Bar',
@@ -26,12 +26,12 @@ describe PersonStatement do
     }
     @obj.save!
     @obj.reload
-    expect(@obj.creator.first).to be_kind_of ActiveTriples::Resource
-    expect(@obj.creator.first.id).to include('#person')
-    expect(@obj.creator.first.first_name).to eq ['Foo']
-    expect(@obj.creator.first.last_name).to eq ['Bar']
-    expect(@obj.creator.first.orcid).to eq ['0000-0000-0000-0000']
-    expect(@obj.creator.first.affiliation).to eq ['author affiliation']
-    expect(@obj.creator.first.role).to eq ['Author']
+    expect(@obj.creator_nested.first).to be_kind_of ActiveTriples::Resource
+    expect(@obj.creator_nested.first.id).to include('#person')
+    expect(@obj.creator_nested.first.first_name).to eq ['Foo']
+    expect(@obj.creator_nested.first.last_name).to eq ['Bar']
+    expect(@obj.creator_nested.first.orcid).to eq ['0000-0000-0000-0000']
+    expect(@obj.creator_nested.first.affiliation).to eq ['author affiliation']
+    expect(@obj.creator_nested.first.role).to eq ['Author']
   end
 end

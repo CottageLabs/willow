@@ -57,6 +57,9 @@ RUN cd $APP_PRODUCTION && \
             bundle install --without production; \
         fi
 
+# copy the seeds
+COPY ./seed /seed
+
 # copy the application
 COPY . $APP_PRODUCTION
 COPY docker-entrypoint.sh /bin/
