@@ -129,28 +129,28 @@ RSpec.describe Article do
     end
   end
 
-  describe 'version' do
-    it 'has version' do
+  describe 'tagged_version' do
+    it 'has tagged_version' do
       @obj = Article.new
       @obj.attributes = {
         title: ['test article'],
-        version: ['1.0']
+        tagged_version: ['1.0']
       }
       @obj.save!
       @obj.reload
-      expect(@obj.version).to be_kind_of ActiveTriples::Relation
-      expect(@obj.version).to eq ['1.0']
+      expect(@obj.tagged_version).to be_kind_of ActiveTriples::Relation
+      expect(@obj.tagged_version).to eq ['1.0']
     end
 
-    it 'indexes the version' do
+    it 'indexes the tagged_version' do
       @obj = Article.new
       @obj.attributes = {
         title: ['test article'],
-        version: ['1.0']
+        tagged_version: ['1.0']
       }
       @doc = @obj.to_solr
-      expect(@doc['version_tesim']).to match_array(['1.0'])
-      expect(@doc['version_sim']).to match_array(['1.0'])
+      expect(@doc['tagged_version_tesim']).to match_array(['1.0'])
+      expect(@doc['tagged_version_sim']).to match_array(['1.0'])
     end
   end
 
