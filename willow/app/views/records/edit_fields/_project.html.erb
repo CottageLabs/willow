@@ -1,0 +1,12 @@
+<div class="project-editor">
+  <%= f.input :project,
+    as: :project_statement,
+    input_html: {
+      class: 'form-control',
+      multiple: true,
+      data: {name: :project}
+    },
+    required: f.object.required?(:project),
+    label: 'Project and Funder'
+  %>
+</div>
