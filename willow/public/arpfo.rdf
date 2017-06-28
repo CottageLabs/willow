@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:aiiso="http://purl.org/vocab/aiiso/schema#" xmlns:ore="http://www.openarchives.org/ore/terms/" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:cc="http://web.resource.org/cc/" xmlns:dctype="http://purl.org/dc/dcmitype/" xmlns:dct="http://purl.org/dc/terms/" xmlns:vann="http://purl.org/vocab/vann/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+>
+	<owl:Ontology rdf:about="" dc:date="2008-10-06">
+		<dc:title xml:lang="en">Academic Research Project Funding Ontology (ARPFO)</dc:title>
+		<rdfs:comment xml:lang="en">The Academic Research Project Funding Ontology (ARPFO) provides classes and properties to describe the project funding structure of academic research, and also provides classes and properties to encode the relationships between project bids, projects, research groups and the resultant outputs.</rdfs:comment>
+		<dc:identifier>http://vocab.ox.ac.uk/projectfunding/schema</dc:identifier>
+		<dct:isVersionOf rdf:resource="http://vocab.ox.ac.uk/projectfunding#"/>
+		<dc:creator>Ben O'Steen</dc:creator>
+		<dc:rights>Copyright 2008 Oxford University</dc:rights>
+		<vann:preferredNamespaceUri>http://vocab.ox.ac.uk/projectfunding#</vann:preferredNamespaceUri>
+		<vann:preferredNamespacePrefix>projectfunding</vann:preferredNamespacePrefix>
+		<dct:replaces rdf:resource="http://vocab.ox.ac.uk/projectfunding-0.1#"/>
+		<dct:hasFormat>
+			<dctype:Text rdf:about="http://vocab.ox.ac.uk/projectfunding/projectfunding.html">
+				<dc:format>
+					<dct:IMT>
+						<rdf:value>text/html</rdf:value>
+						<rdfs:label xml:lang="en">HTML</rdfs:label>
+					</dct:IMT>
+				</dc:format>
+			</dctype:Text>
+		</dct:hasFormat>
+		<dct:hasFormat>
+			<dctype:Text rdf:about="http://vocab.ox.ac.uk/projectfunding/projectfunding.rdf">
+				<dc:format>
+					<dct:IMT>
+						<rdf:value>application/rdf+xml</rdf:value>
+						<rdfs:label xml:lang="en">RDF</rdfs:label>
+					</dct:IMT>
+				</dc:format>
+			</dctype:Text>
+		</dct:hasFormat>
+		<dct:issued>2010-01-14</dct:issued>
+		<skos:historyNote rdf:value="First cut of the ontology published" dc:date="2008-10-06" dc:creator="Ben O'Steen"/>
+		<skos:historyNote rdf:value="Added: Principal Investigator, Co-investigator, Project/Research Purpose" dc:date="2008-10-06" dc:creator="Ben O'Steen"/>
+	</owl:Ontology>
+	<cc:Work rdf:about="">
+		<cc:license rdf:resource="http://creativecommons.org/licenses/by/2.0/uk/"/>
+	</cc:Work>
+	<cc:License rdf:about="http://creativecommons.org/licenses/by/2.0/uk/">
+		<cc:permits rdf:resource="http://web.resource.org/cc/Reproduction"/>
+		<cc:permits rdf:resource="http://web.resource.org/cc/Distribution"/>
+		<cc:requires rdf:resource="http://web.resource.org/cc/Notice"/>
+		<cc:requires rdf:resource="http://web.resource.org/cc/Attribution"/>
+		<cc:permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>
+	</cc:License>
+	<rdfs:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Project">
+		<rdfs:label xml:lang="en">Project</rdfs:label>
+		<rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">This class is used to represent the concepts and overall details concerning a research project. The intention is that this class concerns the abstract notion of the project being described, and that http://vocab.ox.ac.uk/projectfunding#ProjectSection represents the instance of the project for a given period of time. Contributors, work output and other such details should be attached to the right ProjectSection.</rdfs:comment>
+		<rdfs:isDefinedBy rdf:resource="http://vocab.ox.ac.uk/projectfunding#"/>
+		<dct:issued>2008-10-06</dct:issued>
+		<rdfs:subClassOf>http://umbel.org/umbel/sc/ResearchProject</rdfs:subClassOf>
+	</rdfs:Class>
+	<rdfs:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#ProjectSection">
+		<rdfs:label xml:lang="en">Section of a Project</rdfs:label>
+		<rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">This represents a temporal portion of the project to which is it part of (Use of &lt;#ProjectSection&gt; &lt;dcterms:isPartOf&gt; &lt;#Project&gt; is highly recommended.) Note that ProjectSection durations are anticipated to be able to overlap, to represent parallel project streams and for it not to be restricted to sequencial project sections. The term 'Work package' is closely related to this class.</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="http://vocab.ox.ac.uk/projectfunding#Project"/>
+		<rdfs:isDefinedBy rdf:resource="http://vocab.ox.ac.uk/projectfunding#"/>
+		<dct:issued>2008-10-06</dct:issued>
+	</rdfs:Class>
+	<rdfs:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#FundingBody">
+		<rdfs:label xml:lang="en">Funding Body</rdfs:label>
+		<rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A Funding Body is an organisational unit that represents the legal entity which is funding a given project/person/group.</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Organization"/>
+		<rdfs:isDefinedBy rdf:resource="http://vocab.ox.ac.uk/projectfunding#"/>
+		<dct:issued>2008-10-06</dct:issued>
+	</rdfs:Class>
+	<rdfs:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Bid">
+		<rdfs:label xml:lang="en">A Funding Bid</rdfs:label>
+		<rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A Funding Bid represents the process of bidding for resources from one or more Funding Bodies. In this respect, it is a form of Project. It is anticipated that use of a rdf schema such as ore:Aggregation will be used to connect the electronic representations of the paper documentation to the Bid.</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="http://vocab.ox.ac.uk/projectfunding#Project"/>
+		<rdfs:isDefinedBy rdf:resource="http://vocab.ox.ac.uk/projectfunding#"/>
+		<dct:issued>2008-10-06</dct:issued>
+	</rdfs:Class>
+	<rdfs:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Funding">
+		<rdfs:label xml:lang="en">Funding</rdfs:label>
+		<rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Funding is the main class representing the types of funding applicable to research projects, but not limited to just research projects. It is expected that any form of Funding will be subclassed from this one.</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="http://umbel.org/umbel/sc/EconomicAgreement"/>
+		<rdfs:isDefinedBy rdf:resource="http://vocab.ox.ac.uk/projectfunding#"/>
+		<dct:issued>2008-10-06</dct:issued>
+	</rdfs:Class>
+	<rdfs:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Grant">
+		<rdfs:label xml:lang="en">Grant</rdfs:label>
+		<rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A Grant represents a fund given to organizations by foundations, corporations, governments, small business and individuals. Most grants are made to fund a specific project and require some level of reporting.</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="http://vocab.ox.ac.uk/projectfunding#Funding"/>
+		<rdfs:isDefinedBy rdf:resource="http://vocab.ox.ac.uk/projectfunding#"/>
+		<dct:issued>2008-10-06</dct:issued>
+	</rdfs:Class>
+	<rdfs:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Investment">
+		<rdfs:label xml:lang="en">Investment</rdfs:label>
+		<rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An Investment represents a fund given to organizations by foundations, corporations, governments, small business and individuals. Most investments are made to fund a specific project and often are made for profit and intellectual property sharing agreements.</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="http://vocab.ox.ac.uk/projectfunding#Funding"/>
+		<rdfs:isDefinedBy rdf:resource="http://vocab.ox.ac.uk/projectfunding#"/>
+		<dct:issued>2008-10-06</dct:issued>
+	</rdfs:Class>
+	<rdfs:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Donation">
+		<rdfs:label xml:lang="en">Donation</rdfs:label>
+		<rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An Donation represents a fund given to organizations by foundations, corporations, governments, small business and individuals. Most donations are made to fund an organisation, or the aim of an organisation, rather than a specific project.</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="http://vocab.ox.ac.uk/projectfunding#Funding"/>
+		<rdfs:isDefinedBy rdf:resource="http://vocab.ox.ac.uk/projectfunding#"/>
+		<dct:issued>2008-10-06</dct:issued>
+	</rdfs:Class>
+	<rdfs:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Endowment">
+		<rdfs:label xml:lang="en">Endowment</rdfs:label>
+		<rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An Endowment represents a fund given to organizations by foundations, corporations, governments, small business and individuals. Most endowments are made to fund a specific project over a long period of time. Endowments are typically invested to provide a source of monetary interest for the funded organisation.</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="http://vocab.ox.ac.uk/projectfunding#Funding"/>
+		<rdfs:isDefinedBy rdf:resource="http://vocab.ox.ac.uk/projectfunding#"/>
+		<dct:issued>2008-10-06</dct:issued>
+	</rdfs:Class>
+	<rdf:Property rdf:about="http://vocab.ox.ac.uk/projectfunding#provides">
+		<rdfs:label xml:lang="en">provides the money for</rdfs:label>
+		<rdfs:domain>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<owl:Class rdf:about="http://xmlns.com/foaf/0.1/Group"/>
+					<owl:Class rdf:about="http://xmlns.com/foaf/0.1/Agent"/>
+					<owl:Class rdf:about="http://xmlns.com/foaf/0.1/Organization"/>
+					<owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#FundingBody"/>
+					<owl:Class rdf:about="http://purl.org/vocab/participation/schema#Role"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:domain>
+		<rdfs:range>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Funding"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:range>
+		<rdfs:isDefinedBy rdf:resource="http://vocab.ox.ac.uk/projectfunding#"/>
+		<dct:issued>2008-10-06</dct:issued>
+	</rdf:Property>
+    <rdf:Property rdf:about="http://vocab.ox.ac.uk/projectfunding#funds">
+		<rdfs:label xml:lang="en">funds the activities of</rdfs:label>
+		<rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"> The '#funds' property is intended to have exactly the opposite range and domain to the '#provides' property. Chains of FundingBody to Funding to FundingBody to Funding and so on are anticipated, e.g. UK Government #provides #Funding which #funds JISC, and JISC itself #provides #Funding that #funds #Projects.</rdfs:comment>
+		<rdfs:domain>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Funding"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:domain>
+		<rdfs:range>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<owl:Class rdf:about="http://xmlns.com/foaf/0.1/Group"/>
+					<owl:Class rdf:about="http://xmlns.com/foaf/0.1/Agent"/>
+					<owl:Class rdf:about="http://xmlns.com/foaf/0.1/Organization"/>
+					<owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#FundingBody"/>
+					<owl:Class rdf:about="http://purl.org/vocab/participation/schema#Role"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:range>
+		<rdfs:isDefinedBy rdf:resource="http://vocab.ox.ac.uk/projectfunding#"/>
+		<dct:issued>2008-10-06</dct:issued>
+	</rdf:Property>
+	<rdf:Property rdf:about="http://vocab.ox.ac.uk/projectfunding#hasDocumentation">
+        <rdfs:label xml:lang="en">has documentation</rdfs:label>
+        <rdfs:comment>Connects a Bid, Project and so on to the formal documentation that describes the Bid or Project. May include the completed forms and written bid information. Intended to link either to an ore:Aggregation, or more simply, to a BNode with a dc:source linking to the URI of the documentation. Applied usage will determine which is preferable, and for now, the rdfs:range is left undefined.</rdfs:comment>
+        <rdfs:domain>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+				    <owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Project"/>
+				    <owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Funding"/>
+				    <owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#FundingBody"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:domain>
+        <rdfs:isDefinedBy rdf:resource="http://vocab.ox.ac.uk/projectfunding#"/>
+    </rdf:Property>
+	<rdf:Property rdf:about="http://vocab.ox.ac.uk/projectfunding#contributesTo">
+        <rdfs:label xml:lang="en">contributes to</rdfs:label>
+        <rdfs:comment>Associates an participation:Role or foaf:Agent with a given Project, Bid or ProjectSection.</rdfs:comment>
+        <rdfs:domain>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<owl:Class rdf:about="http://xmlns.com/foaf/0.1/Agent"/>
+					<owl:Class rdf:about="http://xmlns.com/foaf/0.1/Organization"/>
+					<owl:Class rdf:about="http://purl.org/vocab/participation/schema#Role"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:domain>
+		<rdfs:range>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<owl:Class rdf:about="http://xmlns.com/foaf/0.1/Group"/>
+					<owl:Class rdf:about="http://xmlns.com/foaf/0.1/Agent"/>
+					<owl:Class rdf:about="http://xmlns.com/foaf/0.1/Organization"/>
+					<!-- Explicitly noting the following -->
+				    <owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Project"/>
+				    <owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Funding"/>
+				    <owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#FundingBody"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:range>
+        <rdfs:isDefinedBy rdf:resource="http://vocab.ox.ac.uk/projectfunding#"/>
+    </rdf:Property>
+	<rdf:Property rdf:about="http://vocab.ox.ac.uk/projectfunding#hasPrincipalInvestigator">
+        <rdfs:label xml:lang="en">has Principal Investigator</rdfs:label>
+        <rdfs:comment>Associates a Project, Bid or ProjectSection with a Principal Investigator.</rdfs:comment>
+		<rdfs:domain>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<!-- Explicitly noting the following -->
+				    <owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Project"/>
+				    <owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#ProjectSection"/>
+				    <owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Bid"/>
+					<owl:Class rdf:about="http://xmlns.com/foaf/0.1/Organization"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:domain>
+		<rdfs:range>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<owl:Class rdf:about="http://xmlns.com/foaf/0.1/Agent"/>
+					<owl:Class rdf:about="http://xmlns.com/foaf/0.1/Organization"/>
+					<owl:Class rdf:about="http://purl.org/vocab/participation/schema#Role"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:range>
+        <rdfs:isDefinedBy rdf:resource="http://vocab.ox.ac.uk/projectfunding#"/>
+    </rdf:Property>
+	<rdf:Property rdf:about="http://vocab.ox.ac.uk/projectfunding#hasCoInvestigator">
+        <rdfs:label xml:lang="en">has Co-Investigator</rdfs:label>
+        <rdfs:comment>Associates a Project, Bid or ProjectSection with a Co-Investigator.</rdfs:comment>
+		<rdfs:domain>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<!-- Explicitly noting the following -->
+				    <owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Project"/>
+				    <owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#ProjectSection"/>
+				    <owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Bid"/>
+					<owl:Class rdf:about="http://xmlns.com/foaf/0.1/Organization"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:domain>
+		<rdfs:range>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<owl:Class rdf:about="http://xmlns.com/foaf/0.1/Agent"/>
+					<owl:Class rdf:about="http://xmlns.com/foaf/0.1/Organization"/>
+					<owl:Class rdf:about="http://purl.org/vocab/participation/schema#Role"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:range>
+        <rdfs:isDefinedBy rdf:resource="http://vocab.ox.ac.uk/projectfunding#"/>
+    </rdf:Property>
+    
+    	<rdf:Property rdf:about="http://vocab.ox.ac.uk/projectfunding#grantNumber">
+        <rdfs:label xml:lang="en">has grant number</rdfs:label>
+        <rdfs:comment>This predicate connects a Project, Bid or ProjectSection with the grant number.</rdfs:comment>
+        <rdfs:domain>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+				    <owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Project"/>
+				    <owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Funding"/>
+				    <owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#FundingBody"/>
+					<owl:Class rdf:about="http://xmlns.com/foaf/0.1/Organization"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:domain>
+        <rdfs:isDefinedBy rdf:resource="http://vocab.ox.ac.uk/projectfunding#"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/identifier"></rdfs:subPropertyOf>
+    </rdf:Property>
+    
+    
+	<rdf:Property rdf:about="http://vocab.ox.ac.uk/projectfunding#statedPurpose">
+        <rdfs:label xml:lang="en">has investigation purpose:</rdfs:label>
+        <rdfs:comment>This predicate connects a Project, Bid or ProjectSection with the (Literal) stated purpose.</rdfs:comment>
+        <rdfs:domain>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+				    <owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Project"/>
+				    <owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Funding"/>
+				    <owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#FundingBody"/>
+					<owl:Class rdf:about="http://xmlns.com/foaf/0.1/Organization"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:domain>
+        <rdfs:range rdf:resource="rdfs:Literal"/>
+        <rdfs:isDefinedBy rdf:resource="http://vocab.ox.ac.uk/projectfunding#"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/description"></rdfs:subPropertyOf>
+    </rdf:Property>
+	<rdf:Property rdf:about="http://vocab.ox.ac.uk/projectfunding#startDate">
+        <rdfs:label xml:lang="en">startDate</rdfs:label>
+        <rdfs:comment>The date on which this event/process started.</rdfs:comment>
+        <rdfs:domain>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+				    <owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Project"/>
+				    <owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Funding"/>
+				    <owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#FundingBody"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:domain>
+        <rdfs:range rdf:resource="xsd:Date"/>
+        <rdfs:isDefinedBy rdf:resource="http://vocab.ox.ac.uk/projectfunding#"/>
+        <owl:sameAs rdf:resource="http://www.w3.org/2002/12/cal/ical#dtstart"></owl:sameAs>
+    </rdf:Property>
+    <rdf:Property rdf:about="http://vocab.ox.ac.uk/projectfunding#endDate">
+        <rdfs:label xml:lang="en">endDate</rdfs:label>
+        <rdfs:comment>The date on which this event/process stopped</rdfs:comment>
+        <rdfs:domain>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+				    <owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Project"/>
+				    <owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#Funding"/>
+				    <owl:Class rdf:about="http://vocab.ox.ac.uk/projectfunding#FundingBody"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:domain>
+        <rdfs:range rdf:resource="xsd:Date"/>
+        <rdfs:isDefinedBy rdf:resource="http://vocab.ox.ac.uk/projectfunding#"/>
+        <owl:sameAs rdf:resource="http://www.w3.org/2002/12/cal/ical#dtend"></owl:sameAs>
+    </rdf:Property>
+</rdf:RDF>
