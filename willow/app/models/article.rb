@@ -20,7 +20,7 @@ class Article < ActiveFedora::Base
   property :apc, predicate: RioxxTerms.apc do |index|
     index.as :stored_searchable
   end
-  property :version, predicate: RioxxTerms.version do |index|
+  property :tagged_version, predicate: RioxxTerms.version do |index|
     index.as :stored_searchable, :facetable
   end
   property :date, predicate: ::RDF::Vocab::DC.date, class_name:"DateStatement"

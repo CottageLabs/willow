@@ -69,8 +69,8 @@ class SolrDocument
     self[Solrizer.solr_name('apc', :stored_searchable)]
   end
 
-  def version
-    self[Solrizer.solr_name('version', :stored_searchable)]
+  def tagged_version
+    self[Solrizer.solr_name('tagged_version', :stored_searchable)]
   end
 
   def project

@@ -4,7 +4,7 @@ module CurationConcerns
   class ArticleForm < Sufia::Forms::WorkForm
     self.model_class = ::Article
     self.terms += [:creator_nested, :resource_type, :doi, :coverage, :apc, :date,
-      :version, :rights_nested, :subject_nested, :relation, :project, :admin_metadata]
+      :tagged_version, :rights_nested, :subject_nested, :relation, :project, :admin_metadata]
     self.terms -= [:creator, :rights, :contributor, :date_created,
       :identifier, :based_near, :related_url, :subject]
     self.required_fields += [:creator_nested, :publisher, :date, :resource_type]

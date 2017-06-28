@@ -63,7 +63,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name("based_near", :facetable), label: "Location", limit: 5
     config.add_facet_field solr_name("publisher", :facetable), label: "Publisher", limit: 5
     config.add_facet_field solr_name("funder", :facetable), label: "Publisher", limit: 5
-    config.add_facet_field solr_name("version", :facetable), label: "Publisher", limit: 5
+    config.add_facet_field solr_name("tagged_version", :facetable), label: "Publisher", limit: 5
     config.add_facet_field solr_name("file_format", :facetable), label: "File Format", limit: 5
 
     # Have BL send all facet field names to Solr, which has been the default
@@ -140,7 +140,7 @@ class CatalogController < ApplicationController
     #Add article show fields
     config.add_show_field solr_name("coverage", :stored_searchable), label: "Coverage"
     config.add_show_field solr_name("apc", :stored_searchable), label: "APC"
-    config.add_show_field solr_name("version", :stored_searchable), label: "Version"
+    config.add_show_field solr_name("tagged_version", :stored_searchable), label: "Version"
     config.add_show_field solr_name("project_nested", :stored_searchable), label: "Project"
 
     # "fielded" search configuration. Used by pulldown among other places.
