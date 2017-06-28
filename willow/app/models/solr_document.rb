@@ -60,4 +60,20 @@ class SolrDocument
   def admin_metadata
     self[Solrizer.solr_name('admin_metadata', :displayable)]
   end
+
+  def coverage
+    self[Solrizer.solr_name('coverage', :stored_searchable)]
+  end
+
+  def apc
+    self[Solrizer.solr_name('apc', :stored_searchable)]
+  end
+
+  def version
+    self[Solrizer.solr_name('version', :stored_searchable)]
+  end
+
+  def project
+    self[Solrizer.solr_name('project', :displayable)]
+  end
 end
