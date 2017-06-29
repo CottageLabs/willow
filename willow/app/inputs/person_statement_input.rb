@@ -71,6 +71,11 @@ protected
     out << "<div class='row'>"
 
     # --- role
+    if object.model_class == ::Dataset
+        options = DatasetAgentRolesService.select_all_options
+    else
+        options = ArticleAgentRolesService.select_all_options
+    end
     field = :role
     field_name = name_for(attribute_name, index, field)
     field_value = person_statement.send(field).first
@@ -80,7 +85,7 @@ protected
     out << '  </div>'
 
     out << "  <div class='col-md-9'>"
-    out << template.select_tag(field_name, template.options_for_select(DatasetAgentRolesService.select_all_options, field_value), prompt: 'Select role played', label: '', class: 'select form-control')
+    out << template.select_tag(field_name, template.options_for_select(options, field_value), prompt: 'Select role played', label: '', class: 'select form-control')
     out << '  </div>'
 
     # --- delete checkbox
