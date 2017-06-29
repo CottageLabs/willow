@@ -37,20 +37,24 @@ class SolrDocument
     self[Solrizer.solr_name('other_title', :displayable)]
   end
 
-  def creator
-    self[Solrizer.solr_name('creator', :displayable)]
+  def creator_nested
+    self[Solrizer.solr_name('creator_nested', :displayable)]
   end
 
   def date
     self[Solrizer.solr_name('date', :displayable)]
   end
 
+  def rights_nested
+    self[Solrizer.solr_name('rights_nested', :displayable)]
+  end
+
   def relation
     self[Solrizer.solr_name('relation', :displayable)]
   end
 
-  def subject
-    self[Solrizer.solr_name('relation', :displayable)]
+  def subject_nested
+    self[Solrizer.solr_name('subject_nested', :displayable)]
   end
 
   def admin_metadata

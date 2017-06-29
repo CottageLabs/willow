@@ -72,6 +72,20 @@ GEOBLACKLIGHT_SEED=false
 
 # Serve static assets
 RAILS_SERVE_STATIC_FILES=true
+
+# Set to true to enable Willow to stream events to Amazon AWS Kinesis
+AWS_MESSAGE_STREAM=false
+
+# Region, shards, stream name and partition settings
+AWS_MESSAGE_STREAM_REGION=eu-west-1
+AWS_MESSAGE_STREAM_NAME=willow-message-stream
+AWS_MESSAGE_STREAM_SHARD_COUNT=1
+AWS_MESSAGE_STREAM_PARTITION_KEY=willow
+
+# Amazon AWS credentials
+AWS_ACCESS_KEY_ID=<some AWS access key>
+AWS_SECRET_ACCESS_KEY=<some AWS secret key>
+
 ```
 
 __example .env.development file__
