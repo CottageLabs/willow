@@ -6,6 +6,8 @@ services:
   db:
     volumes:
       - ./db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "5432:5432"
     restart: "no"
 
   solr:
@@ -27,6 +29,8 @@ services:
         - RAILS_ENV=development
     env_file:
       - .env.development
+    ports:
+      - "3000:3000"
     volumes:
       - ./willow:/willow.development
       - ./willow_sword:/willow_sword # necessary for running wilow_sword locally. NB: it must be named "/willow_sword".
