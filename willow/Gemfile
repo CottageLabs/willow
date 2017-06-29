@@ -45,6 +45,8 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+  # helps enforce good coding standards
+  gem 'rubocop', '~> 0.49.1', require: false
 end
 
 
@@ -58,6 +60,7 @@ gem 'rsolr', '~> 1.0'
 gem 'devise'
 gem 'devise-guests', '~> 0.5'
 gem 'hydra-role-management'
+gem 'aws-sdk', '~> 2.9.15'
 
 gem 'puma', '~> 3.8.2'
 gem 'tinymce-rails-imageupload', '4.0.17.beta.2' # we need this specific version to fix an asset compilation problem
