@@ -125,8 +125,9 @@ services:
       - "443:443"
     volumes:
       - nginx_conf:/etc/nginx/conf.d/
-      - nginx_certs:/etc/nginx/certs/
       - nginx_html:/usr/share/nginx/html/
+      #- nginx_certs:/etc/nginx/certs/
+
 
 
   # docker-gen reads the docker containers and generates an nginx proxy configuration file on the fly

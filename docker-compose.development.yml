@@ -48,5 +48,26 @@ services:
       - ./geoblacklight:/geoblacklight.development
     restart: "no"
 
+  nginx:
+    depends_on:
+      - ssl
+    volumes:
+      - self_certs:/etc/nginx/certs/
+
+  docker-gen:
+    depends_on:
+      - ssl
+    volumes:
+      - self_certs:/etc/nginx/certs/
+
   ssl:
-    image: alpine # no ssl in development mode
+    build: self_signed_ssl/
+    environment:
+      - CERTIFICATES=DNS:willow.cottagelabs.com|willow.cottagelabs.com|/certs/willow.cottagelabs.com.crt|/certs/willow.cottagelabs.com.key;
+                     DNS:willow.cottagelabs.com|willow.cottagelabs.com|/certs/default.crt|/certs/default.key;
+                     DNS:geoblacklight.cottagelabs.com|geoblacklight.cottagelabs.com|/certs/geoblacklight.cottagelabs.com.crt|/certs/geoblacklight.cottagelabs.com.key;
+    volumes:
+      - self_certs:/certs
+
+volumes:
+  self_certs: {}
