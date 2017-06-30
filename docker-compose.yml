@@ -72,7 +72,8 @@ services:
       - .env.production
       - .env.willow.hosting
     environment:
-      - VIRTUAL_HOST=willow.cottagelabs.com,willow.local
+      # Internal proxy http port for Willow (not generally visible to the world)
+      # NB: this must match the expose port below
       - VIRTUAL_PORT=3000
     links:
       - redis
@@ -86,6 +87,8 @@ services:
       - redis
     volumes:
       - derivatives:/derivatives
+    expose:
+      - "${VIRTUAL_PORT:-3000}" # NB: this must match VIRTUAL_PORT in the environment section above
     restart: on-failure
     deploy:
       resources:
@@ -134,8 +137,8 @@ services:
   docker-gen:
     image: jwilder/docker-gen
     command: -notify-sighup nginx -watch /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
-    environment:
-      - DEFAULT_HOST=willow.cottagelabs.com
+    env_file:
+      - .env.willow.hosting
     volumes:
       - nginx_conf:/etc/nginx/conf.d/
       - /var/run/docker.sock:/tmp/docker.sock:ro

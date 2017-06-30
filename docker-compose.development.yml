@@ -30,7 +30,7 @@ services:
     env_file:
       - .env.development
     ports:
-      - "3000:3000"
+      - "${VIRTUAL_PORT:-3000}:${VIRTUAL_PORT:-3000}"
     volumes:
       - ./willow:/willow.development
       - ./willow_sword:/willow_sword # necessary for running wilow_sword locally. NB: it must be named "/willow_sword".
@@ -62,10 +62,8 @@ services:
 
   ssl:
     build: self_signed_ssl/
-    environment:
-      - CERTIFICATES=DNS:willow.cottagelabs.com|willow.cottagelabs.com|/certs/willow.cottagelabs.com.crt|/certs/willow.cottagelabs.com.key;
-                     DNS:willow.cottagelabs.com|willow.cottagelabs.com|/certs/default.crt|/certs/default.key;
-                     DNS:geoblacklight.cottagelabs.com|geoblacklight.cottagelabs.com|/certs/geoblacklight.cottagelabs.com.crt|/certs/geoblacklight.cottagelabs.com.key;
+    env_file:
+      - .env.willow.hosting
     volumes:
       - self_certs:/certs
 

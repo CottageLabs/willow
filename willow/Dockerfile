@@ -75,7 +75,5 @@ RUN if [ "$RAILS_ENV" = "production" ]; then \
 
 WORKDIR $APP_WORKDIR
 
-# We should expose port 3000 to the docker network to allow the nginx-proxy to read it
-EXPOSE 3000
 
 CMD ["/bin/docker-entrypoint.sh"]
