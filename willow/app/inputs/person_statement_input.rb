@@ -7,10 +7,11 @@ protected
 
     person_statement = value
 
+
     # --- first_name
     field = :first_name
     field_name = name_for(attribute_name, index, field)
-    field_value = get_field_value(person_statement, field, '')
+    field_value = person_statement.send(field).first
 
     out << "<div class='row'>"
     out << "  <div class='col-md-3'>"
@@ -25,7 +26,7 @@ protected
     # --- last_name
     field = :last_name
     field_name = name_for(attribute_name, index, field)
-    field_value = get_field_value(person_statement, field, '')
+    field_value = person_statement.send(field).first
 
     out << "<div class='row'>"
     out << "  <div class='col-md-3'>"
@@ -39,8 +40,8 @@ protected
 
     # --- orcid
     field = :orcid
-    field_value = get_field_value(person_statement, field, '')
     field_name = name_for(attribute_name, index, field)
+    field_value = person_statement.send(field).first
 
     out << "<div class='row'>"
     out << "  <div class='col-md-3'>"
@@ -54,8 +55,8 @@ protected
 
     # --- affiliation
     field = :affiliation
-    field_value = get_field_value(person_statement, field, '')
     field_name = name_for(attribute_name, index, field)
+    field_value = person_statement.send(field).first
 
     out << "<div class='row'>"
     out << "  <div class='col-md-3'>"
@@ -78,7 +79,7 @@ protected
     end
     field = :role
     field_name = name_for(attribute_name, index, field)
-    field_value = get_field_value(person_statement, field, '')
+    field_value = person_statement.send(field).first
 
     out << "  <div class='col-md-3'>"
     out << template.label_tag(field_name, field.to_s.humanize, required: false)

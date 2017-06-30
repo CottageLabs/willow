@@ -12,7 +12,7 @@ class RightsStatementInput < NestedAttributesInput
       # --- webpage
       field = :webpage
       field_name = name_for(attribute_name, index, field)
-      field_value = get_field_value(rights_statement, field, '')
+      field_value = rights_statement.send(field).first
 
       out << "<div class='row'>"
       out << "  <div class='col-md-12'>"
@@ -40,8 +40,8 @@ class RightsStatementInput < NestedAttributesInput
 
       # --- start date
       field = :start_date
-      field_value = rights_statement.send(field).first
       field_name = name_for(attribute_name, index, field)
+      field_value = rights_statement.send(field).first
 
       out << "  <div class='col-md-3'>"
       out << template.label_tag(field_name, field.to_s.humanize, required: false)

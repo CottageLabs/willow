@@ -12,7 +12,7 @@ protected
     # --- label
     field = :label
     field_name = name_for(attribute_name, index, field)
-    field_value = get_field_value(subject_statement, field, '')
+    field_value = subject_statement.send(field).first
 
     out << "  <div class='col-md-12'>"
     out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name))
