@@ -29,8 +29,6 @@ services:
         - RAILS_ENV=development
     env_file:
       - .env.development
-    ports:
-      - "${VIRTUAL_PORT:-3000}:${VIRTUAL_PORT:-3000}"
     volumes:
       - ./willow:/willow.development
       - ./willow_sword:/willow_sword # necessary for running wilow_sword locally. NB: it must be named "/willow_sword".
@@ -49,23 +47,12 @@ services:
     restart: "no"
 
   nginx:
-    depends_on:
-      - ssl
     volumes:
       - self_certs:/etc/nginx/certs/
 
   docker-gen:
-    depends_on:
-      - ssl
     volumes:
       - self_certs:/etc/nginx/certs/
 
-  ssl:
-    build: self_signed_ssl/
-    env_file:
-      - .env.willow.hosting
-    volumes:
-      - self_certs:/certs
 
-volumes:
-  self_certs: {}
+
