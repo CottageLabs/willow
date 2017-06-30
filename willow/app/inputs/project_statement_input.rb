@@ -10,6 +10,7 @@ protected
     # --- identifier
     field = :identifier
     field_name = name_for(attribute_name, index, field)
+    field_id = id_for(attribute_name, index, field)
     field_value = project_statement.send(field).first
 
     out << "<div class='row'>"
@@ -18,13 +19,15 @@ protected
     out << '  </div>'
 
     out << "  <div class='col-md-9'>"
-    out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name))
+    out << @builder.text_field(field_name,
+        options.merge(value: field_value, name: field_name, id: field_id))
     out << '  </div>'
     out << '</div>' # row
 
     # --- title
     field = :title
     field_name = name_for(attribute_name, index, field)
+    field_id = id_for(attribute_name, index, field)
     field_value = project_statement.send(field).first
 
     out << "<div class='row'>"
@@ -33,13 +36,15 @@ protected
     out << '  </div>'
 
     out << "  <div class='col-md-9'>"
-    out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name))
+    out << @builder.text_field(field_name,
+        options.merge(value: field_value, name: field_name, id: field_id))
     out << '  </div>'
     out << '</div>' # row
 
     # --- funder_name
     field = :funder_name
     field_name = name_for(attribute_name, index, field)
+    field_id = id_for(attribute_name, index, field)
     field_value = project_statement.send(field).first
 
     out << "<div class='row'>"
@@ -48,13 +53,15 @@ protected
     out << '  </div>'
 
     out << "  <div class='col-md-9'>"
-    out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name))
+    out << @builder.text_field(field_name,
+        options.merge(value: field_value, name: field_name, id: field_id))
     out << '  </div>'
     out << '</div>' # row
 
     # --- funder_id
     field = :funder_id
     field_name = name_for(attribute_name, index, field)
+    field_id = id_for(attribute_name, index, field)
     field_value = project_statement.send(field).first
 
     out << "<div class='row'>"
@@ -63,7 +70,8 @@ protected
     out << '  </div>'
 
     out << "  <div class='col-md-9'>"
-    out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name))
+    out << @builder.text_field(field_name,
+        options.merge(value: field_value, name: field_name, id: field_id))
     out << '  </div>'
     out << '</div>' # row
 
@@ -72,22 +80,22 @@ protected
     # --- grant_number
     field = :grant_number
     field_name = name_for(attribute_name, index, field)
+    field_id = id_for(attribute_name, index, field)
     field_value = project_statement.send(field).first
 
     out << "  <div class='col-md-3'>"
     out << template.label_tag(field_name, 'Grant number', required: false)
     out << '  </div>'
 
-    out << "  <div class='col-md-9'>"
-    out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name))
+    out << "  <div class='col-md-6'>"
+    out << @builder.text_field(field_name,
+        options.merge(value: field_value, name: field_name, id: field_id))
     out << '  </div>'
 
     # --- delete checkbox
-    # if !value.new_record?
-    #   out << "  <div class='col-md-3'>"
-    #   out << destroy_widget(attribute_name, index)
-    #   out << '  </div>'
-    # end
+    out << "  <div class='col-md-3'>"
+    out << destroy_widget(attribute_name, index)
+    out << '  </div>'
 
     out << '</div>' # row
     out

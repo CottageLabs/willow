@@ -10,6 +10,7 @@ protected
     # --- label
     field = :label
     field_name = name_for(attribute_name, index, field)
+    field_id = id_for(attribute_name, index, field)
     field_value = relation_statement.send(field).first
 
     out << "<div class='row'>"
@@ -18,13 +19,15 @@ protected
     out << '  </div>'
 
     out << "  <div class='col-md-9'>"
-    out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name))
+    out << @builder.text_field(field_name,
+        options.merge(value: field_value, name: field_name, id: field_id))
     out << '  </div>'
     out << '</div>' # row
 
     # --- url
     field = :url
     field_name = name_for(attribute_name, index, field)
+    field_id = id_for(attribute_name, index, field)
     field_value = relation_statement.send(field).first
 
     out << "<div class='row'>"
@@ -33,13 +36,15 @@ protected
     out << '  </div>'
 
     out << "  <div class='col-md-9'>"
-    out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name))
+    out << @builder.text_field(field_name,
+        options.merge(value: field_value, name: field_name, id: field_id))
     out << '  </div>'
     out << '</div>' # row
 
     # # --- identifier
     # field = :identifier
     # field_value = relation_statement.send(field).first
+    # field_id = id_for(attribute_name, index, field)
     # field_name = name_for(attribute_name, index, field)
 
     # out << "<div class='row'>"
@@ -48,7 +53,8 @@ protected
     # out << '  </div>'
 
     # out << "  <div class='col-md-9'>"
-    # out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name))
+    # out << @builder.text_field(field_name,
+    #     options.merge(value: field_value, name: field_name, id: field_id))
     # out << '  </div>'
     # out << '</div>' # row
 
@@ -57,23 +63,23 @@ protected
 
     # --- relationship_name
     field = :relationship_name
-    field_value = relation_statement.send(field).first
     field_name = name_for(attribute_name, index, field)
+    field_id = id_for(attribute_name, index, field)
+    field_value = relation_statement.send(field).first
 
     out << "  <div class='col-md-3'>"
     out << template.label_tag(field_name, 'Relationship', required: false)
     out << '  </div>'
 
-    out << "  <div class='col-md-9'>"
-    out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name))
+    out << "  <div class='col-md-6'>"
+    out << @builder.text_field(field_name,
+        options.merge(value: field_value, name: field_name, id: field_id))
     out << '  </div>'
 
     # --- delete checkbox
-    # if !value.new_record?
-    #   out << "  <div class='col-md-3'>"
-    #   out << destroy_widget(attribute_name, index)
-    #   out << '  </div>'
-    # end
+    out << "  <div class='col-md-3'>"
+    out << destroy_widget(attribute_name, index)
+    out << '  </div>'
 
     out << '</div>' # last row
     out
