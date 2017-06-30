@@ -12,7 +12,7 @@ class RightsStatementInput < NestedAttributesInput
       # --- webpage
       field = :webpage
       field_name = name_for(attribute_name, index, field)
-      field_value = rights_statement.send(field).first
+      field_value = get_field_value(rights_statement, field, '')
 
       out << "<div class='row'>"
       out << "  <div class='col-md-12'>"

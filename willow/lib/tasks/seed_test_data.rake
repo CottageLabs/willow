@@ -1,166 +1,237 @@
 namespace :willow do
-  desc 'Seeds test data, usage: willow:seed_test_data["email@example.com", "password", "name"]'
-  task :"seed_test_data", [:email, :password, :name] => :environment do |task, args|
-    email = args.email
-    password = args.password
-    name = args.name
+  desc 'Seeds test data, will read from specified file usage: willow:seed_test_data["seed_file.json"]'
+  task :"seed_test_data", [:seedfile] => :environment do |task, args|
 
-    unless email.present?
-      email = "admin@willow"
-      Rails.logger.warn("Email not provided, using default: #{email}")
+    seedfile = args.seedfile
+    unless args.seedfile.present?
+      seedfile = "/seed/demo.json"
     end
 
-    unless password.present?
-      password = "password"
-      Rails.logger.warn("Password not provided, using default: #{password}")
+    if (File.exists?(seedfile))
+      puts("Running seedfile: #{seedfile}")
+    else
+      abort("ERROR: missing seedfile: #{seedfile}")
     end
 
-    unless name.present?
-      name = "Willow Admin"
-      Rails.logger.warn("Name not provided, using default: #{name}")
-    end
+    seed = JSON.parse(File.read(seedfile))
 
-    # As a general principal for this seed data, use fixed IDs and first_or_create to prevent duplicates if running multiple times
+    ##############################################
+    # make the requested users
+    ######
 
+    depositor = false
     admin = Role.where(name: "admin").first_or_create!
+    seed["users"].each do |user|
+      newUser = User.where(email: user["email"]).first_or_create!(password: user["password"], display_name: user["name"])
 
-    user = User.where(email: email).first_or_create!(password: password, display_name: name)
+      if user["role"] == "admin"
+        unless admin.users.include?(newUser)
+          admin.users << newUser
+          admin.save!
+        end
+      end
 
-    unless admin.users.include?(user)
-      admin.users << user
-      admin.save!
+      if user.has_key?("depositor")
+        depositor = newUser
+      end
     end
 
-    marketing_text = ContentBlock.where(name: "marketing_text").first_or_create!
-    unless marketing_text.value.present?
-      marketing_text.value="<div style=\"font-size: 0.5em; padding: 1em; \"><p>Cottage Labs is pleased to offer repository solutions using cutting-edge open source technology <a href=\"https://projecthydra.org/\">Hydra</a> and <a href=\"http://fedorarepository.org/\">Fedora</a>. We can help you from initial requirements, through customisation and integration with your systems, to long term support and maintenance.</p>
-        <p>Whether you are a small institution looking to get the essential features out-of-the-box, or a large, research-intensive organisation looking for customisations and integration with local systems, don't hesitate to&nbsp;<a href=\"mailto:willow@cottagelabs.com\">contact us</a> to find out what we can do for you.</p>
-        <p>Read more about <a href=\"https://cottagelabs.com/willow\">Willow</a> on our website or take a look around this demo system.</p></div>"
-      marketing_text.save!
+    # finished creating users
+    ##############################################
+
+    ##############################################
+    # populate the site text
+    ######
+
+    seed["site_text"].each do |key, array|
+      html = array.join("")
+      if key == "marketing"
+        marketing_text = ContentBlock.where(name: "marketing_text").first_or_create!
+        marketing_text.value=html
+        marketing_text.save!
+      elsif key == "about"
+        about_page = ContentBlock.where(name: "about_page").first_or_create!
+        about_page.value=html
+        about_page.save!
+      end
     end
 
-    about_page = ContentBlock.where(name: "about_page").first_or_create!
-    unless about_page.value.present?
-      about_page.value="<p>We have a set of components from the Hydra ecosystem that we support, and we will:</p>
-        <ul>
-        <li>Help you understand your requirements, model your data, and plan your repository system around you</li>
-        <li>Host and maintain everything for you, as your fully featured repository system</li>
-        <li>Support, maintain and extend your existing system, if you prefer</li>
-        <li>Get you migrated from any legacy systems in place</li>
-        <li>Do bespoke development, and help you get integrated with 3rd party systems</li>
-        </ul>
-        <p>We can join you at any stage of your existing project, including:</p>
-        <ul>
-        <li>Initial requirements capture and analysis</li>
-        <li>Data modelling and system architecture</li>
-        <li>Implementation and deployment of the software stack</li>
-        <li>Bespoke development, creating or customising existing components</li>
-        <li>3rd party system integration - authentication, deposit environments, CRIS and CMS</li>
-        <li>Maintenance, upgrades and migrations</li>
-        </ul>
-        <p>Our developers have many years experience in the repository, research data management and research information space, and will bring that to your project.</p>
-        <p>Read more about&nbsp;<a href=\"https://cottagelabs.com/willow\">Willow</a>&nbsp;on our website or take a look around this demo system.</p>
-        <h2>About this demo</h2>
-        <p>The site you're looking at right now is built with&nbsp;<a href=\"http://sufia.io/\">Sufia</a>, a repository front-end which leverages the full power of&nbsp;<a href=\"https://projecthydra.org/\">Hydra</a>.</p>
-        <p>Sufia supports functionality such as:</p>
-        <ul>
-        <li>Deposit and deposit workflows</li>
-        <li>Access controls</li>
-        <li>User profiles</li>
-        <li>Collection and file management</li>
-        <li>Batch editing</li>
-        <li>Faceted search and browse</li>
-        <li>Preservation functions</li>
-        <li>... and much more; head over to their&nbsp;<a href=\"http://sufia.io/\">website</a>&nbsp;to learn more</li>
-        </ul>
-        <p>As we expand the components that form part of Willow, we'll add more to this demonstrator, so you can keep up to date with what's available.</p>"
-      about_page.save!
+    # finished populating site text
+    ##############################################
+
+
+    ##############################################
+    # Create administrative sets
+    ######
+
+    administrative_sets = {}
+    if seed.has_key?("administrative_sets")
+      seed["administrative_sets"].each do |administrative_set|
+        arguments = {}
+        administrative_set["metadata"].each do |key, val|
+          arguments[key.to_sym] = val
+        end
+
+        as = AdminSet.where(id: administrative_set["id"]).first || AdminSet.create!(
+          id: administrative_set["id"],
+          **arguments)
+
+        if administrative_set.has_key?("permission_template")
+          pt = Sufia::PermissionTemplate
+                   .where(admin_set_id: administrative_set["id"],
+                          workflow_name: administrative_set["permission_template"]["workflow_name"])
+                   .first_or_create!
+
+          if administrative_set["permission_template"].has_key?("permission_template_access")
+            administrative_set["permission_template"]["permission_template_access"].each do |pta|
+              Sufia::PermissionTemplateAccess
+                  .where(permission_template: pt,
+                         agent_type: pta["agent_type"],
+                         agent_id: pta["agent_id"],
+                         access: pta["access"])
+                  .first_or_create!
+            end
+          end
+        end
+
+        administrative_sets[administrative_set["id"]] = as
+      end
     end
 
-    # use the example files in the lib/assets folder
-    example_files = Dir["lib/assets/example*"]
+    # finished administrative sets
+    ##############################################
 
-    for collection_id in (2).downto(1) # count backwards as it looks nicer in Sufia
-      collection = Collection.where(id: "collection-#{collection_id}").first || Collection.create!(
-          id: "collection-#{collection_id}",
-          title: ["Willow Journal of Collection #{collection_id}"],
-          resource_type: ["Journal"],
-          creator: [ ["Bloggs, Joesphina", "Smith, Bob", "Jones, Frederick"][collection_id % 3] ],
-          description: ["This is a collection of articles from the Willow Journal of Collection #{collection_id}"],
-          keyword: ["willow", "journal", "collection #{collection_id}"],
-          rights: ["http://www.europeana.eu/portal/rights/rr-r.html"],
-          publisher: ["Willow Publishing Group"],
-          date_created: ["200#{collection_id}-0#{collection_id}-0#{collection_id}"],
-          subject: ["willow journal"],
-          language: ["English"],
-          based_near: ["UK"],
-          edit_users: [user],
-          visibility: "open",
-          depositor: user.email
-      )
 
-      for work_id in (8).downto(1) # count backwards as it looks nicer in Sufia
-        work = Work.where(id: "work-#{collection_id}-#{work_id}").first || Work.create!(
-          id: "work-#{collection_id}-#{work_id}",
-          title: ["Article #{collection_id}-#{work_id}"],
-          resource_type: ["Article"],
-          creator: ["Author #{(work_id % 3)+1}"],
-          contributor: ["Contributor #{(work_id % 3)+1}"],
-          description: ["Article #{work_id} in the #{collection.title.first}"],
-          keyword: ["article #{work_id}"],
-          rights: ["http://creativecommons.org/publicdomain/zero/1.0/"],
-          publisher: [["Willow Publishing Group", "Blue Skies Publishing"][work_id % 2]],
-          date_created: ["2017-0#{collection_id}-#{work_id}"],
-          subject: ["willow article"],
-          language: ["English"],
-          based_near: [["London", "Cardiff", "Oxford", "Tring", "Edinburgh", "Monte Carlo"][work_id % 6]],
-          edit_users: [user],
-          visibility: "open",
-          depositor: user.email
+
+    ##############################################
+    # Configure workflow_responsabilities
+    ######
+
+    if seed.has_key?("workflow_responsibilities")
+      seed["workflow_responsibilities"].each do |workflow_responsibility|
+        user = User.where(email: workflow_responsibility["user_email"]).first
+        agent = Sipity::Agent.where(proxy_for: user).first_or_create!
+        workflow = Sipity::Workflow.where(name: workflow_responsibility["workflow_name"]).first
+        role = Sipity::Role.where(name: workflow_responsibility["role_name"]).first
+        workflow_role = Sipity::WorkflowRole.where(workflow: workflow, role: role).first
+
+        if user.present? && agent.present? && workflow.present? && role.present? && workflow_role.present?
+          Sipity::WorkflowResponsibility.where(agent: agent, workflow_role: workflow_role).first_or_create!
+        else
+          abort("Unable to create workflow_responsibility : user: #{user}, agent: #{agent}, workflow: #{workflow}, role: #{role}, workflow_role: #{workflow_role}")
+        end
+      end
+    end
+
+    # finished workflow_responsabilities
+    ##############################################
+
+
+    ##############################################
+    # Create some collections
+    ######
+
+    cols = {}
+    if seed.has_key?("collections")
+      seed["collections"].each do |collection|
+        arguments = {}
+        collection["metadata"].each do |key, val|
+          arguments[key.to_sym] = val
+        end
+        col = Collection.where(id: collection["id"]).first || Collection.create!(
+            id: collection["id"],
+            edit_users: [depositor],
+            depositor: depositor.email,
+            **arguments
+        )
+        cols[collection["id"]] = col
+      end
+    end
+
+    # finished creating collections
+    ##############################################
+
+    ##############################################
+    # Create some works
+    ######
+
+    if seed.has_key?("works")
+      seed["works"].each do |work|
+        arguments = {}
+        work["metadata"].each do |key, val|
+          arguments[key.to_sym] = val
+        end
+
+        # first create the work
+        newWork = Work.where(id: work["id"]).first || Work.create!(
+          id: work["id"],
+          edit_users: [depositor],
+          depositor: depositor.email,
+          **arguments
         )
 
+        # then add any files
+        if work.has_key?("files")
+          work["files"].each do |file|
+            fargs = {}
+            file["metadata"].each do |key, val|
+              fargs[key.to_sym] = val
+            end
 
-        example_file = example_files[work_id % example_files.count]
-        fileset = FileSet.where(id: "fileset-#{collection_id}-#{work_id}").first || FileSet.create!(
-          id: "fileset-#{collection_id}-#{work_id}",
-          label: File.basename(example_file),
-          title: ["Fileset #{collection_id}-#{work_id} - #{File.basename(example_file)}"],
-          edit_users: [user],
-          visibility: "open",
-          depositor: user.email
-        )
+            fileset_id = "#{newWork.id}-#{file['id']}"
+            label = File.basename(file["path"])
+            fileset = FileSet.where(id: fileset_id).first || FileSet.create!(
+                id: fileset_id,
+                label: label,
+                title: ["Fileset #{fileset_id} - #{label}"],
+                edit_users: [depositor],
+                depositor: depositor.email,
+                **fargs
+            )
 
+            unless newWork.members.include?(fileset)
+              # NB ordered_members is important here; members will not appear in blacklight!
+              newWork.ordered_members << fileset
+              fileset.save!
+            end
 
-        unless collection.members.include?(work)
-          collection.ordered_members << work
-          collection.save!
+            unless fileset.files.any?
+              Hydra::Works::UploadFileToFileSet.call(fileset, open(file["path"]))
+              CreateDerivativesJob.perform_now(fileset, fileset.files.first.id)
+            end
+
+            unless newWork.representative_id.present?
+              newWork.representative_id = fileset.id
+              newWork.thumbnail_id = fileset.thumbnail_id
+              newWork.save!
+            end
+          end
         end
 
-        unless work.members.include?(fileset)
-          # NB ordered_members is important here; members will not appear in blacklight!
-          work.ordered_members << fileset
-          fileset.save!
+        # then add to any collections
+        if work.has_key?("collections")
+          work["collections"].each do |collection_id|
+            collection = cols[collection_id]
+            unless collection.members.include?(newWork)
+              collection.ordered_members << newWork
+              collection.save!
+            end
+          end
         end
 
-        unless fileset.files.any?
-          Hydra::Works::UploadFileToFileSet.call(fileset, open(example_file))
-          CreateDerivativesJob.perform_now(fileset, fileset.files.first.id)
+        # feature the work if requested
+        if work.has_key?("featured") && work["featured"] == true
+          FeaturedWork.where(work_id: work["id"]).first_or_create!
         end
 
-        unless work.representative_id.present?
-          work.representative_id = fileset.id
-          work.thumbnail_id = fileset.thumbnail_id
-          work.save!
-        end
+        newWork.save!
 
+        # break # this line is handy for running seeds quickly, as it creates just one work
+      end
+    end
 
-        # feature a few select works
-        if work_id == collection_id
-          FeaturedWork.where(work_id: work.id).first_or_create!
-        end
-
-      end # work
-    end # controller
+    # finished creating works
+    ##############################################
 
   end
 end

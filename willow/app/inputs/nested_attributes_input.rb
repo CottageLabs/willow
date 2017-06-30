@@ -10,6 +10,13 @@ class NestedAttributesInput < MultiValueInput
 
   protected
 
+    def get_field_value(container, field, default)
+      if container.include?(field)
+        return container.send(field).first
+      end
+      return default
+    end
+
     # Delegate this completely to the form.
     # def collection
     #   @collection ||= Array.wrap(object[attribute_name]).reject { |value| value.to_s.strip.blank? }
@@ -40,6 +47,9 @@ class NestedAttributesInput < MultiValueInput
       options[:'aria-labelledby'] = label_id
 
       @rendered_first_element = true
+
+      print "RICHARD SAYS"
+      print value.attributes
 
       out = ''
       out << build_components(attribute_name, value, index, options)
