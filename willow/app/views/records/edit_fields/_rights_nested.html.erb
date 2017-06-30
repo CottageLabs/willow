@@ -2,8 +2,7 @@
   <%= f.input :rights_nested,
     as: :rights_statement,
     input_html: {
-      class: 'form-control',
-      multiple: true,
+      class: '',
       data: {name: :rights_nested}
     },
     required: f.object.required?(:rights_nested),
