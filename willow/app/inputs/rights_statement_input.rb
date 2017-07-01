@@ -48,7 +48,8 @@ class RightsStatementInput < NestedAttributesInput
       out << '  </div>'
 
       out << "  <div class='col-md-6'>"
-      out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name))
+      out << @builder.text_field(field_name,
+        options.merge(value: field_value, name: field_name, data: { provide:'datepicker' }))
       out << '  </div>'
 
       # delete checkbox

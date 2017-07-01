@@ -25,7 +25,8 @@ protected
     field_value = date_statement.send(field).first
 
     out << "  <div class='col-md-9'>"
-    out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name))
+    out << @builder.text_field(field_name,
+        options.merge(value: field_value, name: field_name, data: { provide:'datepicker' }))
     out << '  </div>'
 
     # --- delete checkbox
