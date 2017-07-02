@@ -12,19 +12,15 @@ div#announcement {
   background-image: none !important;
 }
 
-
 form .listing {
-  list-style: none;
-}
-
-li.field-wrapper {
   list-style: none;
 }
 
 .fixedsticky-off, .fixedsticky-on {
   position: sticky !important;
 }
-li.field-wrapper {
-  list-style: none;
-}
 
+form .field-wrapper label[required="required"]::after {
+  content: " *";
+  color: red;
+}
