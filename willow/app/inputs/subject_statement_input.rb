@@ -9,7 +9,7 @@ protected
 
     # Inherit required for fields validated in nested attributes
     required  = false
-    if object.required?(:subject_nested)
+    if object.required?(:subject_nested) and index == 0
       required = true
     end
 

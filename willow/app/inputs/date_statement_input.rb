@@ -9,7 +9,7 @@ protected
 
     # Inherit required for fields validated in nested attributes
     required  = false
-    if object.required?(:date)
+    if object.required?(:date) and index == 0
       required = true
     end
 
