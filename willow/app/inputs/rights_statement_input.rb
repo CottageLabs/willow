@@ -9,14 +9,27 @@ class RightsStatementInput < NestedAttributesInput
 
       rights_statement = value
 
+      # Inherit required for fields validated in nested attributes
+      required  = false
+      if object.required?(:rights_nested)
+        required = true
+      end
+
       # --- webpage
       field = :webpage
       field_name = name_for(attribute_name, index, field)
       field_value = rights_statement.send(field).first
 
+      active_options = CurationConcerns::LicenseService.new.select_active_options
       out << "<div class='row'>"
-      out << "  <div class='col-md-12'>"
-      out << template.select_tag(field_name, template.options_for_select(CurationConcerns::LicenseService.new.select_active_options, field_value), prompt: 'Select license', label: '', class: 'select form-control')
+      out << "  <div class='col-md-3'>"
+      out << template.label_tag(field_name, 'License', required: required)
+      out << '  </div>'
+
+      out << "  <div class='col-md-9'>"
+      out << template.select_tag(field_name,
+        template.options_for_select(active_options, field_value),
+        prompt: 'Select license', label: '', class: 'select form-control', required: required)
       out << '  </div>'
       out << '</div>' # row
 
@@ -30,8 +43,8 @@ class RightsStatementInput < NestedAttributesInput
       out << template.label_tag(field_name, 'License statement', required: false)
       out << '  </div>'
 
-      out << "  <div class='col-md-6'>"
-      out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name))
+      out << "  <div class='col-md-9'>"
+      out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name, required: false))
       out << '  </div>'
       out << '</div>' # row
 
@@ -47,9 +60,9 @@ class RightsStatementInput < NestedAttributesInput
       out << template.label_tag(field_name, field.to_s.humanize, required: false)
       out << '  </div>'
 
-      out << "  <div class='col-md-6'>"
+      out << "  <div class='col-md-9'>"
       out << @builder.text_field(field_name,
-        options.merge(value: field_value, name: field_name, data: { provide:'datepicker' }))
+        options.merge(value: field_value, name: field_name, data: { provide:'datepicker' }, required: false))
       out << '  </div>'
 
       # delete checkbox

@@ -7,6 +7,11 @@ protected
 
     person_statement = value
 
+    # Inherit required for fields validated in nested attributes
+    required  = false
+    if object.required?(:creator_nested)
+      required = true
+    end
 
     # --- first_name
     field = :first_name
@@ -15,11 +20,11 @@ protected
 
     out << "<div class='row'>"
     out << "  <div class='col-md-3'>"
-    out << template.label_tag(field_name, field.to_s.humanize, required: false)
+    out << template.label_tag(field_name, field.to_s.humanize, required: required)
     out << '  </div>'
 
     out << "  <div class='col-md-9'>"
-    out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name))
+    out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name, required: required))
     out << '  </div>'
     out << '</div>' # row
 
@@ -30,11 +35,11 @@ protected
 
     out << "<div class='row'>"
     out << "  <div class='col-md-3'>"
-    out << template.label_tag(field_name, field.to_s.humanize, required: false)
+    out << template.label_tag(field_name, field.to_s.humanize, required: required)
     out << '  </div>'
 
     out << "  <div class='col-md-9'>"
-    out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name))
+    out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name, required: required))
     out << '  </div>'
     out << '</div>' # row
 
@@ -45,11 +50,11 @@ protected
 
     out << "<div class='row'>"
     out << "  <div class='col-md-3'>"
-    out << template.label_tag(field_name, field.to_s.humanize, required: false)
+    out << template.label_tag(field_name, field.to_s.humanize, required: required)
     out << '  </div>'
 
     out << "  <div class='col-md-9'>"
-    out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name))
+    out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name, required: required))
     out << '  </div>'
     out << '</div>' # row
 
@@ -64,7 +69,8 @@ protected
     out << '  </div>'
 
     out << "  <div class='col-md-9'>"
-    out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name))
+    out << @builder.text_field(field_name,
+        options.merge(value: field_value, name: field_name, required: false))
     out << '  </div>'
     out << '</div>' # row
 
@@ -82,11 +88,12 @@ protected
     field_value = person_statement.send(field).first
 
     out << "  <div class='col-md-3'>"
-    out << template.label_tag(field_name, field.to_s.humanize, required: false)
+    out << template.label_tag(field_name, field.to_s.humanize, required: required)
     out << '  </div>'
 
     out << "  <div class='col-md-9'>"
-    out << template.select_tag(field_name, template.options_for_select(options, field_value), prompt: 'Select role played', label: '', class: 'select form-control')
+    out << template.select_tag(field_name, template.options_for_select(options, field_value),
+        prompt: 'Select role played', label: '', class: 'select form-control', required: required)
     out << '  </div>'
 
     # --- delete checkbox
