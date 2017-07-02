@@ -7,7 +7,7 @@ module CurationConcerns
       :tagged_version, :rights_nested, :subject_nested, :relation, :project, :admin_metadata]
     self.terms -= [:creator, :rights, :contributor, :date_created,
       :identifier, :based_near, :related_url, :subject]
-    self.required_fields += [:creator_nested, :publisher, :date, :resource_type]
+    self.required_fields += [:creator_nested, :publisher, :date, :resource_type, :rights_nested]
     self.required_fields -= [:keyword, :rights, :creator]
 
     NESTED_ASSOCIATIONS = [:date, :creator_nested, :rights_nested,
