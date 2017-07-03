@@ -17,13 +17,13 @@ class NestedCreatorAttributeRenderer < CurationConcerns::Renderers::FacetedAttri
       if creator_name
         creator << link_to(ERB::Util.h(creator_name), search_path(creator_name))
       end
-      if v.include?('affiliation') and not v['affiliation'].blank?
+      if v.include?('affiliation') and not v['affiliation'].blank? and not v['affiliation'][0].blank?
         creator << "Affiliation: #{v['affiliation'][0]}"
       end
-      if v.include?('orcid') and not v['orcid'].blank?
+      if v.include?('orcid') and not v['orcid'].blank? and not v['orcid'][0].blank?
         creator << "Orcid: #{v['orcid'][0]}"
       end
-      if v.include?('role') and not v['role'].blank?
+      if v.include?('role') and not v['role'].blank? and not v['role'][0].blank?
         creator << "Role: #{v['role'][0]}"
       end
       html << creator.join('<br>')

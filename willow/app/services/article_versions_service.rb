@@ -1,6 +1,6 @@
-module AgentRolesService
+module ArticleVersionsService
   mattr_accessor :authority
-  self.authority = Qa::Authorities::Local.subauthority_for('agent_roles')
+  self.authority = Qa::Authorities::Local.subauthority_for('article_versions')
 
   def self.select_all_options
     authority.all.map do |element|

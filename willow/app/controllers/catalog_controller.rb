@@ -62,6 +62,8 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name("language", :facetable), label: "Language", limit: 5
     config.add_facet_field solr_name("based_near", :facetable), label: "Location", limit: 5
     config.add_facet_field solr_name("publisher", :facetable), label: "Publisher", limit: 5
+    config.add_facet_field solr_name("funder", :facetable), label: "Publisher", limit: 5
+    config.add_facet_field solr_name("tagged_version", :facetable), label: "Publisher", limit: 5
     config.add_facet_field solr_name("file_format", :facetable), label: "File Format", limit: 5
 
     # Have BL send all facet field names to Solr, which has been the default
@@ -104,6 +106,7 @@ class CatalogController < ApplicationController
     # dataset fields for search
     config.add_index_field solr_name("doi", :stored_searchable), label: "DOI"
     config.add_index_field solr_name("other_title", :stored_searchable), label: "Alternate titles"
+    config.add_index_field solr_name("funder", :stored_searchable), label: "Funder"
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
@@ -133,6 +136,12 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name("date", :displayable), label: "Dates"
     config.add_show_field solr_name("relation", :displayable), label: "Related items"
     config.add_show_field solr_name("admin_metadata", :displayable), label: "Admin information"
+
+    #Add article show fields
+    config.add_show_field solr_name("coverage", :stored_searchable), label: "Coverage"
+    config.add_show_field solr_name("apc", :stored_searchable), label: "APC"
+    config.add_show_field solr_name("tagged_version", :stored_searchable), label: "Version"
+    config.add_show_field solr_name("project_nested", :stored_searchable), label: "Project"
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields

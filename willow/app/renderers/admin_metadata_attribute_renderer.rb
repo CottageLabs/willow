@@ -10,10 +10,10 @@ class AdminMetadataAttributeRenderer < CurationConcerns::Renderers::AttributeRen
     value.each do |v|
       label = ''
       val = ''
-      if v.include?('question') and not v['question'].blank?
+      if v.include?('question') and not v['question'].blank? and not v['question'][0].blank?
         label = v['question'][0]
       end
-      if v.include?('response') and not v['response'].blank?
+      if v.include?('response') and not v['response'].blank? and not v['response'][0].blank?
         val = v['response'][0]
       end
       html += "<tr><th>#{label}</th><td>#{val}</td></tr>"

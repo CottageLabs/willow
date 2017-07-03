@@ -10,10 +10,10 @@ class OtherTitleAttributeRenderer < CurationConcerns::Renderers::RightsAttribute
     value.each do |v|
       label = ''
       val = ''
-      if v.include?('title_type') and not v['title_type'].blank?
+      if v.include?('title_type') and not v['title_type'].blank? and not v['title_type'][0].blank?
         label = TitleTypesService.label(v['title_type'][0])
       end
-      if v.include?('title') and not v['title'].blank?
+      if v.include?('title') and not v['title'].blank? and not v['title'][0].blank?
         val = v['title'][0]
       end
       html += "<tr><th>#{label}</th><td>#{val}</td></tr>"

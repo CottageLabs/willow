@@ -7,6 +7,12 @@ protected
 
     date_statement = value
 
+    # Inherit required for fields validated in nested attributes
+    required  = false
+    if object.required?(:date) and index == 0
+      required = true
+    end
+
     # --- description and date - single row
     out << "<div class='row'>"
 
@@ -25,7 +31,8 @@ protected
     field_value = date_statement.send(field).first
 
     out << "  <div class='col-md-9'>"
-    out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name))
+    out << @builder.text_field(field_name,
+        options.merge(value: field_value, name: field_name, data: { provide:'datepicker' }, required: required))
     out << '  </div>'
 
     # --- delete checkbox

@@ -1,0 +1,29 @@
+terms:
+  - id: Book
+    term: Book
+  - id: Book chapter
+    term: Book chapter
+  - id: Book edited
+    term: Book edited
+  - id: Conference Paper/Proceeding/Abstract
+    term: Conference Paper/Proceeding/Abstract
+  - id: Journal Article/Review
+    term: Journal Article/Review
+  - id: Manual/Guide
+    term: Manual/Guide
+  - id: Monograph
+    term: Monograph
+  - id: Policy briefing report
+    term: Policy briefing report
+  - id: Technical Report
+    term: Technical Report
+  - id: Technical Standard
+    term: Technical Standard
+  - id: Thesis
+    term: Thesis
+  - id: Consultancy Report
+    term: Consultancy Report
+  - id: Working paper
+    term: Working paper
+  - id: Other
+    term: Other
