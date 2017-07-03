@@ -10,7 +10,7 @@ describe DatasetResourceTypesService do
   describe "#select_all_options" do
     it "returns all terms" do
       expect(described_class.select_all_options).to include(
-        ["InteractiveResource", "Interactive resource"])
+        ["Interactive resource", "InteractiveResource"])
     end
   end
 

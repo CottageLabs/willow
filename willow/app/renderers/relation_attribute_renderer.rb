@@ -13,17 +13,17 @@ class RelationAttributeRenderer < CurationConcerns::Renderers::RightsAttributeRe
       url = ''
       id = ''
       relationship = ''
-      if v.include?('label') and not v['label'].blank?
+      if v.include?('label') and not v['label'].blank? and not v['label'][0].blank?
         label = v['label'][0]
       end
-      if v.include?('url') and not v['url'].blank?
+      if v.include?('url') and not v['url'].blank? and not v['url'][0].blank?
         link = link_to(label, v['url'][0], target: :_blank)
         label = "<span class='glyphicon glyphicon-new-window'></span>&nbsp;#{link}"
       end
-      if v.include?('identifier') and not v['identifier'].blank?
+      if v.include?('identifier') and not v['identifier'].blank? and not v['identifier'][0].blank?
         id = v['identifier'][0]
       end
-      if v.include?('relationship_name') and not v['relationship_name'].blank?
+      if v.include?('relationship_name') and not v['relationship_name'].blank? and not v['relationship_name'][0].blank?
         relationship = v['relationship_name'][0]
       end
 

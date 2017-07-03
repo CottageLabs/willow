@@ -40,3 +40,8 @@ form .field-wrapper:not(:last-child) {
 .fixedsticky-off, .fixedsticky-on {
   position: sticky !important;
 }
+
+form .field-wrapper label[required="required"]::after {
+  content: " *";
+  color: red;
+}
