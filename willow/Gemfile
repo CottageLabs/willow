@@ -68,3 +68,4 @@ gem 'tinymce-rails-imageupload', '4.0.17.beta.2' # we need this specific version
 # override this for a local folder with the command:
 # $ bundle config local.willow_sword $APP_HOME/willow_sword
 gem 'willow_sword', git: "https://github.com/cottagelabs/willow_sword.git", branch: "master"
+gem 'bootstrap-datepicker-rails'

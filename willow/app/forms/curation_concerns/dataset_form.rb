@@ -65,7 +65,8 @@ module CurationConcerns
          {
            label: [],
            definition: [],
-           webpage: []
+           webpage: [],
+           start_date: []
          },
         ]
       end

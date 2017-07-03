@@ -1,0 +1,21 @@
+terms:
+  - id: Author
+    term: Author
+  - id: Editor
+    term: Editor
+  - id: ProjectLeader
+    term: Project leader
+  - id: Researcher
+    term: Researcher
+  - id: ResearchGroup
+    term: Research group
+  - id: RightsHolder
+    term: Rights holder
+  - id: Sponsor
+    term: Sponsor
+  - id: Supervisor
+    term: Supervisor
+  - id: WorkPackageLeader
+    term: Work package leader
+  - id: Other
+    term: Other

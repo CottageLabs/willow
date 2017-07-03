@@ -1,0 +1,17 @@
+terms:
+  - id: AO
+    term: Author's Original
+  - id: SMUR
+    term: Submitted Manuscript Under Review
+  - id: AM
+    term: Accepted Manuscript
+  - id: P
+    term: Proof
+  - id: VoR
+    term: Version of Record
+  - id: CVoR
+    term: Corrected Version of Record
+  - id: EVoR
+    term: Enhanced Version of Record
+  - id: NA
+    term: Not Applicable (or Unknown)
