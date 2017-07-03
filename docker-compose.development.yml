@@ -27,6 +27,10 @@ services:
         - RAILS_ENV=development
     env_file:
       - .env.development
+    environment:
+      # these AWS credentials *MUST* be present but *MUST NOT* be valid!
+      - AWS_ACCESS_KEY_ID=ignored
+      - AWS_SECRET_ACCESS_KEY=ignored
     volumes:
       - ./willow:/willow.development
       - ./willow_sword:/willow_sword # necessary for running wilow_sword locally. NB: it must be named "/willow_sword".
@@ -43,3 +47,8 @@ services:
     volumes:
       - ./geoblacklight:/geoblacklight.development
     restart: "no"
+
+
+  #kinesalite:
+    #ports:
+    #  - "4567:4567"

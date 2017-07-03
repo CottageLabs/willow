@@ -82,6 +82,7 @@ services:
       - db
       - solr
       - redis
+      - kinesalite
     volumes:
       - derivatives:/derivatives
     restart: on-failure
@@ -111,6 +112,10 @@ services:
         reservations:
           memory: 250M
 
+
+  kinesalite:
+    image: instructure/kinesalite
+    restart: on-failure
 
 volumes:
   redis_data: {}

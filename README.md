@@ -48,9 +48,6 @@ SECRET_KEY_BASE_TEST=fb350a4ff22efffba83ff0d73e6a73b0bbca9cdb22683c61e49d8f57280
 
 # ------------ OPTIONAL PARAMETERS BELOW HERE -------------
 
-WILLOW_EMAIL=<some email address, default is "admin@willow">
-WILLOW_PASSWORD=<some password, default is "password">
-WILLOW_NAME=<some name, default is "Willow Admin">
 
 # Serve Willow on port 80 (default is 3000)
 WILLOW_EXPOSED_PORT=80
@@ -73,18 +70,26 @@ GEOBLACKLIGHT_SEED=false
 # Serve static assets
 RAILS_SERVE_STATIC_FILES=true
 
-# Set to true to enable Willow to stream events to Amazon AWS Kinesis
-AWS_MESSAGE_STREAM=false
 
-# Region, shards, stream name and partition settings
-AWS_MESSAGE_STREAM_REGION=eu-west-1
-AWS_MESSAGE_STREAM_NAME=willow-message-stream
-AWS_MESSAGE_STREAM_SHARD_COUNT=1
-AWS_MESSAGE_STREAM_PARTITION_KEY=willow
+# Willow messaging stream: either to the AWS cloud or on a local Kinesalite instance
+# Set to "aws" for AWS, or "kinesalite" for local Kinesalite, or "false" for none
+MESSAGE_STREAM=aws
 
+# Shards, stream name and partition settings
+MESSAGE_STREAM_NAME=willow-message-stream
+MESSAGE_STREAM_SHARD_COUNT=1
+MESSAGE_STREAM_PARTITION_KEY=willow
+
+# Endpoint only used when MESSAGE_STREAM=kinesalite
+# MESSAGE_STREAM_ENDPOINT=http://kinesalite:4567
+
+
+# Only used when MESSAGE_STREAM=aws
+MESSAGE_STREAM_REGION=eu-west-1
 # Amazon AWS credentials
 AWS_ACCESS_KEY_ID=<some AWS access key>
 AWS_SECRET_ACCESS_KEY=<some AWS secret key>
+
 
 ```
 
@@ -98,6 +103,19 @@ WILLOW_SEED=true
 
 # Set to true to seed Geoblacklight data
 GEOBLACKLIGHT_SEED=true
+
+
+# Willow messaging stream: either to the AWS cloud or on a local Kinesalite instance
+# Set to "aws" for AWS, or "kinesalite" for local Kinesalite, or "false" for none
+MESSAGE_STREAM=kinesalite
+
+# Shards, stream name and partition settings
+MESSAGE_STREAM_NAME=willow-message-stream
+MESSAGE_STREAM_SHARD_COUNT=1
+MESSAGE_STREAM_PARTITION_KEY=willow
+
+# Endpoint only used when MESSAGE_STREAM=kinesalite
+MESSAGE_STREAM_ENDPOINT=http://kinesalite:4567
 ```
   
 
