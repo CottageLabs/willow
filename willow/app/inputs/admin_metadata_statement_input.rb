@@ -39,7 +39,6 @@ protected
     field_id = id_for(attribute_name, index, field)
     field_value = admin_metadata_statement.send(field).first
 
-
     out << "  <div class='col-md-3'>"
     out << template.label_tag(field_name, field.to_s.humanize, required: false)
     out << '  </div>'
@@ -50,8 +49,9 @@ protected
     out << '  </div>'
 
     # --- delete checkbox
+    field_label = 'Administrative information'
     out << "  <div class='col-md-3'>"
-    out << destroy_widget(attribute_name, index)
+    out << destroy_widget(attribute_name, index, field_label)
     out << '  </div>'
 
     out << '</div>' # last row

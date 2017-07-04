@@ -26,7 +26,7 @@ protected
 
     out << "  <div class='col-md-9'>"
     out << @builder.text_field(field_name,
-        options.merge(value: field_value, name: field_name, required: required, id:field_id))
+        options.merge(value: field_value, name: field_name, id: field_id, required: required))
     out << '  </div>'
     out << '</div>' # row
 
@@ -78,7 +78,7 @@ protected
 
     out << "  <div class='col-md-9'>"
     out << @builder.text_field(field_name,
-        options.merge(value: field_value, name: field_name, id:field_id, required: false))
+        options.merge(value: field_value, name: field_name, id: field_id, required: false))
     out << '  </div>'
     out << '</div>' # row
 
@@ -87,9 +87,9 @@ protected
 
     # --- role
     if object.model_class == ::Dataset
-        options = DatasetAgentRolesService.select_all_options
+        role_options = DatasetAgentRolesService.select_all_options
     else
-        options = ArticleAgentRolesService.select_all_options
+        role_options = ArticleAgentRolesService.select_all_options
     end
     field = :role
     field_name = name_for(attribute_name, index, field)
@@ -101,7 +101,7 @@ protected
     out << '  </div>'
 
     out << "  <div class='col-md-6'>"
-    out << template.select_tag(field_name, template.options_for_select(options, field_value),
+    out << template.select_tag(field_name, template.options_for_select(role_options, field_value),
         prompt: 'Select role played', label: '', class: 'select form-control', id: field_id, required: required)
     out << '  </div>'
 

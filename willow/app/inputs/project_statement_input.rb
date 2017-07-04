@@ -93,8 +93,9 @@ protected
     out << '  </div>'
 
     # --- delete checkbox
+    field_label = 'Project and funder'
     out << "  <div class='col-md-3'>"
-    out << destroy_widget(attribute_name, index)
+    out << destroy_widget(attribute_name, index, field_label)
     out << '  </div>'
 
     out << '</div>' # row

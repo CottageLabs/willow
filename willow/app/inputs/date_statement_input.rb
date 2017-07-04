@@ -21,10 +21,11 @@ protected
     field_name = name_for(attribute_name, index, field)
     field_id = id_for(attribute_name, index, field)
     field_value = date_statement.send(field).first
+    date_options = DateTypesService.select_all_options
 
     out << "  <div class='col-md-3'>"
-    out << template.select_tag(field_name, template.options_for_select(DateTypesService.select_all_options, field_value),
-        label: '', class: 'select form-control', prompt: 'choose type',id: field_id)
+    out << template.select_tag(field_name, template.options_for_select(date_options, field_value),
+        label: '', class: 'select form-control', prompt: 'choose type', id: field_id)
     out << '  </div>'
 
     # --- date
@@ -36,12 +37,13 @@ protected
     out << "  <div class='col-md-6'>"
     out << @builder.text_field(field_name,
         options.merge(value: field_value, name: field_name, id: field_id,
-            data: { provide:'datepicker' }, required: required))
+            data: { provide: 'datepicker' }, required: required))
     out << '  </div>'
 
     # --- delete checkbox
+    field_label = 'Date'
     out << "  <div class='col-md-3'>"
-    out << destroy_widget(attribute_name, index)
+    out << destroy_widget(attribute_name, index, field_label)
     out << '  </div>'
 
     out << '</div>' # last row

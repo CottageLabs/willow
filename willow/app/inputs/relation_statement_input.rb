@@ -77,14 +77,15 @@ protected
     out << template.label_tag(field_name, 'Relationship', required: required)
     out << '  </div>'
 
-    out << "  <div class='col-md-9'>"
+    out << "  <div class='col-md-6'>"
     out << @builder.text_field(field_name,
         options.merge(value: field_value, name: field_name, id: field_id, required: required))
     out << '  </div>'
 
     # --- delete checkbox
+    field_label ='Related work'
     out << "  <div class='col-md-3'>"
-    out << destroy_widget(attribute_name, index)
+    out << destroy_widget(attribute_name, index, field_label)
     out << '  </div>'
 
     out << '</div>' # last row

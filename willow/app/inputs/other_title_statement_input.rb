@@ -15,9 +15,10 @@ protected
     field_name = name_for(attribute_name, index, field)
     field_id = id_for(attribute_name, index, field)
     field_value = other_title_statement.send(field).first
+    title_options = TitleTypesService.select_all_options
 
     out << "  <div class='col-md-3'>"
-    out << template.select_tag(field_name, template.options_for_select(TitleTypesService.select_all_options, field_value),
+    out << template.select_tag(field_name, template.options_for_select(title_options, field_value),
         label: '', class: 'select form-control', prompt: 'choose type', id: field_id)
     out << '  </div>'
 
@@ -33,8 +34,9 @@ protected
     out << '  </div>'
 
     # --- delete checkbox
+    field_label = 'Alternative titles'
     out << "  <div class='col-md-3'>"
-    out << destroy_widget(attribute_name, index)
+    out << destroy_widget(attribute_name, index, field_label)
     out << '  </div>'
 
     out << '</div>' # last row
