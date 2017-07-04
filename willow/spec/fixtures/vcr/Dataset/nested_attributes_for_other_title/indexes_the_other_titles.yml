@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: head
-    uri: http://fedora:8080/rest/willow_development/ar/ti/cl/e/article
+    uri: http://fedora:8080/rest/willow_test/da/ta/se/t/dataset
     body:
       encoding: US-ASCII
       string: ''
@@ -15,37 +15,25 @@ http_interactions:
       - "*/*"
   response:
     status:
-      code: 200
+      code: 404
       message: ''
     headers:
-      Etag:
-      - W/"292e30bbdce886ad7aaac0b7177fbb5146b5639c"
-      Last-Modified:
-      - Tue, 04 Jul 2017 14:06:51 GMT
-      Link:
-      - <http://www.w3.org/ns/ldp#BasicContainer>;rel="type"
-      - <http://www.w3.org/ns/ldp#Container>;rel="type"
-      - <http://www.w3.org/ns/ldp#Resource>;rel="type"
-      Accept-Patch:
-      - application/sparql-update
-      Accept-Post:
-      - text/turtle,text/rdf+n3,text/n3,application/rdf+xml,application/n-triples,application/ld+json,multipart/form-data,application/sparql-update
-      Allow:
-      - MOVE,COPY,DELETE,POST,HEAD,GET,PUT,PATCH,OPTIONS
       Content-Type:
-      - application/x-www-form-urlencoded
+      - text/html;charset=UTF-8
+      Content-Language:
+      - en
       Transfer-Encoding:
       - chunked
       Date:
-      - Tue, 04 Jul 2017 14:37:24 GMT
+      - Tue, 04 Jul 2017 16:27:13 GMT
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Tue, 04 Jul 2017 14:37:25 GMT
+  recorded_at: Tue, 04 Jul 2017 16:27:13 GMT
 - request:
     method: post
-    uri: http://fedora:8080/rest/willow_development
+    uri: http://fedora:8080/rest/willow_test
     body:
       encoding: UTF-8
       string: |2
@@ -68,25 +56,25 @@ http_interactions:
       message: ''
     headers:
       Etag:
-      - W/"a0885076d9584502af550e1e09f4195ec7e0df27"
+      - W/"70b8ce2f0022ac052a2f823467a09b9b22424901"
       Last-Modified:
-      - Tue, 04 Jul 2017 14:37:25 GMT
+      - Tue, 04 Jul 2017 16:27:13 GMT
       Location:
-      - http://fedora:8080/rest/willow_development/ae/6f/75/01/ae6f7501-b5f5-4d0a-8a5c-adef3c23a98a
+      - http://fedora:8080/rest/willow_test/d3/44/61/18/d3446118-4409-4096-a002-16ee5ee7cee4
       Content-Type:
       - text/plain
       Content-Length:
-      - '91'
+      - '84'
       Date:
-      - Tue, 04 Jul 2017 14:37:24 GMT
+      - Tue, 04 Jul 2017 16:27:13 GMT
     body:
       encoding: UTF-8
-      string: http://fedora:8080/rest/willow_development/ae/6f/75/01/ae6f7501-b5f5-4d0a-8a5c-adef3c23a98a
+      string: http://fedora:8080/rest/willow_test/d3/44/61/18/d3446118-4409-4096-a002-16ee5ee7cee4
     http_version: 
-  recorded_at: Tue, 04 Jul 2017 14:37:25 GMT
+  recorded_at: Tue, 04 Jul 2017 16:27:13 GMT
 - request:
     method: head
-    uri: http://fedora:8080/rest/willow_development/ae/6f/75/01/ae6f7501-b5f5-4d0a-8a5c-adef3c23a98a
+    uri: http://fedora:8080/rest/willow_test/d3/44/61/18/d3446118-4409-4096-a002-16ee5ee7cee4
     body:
       encoding: US-ASCII
       string: ''
@@ -103,9 +91,9 @@ http_interactions:
       message: ''
     headers:
       Etag:
-      - W/"a0885076d9584502af550e1e09f4195ec7e0df27"
+      - W/"70b8ce2f0022ac052a2f823467a09b9b22424901"
       Last-Modified:
-      - Tue, 04 Jul 2017 14:37:25 GMT
+      - Tue, 04 Jul 2017 16:27:13 GMT
       Link:
       - <http://www.w3.org/ns/ldp#BasicContainer>;rel="type"
       - <http://www.w3.org/ns/ldp#Container>;rel="type"
@@ -121,15 +109,15 @@ http_interactions:
       Transfer-Encoding:
       - chunked
       Date:
-      - Tue, 04 Jul 2017 14:37:24 GMT
+      - Tue, 04 Jul 2017 16:27:13 GMT
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Tue, 04 Jul 2017 14:37:25 GMT
+  recorded_at: Tue, 04 Jul 2017 16:27:13 GMT
 - request:
     method: get
-    uri: http://fedora:8080/rest/willow_development/ae/6f/75/01/ae6f7501-b5f5-4d0a-8a5c-adef3c23a98a
+    uri: http://fedora:8080/rest/willow_test/d3/44/61/18/d3446118-4409-4096-a002-16ee5ee7cee4
     body:
       encoding: US-ASCII
       string: ''
@@ -150,9 +138,9 @@ http_interactions:
       message: ''
     headers:
       Etag:
-      - W/"a0885076d9584502af550e1e09f4195ec7e0df27"
+      - W/"70b8ce2f0022ac052a2f823467a09b9b22424901"
       Last-Modified:
-      - Tue, 04 Jul 2017 14:37:25 GMT
+      - Tue, 04 Jul 2017 16:27:13 GMT
       Link:
       - <http://www.w3.org/ns/ldp#BasicContainer>;rel="type"
       - <http://www.w3.org/ns/ldp#Container>;rel="type"
@@ -171,9 +159,9 @@ http_interactions:
       Content-Type:
       - text/turtle;charset=UTF-8
       Content-Length:
-      - '3129'
+      - '3115'
       Date:
-      - Tue, 04 Jul 2017 14:37:24 GMT
+      - Tue, 04 Jul 2017 16:27:13 GMT
     body:
       encoding: UTF-8
       string: |
@@ -218,28 +206,28 @@ http_interactions:
         @prefix config:  <info:fedoraconfig/> .
         @prefix dc:  <http://purl.org/dc/elements/1.1/> .
 
-        <http://fedora:8080/rest/willow_development/ae/6f/75/01/ae6f7501-b5f5-4d0a-8a5c-adef3c23a98a>
+        <http://fedora:8080/rest/willow_test/d3/44/61/18/d3446118-4409-4096-a002-16ee5ee7cee4>
                 rdf:type               fedora:Container ;
                 rdf:type               fedora:Resource ;
                 fedora:lastModifiedBy  "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
                 fedora:createdBy       "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                fedora:created         "2017-07-04T14:37:25.162Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                fedora:lastModified    "2017-07-04T14:37:25.162Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                fedora:created         "2017-07-04T16:27:13.457Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                fedora:lastModified    "2017-07-04T16:27:13.457Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                 ns001:hasModel         "Hydra::AccessControl"^^<http://www.w3.org/2001/XMLSchema#string> ;
                 rdf:type               ldp:RDFSource ;
                 rdf:type               ldp:Container ;
                 fedora:writable        "true"^^<http://www.w3.org/2001/XMLSchema#boolean> ;
-                fedora:hasParent       <http://fedora:8080/rest/willow_development> .
+                fedora:hasParent       <http://fedora:8080/rest/willow_test> .
     http_version: 
-  recorded_at: Tue, 04 Jul 2017 14:37:25 GMT
+  recorded_at: Tue, 04 Jul 2017 16:27:13 GMT
 - request:
     method: post
-    uri: http://solr:8983/solr/willow_development/update?softCommit=true&wt=ruby
+    uri: http://solr:8983/solr/willow_test/update?softCommit=true&wt=ruby
     body:
       encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8"?><add><doc><field name="system_create_dtsi">2017-07-04T14:37:25Z</field><field
-        name="system_modified_dtsi">2017-07-04T14:37:25Z</field><field name="has_model_ssim">Hydra::AccessControl</field><field
-        name="id">ae6f7501-b5f5-4d0a-8a5c-adef3c23a98a</field></doc></add>
+      string: <?xml version="1.0" encoding="UTF-8"?><add><doc><field name="system_create_dtsi">2017-07-04T16:27:13Z</field><field
+        name="system_modified_dtsi">2017-07-04T16:27:13Z</field><field name="has_model_ssim">Hydra::AccessControl</field><field
+        name="id">d3446118-4409-4096-a002-16ee5ee7cee4</field></doc></add>
     headers:
       Content-Type:
       - text/xml
@@ -256,10 +244,10 @@ http_interactions:
       encoding: UTF-8
       string: "{'responseHeader'=>{'status'=>0,'QTime'=>4}}\n"
     http_version: 
-  recorded_at: Tue, 04 Jul 2017 14:37:25 GMT
+  recorded_at: Tue, 04 Jul 2017 16:27:13 GMT
 - request:
     method: head
-    uri: http://fedora:8080/rest/willow_development/ae/6f/75/01/ae6f7501-b5f5-4d0a-8a5c-adef3c23a98a
+    uri: http://fedora:8080/rest/willow_test/d3/44/61/18/d3446118-4409-4096-a002-16ee5ee7cee4
     body:
       encoding: US-ASCII
       string: ''
@@ -276,9 +264,9 @@ http_interactions:
       message: ''
     headers:
       Etag:
-      - W/"a0885076d9584502af550e1e09f4195ec7e0df27"
+      - W/"70b8ce2f0022ac052a2f823467a09b9b22424901"
       Last-Modified:
-      - Tue, 04 Jul 2017 14:37:25 GMT
+      - Tue, 04 Jul 2017 16:27:13 GMT
       Link:
       - <http://www.w3.org/ns/ldp#BasicContainer>;rel="type"
       - <http://www.w3.org/ns/ldp#Container>;rel="type"
@@ -294,15 +282,15 @@ http_interactions:
       Transfer-Encoding:
       - chunked
       Date:
-      - Tue, 04 Jul 2017 14:37:24 GMT
+      - Tue, 04 Jul 2017 16:27:13 GMT
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Tue, 04 Jul 2017 14:37:25 GMT
+  recorded_at: Tue, 04 Jul 2017 16:27:13 GMT
 - request:
     method: get
-    uri: http://fedora:8080/rest/willow_development/ae/6f/75/01/ae6f7501-b5f5-4d0a-8a5c-adef3c23a98a
+    uri: http://fedora:8080/rest/willow_test/d3/44/61/18/d3446118-4409-4096-a002-16ee5ee7cee4
     body:
       encoding: US-ASCII
       string: ''
@@ -323,9 +311,9 @@ http_interactions:
       message: ''
     headers:
       Etag:
-      - W/"a0885076d9584502af550e1e09f4195ec7e0df27"
+      - W/"70b8ce2f0022ac052a2f823467a09b9b22424901"
       Last-Modified:
-      - Tue, 04 Jul 2017 14:37:25 GMT
+      - Tue, 04 Jul 2017 16:27:13 GMT
       Link:
       - <http://www.w3.org/ns/ldp#BasicContainer>;rel="type"
       - <http://www.w3.org/ns/ldp#Container>;rel="type"
@@ -344,9 +332,9 @@ http_interactions:
       Content-Type:
       - text/turtle;charset=UTF-8
       Content-Length:
-      - '3129'
+      - '3115'
       Date:
-      - Tue, 04 Jul 2017 14:37:24 GMT
+      - Tue, 04 Jul 2017 16:27:13 GMT
     body:
       encoding: UTF-8
       string: |
@@ -391,18 +379,18 @@ http_interactions:
         @prefix config:  <info:fedoraconfig/> .
         @prefix dc:  <http://purl.org/dc/elements/1.1/> .
 
-        <http://fedora:8080/rest/willow_development/ae/6f/75/01/ae6f7501-b5f5-4d0a-8a5c-adef3c23a98a>
+        <http://fedora:8080/rest/willow_test/d3/44/61/18/d3446118-4409-4096-a002-16ee5ee7cee4>
                 rdf:type               fedora:Container ;
                 rdf:type               fedora:Resource ;
                 fedora:lastModifiedBy  "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
                 fedora:createdBy       "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                fedora:created         "2017-07-04T14:37:25.162Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                fedora:lastModified    "2017-07-04T14:37:25.162Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                fedora:created         "2017-07-04T16:27:13.457Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                fedora:lastModified    "2017-07-04T16:27:13.457Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                 ns001:hasModel         "Hydra::AccessControl"^^<http://www.w3.org/2001/XMLSchema#string> ;
                 rdf:type               ldp:RDFSource ;
                 rdf:type               ldp:Container ;
                 fedora:writable        "true"^^<http://www.w3.org/2001/XMLSchema#boolean> ;
-                fedora:hasParent       <http://fedora:8080/rest/willow_development> .
+                fedora:hasParent       <http://fedora:8080/rest/willow_test> .
     http_version: 
-  recorded_at: Tue, 04 Jul 2017 14:37:25 GMT
+  recorded_at: Tue, 04 Jul 2017 16:27:13 GMT
 recorded_with: VCR 3.0.3

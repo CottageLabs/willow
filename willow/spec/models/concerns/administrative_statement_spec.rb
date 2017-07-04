@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe AdministrativeStatement do
+RSpec.describe AdministrativeStatement, :vcr do
   before do
     class ExampleWork < ActiveFedora::Base
       property :admin_metadata, predicate: ::RDF::Vocab::MODS.adminMetadata, class_name:"AdministrativeStatement"
@@ -19,8 +19,6 @@ describe AdministrativeStatement do
           response: 'Response to admin question'
         }]
     }
-    @obj.save!
-    @obj.reload
     expect(@obj.admin_metadata.first).to be_kind_of ActiveTriples::Resource
     expect(@obj.admin_metadata.first.id).to include('#admin_metadata')
     expect(@obj.admin_metadata.first.question).to eq ['An admin question needing an answer']

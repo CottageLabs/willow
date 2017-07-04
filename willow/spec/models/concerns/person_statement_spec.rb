@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe PersonStatement do
+RSpec.describe PersonStatement, :vcr do
   before do
     class ExampleWork < ActiveFedora::Base
       property :creator_nested, predicate: ::RDF::Vocab::DC.creator, class_name:"PersonStatement"
@@ -24,8 +24,6 @@ describe PersonStatement do
         }
       ]
     }
-    @obj.save!
-    @obj.reload
     expect(@obj.creator_nested.first).to be_kind_of ActiveTriples::Resource
     expect(@obj.creator_nested.first.id).to include('#person')
     expect(@obj.creator_nested.first.first_name).to eq ['Foo']

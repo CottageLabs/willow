@@ -1,21 +1,20 @@
 # Generated via
 #  `rails generate curation_concerns:work Article`
 require 'rails_helper'
-require 'vcr'
 
-RSpec.describe Article do
+RSpec.describe Article, :vcr do
 
-  describe 'class', :vcr  do
+  describe 'class'  do
     it 'has human readable type article' do
       @obj = build(:article)
       expect(@obj.human_readable_type).to eq('Article')
     end
   end
 
-  describe 'title', :vcr do
+  describe 'title' do
     it 'requires title' do
       @obj = build(:article, title: nil)
-      expect { @obj.save! }.to raise_error(ActiveFedora::RecordInvalid, 'Validation failed: Title Your work must have a title.')
+      expect{@obj.save!}.to raise_error(ActiveFedora::RecordInvalid, 'Validation failed: Title Your work must have a title.')
     end
 
     it 'has a multi valued title field' do
@@ -29,7 +28,7 @@ RSpec.describe Article do
     end
   end
 
-  describe 'doi', :vcr  do
+  describe 'doi' do
     it 'has a single valued doi' do
       @obj = build(:article, doi: '0000-0000-0000-0000')
       expect(@obj.doi).to be_kind_of String
@@ -44,7 +43,7 @@ RSpec.describe Article do
     end
   end
 
-  describe 'publisher', :vcr do
+  describe 'publisher' do
     it 'has publisher' do
       @obj = build(:article, publisher: ['Willow'])
       expect(@obj.publisher).to be_kind_of ActiveTriples::Relation
@@ -59,7 +58,7 @@ RSpec.describe Article do
     end
   end
 
-  describe 'coverage', :vcr do
+  describe 'coverage' do
     it 'has coverage' do
       @obj = build(:article, coverage: ['Coverage metadata'])
       expect(@obj.coverage).to be_kind_of ActiveTriples::Relation
@@ -73,7 +72,7 @@ RSpec.describe Article do
     end
   end
 
-  describe 'apc', :vcr do
+  describe 'apc' do
     it 'has apc' do
       @obj = build(:article, apc: ['Article processing charge is 12.78'])
       expect(@obj.apc).to be_kind_of ActiveTriples::Relation
@@ -87,7 +86,7 @@ RSpec.describe Article do
     end
   end
 
-  describe 'tagged_version', :vcr do
+  describe 'tagged_version' do
     it 'has tagged_version' do
       @obj = build(:article, tagged_version: ['1.0'])
       expect(@obj.tagged_version).to be_kind_of ActiveTriples::Relation
@@ -102,7 +101,7 @@ RSpec.describe Article do
     end
   end
 
-  describe 'nested attributes for date', :vcr do
+  describe 'nested attributes for date' do
     it 'accepts date attributes' do
       @obj = build(:article, date_attributes: [{ date: '2017-01-01', description: 'Date definition' }])
       expect(@obj.date.first).to be_kind_of ActiveTriples::Resource
@@ -153,7 +152,7 @@ RSpec.describe Article do
     end
   end
 
-  describe 'nested attributes for creator', :vcr do
+  describe 'nested attributes for creator' do
     it 'accepts person attributes' do
       @obj = build(:article, creator_nested_attributes: [{
                                                               first_name: 'Foo',
@@ -292,7 +291,7 @@ RSpec.describe Article do
     end
   end
 
-  describe 'nested attributes for rights', :vcr do
+  describe 'nested attributes for rights' do
     it 'accepts rights attributes' do
       @obj = build(:article, rights_nested_attributes: [{
             label: 'A rights label',
@@ -356,7 +355,7 @@ RSpec.describe Article do
     end
   end
 
-  describe 'nested attributes for subject', :vcr do
+  describe 'nested attributes for subject' do
     it 'accepts subject attributes' do
       @obj = build(:article, subject_nested_attributes: [{
             label: 'Subject label',
@@ -430,7 +429,7 @@ RSpec.describe Article do
     end
   end
 
-  describe 'nested attributes for relation', :vcr do
+  describe 'nested attributes for relation' do
     it 'accepts relation attributes' do
       @obj = build(:article, relation_attributes: [
           {
@@ -581,7 +580,7 @@ RSpec.describe Article do
     end
   end
 
-  describe 'nested attributes for admin_metadata', :vcr do
+  describe 'nested attributes for admin_metadata' do
     it 'accepts admin_metadata attributes' do
       @obj = build(:article, admin_metadata_attributes: [{
           question: 'An admin question needing an answer',
@@ -631,7 +630,7 @@ RSpec.describe Article do
     end
   end
 
-  describe 'nested attributes for project', :vcr do
+  describe 'nested attributes for project' do
     it 'accepts project attributes' do
       @obj = build(:article, project_attributes: [{
             identifier: '123456',

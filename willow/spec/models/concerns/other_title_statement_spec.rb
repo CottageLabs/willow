@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe OtherTitleStatement do
+RSpec.describe OtherTitleStatement, :vcr do
   before do
     class ExampleWork < ActiveFedora::Base
       property :other_title, predicate: ::RDF::Vocab::Bibframe.titleVariation, class_name:"OtherTitleStatement"
@@ -21,8 +21,6 @@ describe OtherTitleStatement do
         }
       ]
     }
-    @obj.save!
-    @obj.reload
     expect(@obj.other_title.first).to be_kind_of ActiveTriples::Resource
     expect(@obj.other_title.first.id).to include('#title')
     expect(@obj.other_title.first.title).to eq ['An alternate title']
