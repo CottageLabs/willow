@@ -1,0 +1,408 @@
+---
+http_interactions:
+- request:
+    method: head
+    uri: http://fedora:8080/rest/willow_development/ar/ti/cl/e/article
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.11.0
+      Authorization:
+      - Basic ZmVkb3JhQWRtaW46ZmVkb3JhQWRtaW4=
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Etag:
+      - W/"292e30bbdce886ad7aaac0b7177fbb5146b5639c"
+      Last-Modified:
+      - Tue, 04 Jul 2017 14:06:51 GMT
+      Link:
+      - <http://www.w3.org/ns/ldp#BasicContainer>;rel="type"
+      - <http://www.w3.org/ns/ldp#Container>;rel="type"
+      - <http://www.w3.org/ns/ldp#Resource>;rel="type"
+      Accept-Patch:
+      - application/sparql-update
+      Accept-Post:
+      - text/turtle,text/rdf+n3,text/n3,application/rdf+xml,application/n-triples,application/ld+json,multipart/form-data,application/sparql-update
+      Allow:
+      - MOVE,COPY,DELETE,POST,HEAD,GET,PUT,PATCH,OPTIONS
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Tue, 04 Jul 2017 14:37:23 GMT
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Tue, 04 Jul 2017 14:37:24 GMT
+- request:
+    method: post
+    uri: http://fedora:8080/rest/willow_development
+    body:
+      encoding: UTF-8
+      string: |2
+
+        <> <info:fedora/fedora-system:def/model#hasModel> "Hydra::AccessControl" .
+    headers:
+      User-Agent:
+      - Faraday v0.11.0
+      Authorization:
+      - Basic ZmVkb3JhQWRtaW46ZmVkb3JhQWRtaW4=
+      Content-Type:
+      - text/turtle
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: ''
+    headers:
+      Etag:
+      - W/"f125fafb5d6694bd0d28293583cef07cd58b473b"
+      Last-Modified:
+      - Tue, 04 Jul 2017 14:37:24 GMT
+      Location:
+      - http://fedora:8080/rest/willow_development/ab/1b/c0/e9/ab1bc0e9-dace-4cb7-9e1b-c2fe4cd2cab3
+      Content-Type:
+      - text/plain
+      Content-Length:
+      - '91'
+      Date:
+      - Tue, 04 Jul 2017 14:37:23 GMT
+    body:
+      encoding: UTF-8
+      string: http://fedora:8080/rest/willow_development/ab/1b/c0/e9/ab1bc0e9-dace-4cb7-9e1b-c2fe4cd2cab3
+    http_version: 
+  recorded_at: Tue, 04 Jul 2017 14:37:24 GMT
+- request:
+    method: head
+    uri: http://fedora:8080/rest/willow_development/ab/1b/c0/e9/ab1bc0e9-dace-4cb7-9e1b-c2fe4cd2cab3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.11.0
+      Authorization:
+      - Basic ZmVkb3JhQWRtaW46ZmVkb3JhQWRtaW4=
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Etag:
+      - W/"f125fafb5d6694bd0d28293583cef07cd58b473b"
+      Last-Modified:
+      - Tue, 04 Jul 2017 14:37:24 GMT
+      Link:
+      - <http://www.w3.org/ns/ldp#BasicContainer>;rel="type"
+      - <http://www.w3.org/ns/ldp#Container>;rel="type"
+      - <http://www.w3.org/ns/ldp#Resource>;rel="type"
+      Accept-Patch:
+      - application/sparql-update
+      Accept-Post:
+      - text/turtle,text/rdf+n3,text/n3,application/rdf+xml,application/n-triples,application/ld+json,multipart/form-data,application/sparql-update
+      Allow:
+      - MOVE,COPY,DELETE,POST,HEAD,GET,PUT,PATCH,OPTIONS
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Tue, 04 Jul 2017 14:37:23 GMT
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Tue, 04 Jul 2017 14:37:24 GMT
+- request:
+    method: get
+    uri: http://fedora:8080/rest/willow_development/ab/1b/c0/e9/ab1bc0e9-dace-4cb7-9e1b-c2fe4cd2cab3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.11.0
+      Authorization:
+      - Basic ZmVkb3JhQWRtaW46ZmVkb3JhQWRtaW4=
+      Prefer:
+      - return=representation
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Etag:
+      - W/"f125fafb5d6694bd0d28293583cef07cd58b473b"
+      Last-Modified:
+      - Tue, 04 Jul 2017 14:37:24 GMT
+      Link:
+      - <http://www.w3.org/ns/ldp#BasicContainer>;rel="type"
+      - <http://www.w3.org/ns/ldp#Container>;rel="type"
+      - <http://www.w3.org/ns/ldp#Resource>;rel="type"
+      Accept-Patch:
+      - application/sparql-update
+      Accept-Post:
+      - text/turtle,text/rdf+n3,text/n3,application/rdf+xml,application/n-triples,application/ld+json,multipart/form-data,application/sparql-update
+      Allow:
+      - MOVE,COPY,DELETE,POST,HEAD,GET,PUT,PATCH,OPTIONS
+      Preference-Applied:
+      - return=representation
+      Vary:
+      - Accept, Range, Accept-Encoding, Accept-Language
+      - Prefer
+      Content-Type:
+      - text/turtle;charset=UTF-8
+      Content-Length:
+      - '3129'
+      Date:
+      - Tue, 04 Jul 2017 14:37:23 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        @prefix premis:  <http://www.loc.gov/premis/rdf/v1#> .
+        @prefix owl:  <http://www.w3.org/2002/07/owl#> .
+        @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+        @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+        @prefix acl:  <http://www.w3.org/ns/auth/acl#> .
+        @prefix ns004:  <http://projecthydra.org/works/models#> .
+        @prefix ns003:  <http://id.loc.gov/vocabulary/relators/> .
+        @prefix ns002:  <http://pcdm.org/models#> .
+        @prefix ns001:  <info:fedora/fedora-system:def/model#> .
+        @prefix xsi:  <http://www.w3.org/2001/XMLSchema-instance> .
+        @prefix ns008:  <http://www.w3.org/2003/12/exif/ns#> .
+        @prefix ns007:  <http://fedora.info/definitions/1/0/access/ObjState#> .
+        @prefix xmlns:  <http://www.w3.org/2000/xmlns/> .
+        @prefix ns006:  <http://pcdm.org/use#> .
+        @prefix ns005:  <http://www.openarchives.org/ore/terms/> .
+        @prefix xml:  <http://www.w3.org/XML/1998/namespace> .
+        @prefix ns009:  <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#> .
+        @prefix dcterms:  <http://purl.org/dc/terms/> .
+        @prefix event:  <http://fedora.info/definitions/v4/event#> .
+        @prefix prov:  <http://www.w3.org/ns/prov#> .
+        @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+        @prefix test:  <info:fedora/test/> .
+        @prefix ns011:  <http://rdf-vocabulary.ddialliance.org/discovery#> .
+        @prefix ns010:  <http://www.w3.org/2006/vcard/ns#> .
+        @prefix ns015:  <http://id.loc.gov/vocabulary/identifiers/> .
+        @prefix ns014:  <http://data-vocabulary.org/> .
+        @prefix ns013:  <http://purl.org/spar/datacite/> .
+        @prefix ns012:  <http://www.loc.gov/mods/rdf/v1#> .
+        @prefix ns019:  <http://bibframe.org/vocab/> .
+        @prefix ns018:  <http://vocab.ox.ac.uk/projectfunding#> .
+        @prefix ns017:  <http://rdfs.org/sioc/ns#> .
+        @prefix ns016:  <http://willow.cottagelabs.com/rioxxterms#> .
+        @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+        @prefix fedora:  <http://fedora.info/definitions/v4/repository#> .
+        @prefix ebucore:  <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
+        @prefix ldp:  <http://www.w3.org/ns/ldp#> .
+        @prefix iana:  <http://www.iana.org/assignments/relation/> .
+        @prefix xs:  <http://www.w3.org/2001/XMLSchema> .
+        @prefix config:  <info:fedoraconfig/> .
+        @prefix dc:  <http://purl.org/dc/elements/1.1/> .
+
+        <http://fedora:8080/rest/willow_development/ab/1b/c0/e9/ab1bc0e9-dace-4cb7-9e1b-c2fe4cd2cab3>
+                rdf:type               fedora:Container ;
+                rdf:type               fedora:Resource ;
+                fedora:lastModifiedBy  "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                fedora:createdBy       "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                fedora:created         "2017-07-04T14:37:24.417Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                fedora:lastModified    "2017-07-04T14:37:24.417Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                ns001:hasModel         "Hydra::AccessControl"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                rdf:type               ldp:RDFSource ;
+                rdf:type               ldp:Container ;
+                fedora:writable        "true"^^<http://www.w3.org/2001/XMLSchema#boolean> ;
+                fedora:hasParent       <http://fedora:8080/rest/willow_development> .
+    http_version: 
+  recorded_at: Tue, 04 Jul 2017 14:37:24 GMT
+- request:
+    method: post
+    uri: http://solr:8983/solr/willow_development/update?softCommit=true&wt=ruby
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><add><doc><field name="system_create_dtsi">2017-07-04T14:37:24Z</field><field
+        name="system_modified_dtsi">2017-07-04T14:37:24Z</field><field name="has_model_ssim">Hydra::AccessControl</field><field
+        name="id">ab1bc0e9-dace-4cb7-9e1b-c2fe4cd2cab3</field></doc></add>
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/plain;charset=utf-8
+      Content-Length:
+      - '45'
+    body:
+      encoding: UTF-8
+      string: "{'responseHeader'=>{'status'=>0,'QTime'=>3}}\n"
+    http_version: 
+  recorded_at: Tue, 04 Jul 2017 14:37:24 GMT
+- request:
+    method: head
+    uri: http://fedora:8080/rest/willow_development/ab/1b/c0/e9/ab1bc0e9-dace-4cb7-9e1b-c2fe4cd2cab3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.11.0
+      Authorization:
+      - Basic ZmVkb3JhQWRtaW46ZmVkb3JhQWRtaW4=
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Etag:
+      - W/"f125fafb5d6694bd0d28293583cef07cd58b473b"
+      Last-Modified:
+      - Tue, 04 Jul 2017 14:37:24 GMT
+      Link:
+      - <http://www.w3.org/ns/ldp#BasicContainer>;rel="type"
+      - <http://www.w3.org/ns/ldp#Container>;rel="type"
+      - <http://www.w3.org/ns/ldp#Resource>;rel="type"
+      Accept-Patch:
+      - application/sparql-update
+      Accept-Post:
+      - text/turtle,text/rdf+n3,text/n3,application/rdf+xml,application/n-triples,application/ld+json,multipart/form-data,application/sparql-update
+      Allow:
+      - MOVE,COPY,DELETE,POST,HEAD,GET,PUT,PATCH,OPTIONS
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Tue, 04 Jul 2017 14:37:24 GMT
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Tue, 04 Jul 2017 14:37:24 GMT
+- request:
+    method: get
+    uri: http://fedora:8080/rest/willow_development/ab/1b/c0/e9/ab1bc0e9-dace-4cb7-9e1b-c2fe4cd2cab3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.11.0
+      Authorization:
+      - Basic ZmVkb3JhQWRtaW46ZmVkb3JhQWRtaW4=
+      Prefer:
+      - return=representation
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Etag:
+      - W/"f125fafb5d6694bd0d28293583cef07cd58b473b"
+      Last-Modified:
+      - Tue, 04 Jul 2017 14:37:24 GMT
+      Link:
+      - <http://www.w3.org/ns/ldp#BasicContainer>;rel="type"
+      - <http://www.w3.org/ns/ldp#Container>;rel="type"
+      - <http://www.w3.org/ns/ldp#Resource>;rel="type"
+      Accept-Patch:
+      - application/sparql-update
+      Accept-Post:
+      - text/turtle,text/rdf+n3,text/n3,application/rdf+xml,application/n-triples,application/ld+json,multipart/form-data,application/sparql-update
+      Allow:
+      - MOVE,COPY,DELETE,POST,HEAD,GET,PUT,PATCH,OPTIONS
+      Preference-Applied:
+      - return=representation
+      Vary:
+      - Accept, Range, Accept-Encoding, Accept-Language
+      - Prefer
+      Content-Type:
+      - text/turtle;charset=UTF-8
+      Content-Length:
+      - '3129'
+      Date:
+      - Tue, 04 Jul 2017 14:37:24 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        @prefix premis:  <http://www.loc.gov/premis/rdf/v1#> .
+        @prefix owl:  <http://www.w3.org/2002/07/owl#> .
+        @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+        @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+        @prefix acl:  <http://www.w3.org/ns/auth/acl#> .
+        @prefix ns004:  <http://projecthydra.org/works/models#> .
+        @prefix ns003:  <http://id.loc.gov/vocabulary/relators/> .
+        @prefix ns002:  <http://pcdm.org/models#> .
+        @prefix ns001:  <info:fedora/fedora-system:def/model#> .
+        @prefix xsi:  <http://www.w3.org/2001/XMLSchema-instance> .
+        @prefix ns008:  <http://www.w3.org/2003/12/exif/ns#> .
+        @prefix ns007:  <http://fedora.info/definitions/1/0/access/ObjState#> .
+        @prefix xmlns:  <http://www.w3.org/2000/xmlns/> .
+        @prefix ns006:  <http://pcdm.org/use#> .
+        @prefix ns005:  <http://www.openarchives.org/ore/terms/> .
+        @prefix xml:  <http://www.w3.org/XML/1998/namespace> .
+        @prefix ns009:  <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#> .
+        @prefix dcterms:  <http://purl.org/dc/terms/> .
+        @prefix event:  <http://fedora.info/definitions/v4/event#> .
+        @prefix prov:  <http://www.w3.org/ns/prov#> .
+        @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+        @prefix test:  <info:fedora/test/> .
+        @prefix ns011:  <http://rdf-vocabulary.ddialliance.org/discovery#> .
+        @prefix ns010:  <http://www.w3.org/2006/vcard/ns#> .
+        @prefix ns015:  <http://id.loc.gov/vocabulary/identifiers/> .
+        @prefix ns014:  <http://data-vocabulary.org/> .
+        @prefix ns013:  <http://purl.org/spar/datacite/> .
+        @prefix ns012:  <http://www.loc.gov/mods/rdf/v1#> .
+        @prefix ns019:  <http://bibframe.org/vocab/> .
+        @prefix ns018:  <http://vocab.ox.ac.uk/projectfunding#> .
+        @prefix ns017:  <http://rdfs.org/sioc/ns#> .
+        @prefix ns016:  <http://willow.cottagelabs.com/rioxxterms#> .
+        @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+        @prefix fedora:  <http://fedora.info/definitions/v4/repository#> .
+        @prefix ebucore:  <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
+        @prefix ldp:  <http://www.w3.org/ns/ldp#> .
+        @prefix iana:  <http://www.iana.org/assignments/relation/> .
+        @prefix xs:  <http://www.w3.org/2001/XMLSchema> .
+        @prefix config:  <info:fedoraconfig/> .
+        @prefix dc:  <http://purl.org/dc/elements/1.1/> .
+
+        <http://fedora:8080/rest/willow_development/ab/1b/c0/e9/ab1bc0e9-dace-4cb7-9e1b-c2fe4cd2cab3>
+                rdf:type               fedora:Container ;
+                rdf:type               fedora:Resource ;
+                fedora:lastModifiedBy  "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                fedora:createdBy       "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                fedora:created         "2017-07-04T14:37:24.417Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                fedora:lastModified    "2017-07-04T14:37:24.417Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                ns001:hasModel         "Hydra::AccessControl"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                rdf:type               ldp:RDFSource ;
+                rdf:type               ldp:Container ;
+                fedora:writable        "true"^^<http://www.w3.org/2001/XMLSchema#boolean> ;
+                fedora:hasParent       <http://fedora:8080/rest/willow_development> .
+    http_version: 
+  recorded_at: Tue, 04 Jul 2017 14:37:24 GMT
+recorded_with: VCR 3.0.3
