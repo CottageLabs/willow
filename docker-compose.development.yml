@@ -6,15 +6,10 @@ services:
   db:
     volumes:
       - ./db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
-    restart: "no"
 
   solr:
     ports:
       - "8983:8983"
-    restart: "no"
-
-  redis:
-    restart: "no"
 
   fedora:
     ports:
