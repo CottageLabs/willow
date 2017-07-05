@@ -1,11 +1,14 @@
-<div class="admin-metadata-editor">
+<div class="multi-nested">
   <%= f.input :admin_metadata,
     as: :admin_metadata_statement,
     input_html: {
-      class: 'form-control',
-      multiple: true,
+      class: '',
       data: {name: :admin_metadata}
     },
     required: f.object.required?(:admin_metadata)
   %>
+  <button type="button" class="btn btn-link add">
+    <span class="glyphicon glyphicon-plus"></span>
+    <span class="controls-add-text">Add another Admin metadata</span>
+  </button>
 </div>

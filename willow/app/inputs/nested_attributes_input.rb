@@ -47,16 +47,14 @@ class NestedAttributesInput < MultiValueInput
       out
     end
 
-    def destroy_widget(attribute_name, index)
+    def destroy_widget(attribute_name, index, field_label="field")
       out = ''
-      field_name = destroy_name_for(attribute_name, index)
-      class_name = ('remove_ ' + attribute_name.to_s).strip
-      out << @builder.check_box(attribute_name,
-                                name: field_name,
-                                id: id_for(attribute_name, index, '_destroy'.freeze),
-                                value: 'true', data: { destroy: true },
-                                onclick: '$(this).parents("li").hide();')
-      out << template.label_tag(field_name, 'Remove', class: class_name)
+      out << hidden_destroy_field(attribute_name, index)
+      out << "    <button type=\"button\" class=\"btn btn-link remove\">"
+      out << "      <span class=\"glyphicon glyphicon-remove\"></span>"
+      out << "      <span class=\"controls-remove-text\">Remove</span>"
+      out << "      <span class=\"sr-only\"> previous <span class=\"controls-field-name-text\"> #{field_label}</span></span>"
+      out << "    </button>"
       out
     end
 
@@ -65,6 +63,14 @@ class NestedAttributesInput < MultiValueInput
       id = id_for(attribute_name, index, 'id'.freeze)
       hidden_value = value.new_record? ? '' : value.rdf_subject
       @builder.hidden_field(attribute_name, name: name, id: id, value: hidden_value, data: { id: 'remote' })
+    end
+
+    def hidden_destroy_field(attribute_name, index)
+      name = destroy_name_for(attribute_name, index)
+      id = id_for(attribute_name, index, '_destroy'.freeze)
+      hidden_value = false
+      @builder.hidden_field(attribute_name, name: name, id: id,
+        value: hidden_value, data: { destroy: true }, class: 'form-control remove-hidden')
     end
 
     def build_options_for_new_row(_attribute_name, _index, options)

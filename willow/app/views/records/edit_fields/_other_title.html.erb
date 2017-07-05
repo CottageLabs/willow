@@ -1,11 +1,14 @@
-<div class="other-title-editor">
+<div class="multi-nested">
   <%= f.input :other_title,
     as: :other_title_statement,
     input_html: {
-      class: 'form-control',
-      multiple: true,
+      class: '',
       data: {name: :other_title}
     },
     required: f.object.required?(:other_title)
   %>
+  <button type="button" class="btn btn-link add">
+    <span class="glyphicon glyphicon-plus"></span>
+    <span class="controls-add-text">Add another title</span>
+  </button>
 </div>
