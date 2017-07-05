@@ -1,11 +1,14 @@
-<div class="project-editor">
+<div class="multi-nested">
   <%= f.input :project,
     as: :project_statement,
     input_html: {
-      class: 'form-control',
-      multiple: true,
+      class: '',
       data: {name: :project}
     },
     required: f.object.required?(:project)
   %>
+  <button type="button" class="btn btn-link add">
+    <span class="glyphicon glyphicon-plus"></span>
+    <span class="controls-add-text">Add another Project and funder</span>
+  </button>
 </div>

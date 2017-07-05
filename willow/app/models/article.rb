@@ -66,12 +66,12 @@ class Article < ActiveFedora::Base
       # admin metadata
       doc[Solrizer.solr_name('admin_metadata', :displayable)] = admin_metadata.to_json
       # project
-      doc[Solrizer.solr_name('project_id', :stored_sortable)] = project.map { |p| p.identifier.first }.reject(&:blank?)
+      doc[Solrizer.solr_name('project_id', :stored_searchable)] = project.map { |p| p.identifier.first }.reject(&:blank?)
       doc[Solrizer.solr_name('project', :stored_searchable)] = project.map { |p| p.title.first }.reject(&:blank?)
       doc[Solrizer.solr_name('funder', :stored_searchable)] = project.map { |p| p.funder_name.first }.reject(&:blank?)
       doc[Solrizer.solr_name('funder', :facetable)] = project.map { |p| p.funder_name.first }.reject(&:blank?)
       doc[Solrizer.solr_name('funder_id', :facetable)] = project.map { |p| p.funder_id.first }.reject(&:blank?)
-      doc[Solrizer.solr_name('grant_number', :stored_sortable)] = project.map { |p| p.grant_number.first }.reject(&:blank?)
+      doc[Solrizer.solr_name('grant_number', :stored_searchable)] = project.map { |p| p.grant_number.first }.reject(&:blank?)
       doc[Solrizer.solr_name('project', :displayable)] = project.to_json
     end
   end

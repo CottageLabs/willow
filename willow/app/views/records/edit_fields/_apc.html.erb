@@ -2,9 +2,10 @@
   <%= f.input key,
     as: :multi_value_select,
     collection: ApcTypesService.select_all_options,
-    include_blank: true,
-    prompt: 'Select apc option',
-    input_html: { class: 'form-control' }
+    input_html: {
+      class: 'form-control',
+      prompt: 'Select apc option'
+    }
   %>
 <% elsif f.object.class.multiple? key %>
   <%= f.input key,
