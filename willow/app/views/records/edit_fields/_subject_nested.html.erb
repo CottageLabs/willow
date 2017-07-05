@@ -1,11 +1,14 @@
-<div class="subject-nested-editor">
+<div class="multi-nested">
   <%= f.input :subject_nested,
     as: :subject_statement,
     input_html: {
-      class: 'form-control',
-      multiple: true,
+      class: '',
       data: {name: :subject_nested}
     },
     required: f.object.required?(:subject_nested)
   %>
+  <button type="button" class="btn btn-link add">
+    <span class="glyphicon glyphicon-plus"></span>
+    <span class="controls-add-text">Add another Subject</span>
+  </button>
 </div>
