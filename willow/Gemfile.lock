@@ -680,6 +680,7 @@ DEPENDENCIES
   hydra-role-management
   jbuilder (~> 2.0)
   jquery-rails
+  json-schema (~> 2.8.0)
   pg (~> 0.19.0)
   puma (~> 3.8.2)
   rails (= 5.0.2)
