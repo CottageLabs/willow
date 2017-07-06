@@ -1,9 +1,12 @@
 FactoryGirl.define do
+
   factory :article do
-    id "article"
     title ["Article"]
-    doi "123456789/123456789"
+    access_control
+    skip_create
+    override_new_record
   end
+
 
   factory :article_seq, class: Article do
     sequence(:id) {|n| "article-#{n}"}

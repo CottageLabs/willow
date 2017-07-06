@@ -1,9 +1,10 @@
 FactoryGirl.define do
-  factory :dataset do
-    id "dataset"
-    title ["Dataset"]
-    doi "123456789/d_123456789"
-  end
 
+  factory :dataset do
+    title ["Dataset"]
+    access_control
+    skip_create
+    override_new_record
+  end
 
 end
