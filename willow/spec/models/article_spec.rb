@@ -922,12 +922,12 @@ RSpec.describe Article do
         }]
       }
       @doc = @obj.to_solr
-      expect(@doc['project_id_ssi']).to match_array(['123456'])
+      expect(@doc['project_id_tesim']).to match_array(['123456'])
       expect(@doc['project_tesim']).to match_array(['Project title'])
       expect(@doc['funder_tesim']).to match_array(['Funder', '2nd funder'])
       expect(@doc['funder_sim']).to match_array(['Funder', '2nd funder'])
       expect(@doc['funder_id_sim']).to match_array(['f34566'])
-      expect(@doc['grant_number_ssi']).to match_array(['11111'])
+      expect(@doc['grant_number_tesim']).to match_array(['11111'])
     end
   end
 end
