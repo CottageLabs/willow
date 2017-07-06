@@ -27,13 +27,25 @@ module Sufia
                   version: '0.0.1-SNAPSHOT'
               },
               messageBody: {
-                payload: 'Hello World',
-                event: @event,
-                title: @payload[:object][:title],
-                depositor: @payload[:object][:depositor],
-                id: @payload[:object].id
-              }
+                  payload: {
+                    objectUuid: @payload[:object].id,
+                    objectTitle: @payload[:object][:title],
 
+                    objectPersonRole: [ ],
+                    objectDescription: "",
+                    objectRights: [],
+                    objectDate: [],
+                    objectKeywords: [],
+                    objectCategory: [],
+                    objectResourceType: [],
+                    objectValue: 1,
+                    objectIdentifier: [],
+                    objectRelatedIdentifier: [],
+                    objectOrganisationRole: [],
+                    objectPreservationEvent: [],
+                    objectFile: [],
+                  }
+              }
           }
         end
 

@@ -5,8 +5,9 @@ module Sufia
     module Subscribers
       class Kinesis < Subscriber
 
-        def self.register(events: ['create_work.sufia', 'update_work.sufia', 'destroy_work.sufia'],
-              region: 'eu-west-1', stream_name: 'willow-message-stream', shard_count: 1, partition_key: 'willow')
+        def self.register_aws(events: ['create_work.sufia', 'update_work.sufia', 'destroy_work.sufia'],
+            region: 'eu-west-1',
+            stream_name: 'willow-message-stream', shard_count: 1, partition_key: 'willow')
 
           # verify that the Amazon AWS credentials are set
           unless ENV['AWS_ACCESS_KEY_ID'].present?
@@ -22,9 +23,27 @@ module Sufia
           @subscriber = self.new(region, stream_name, shard_count, partition_key).subscribe(events)
         end
 
+        def self.register_kinesalite(events: ['create_work.sufia', 'update_work.sufia', 'destroy_work.sufia'],
+            endpoint: nil, region: 'nowhere',
+            stream_name: 'willow-message-stream', shard_count: 1, partition_key: 'willow')
+
+          # verify that the Amazon AWS credentials are set
+          unless endpoint.present?
+            puts('Cannot register Kinesalite subscriber because MESSAGE_STREAM_ENDPOINT is not set')
+            return
+          end
+
+          @subscriber = self.new(region, stream_name, shard_count, partition_key, endpoint).subscribe(events)
+        end
+
+
         # loosely based on https://github.com/awslabs/amazon-kinesis-client-ruby/blob/master/samples/sample_kcl_producer.rb
-        def initialize(region, stream_name, shard_count, partition_key)
-          @kinesis = Aws::Kinesis::Client.new(region: region)
+        def initialize(region, stream_name, shard_count, partition_key, endpoint=nil)
+          if endpoint.present?
+            @client = Aws::Kinesis::Client.new(region: region, endpoint: endpoint)
+          else
+            @client = Aws::Kinesis::Client.new(region: region)
+          end
           @stream_name = stream_name
           @shard_count = shard_count
           @partition_key = partition_key
@@ -34,7 +53,7 @@ module Sufia
         def notify(event, start, finish, id, payload)
           message = BuildMessage.new(event, payload).to_message
           Rails.logger.info("Sending Sufia event to stream #{@stream_name}: #{message}")
-          @kinesis.put_record(stream_name: @stream_name,
+          @client.put_record(stream_name: @stream_name,
                               partition_key: @partition_key,
                               data: message.to_json)
         end
@@ -56,13 +75,13 @@ module Sufia
             puts "Stream #{@stream_name} already exists with #{desc[:shards].size} shards"
           rescue Aws::Kinesis::Errors::ResourceNotFoundException
             puts "Creating stream #{@stream_name} with #{@shard_count || 1} shards"
-            @kinesis.create_stream(:stream_name => @stream_name, :shard_count => @shard_count || 1)
+            @client.create_stream(:stream_name => @stream_name, :shard_count => @shard_count || 1)
             wait_for_stream_to_become_active
           end
         end
 
         def get_stream_description
-          r = @kinesis.describe_stream(:stream_name => @stream_name)
+          r = @client.describe_stream(:stream_name => @stream_name)
           r[:stream_description]
         end
 
