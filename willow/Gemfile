@@ -55,6 +55,9 @@ group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
+  gem 'webmock', '~> 3.0.1'
+  gem 'vcr', '~> 3.0.3'
+  gem 'factory_girl_rails', '~> 4.8.0'
 end
 
 gem 'rsolr', '~> 1.0'

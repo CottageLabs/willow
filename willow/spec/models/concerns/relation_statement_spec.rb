@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe RelationStatement do
+RSpec.describe RelationStatement, :vcr do
   before do
     class ExampleWork < ActiveFedora::Base
       property :relation, predicate: ::RDF::Vocab::DC.relation, class_name:"RelationStatement"
@@ -25,8 +25,6 @@ describe RelationStatement do
         }
       ]
     }
-    @obj.save!
-    @obj.reload
     expect(@obj.relation.first).to be_kind_of ActiveTriples::Resource
     expect(@obj.relation.first.id).to include('#relation')
     expect(@obj.relation.first.label).to eq ['A relation label']

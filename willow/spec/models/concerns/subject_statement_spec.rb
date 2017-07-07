@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe SubjectStatement do
+RSpec.describe SubjectStatement, :vcr do
   before do
     class ExampleWork < ActiveFedora::Base
       property :subject_nested, predicate: ::RDF::Vocab::DC.subject, class_name:"SubjectStatement"
@@ -23,8 +23,6 @@ describe SubjectStatement do
         }
       ]
     }
-    @obj.save!
-    @obj.reload
     expect(@obj.subject_nested.first).to be_kind_of ActiveTriples::Resource
     expect(@obj.subject_nested.first.id).to include('#subject')
     expect(@obj.subject_nested.first.label).to eq ['A subject label']

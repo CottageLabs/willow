@@ -1,6 +1,7 @@
 require 'rails_helper'
 require "./lib/vocabularies/rioxxterms"
-describe ProjectStatement do
+
+RSpec.describe ProjectStatement, :vcr do
   before do
     class ExampleWork < ActiveFedora::Base
       property :project, predicate: RioxxTerms.project, class_name:"ProjectStatement"
@@ -24,8 +25,6 @@ describe ProjectStatement do
         }
       ]
     }
-    @obj.save!
-    @obj.reload
     expect(@obj.project.first).to be_kind_of ActiveTriples::Resource
     expect(@obj.project.first.id).to include('#project')
     expect(@obj.project.first.identifier).to eq ['20170102']

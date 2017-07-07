@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe DateStatement do
+RSpec.describe DateStatement, :vcr do
   before do
     class ExampleWork < ActiveFedora::Base
       property :date, predicate: ::RDF::Vocab::DC.date, class_name:"DateStatement"
@@ -21,8 +21,6 @@ describe DateStatement do
         }
       ]
     }
-    @obj.save!
-    @obj.reload
     expect(@obj.date.first).to be_kind_of ActiveTriples::Resource
     expect(@obj.date.first.id).to include('#date')
     expect(@obj.date.first.date).to eq ['2017-01-02']

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe RightsStatement do
+RSpec.describe RightsStatement, :vcr do
   before do
     class ExampleWork < ActiveFedora::Base
       property :rights_nested, predicate: ::RDF::Vocab::DC.rights, class_name:"RightsStatement"
@@ -22,8 +22,6 @@ describe RightsStatement do
         }
       ]
     }
-    @obj.save!
-    @obj.reload
     expect(@obj.rights_nested.first).to be_kind_of ActiveTriples::Resource
     expect(@obj.rights_nested.first.id).to include('#rights')
     expect(@obj.rights_nested.first.label).to eq ['A rights label']
