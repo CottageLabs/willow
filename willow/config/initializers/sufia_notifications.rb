@@ -1,3 +1,6 @@
+# this line helps the notifications run in production mode
+Sufia::Notifications::Subscribers::BuildMessage
+
 Sufia::Notifications::Subscribers::Log.register
 
 # only register AWS message streaming if specified by environmental variables
