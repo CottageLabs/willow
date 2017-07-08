@@ -1,5 +1,6 @@
 # Willow
 
+[ ![Codeship Status for CottageLabs/willow](https://app.codeship.com/projects/7ccf4810-f82c-0134-d891-3ee9bddbeb77/status?branch=master)](https://app.codeship.com/projects/210883)
 
 ## Introduction
 
