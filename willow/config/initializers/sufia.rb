@@ -3,7 +3,8 @@ Sufia.config do |config|
   config.register_curation_concern :work
   # Injected via `rails g sufia:work Dataset`
   config.register_curation_concern :dataset
-
+  # Injected via `rails g sufia:work Article`
+  config.register_curation_concern :article
 
   # specify derivatives path to avoid thumbnails being lost in a tmp folder
   config.derivatives_path = '/derivatives/'

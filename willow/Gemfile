@@ -37,10 +37,6 @@ gem 'sufia', '7.3.1'
 
 gem 'blacklight_advanced_search', '~> 6.0'
 
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
-end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
@@ -54,6 +50,11 @@ group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
+  gem 'webmock', '~> 3.0.1'
+  gem 'vcr', '~> 3.0.3'
+  gem 'factory_girl_rails', '~> 4.8.0'
+  gem 'byebug'
+  gem 'json-schema', '~> 2.8.0'
 end
 
 gem 'rsolr', '~> 1.0'
@@ -68,3 +69,4 @@ gem 'tinymce-rails-imageupload', '4.0.17.beta.2' # we need this specific version
 # override this for a local folder with the command:
 # $ bundle config local.willow_sword $APP_HOME/willow_sword
 gem 'willow_sword', git: "https://github.com/cottagelabs/willow_sword.git", branch: "master"
+gem 'bootstrap-datepicker-rails'

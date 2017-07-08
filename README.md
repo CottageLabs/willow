@@ -1,5 +1,6 @@
 # Willow
 
+[ ![Codeship Status for CottageLabs/willow](https://app.codeship.com/projects/7ccf4810-f82c-0134-d891-3ee9bddbeb77/status?branch=master)](https://app.codeship.com/projects/210883)
 
 ## Introduction
 
@@ -48,9 +49,6 @@ SECRET_KEY_BASE_TEST=fb350a4ff22efffba83ff0d73e6a73b0bbca9cdb22683c61e49d8f57280
 
 # ------------ OPTIONAL PARAMETERS BELOW HERE -------------
 
-WILLOW_EMAIL=<some email address, default is "admin@willow">
-WILLOW_PASSWORD=<some password, default is "password">
-WILLOW_NAME=<some name, default is "Willow Admin">
 
 # Serve Willow on port 80 (default is 3000)
 WILLOW_EXPOSED_PORT=80
@@ -73,18 +71,26 @@ GEOBLACKLIGHT_SEED=false
 # Serve static assets
 RAILS_SERVE_STATIC_FILES=true
 
-# Set to true to enable Willow to stream events to Amazon AWS Kinesis
-AWS_MESSAGE_STREAM=false
 
-# Region, shards, stream name and partition settings
-AWS_MESSAGE_STREAM_REGION=eu-west-1
-AWS_MESSAGE_STREAM_NAME=willow-message-stream
-AWS_MESSAGE_STREAM_SHARD_COUNT=1
-AWS_MESSAGE_STREAM_PARTITION_KEY=willow
+# Willow messaging stream: either to the AWS cloud or on a local Kinesalite instance
+# Set to "aws" for AWS, or "kinesalite" for local Kinesalite, or "false" for none
+MESSAGE_STREAM=aws
 
+# Shards, stream name and partition settings
+MESSAGE_STREAM_NAME=willow-message-stream
+MESSAGE_STREAM_SHARD_COUNT=1
+MESSAGE_STREAM_PARTITION_KEY=willow
+
+# Endpoint only used when MESSAGE_STREAM=kinesalite
+# MESSAGE_STREAM_ENDPOINT=http://kinesalite:4567
+
+
+# Only used when MESSAGE_STREAM=aws
+MESSAGE_STREAM_REGION=eu-west-1
 # Amazon AWS credentials
 AWS_ACCESS_KEY_ID=<some AWS access key>
 AWS_SECRET_ACCESS_KEY=<some AWS secret key>
+
 
 ```
 
@@ -98,6 +104,19 @@ WILLOW_SEED=true
 
 # Set to true to seed Geoblacklight data
 GEOBLACKLIGHT_SEED=true
+
+
+# Willow messaging stream: either to the AWS cloud or on a local Kinesalite instance
+# Set to "aws" for AWS, or "kinesalite" for local Kinesalite, or "false" for none
+MESSAGE_STREAM=kinesalite
+
+# Shards, stream name and partition settings
+MESSAGE_STREAM_NAME=willow-message-stream
+MESSAGE_STREAM_SHARD_COUNT=1
+MESSAGE_STREAM_PARTITION_KEY=willow
+
+# Endpoint only used when MESSAGE_STREAM=kinesalite
+MESSAGE_STREAM_ENDPOINT=http://kinesalite:4567
 ```
   
 __example .env.willow.hosting file__
@@ -156,5 +175,28 @@ $ docker-compose down --volumes && docker-compose up --build
     
 10. To get a bash prompt within the Willow container (e.g. to run rake tasks), you can run:
 ```bash
-$ docker-compose run willow bash
+$ docker-compose run --rm willow bash
 ```
+
+11. To get a rails console within the Willow container for debugging, you can run:
+```bash
+$ docker-compose run --rm willow rails console
+```
+
+12. To run the full Willow test suite, use:
+```bash
+$ docker-compose run --rm -e RAILS_ENV=test willow rake spec
+```
+
+13. JISC RDSS message schemas tests
+  
+  There are some tests defined which require 3rd party Json schemas defined in a private repository: https://github.com/JiscRDSS/rdss-message-api-docs/
+  If you have access to this private repository, do the following steps: 
+
+  - Ensure the path "/willow/spec/fixtures/files/schemas/jisc_rdss/*" is in your `.gitignore` file.
+
+  - Then, copy the following files and folders to the given locations:
+    -  https://github.com/JiscRDSS/rdss-message-api-docs/tree/master/messages  => willow/willow/spec/fixtures/files/schemas/jisc_rdss/messages
+    -  https://github.com/JiscRDSS/rdss-message-api-docs/tree/master/schemas   => willow/willow/spec/fixtures/files/schemas/jisc_rdss/schemas
+
+  - Be sure that the files above are not committed to git!

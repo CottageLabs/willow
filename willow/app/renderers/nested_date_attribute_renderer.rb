@@ -10,10 +10,10 @@ class NestedDateAttributeRenderer < CurationConcerns::Renderers::DateAttributeRe
     value.each do |v|
       label = ''
       val = ''
-      if v.include?('description') and not v['description'].blank?
+      if v.include?('description') and not v['description'].blank? and not v['description'][0].blank?
         label = DateTypesService.label(v['description'][0])
       end
-      if v.include?('date') and not v['date'].blank?
+      if v.include?('date') and not v['date'].blank? and not v['date'][0].blank?
         val = Date.parse(v['date'][0]).to_formatted_s(:standard)
       end
       html += "<tr><th>#{label}</th><td>#{val}</td><tr>"

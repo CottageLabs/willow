@@ -12,13 +12,36 @@ div#announcement {
   background-image: none !important;
 }
 
-li.field-wrapper {
+form .listing {
   list-style: none;
+}
+
+form .row {
+  padding-bottom: 5px;
+}
+
+form .field-wrapper:not(:last-child) {
+  padding-bottom: 1em;
+}
+
+.multi-nested .form-group,
+.multi-nested .listing, {
+  margin-bottom: 0px;
+}
+
+.multi-nested .btn {
+  padding-top: 0px;
+}
+
+.multi-nested {
+  margin-bottom: 1em;
 }
 
 .fixedsticky-off, .fixedsticky-on {
   position: sticky !important;
 }
-li.field-wrapper {
-  list-style: none;
+
+form .field-wrapper label[required="required"]::after {
+  content: " *";
+  color: red;
 }

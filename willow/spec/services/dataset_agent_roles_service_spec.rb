@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe AgentRolesService do
+describe DatasetAgentRolesService do
   before do
     # Configure QA to use fixtures
     qa_fixtures = { local_path: File.expand_path('../../../config/authorities', __FILE__) }

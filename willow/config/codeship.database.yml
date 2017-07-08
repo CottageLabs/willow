@@ -1,0 +1,10 @@
+test:
+  adapter: postgresql
+  host: localhost
+  encoding: unicode
+  pool: 10
+  username: <%= ENV['PG_USER'] %>
+  password: <%= ENV['PG_PASSWORD'] %>
+  database: test<%= ENV['TEST_ENV_NUMBER'] %>
+  port: 5435 # NB: port 5435 is for Postgres 9.5
+  sslmode: disable

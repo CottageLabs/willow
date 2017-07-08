@@ -52,10 +52,11 @@ COPY Gemfile Gemfile.lock $APP_PRODUCTION
 RUN cd $APP_PRODUCTION && \
     bundle config build.nokogiri --use-system-libraries \
     && if [ "$RAILS_ENV" = "production" ]; then \
-            bundle install --without development test; \
+            bundle install --without test:development; \
         else \
-            bundle install --without production; \
-        fi
+            bundle install --without production --no-deployment; \
+        fi \
+    && mv Gemfile.lock Gemfile.lock.built_by_docker
 
 # copy the seeds
 COPY ./seed /seed
@@ -66,6 +67,11 @@ RUN mkdir -p /derivatives
 # copy the application
 COPY . $APP_PRODUCTION
 COPY docker-entrypoint.sh /bin/
+
+# use the just built Gemfile.lock, not the one copied into the container and verify the gems are correctly installed
+RUN cd $APP_PRODUCTION \
+    && mv Gemfile.lock.built_by_docker Gemfile.lock \
+    && bundle check
 
 # generate production assets if production environment
 RUN if [ "$RAILS_ENV" = "production" ]; then \

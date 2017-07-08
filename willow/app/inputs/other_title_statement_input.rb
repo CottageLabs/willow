@@ -13,27 +13,31 @@ protected
     # --- title_type
     field = :title_type
     field_name = name_for(attribute_name, index, field)
+    field_id = id_for(attribute_name, index, field)
     field_value = other_title_statement.send(field).first
+    title_options = TitleTypesService.select_all_options
 
     out << "  <div class='col-md-3'>"
-    out << template.select_tag(field_name, template.options_for_select(TitleTypesService.select_all_options, field_value), label: '', class: 'select form-control', prompt: 'choose type')
+    out << template.select_tag(field_name, template.options_for_select(title_options, field_value),
+        label: '', class: 'select form-control', prompt: 'choose type', id: field_id)
     out << '  </div>'
 
     # --- title
     field = :title
     field_name = name_for(attribute_name, index, field)
+    field_id = id_for(attribute_name, index, field)
     field_value = other_title_statement.send(field).first
 
-    out << "  <div class='col-md-9'>"
-    out << @builder.text_field(field_name, options.merge(value: field_value, name: field_name))
+    out << "  <div class='col-md-6'>"
+    out << @builder.text_field(field_name,
+        options.merge(value: field_value, name: field_name, id: field_id))
     out << '  </div>'
 
     # --- delete checkbox
-    # if !value.new_record?
-    #   out << "  <div class='col-md-3'>"
-    #   out << destroy_widget(attribute_name, index)
-    #   out << '  </div>'
-    # end
+    field_label = 'Alternative titles'
+    out << "  <div class='col-md-3'>"
+    out << destroy_widget(attribute_name, index, field_label)
+    out << '  </div>'
 
     out << '</div>' # last row
     out
