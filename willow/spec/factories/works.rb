@@ -6,7 +6,8 @@ FactoryGirl.define do
     end
 
     title ['Work title']
-    id 'foo'
+    id '00000000-0000-0000-0000-000000000000'
+
 
     # factory :access_control, class: Hydra::AccessControl do
     #   skip_create
@@ -37,11 +38,11 @@ FactoryGirl.define do
     #   visibility Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_AUTHENTICATED
     # end
     #
-    # factory :work_with_one_file do
-    #   before(:create) do |work, evaluator|
-    #     work.ordered_members << FactoryGirl.create(:file_set, user: evaluator.user, title: ['A Contained FileSet'])
-    #   end
-    # end
+    factory :work_with_one_file do
+      before(:create) do |work, evaluator|
+        work.ordered_members << FactoryGirl.create(:file_set, user: evaluator.user, title: ['A Contained FileSet'])
+      end
+    end
     #
     # factory :work_with_one_child do
     #   before(:create) do |work, evaluator|

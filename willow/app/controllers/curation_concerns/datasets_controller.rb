@@ -7,7 +7,7 @@ module CurationConcerns
     # Adds Sufia behaviors to the controller.
     include Sufia::WorksControllerBehavior
     # Adds Sufia work notifications to the controller
-    include Sufia::Notifications::Work
+    include Sufia::Notifications::Notifiers
 
     self.curation_concern_type = Dataset
     self.show_presenter = DatasetPresenter

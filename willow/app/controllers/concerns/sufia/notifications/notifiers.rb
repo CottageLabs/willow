@@ -1,6 +1,6 @@
 module Sufia
   module Notifications
-    module Work
+    module Notifiers
       extend ActiveSupport::Concern
       included do
 
