@@ -11,6 +11,13 @@ module Sufia
         end
 
         def to_message
+          puts "TESTING--------------------------------"
+          puts @payload[:object]
+          puts @payload[:object].id
+          puts @payload[:object].title
+
+
+
           return {
               messageHeader: {
                   messageId: SecureRandom.uuid,
@@ -29,7 +36,7 @@ module Sufia
               messageBody: {
                   payload: {
                     objectUuid: @payload[:object].id,
-                    objectTitle: @payload[:object][:title],
+                    objectTitle: @payload[:object].title,
 
                     objectPersonRole: [ ],
                     objectDescription: "",

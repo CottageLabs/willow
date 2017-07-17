@@ -1,3 +1,4 @@
+require 'rails_helper'
 require 'support/json_schemas'
 
 # NB: these tests require some files which cannot be committed to git (yet)
