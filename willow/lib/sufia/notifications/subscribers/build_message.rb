@@ -131,7 +131,11 @@ module Sufia
                 {
                   person: {
                          personGivenName: (c.first_name + c.last_name).join(' '),
-                         personIdentifier: c.orcid.map {|o| {personIdentifierValue: o }}
+                         personIdentifier: c.orcid.map {|o|
+                           {
+                               personIdentifierValue: o,
+                               personIdentifierType: UNKNOWN_ID
+                           }}
                      }
                 }
               }
@@ -202,43 +206,95 @@ module Sufia
         end
 
         def objectKeywords
-          []
+          @object.keyword.to_a
         end
 
         def objectCategory
-          []
+          @object.resource_type.to_a
         end
 
         def objectResourceType
-          1
+          UNKNOWN_ID
         end
 
         def objectValue
-          1
+          UNKNOWN_ID
         end
 
         def objectIdentifier
-          []
+          ids = @object.identifier.map{|i|
+            {
+                identifierValue: i,
+                identifierType: UNKNOWN_ID,
+                relationType: UNKNOWN_ID
+            }
+          }
+
+          if [Dataset, Article].include?(@curation_concern_type)
+            ids << {
+                identifierValue: @object.doi,
+                identifierType: UNKNOWN_ID,
+                relationType: UNKNOWN_ID
+            }
+          end
+
+          ids << {
+              identifierValue: @object.to_global_id.to_s,
+              identifierType: UNKNOWN_ID,
+              relationType: UNKNOWN_ID
+          }
         end
 
         def objectRelatedIdentifier
-          []
+          case
+            when [Dataset, Article].include?(@curation_concern_type)
+              @object.relation.map{|r|
+                {
+                    identifierValue: r.url.first,
+                    identifierType: UNKNOWN_ID,
+                    relationType: UNKNOWN_ID
+                }
+              }
+            else
+              []
+          end
         end
 
         def objectOrganisationRole
-          []
+          [{
+               organisation: {
+                  organisationJiscId: UNKNOWN_ID,
+                  organisationName: UNKNOWN,
+                  organisationType: UNKNOWN_ID,
+                  organisationAddress: UNKNOWN
+              },
+               role: UNKNOWN_ID
+           }]
         end
 
         def objectPreservationEvent
-          []
+          [{
+              preservationEventValue: @event,
+              preservationEventType: UNKNOWN_ID,
+              preservationEventDetail: UNKNOWN
+           }]
         end
 
         def objectFile
-          []
+          files = []
+          @object.file_sets.each do |fs|
+            fs.files.each do |f|
+              files << {
+                  fileUuid: f.id,
+                  fileIdentifier: f.uri.to_s,
+                  fileName: f.file_name.first,
+                  fileSize: f.file_size.first,
+                  fileStorageType: UNKNOWN_ID
+              }
+            end
+          end
+          files
         end
-
-
-
 
       end
     end
