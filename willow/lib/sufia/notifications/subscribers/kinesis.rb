@@ -55,7 +55,7 @@ module Sufia
           Rails.logger.info("Sending Sufia event to stream #{@stream_name}: #{message}")
           @client.put_record(stream_name: @stream_name,
                               partition_key: @partition_key,
-                              data: message.to_json)
+                              data: JSON.generate(message))
         end
 
 

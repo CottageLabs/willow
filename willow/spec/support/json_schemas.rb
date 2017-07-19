@@ -6,7 +6,7 @@ def load_validator_with_schemas(schema_path)
   if Dir.exist?(schema_path)
     Dir.glob(File.join(schema_path, "*.json")).each do |file|
       schema = JSON.parse(File.read(file))
-      puts "Loading schema #{File.basename(file)} => #{schema["id"]}"
+      #puts "Loading schema #{File.basename(file)} => #{schema["id"]}"
       validator.add_schema(JSON::Schema.new(schema, Addressable::URI.parse(schema["id"])))
     end
   else

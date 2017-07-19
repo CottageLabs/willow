@@ -69,51 +69,11 @@ describe CurationConcerns::WorksController, :type => :controller do
     end
 
     it 'messageType is create' do
-      expect(@messageHeader[:messageType]).to eql('CREATE')
+      expect(@messageHeader[:messageType]).to eql('create_work.sufia.Work')
     end
 
     it 'payload contains objectTitle' do
       expect(@messageBodyPayload[:objectTitle]).to eql(work.title.first)
     end
   end
-  #
-  # describe '#update' do
-  #   let(:visibility_changed) { false }
-  #   let(:actor) { double(update: true) }
-  #
-  #   #let(:update_status) { true }
-  #   #let(:actor) { double(update: update_status) }
-  #
-  #   before :each do
-  #     # allow(CurationConcerns::CurationConcern).to receive(:actor).and_return(actor)
-  #     # allow_any_instance_of(Work).to receive(:visibility_changed?).and_return(visibility_changed)
-  #     # allow(controller).to receive(:curation_concern).and_return(work)
-  #     # allow(controller).to receive(:update).and_return(visibility_changed)
-  #     # allow(controller).to receive(:foo).and_return(visibility_changed)
-  #
-  #     @message = notification_message_for('update_work.sufia') do
-  #       #patch :update, params: { work: { title: [''] } }
-  #       patch :update, params: { id: 1, work: {} }
-  #     end
-  #     @messageHeader=@message[:messageHeader]
-  #     @messageBody=@message[:messageBody]
-  #     @messageBodyPayload=@messageBody[:payload]
-  #     @jsonPayload=JSON.pretty_generate(@messageBodyPayload)
-  #   end
-  #
-  #   # it 'schema validated payload' do
-  #   #   expect(@jsonPayload).to_not be_nil
-  #   #   expect(@validator.fully_validate(
-  #   #       file_fixture("schemas/jisc_rdss/messages/metadata/create/request_schema.json").read,
-  #   #       @jsonPayload)).to be_empty
-  #   # end
-  #   #
-  #   # it 'messageType is update' do
-  #   #   expect(@messageHeader[:messageType]).to eql('UPDATE')
-  #   # end
-  #
-  #   it 'payload contains objectTitle' do
-  #     expect(@messageBodyPayload[:objectTitle]).to eql(work.title.first)
-  #   end
-  # end
 end

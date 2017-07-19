@@ -14,14 +14,14 @@ require 'support/jisc_rdss_schemas'
 # Be sure that the files above are not committed to git!
 
 
-describe CurationConcerns::ArticlesController, :type => :controller do
+describe CurationConcerns::DatasetsController, :type => :controller do
   let(:depositor_user) { create(:user, email: 'josiah@example.com', title: 'Professor of Psychoceramics',
                                 display_name: 'Josiah Carberry', orcid: '0000-0002-1825-0097' ) }
-  let(:article) { create(:article,
+  let(:dataset) { create(:dataset,
                          id: 'A-0000000',
                          depositor: depositor_user.email,
                          title: ['Do Mug Fairies Exist? An experiment in self-cleaning crockery'],
-                         resource_type: ["Article"],
+                         resource_type: ["Dataset"],
                          creator_nested_attributes: [{
                                                          first_name: 'Ed',
                                                          last_name: 'Pentz',
@@ -36,15 +36,15 @@ describe CurationConcerns::ArticlesController, :type => :controller do
                                                          role: 'Author'
                                                      }],
                          description: ['The author set out to prove that if coffee or tea mugs are left in an office for ' +
-                                          'long enough they will clean themselves. Previous research in this area suggest ' +
-                                          'that this hypothesis is true, as the author has very infrequently had to resort ' +
-                                          'to cleaning the mugs himself.'],
+                                           'long enough they will clean themselves. Previous research in this area suggest ' +
+                                           'that this hypothesis is true, as the author has very infrequently had to resort ' +
+                                           'to cleaning the mugs himself.'],
                          keyword: ["mug", "fairies", "psychoceramics"],
                          rights_nested_attributes: [{
-                                             label: 'A rights label',
-                                             definition: 'A definition of the rights',
-                                             webpage: 'http://creativecommons.org/publicdomain/zero/1.0/'
-                                         }],
+                                                        label: 'A rights label',
+                                                        definition: 'A definition of the rights',
+                                                        webpage: 'http://creativecommons.org/publicdomain/zero/1.0/'
+                                                    }],
                          publisher: ["Society of Psychoceramics"],
                          date_attributes: [{
                                                date: '2017-01-01',
@@ -75,10 +75,10 @@ describe CurationConcerns::ArticlesController, :type => :controller do
 
     before :each do
       allow(CurationConcerns::CurationConcern).to receive(:actor).and_return(actor)
-      allow(controller).to receive(:curation_concern).and_return(article)
+      allow(controller).to receive(:curation_concern).and_return(dataset)
 
       @message = notification_message_for('create_work.sufia') do
-        post :create, params: { article: { title: [''] } }
+        post :create, params: { dataset: { title: [''] } }
       end
       @messageHeader=@message[:messageHeader]
       @messageBody=@message[:messageBody]
@@ -95,11 +95,11 @@ describe CurationConcerns::ArticlesController, :type => :controller do
     end
 
     it 'messageType is create' do
-      expect(@messageHeader[:messageType]).to eql('create_work.sufia.Article')
+      expect(@messageHeader[:messageType]).to eql('create_work.sufia.Dataset')
     end
 
     it 'payload contains objectTitle' do
-      expect(@messageBodyPayload[:objectTitle]).to eql(article.title.first)
+      expect(@messageBodyPayload[:objectTitle]).to eql(dataset.title.first)
     end
   end
 end

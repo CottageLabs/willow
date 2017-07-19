@@ -17,14 +17,6 @@ module Sufia
         end
 
         def to_message
-          puts "\n\nBUILDING MESSAGE --------------------------------"
-          puts "Incoming"
-          puts "@payload:\t#{@payload}"
-          puts "@object[:depositor]:\t#{@object[:depositor]}"
-          puts "@curation_concern_type:\t#{@curation_concern_type}"
-
-          puts "@curation_concern_type.class:\t#{@curation_concern_type.class}"
-
           msg = {
               messageHeader: {
                   messageId: messageId,
@@ -55,9 +47,7 @@ module Sufia
               }
           }
 
-          puts "Outgoing message"
-          puts JSON.pretty_generate(msg)
-          puts "DONE --------------------------------\n\n"
+          # puts JSON.pretty_generate(msg)
           msg
         end
 
@@ -76,16 +66,7 @@ module Sufia
         end
 
         def messageType
-          case @event
-            when 'create_work.sufia'
-              'CREATE'
-            when 'update_work.sufia'
-              'UPDATE'
-            when 'delete_work.sufia'
-              'DELETE'
-            else
-              "UNKNOWN-#{@event}"
-          end
+          "#{@event}.#{@curation_concern_type}"
         end
 
         def messageTimings
@@ -126,7 +107,7 @@ module Sufia
                     }
                 }
               }
-            when [Dataset, Article].include?(@curation_concern_type)
+            when [Dataset, Article].include?(@curation_concern_type) && @event != 'destroy_work.sufia'
               @object.creator_nested.map{|c|
                 {
                   person: {
@@ -165,10 +146,10 @@ module Sufia
                                } ]
                 }
               }
-            when [Dataset, Article].include?(@curation_concern_type)
+            when [Dataset, Article].include?(@curation_concern_type) && @event != 'destroy_work.sufia'
               @object.rights_nested.map{|r|
                 {
-                    rightsStatement: r.definition,
+                    rightsStatement: r.definition.to_a,
                     rightsHolder: [ UNKNOWN ],
                     licence: [ {
                                    licenceIdentifier: r.webpage.first,
@@ -189,14 +170,14 @@ module Sufia
           case
             when @curation_concern_type.eql?(Work)
               [{
-                  dateValue: UNKNOWN,
+                  dateValue: @object.date_created.first,
                   dateType: UNKNOWN_ID
               }]
 
-            when [Dataset, Article].include?(@curation_concern_type)
+            when [Dataset, Article].include?(@curation_concern_type) && @event != 'destroy_work.sufia'
               @object.date.map{|d|
                 {
-                    dateValue: d.date,
+                    dateValue: d.date.first,
                     dateType: UNKNOWN_ID
                 }
               }
@@ -276,21 +257,23 @@ module Sufia
           [{
               preservationEventValue: @event,
               preservationEventType: UNKNOWN_ID,
-              preservationEventDetail: UNKNOWN
+              preservationEventDetail: @curation_concern_type
            }]
         end
 
         def objectFile
           files = []
-          @object.file_sets.each do |fs|
-            fs.files.each do |f|
-              files << {
-                  fileUuid: f.id,
-                  fileIdentifier: f.uri.to_s,
-                  fileName: f.file_name.first,
-                  fileSize: f.file_size.first,
-                  fileStorageType: UNKNOWN_ID
-              }
+          if @event != 'destroy_work.sufia'
+            @object.file_sets.each do |fs|
+              fs.files.each do |f|
+                files << {
+                    fileUuid: f.id,
+                    fileIdentifier: f.uri.to_s,
+                    fileName: f.file_name.first,
+                    fileSize: f.file_size.first,
+                    fileStorageType: UNKNOWN_ID
+                }
+              end
             end
           end
           files
