@@ -8,3 +8,4 @@ ln -sf ../env.production .env.production
 ln -sf ../env.willow.hosting .env.willow.hosting
 rm -f docker-compose.override.yml
 docker-compose down --remove-orphans && docker-compose build && docker-compose up -d
+./deploy/push_to_rdss_willow.sh
