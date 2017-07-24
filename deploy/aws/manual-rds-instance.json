@@ -1,0 +1,49 @@
+{
+    "DBInstanceIdentifier": "willow-production-rds",
+    "AllocatedStorage": 10,
+    "DBInstanceClass": "t2.medium",
+    "Engine": "", 
+    "MasterUsername": "", 
+    "MasterUserPassword": "", 
+    "DBSecurityGroups": [
+        ""
+    ], 
+    "VpcSecurityGroupIds": [
+        ""
+    ], 
+    "AvailabilityZone": "", 
+    "DBSubnetGroupName": "", 
+    "PreferredMaintenanceWindow": "", 
+    "DBParameterGroupName": "", 
+    "BackupRetentionPeriod": 0, 
+    "PreferredBackupWindow": "", 
+    "Port": 0, 
+    "MultiAZ": true, 
+    "EngineVersion": "", 
+    "AutoMinorVersionUpgrade": true, 
+    "LicenseModel": "", 
+    "Iops": 0, 
+    "OptionGroupName": "", 
+    "CharacterSetName": "", 
+    "PubliclyAccessible": true, 
+    "Tags": [
+        {
+            "Key": "", 
+            "Value": ""
+        }
+    ], 
+    "DBClusterIdentifier": "", 
+    "StorageType": "", 
+    "TdeCredentialArn": "", 
+    "TdeCredentialPassword": "", 
+    "StorageEncrypted": true, 
+    "KmsKeyId": "", 
+    "Domain": "", 
+    "CopyTagsToSnapshot": true, 
+    "MonitoringInterval": 0, 
+    "MonitoringRoleArn": "", 
+    "DomainIAMRoleName": "", 
+    "PromotionTier": 0, 
+    "Timezone": "", 
+    "EnableIAMDatabaseAuthentication": true
+}

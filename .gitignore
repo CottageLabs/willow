@@ -7,3 +7,5 @@ tmp/
 /docker-compose.override.yml
 
 /willow/spec/fixtures/files/schemas/jisc_rdss/*
+
+/deploy/aws/login.sh

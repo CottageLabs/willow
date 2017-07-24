@@ -1,0 +1,384 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "ed15b8ca-df8e-4a24-b41c-4cc0ae3f50ab": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 216,
+                    "y": 172
+                },
+                "z": 0,
+                "embeds": []
+            },
+            "f7d6bbe1-042d-4db7-b2cc-f84cc3a7bb73": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 570,
+                    "y": 180
+                },
+                "z": 1,
+                "embeds": [],
+                "references": [
+                    "0829b4b2-b003-4517-81bb-b1d3e39372a9",
+                    "276785cf-01f3-4dda-897d-658d37e69f34"
+                ]
+            },
+            "276785cf-01f3-4dda-897d-658d37e69f34": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 720,
+                    "y": 180
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "1742a533-6646-452e-af93-c43ed9fa8257": {
+                "source": {
+                    "id": "f7d6bbe1-042d-4db7-b2cc-f84cc3a7bb73"
+                },
+                "target": {
+                    "id": "276785cf-01f3-4dda-897d-658d37e69f34"
+                },
+                "z": 1
+            },
+            "0829b4b2-b003-4517-81bb-b1d3e39372a9": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 480,
+                    "y": 120
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "f16ccdbc-9e13-498c-aa60-d96a5a290d82": {
+                "source": {
+                    "id": "f7d6bbe1-042d-4db7-b2cc-f84cc3a7bb73"
+                },
+                "target": {
+                    "id": "0829b4b2-b003-4517-81bb-b1d3e39372a9"
+                },
+                "z": 13
+            },
+            "9c963997-f2b5-4b2a-ae30-731566a1b749": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 417.16666193803167,
+                    "y": 213.66666287183773
+                },
+                "z": 0
+            },
+            "6a120fc1-2439-44fd-8613-6598df97466d": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 230,
+                    "y": 90
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "30eaa50f-c52f-47d5-9e81-0596683e6d48": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 300,
+                    "y": 160
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "14efb56a-84d8-4fc0-8358-54ccce20618f": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 300,
+                    "y": 90
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "13e68dcb-eab9-4959-bc26-df5da3ba06ee": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 230,
+                    "y": 160
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "3d3a5af3-1816-4690-83fc-83291ca5d36b": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 230,
+                    "y": 230
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "35ce2b69-aef1-4c70-a6b4-1d5b34c1b921": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 300,
+                    "y": 230
+                },
+                "z": 1,
+                "embeds": []
+            }
+        }
+    },
+    "Resources": {
+        "WillowService": {
+            "Type": "AWS::ECS::Service",
+            "Properties": {
+                "DesiredCount": 1,
+                "TaskDefinition": {
+                    "Ref": "WillowTaskDef"
+                },
+                "Cluster": "WillowClusterECS"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "f7d6bbe1-042d-4db7-b2cc-f84cc3a7bb73"
+                }
+            }
+        },
+        "WillowClusterECS": {
+            "Type": "AWS::ECS::Cluster",
+            "Properties": {},
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "276785cf-01f3-4dda-897d-658d37e69f34"
+                }
+            }
+        },
+        "WillowTaskDef": {
+            "Type": "AWS::ECS::TaskDefinition",
+            "Properties": {
+                "containerDefinitions": [
+                    {
+                        "essential": true,
+                        "image": "835219480274.dkr.ecr.eu-west-2.amazonaws.com/willow-fedora:latest",
+                        "mountPoints": [
+                            {
+                                "containerPath": "/fcrepo4_home/",
+                                "sourceVolume": "Fcrepo4_Home"
+                            },
+                            {
+                                "containerPath": "/fcrepo4_data/",
+                                "sourceVolume": "Fcrepo4_Data"
+                            }
+                        ],
+                        "memoryReservation": 500,
+                        "environment": [
+                            {"name": "POSTGRES_USER", "value": "postgres"},
+                            {"name": "POSTGRES_PASSWORD", "value": "password"},
+                            {"name": "SECRET_KEY_BASE_TEST", "value": "sample_test_key"},
+                            {"name": "WILLOW_EMAIL", "value": "willow@cottagelabs.com"},
+                            {"name": "WILLOW_PASSWORD", "value": "sample_willow_pass"},
+                            {"name": "WILLOW_NAME", "value": "Willow (Admin)"},
+                            {"name": "WILLOW_EXPOSED_PORT", "value": "80"},
+                            {"name": "GEOBLACKLIGHT_EXPOSED_PORT", "value": "81"}
+                        ],
+                        "name": "fedora"
+                    },
+                    {
+                        "essential": true,
+                        "image": "835219480274.dkr.ecr.eu-west-2.amazonaws.com/willow-redis:latest",
+                        "mountPoints": [
+                            {
+                                "containerPath": "/data",
+                                "sourceVolume": "Redis_Data"
+                            }
+                        ],
+                        "memoryReservation": 250,
+                        "name": "redis"
+                    },
+                    {
+                        "essential": true,
+                        "image": "835219480274.dkr.ecr.eu-west-2.amazonaws.com/willow-solr:latest",
+                        "mountPoints": [
+                            {
+                                "containerPath": "/solr_home",
+                                "sourceVolume": "Solr_Home"
+                            }
+                        ],
+                        "memoryReservation": 250,
+                        "name": "solr"
+                    },
+                    {
+                        "essential": true,
+                        "image": "835219480274.dkr.ecr.eu-west-2.amazonaws.com/willow:latest",
+                        "links": [
+                            "redis",
+                            "solr",
+                            "fedora"
+                        ],
+                        "mountPoints": [
+                            {
+                                "containerPath": "/derivatives",
+                                "sourceVolume": "Derivatives"
+                            }
+                        ],
+                        "memoryReservation": 500,
+                        "environment": [
+                            {"name": "POSTGRES_USER", "value": "postgres"},
+                            {"name": "POSTGRES_PASSWORD", "value": "password"},
+                            {"name": "SECRET_KEY_BASE_TEST", "value": "sample_test_key"},
+                            {"name": "WILLOW_EMAIL", "value": "willow@cottagelabs.com"},
+                            {"name": "WILLOW_PASSWORD", "value": "sample_willow_pass"},
+                            {"name": "WILLOW_NAME", "value": "Willow (Admin)"},
+                            {"name": "WILLOW_EXPOSED_PORT", "value": "80"},
+                            {"name": "GEOBLACKLIGHT_EXPOSED_PORT", "value": "81"},
+                            {"name": "SECRET_KEY_BASE_PRODUCTION", "value": "sample_prod_key"},
+                            {"name": "WILLOW_SEED", "value": "false"},
+                            {"name": "GEOBLACKLIGHT_SEED", "value": "false"},
+                            {"name": "RAILS_SERVE_STATIC_FILES", "value": "true"}
+                        ],
+                        "name": "willow",
+                        "portMappings": [
+                            {
+                                "containerPort": 3000,
+                                "hostPort": 80
+                            }
+                        ]
+                    }
+                ],
+                "family": "willow",
+                "volumes": [
+                    {
+                        "host": {
+                            "sourcePath": "solr_home"
+                        },
+                        "name": "Solr_Home"
+                    },
+                    {
+                        "host": {
+                            "sourcePath": "redis_data"
+                        },
+                        "name": "Redis_Data"
+                    },
+                    {
+                        "host": {
+                            "sourcePath": "derivatives"
+                        },
+                        "name": "Derivatives"
+                    },
+                    {
+                        "host": {
+                            "sourcePath": "fcrepo4_home"
+                        },
+                        "name": "Fcrepo4_Home"
+                    },
+                    {
+                        "host": {
+                            "sourcePath": "fcrepo4_data"
+                        },
+                        "name": "Fcrepo4_Data"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "0829b4b2-b003-4517-81bb-b1d3e39372a9"
+                }
+            }
+        },
+        "WillowSolrECR": {
+            "Type": "AWS::ECR::Repository",
+            "Properties": {
+                "repositoryName": "willow-solr"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "35ce2b69-aef1-4c70-a6b4-1d5b34c1b921"
+                }
+            }
+        },
+        "WillowRedisECR": {
+            "Type": "AWS::ECR::Repository",
+            "Properties": {
+                "repositoryName": "willow-redis"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "3d3a5af3-1816-4690-83fc-83291ca5d36b"
+                }
+            }
+        },
+        "WillowGeoblacklightECR": {
+            "Type": "AWS::ECR::Repository",
+            "Properties": {
+                "repositoryName": "willow-geoblacklight"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "13e68dcb-eab9-4959-bc26-df5da3ba06ee"
+                }
+            }
+        },
+        "WillowDBECR": {
+            "Type": "AWS::ECR::Repository",
+            "Properties": {
+                "repositoryName": "willow-db"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "14efb56a-84d8-4fc0-8358-54ccce20618f"
+                }
+            }
+        },
+        "WillowFedoraECR": {
+            "Type": "AWS::ECR::Repository",
+            "Properties": {
+                "repositoryName": "willow-fedora"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "30eaa50f-c52f-47d5-9e81-0596683e6d48"
+                }
+            }
+        },
+        "WillowAppECR": {
+            "Type": "AWS::ECR::Repository",
+            "Properties": {
+                "repositoryName": "willow"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "6a120fc1-2439-44fd-8613-6598df97466d"
+                }
+            }
+        }
+    }
+}

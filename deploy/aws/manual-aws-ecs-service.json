@@ -1,0 +1,6 @@
+{
+  "cluster": "willow",
+  "service": "willow",
+  "taskDefinition": "willow",
+  "desiredCount": 1
+}
