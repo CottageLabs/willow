@@ -11,7 +11,7 @@ export CATALINA_OPTS="$CATALINA_OPTS -XX:+UseG1GC"
 export CATALINA_OPTS="$CATALINA_OPTS -XX:+DisableExplicitGC"
 
 export CATALINA_OPTS="$CATALINA_OPTS -Dfcrepo.modeshape.configuration=classpath:/config/jdbc-postgresql/repository.json"
-export CATALINA_OPTS="$CATALINA_OPTS -Dfcrepo.postgresql.host=db"
+export CATALINA_OPTS="$CATALINA_OPTS -Dfcrepo.postgresql.host=${POSTGRES_HOST:-db}"
 export CATALINA_OPTS="$CATALINA_OPTS -Dfcrepo.postgresql.port=5432"
 export CATALINA_OPTS="$CATALINA_OPTS -Dfcrepo.postgresql.username=${POSTGRES_USER}"
 export CATALINA_OPTS="$CATALINA_OPTS -Dfcrepo.postgresql.password=${POSTGRES_PASSWORD}"
