@@ -14,7 +14,12 @@
 1. run the commands to create a service and register a task definition in scratch.sh in that order, manually, ensuring each one succeeds. Check their results via the aws cli or web console.
 1. Willow should be running on ECS.
 
-TODOs:
+TODOs (this is just indicative - actual list worked on tracked by Willow project management):
 
 - [ ] Finish CloudFormation template
-- [ ] Find a way to share it
+- [ ] Integrate RDS. `db` container already removed from CloudFormation and taskdef.json, but RDS definition not yet added.
+
+    How will containers know they need to wait on RDS before they start? CloudFormation supposed to be able to specify dependencies.
+
+- [ ] Integrate an ELB in front
+- [ ] Add nginx for serving static assets.
