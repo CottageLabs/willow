@@ -1,0 +1,7 @@
+{
+    "CapabilitiesReason": "The following resource(s) require capabilities: [AWS::IAM::Role]", 
+    "Capabilities": [
+        "CAPABILITY_NAMED_IAM"
+    ], 
+    "Parameters": []
+}

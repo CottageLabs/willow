@@ -20,8 +20,8 @@
                     "height": 60
                 },
                 "position": {
-                    "x": 570,
-                    "y": 180
+                    "x": 450,
+                    "y": 190
                 },
                 "z": 1,
                 "embeds": [],
@@ -36,8 +36,8 @@
                     "height": 60
                 },
                 "position": {
-                    "x": 720,
-                    "y": 180
+                    "x": 550,
+                    "y": 190
                 },
                 "z": 1,
                 "embeds": []
@@ -57,8 +57,8 @@
                     "height": 60
                 },
                 "position": {
-                    "x": 480,
-                    "y": 120
+                    "x": 450,
+                    "y": 90
                 },
                 "z": 1,
                 "embeds": []
@@ -89,7 +89,7 @@
                     "height": 60
                 },
                 "position": {
-                    "x": 230,
+                    "x": 240,
                     "y": 90
                 },
                 "z": 1,
@@ -101,7 +101,7 @@
                     "height": 60
                 },
                 "position": {
-                    "x": 300,
+                    "x": 310,
                     "y": 160
                 },
                 "z": 1,
@@ -113,7 +113,7 @@
                     "height": 60
                 },
                 "position": {
-                    "x": 300,
+                    "x": 310,
                     "y": 90
                 },
                 "z": 1,
@@ -125,7 +125,7 @@
                     "height": 60
                 },
                 "position": {
-                    "x": 230,
+                    "x": 240,
                     "y": 160
                 },
                 "z": 1,
@@ -137,7 +137,7 @@
                     "height": 60
                 },
                 "position": {
-                    "x": 230,
+                    "x": 240,
                     "y": 230
                 },
                 "z": 1,
@@ -149,11 +149,92 @@
                     "height": 60
                 },
                 "position": {
-                    "x": 300,
+                    "x": 310,
                     "y": 230
                 },
                 "z": 1,
                 "embeds": []
+            },
+            "fb2c858c-e463-4480-aa05-9481612ace19": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 840,
+                    "y": 300
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "7268dfc7-b1b4-44b5-b530-d67400efecbe": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 840,
+                    "y": 110
+                },
+                "z": 1,
+                "embeds": [],
+                "isassociatedwith": [
+                    "7929cb6c-9d2a-49a6-b026-cf1460f6a6f8"
+                ]
+            },
+            "7929cb6c-9d2a-49a6-b026-cf1460f6a6f8": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 840,
+                    "y": 210
+                },
+                "z": 1,
+                "embeds": [],
+                "ismemberof": [
+                    "5d7a7708-1753-41c0-816b-dbb841fd98ff"
+                ],
+                "isrelatedto": [
+                    "c4ac9e67-759d-4b1f-a090-fab10046d8f9"
+                ]
+            },
+            "5d7a7708-1753-41c0-816b-dbb841fd98ff": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 720,
+                    "y": 210
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "c4ac9e67-759d-4b1f-a090-fab10046d8f9": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 970,
+                    "y": 250
+                },
+                "z": 1,
+                "embeds": [],
+                "isassociatedwith": [
+                    "fb2c858c-e463-4480-aa05-9481612ace19"
+                ]
+            },
+            "ca2f1ebe-ca63-492c-b132-f4374f96caf5": {
+                "source": {
+                    "id": "7268dfc7-b1b4-44b5-b530-d67400efecbe"
+                },
+                "target": {
+                    "id": "7929cb6c-9d2a-49a6-b026-cf1460f6a6f8"
+                },
+                "z": 11
             }
         }
     },
@@ -165,7 +246,9 @@
                 "TaskDefinition": {
                     "Ref": "WillowTaskDef"
                 },
-                "Cluster": "WillowClusterECS"
+                "Cluster": {
+                    "Ref": "WillowClusterECS"
+                }
             },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
@@ -175,7 +258,9 @@
         },
         "WillowClusterECS": {
             "Type": "AWS::ECS::Cluster",
-            "Properties": {},
+            "Properties": {
+                "ClusterName": "willow"
+            },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
                     "id": "276785cf-01f3-4dda-897d-658d37e69f34"
@@ -201,14 +286,38 @@
                         ],
                         "memoryReservation": 500,
                         "environment": [
-                            {"name": "POSTGRES_USER", "value": "postgres"},
-                            {"name": "POSTGRES_PASSWORD", "value": "password"},
-                            {"name": "SECRET_KEY_BASE_TEST", "value": "sample_test_key"},
-                            {"name": "WILLOW_EMAIL", "value": "willow@cottagelabs.com"},
-                            {"name": "WILLOW_PASSWORD", "value": "sample_willow_pass"},
-                            {"name": "WILLOW_NAME", "value": "Willow (Admin)"},
-                            {"name": "WILLOW_EXPOSED_PORT", "value": "80"},
-                            {"name": "GEOBLACKLIGHT_EXPOSED_PORT", "value": "81"}
+                            {
+                                "name": "POSTGRES_USER",
+                                "value": "postgres"
+                            },
+                            {
+                                "name": "POSTGRES_PASSWORD",
+                                "value": "password"
+                            },
+                            {
+                                "name": "SECRET_KEY_BASE_TEST",
+                                "value": "sample_test_key"
+                            },
+                            {
+                                "name": "WILLOW_EMAIL",
+                                "value": "willow@cottagelabs.com"
+                            },
+                            {
+                                "name": "WILLOW_PASSWORD",
+                                "value": "sample_willow_pass"
+                            },
+                            {
+                                "name": "WILLOW_NAME",
+                                "value": "Willow (Admin)"
+                            },
+                            {
+                                "name": "WILLOW_EXPOSED_PORT",
+                                "value": "80"
+                            },
+                            {
+                                "name": "GEOBLACKLIGHT_EXPOSED_PORT",
+                                "value": "81"
+                            }
                         ],
                         "name": "fedora"
                     },
@@ -252,18 +361,74 @@
                         ],
                         "memoryReservation": 500,
                         "environment": [
-                            {"name": "POSTGRES_USER", "value": "postgres"},
-                            {"name": "POSTGRES_PASSWORD", "value": "password"},
-                            {"name": "SECRET_KEY_BASE_TEST", "value": "sample_test_key"},
-                            {"name": "WILLOW_EMAIL", "value": "willow@cottagelabs.com"},
-                            {"name": "WILLOW_PASSWORD", "value": "sample_willow_pass"},
-                            {"name": "WILLOW_NAME", "value": "Willow (Admin)"},
-                            {"name": "WILLOW_EXPOSED_PORT", "value": "80"},
-                            {"name": "GEOBLACKLIGHT_EXPOSED_PORT", "value": "81"},
-                            {"name": "SECRET_KEY_BASE_PRODUCTION", "value": "sample_prod_key"},
-                            {"name": "WILLOW_SEED", "value": "false"},
-                            {"name": "GEOBLACKLIGHT_SEED", "value": "false"},
-                            {"name": "RAILS_SERVE_STATIC_FILES", "value": "true"}
+                            {
+                                "name": "POSTGRES_USER",
+                                "value": "postgres"
+                            },
+                            {
+                                "name": "POSTGRES_PASSWORD",
+                                "value": "password"
+                            },
+                            {
+                                "name": "SECRET_KEY_BASE_TEST",
+                                "value": "sample_test_key"
+                            },
+                            {
+                                "name": "WILLOW_EMAIL",
+                                "value": "willow@cottagelabs.com"
+                            },
+                            {
+                                "name": "WILLOW_PASSWORD",
+                                "value": "sample_willow_pass"
+                            },
+                            {
+                                "name": "WILLOW_NAME",
+                                "value": "Willow (Admin)"
+                            },
+                            {
+                                "name": "WILLOW_EXPOSED_PORT",
+                                "value": "80"
+                            },
+                            {
+                                "name": "GEOBLACKLIGHT_EXPOSED_PORT",
+                                "value": "81"
+                            },
+                            {
+                                "name": "SECRET_KEY_BASE_PRODUCTION",
+                                "value": "sample_prod_key"
+                            },
+                            {
+                                "name": "WILLOW_SEED",
+                                "value": "false"
+                            },
+                            {
+                                "name": "GEOBLACKLIGHT_SEED",
+                                "value": "false"
+                            },
+                            {
+                                "name": "RAILS_SERVE_STATIC_FILES",
+                                "value": "true"
+                            },
+                            {
+                                "name": "MESSAGE_STREAM",
+                                "value": "false"
+                            },
+                            {
+                                "name": "MESSAGE_STREAM_NAME",
+                                "value": "willow-message-stream"
+                            },
+                            {
+                                "name": "MESSAGE_STREAM_SHARD_COUNT",
+                                "value": "1"
+                            },
+                            {
+                                "name": "MESSAGE_STREAM_PARTITION_KEY",
+                                "value": "willow"
+                            },
+                            {
+                                "name": "MESSAGE_STREAM_REGION",
+                                "value": "eu-west-2"
+                            }
                         ],
                         "name": "willow",
                         "portMappings": [
@@ -336,28 +501,6 @@
                 }
             }
         },
-        "WillowGeoblacklightECR": {
-            "Type": "AWS::ECR::Repository",
-            "Properties": {
-                "repositoryName": "willow-geoblacklight"
-            },
-            "Metadata": {
-                "AWS::CloudFormation::Designer": {
-                    "id": "13e68dcb-eab9-4959-bc26-df5da3ba06ee"
-                }
-            }
-        },
-        "WillowDBECR": {
-            "Type": "AWS::ECR::Repository",
-            "Properties": {
-                "repositoryName": "willow-db"
-            },
-            "Metadata": {
-                "AWS::CloudFormation::Designer": {
-                    "id": "14efb56a-84d8-4fc0-8358-54ccce20618f"
-                }
-            }
-        },
         "WillowFedoraECR": {
             "Type": "AWS::ECR::Repository",
             "Properties": {
@@ -377,6 +520,240 @@
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
                     "id": "6a120fc1-2439-44fd-8613-6598df97466d"
+                }
+            }
+        },
+        "ecsInstanceRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "Description": "Allows EC2 instances to call AWS services on your behalf.",
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Action": "sts:AssumeRole",
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": "ec2.amazonaws.com"
+                            }
+                        }
+                    ]
+                },
+                "RoleName": "ecsInstanceRole",
+                "Path": "/"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "fb2c858c-e463-4480-aa05-9481612ace19"
+                }
+            }
+        },
+        "ecsInstanceProfile": {
+            "Type": "AWS::IAM::InstanceProfile",
+            "Properties": {
+                "Path": "/",
+                "Roles": [
+                    {
+                        "Ref": "ecsInstanceRole"
+                    }
+                ],
+                "InstanceProfileName": "ecsInstanceProfile"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "c4ac9e67-759d-4b1f-a090-fab10046d8f9"
+                }
+            }
+        },
+        "WillowECSGroup": {
+            "Type": "AWS::AutoScaling::AutoScalingGroup",
+            "Properties": {
+                "DesiredCapacity": 1,
+                "Tags": [],
+                "EnabledMetrics": [
+                    {
+                        "Metric": "GroupStandbyInstances",
+                        "Granularity": "1Minute"
+                    },
+                    {
+                        "Metric": "GroupInServiceInstances",
+                        "Granularity": "1Minute"
+                    },
+                    {
+                        "Metric": "GroupTerminatingInstances",
+                        "Granularity": "1Minute"
+                    },
+                    {
+                        "Metric": "GroupTotalInstances",
+                        "Granularity": "1Minute"
+                    },
+                    {
+                        "Metric": "GroupMaxSize",
+                        "Granularity": "1Minute"
+                    },
+                    {
+                        "Metric": "GroupMinSize",
+                        "Granularity": "1Minute"
+                    },
+                    {
+                        "Metric": "GroupPendingInstances",
+                        "Granularity": "1Minute"
+                    },
+                    {
+                        "Metric": "GroupDesiredCapacity",
+                        "Granularity": "1Minute"
+                    }
+                ],
+                "AutoScalingGroupName": "Willow ECS Group",
+                "DefaultCooldown": 300,
+                "MinSize": 1,
+                "MaxSize": 1,
+                "VPCZoneIdentifier": "subnet-7aeef802,subnet-b22115f8",
+                "HealthCheckGracePeriod": 120,
+                "TerminationPolicies": [
+                    "Default"
+                ],
+                "LaunchConfigurationName": {
+                    "Ref": "WillowECSLaunchConfiguration"
+                },
+                "AvailabilityZones": [
+                    "eu-west-2a",
+                    "eu-west-2b"
+                ],
+                "HealthCheckType": "EC2",
+                "NewInstancesProtectedFromScaleIn": false
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "7268dfc7-b1b4-44b5-b530-d67400efecbe"
+                }
+            }
+        },
+        "WillowECSLaunchConfiguration": {
+            "Type": "AWS::AutoScaling::LaunchConfiguration",
+            "Properties": {
+                "UserData": "IyEvYmluL2Jhc2gKZWNobyAiRUNTX0NMVVNURVI9d2lsbG93IiA+PiAvZXRjL2Vjcy9lY3MuY29uZmln",
+                "IamInstanceProfile": {
+                    "Ref": "ecsInstanceProfile"
+                },
+                "EbsOptimized": false,
+                "InstanceMonitoring": {
+                    "Enabled": true
+                },
+                "BlockDeviceMappings": [
+                    {
+                        "DeviceName": "/dev/xvda",
+                        "Ebs": {
+                            "DeleteOnTermination": true,
+                            "SnapshotId": "snap-03798fceb166952d0",
+                            "VolumeSize": 8,
+                            "VolumeType": "gp2"
+                        }
+                    },
+                    {
+                        "DeviceName": "/dev/xvdcz",
+                        "Ebs": {
+                            "DeleteOnTermination": true,
+                            "Encrypted": false,
+                            "VolumeSize": 30,
+                            "VolumeType": "gp2"
+                        }
+                    }
+                ],
+                "KeyName": "willow-ecs",
+                "SecurityGroups": [
+                    {
+                        "Ref": "PublicHttpHttpsSshSecurityGroup"
+                    }
+                ],
+                "LaunchConfigurationName": "willow-ecs",
+                "ImageId": "ami-ff15039b",
+                "InstanceType": "t2.medium"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "7929cb6c-9d2a-49a6-b026-cf1460f6a6f8"
+                }
+            }
+        },
+        "PublicHttpHttpsSshSecurityGroup": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "IpPermissionsEgress": [
+                    {
+                        "IpProtocol": "-1",
+                        "PrefixListIds": [],
+                        "IpRanges": [
+                            {
+                                "CidrIp": "0.0.0.0/0"
+                            }
+                        ],
+                        "UserIdGroupPairs": [],
+                        "Ipv6Ranges": []
+                    }
+                ],
+                "Description": "Public access to ports 22, 80 and 443",
+                "IpPermissions": [
+                    {
+                        "PrefixListIds": [],
+                        "FromPort": 80,
+                        "IpRanges": [
+                            {
+                                "CidrIp": "0.0.0.0/0"
+                            }
+                        ],
+                        "ToPort": 80,
+                        "IpProtocol": "tcp",
+                        "UserIdGroupPairs": [],
+                        "Ipv6Ranges": [
+                            {
+                                "CidrIpv6": "::/0"
+                            }
+                        ]
+                    },
+                    {
+                        "PrefixListIds": [],
+                        "FromPort": 22,
+                        "IpRanges": [
+                            {
+                                "CidrIp": "0.0.0.0/0"
+                            }
+                        ],
+                        "ToPort": 22,
+                        "IpProtocol": "tcp",
+                        "UserIdGroupPairs": [],
+                        "Ipv6Ranges": [
+                            {
+                                "CidrIpv6": "::/0"
+                            }
+                        ]
+                    },
+                    {
+                        "PrefixListIds": [],
+                        "FromPort": 443,
+                        "IpRanges": [
+                            {
+                                "CidrIp": "0.0.0.0/0"
+                            }
+                        ],
+                        "ToPort": 443,
+                        "IpProtocol": "tcp",
+                        "UserIdGroupPairs": [],
+                        "Ipv6Ranges": [
+                            {
+                                "CidrIpv6": "::/0"
+                            }
+                        ]
+                    }
+                ],
+                "GroupName": "Public ssh, http, https",
+                "VpcId": "vpc-925bb2fb",
+                "OwnerId": "835219480274",
+                "GroupId": "sg-8c9321e5"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "5d7a7708-1753-41c0-816b-dbb841fd98ff"
                 }
             }
         }
