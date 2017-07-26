@@ -20,8 +20,8 @@
                     "height": 60
                 },
                 "position": {
-                    "x": 450,
-                    "y": 190
+                    "x": 500,
+                    "y": 320
                 },
                 "z": 1,
                 "embeds": [],
@@ -36,8 +36,8 @@
                     "height": 60
                 },
                 "position": {
-                    "x": 550,
-                    "y": 190
+                    "x": 600,
+                    "y": 320
                 },
                 "z": 1,
                 "embeds": []
@@ -57,11 +57,14 @@
                     "height": 60
                 },
                 "position": {
-                    "x": 450,
-                    "y": 90
+                    "x": 390,
+                    "y": 320
                 },
                 "z": 1,
-                "embeds": []
+                "embeds": [],
+                "dependson": [
+                    "a267d661-2102-4b7b-858a-fd29c575187f"
+                ]
             },
             "f16ccdbc-9e13-498c-aa60-d96a5a290d82": {
                 "source": {
@@ -89,7 +92,7 @@
                     "height": 60
                 },
                 "position": {
-                    "x": 240,
+                    "x": 230,
                     "y": 90
                 },
                 "z": 1,
@@ -102,7 +105,7 @@
                 },
                 "position": {
                     "x": 310,
-                    "y": 160
+                    "y": 90
                 },
                 "z": 1,
                 "embeds": []
@@ -137,8 +140,8 @@
                     "height": 60
                 },
                 "position": {
-                    "x": 240,
-                    "y": 230
+                    "x": 230,
+                    "y": 160
                 },
                 "z": 1,
                 "embeds": []
@@ -150,7 +153,7 @@
                 },
                 "position": {
                     "x": 310,
-                    "y": 230
+                    "y": 160
                 },
                 "z": 1,
                 "embeds": []
@@ -235,6 +238,165 @@
                     "id": "7929cb6c-9d2a-49a6-b026-cf1460f6a6f8"
                 },
                 "z": 11
+            },
+            "c58c85f5-fb3c-402d-a431-ce483787ab08": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 520,
+                    "y": 190
+                },
+                "z": 0,
+                "embeds": []
+            },
+            "a267d661-2102-4b7b-858a-fd29c575187f": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 420,
+                    "y": 190
+                },
+                "z": 0,
+                "embeds": [],
+                "references": [
+                    "c58c85f5-fb3c-402d-a431-ce483787ab08"
+                ],
+                "dependson": [
+                    "eb6c8e4b-08fc-4193-9e50-4fd1ce3e9e93"
+                ]
+            },
+            "0c477eae-49c7-49e9-8176-b75cab7c4c4d": {
+                "source": {
+                    "id": "a267d661-2102-4b7b-858a-fd29c575187f"
+                },
+                "target": {
+                    "id": "c58c85f5-fb3c-402d-a431-ce483787ab08"
+                },
+                "z": 2
+            },
+            "2393ef94-7d50-4900-a861-645cac589800": {
+                "source": {
+                    "id": "0829b4b2-b003-4517-81bb-b1d3e39372a9"
+                },
+                "target": {
+                    "id": "30eaa50f-c52f-47d5-9e81-0596683e6d48"
+                },
+                "z": 11
+            },
+            "2c4df7f0-aa28-4d6e-9f76-9b5c9b6867b1": {
+                "source": {
+                    "id": "0829b4b2-b003-4517-81bb-b1d3e39372a9"
+                },
+                "target": {
+                    "id": "6a120fc1-2439-44fd-8613-6598df97466d"
+                },
+                "z": 12
+            },
+            "52e928f1-e657-40e7-af3b-7e6b127225f7": {
+                "source": {
+                    "id": "0829b4b2-b003-4517-81bb-b1d3e39372a9"
+                },
+                "target": {
+                    "id": "35ce2b69-aef1-4c70-a6b4-1d5b34c1b921"
+                },
+                "z": 13
+            },
+            "a13f1410-08dd-4572-bc9a-828a0f8f8887": {
+                "source": {
+                    "id": "0829b4b2-b003-4517-81bb-b1d3e39372a9"
+                },
+                "target": {
+                    "id": "3d3a5af3-1816-4690-83fc-83291ca5d36b"
+                },
+                "z": 14
+            },
+            "eb6c8e4b-08fc-4193-9e50-4fd1ce3e9e93": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 420,
+                    "y": 90
+                },
+                "z": 0,
+                "embeds": [],
+                "ismemberof": [
+                    "5d7a7708-1753-41c0-816b-dbb841fd98ff"
+                ],
+                "dependson": [
+                    "30eaa50f-c52f-47d5-9e81-0596683e6d48",
+                    "6a120fc1-2439-44fd-8613-6598df97466d",
+                    "35ce2b69-aef1-4c70-a6b4-1d5b34c1b921",
+                    "3d3a5af3-1816-4690-83fc-83291ca5d36b"
+                ]
+            },
+            "efcd7863-e04a-417a-bbb2-355428982f9a": {
+                "source": {
+                    "id": "0829b4b2-b003-4517-81bb-b1d3e39372a9"
+                },
+                "target": {
+                    "id": "a267d661-2102-4b7b-858a-fd29c575187f"
+                },
+                "z": 11
+            },
+            "78dc539e-368f-4f5c-a2fe-3f2d2deabd57": {
+                "source": {
+                    "id": "eb6c8e4b-08fc-4193-9e50-4fd1ce3e9e93"
+                },
+                "target": {
+                    "id": "30eaa50f-c52f-47d5-9e81-0596683e6d48"
+                },
+                "z": 12
+            },
+            "03d0d89c-6b6b-4114-88da-6467c58aea4c": {
+                "source": {
+                    "id": "eb6c8e4b-08fc-4193-9e50-4fd1ce3e9e93"
+                },
+                "target": {
+                    "id": "6a120fc1-2439-44fd-8613-6598df97466d"
+                },
+                "z": 13
+            },
+            "2e66cd9a-e2fa-40a4-8df4-c7db2986e35a": {
+                "source": {
+                    "id": "eb6c8e4b-08fc-4193-9e50-4fd1ce3e9e93"
+                },
+                "target": {
+                    "id": "35ce2b69-aef1-4c70-a6b4-1d5b34c1b921"
+                },
+                "z": 14
+            },
+            "d7ef14be-3a63-45b8-8738-7711789fddfe": {
+                "source": {
+                    "id": "eb6c8e4b-08fc-4193-9e50-4fd1ce3e9e93"
+                },
+                "target": {
+                    "id": "3d3a5af3-1816-4690-83fc-83291ca5d36b"
+                },
+                "z": 15
+            },
+            "9c89e431-7ecf-4157-8eda-8c07bbc076cd": {
+                "source": {
+                    "id": "eb6c8e4b-08fc-4193-9e50-4fd1ce3e9e93"
+                },
+                "target": {
+                    "id": "5d7a7708-1753-41c0-816b-dbb841fd98ff"
+                },
+                "z": 16
+            },
+            "ac144c9c-d494-4639-b497-5cb6ac98a4b6": {
+                "source": {
+                    "id": "a267d661-2102-4b7b-858a-fd29c575187f"
+                },
+                "target": {
+                    "id": "eb6c8e4b-08fc-4193-9e50-4fd1ce3e9e93"
+                },
+                "z": 17
             }
         }
     },
@@ -477,7 +639,10 @@
                 "AWS::CloudFormation::Designer": {
                     "id": "0829b4b2-b003-4517-81bb-b1d3e39372a9"
                 }
-            }
+            },
+            "DependsOn": [
+                "WaitForECRPushCondition"
+            ]
         },
         "WillowSolrECR": {
             "Type": "AWS::ECR::Repository",
@@ -538,7 +703,9 @@
                         }
                     ]
                 },
-                "ManagedPolicyArns": ["arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"],
+                "ManagedPolicyArns": [
+                    "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
+                ],
                 "Path": "/"
             },
             "Metadata": {
@@ -578,7 +745,10 @@
                     "eu-west-2a",
                     "eu-west-2b"
                 ],
-                "VPCZoneIdentifier": ["subnet-7aeef802", "subnet-b22115f8"],
+                "VPCZoneIdentifier": [
+                    "subnet-7aeef802",
+                    "subnet-b22115f8"
+                ],
                 "HealthCheckType": "EC2"
             },
             "Metadata": {
@@ -668,6 +838,52 @@
                     "id": "5d7a7708-1753-41c0-816b-dbb841fd98ff"
                 }
             }
+        },
+        "WaitForECRPushCondition": {
+            "Type": "AWS::CloudFormation::WaitCondition",
+            "Properties": {
+                "Handle": {
+                    "Ref": "WaitForECRPushConditionHandle"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "a267d661-2102-4b7b-858a-fd29c575187f"
+                }
+            },
+            "DependsOn": [
+                "WillowBuildServer"
+            ]
+        },
+        "WaitForECRPushConditionHandle": {
+            "Type": "AWS::CloudFormation::WaitConditionHandle",
+            "Properties": {},
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "c58c85f5-fb3c-402d-a431-ce483787ab08"
+                }
+            }
+        },
+        "WillowBuildServer": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "SecurityGroupIds": [
+                    {
+                        "Ref": "PublicHttpHttpsSshSecurityGroup"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "eb6c8e4b-08fc-4193-9e50-4fd1ce3e9e93"
+                }
+            },
+            "DependsOn": [
+                "WillowFedoraECR",
+                "WillowAppECR",
+                "WillowSolrECR",
+                "WillowRedisECR"
+            ]
         }
     }
 }
