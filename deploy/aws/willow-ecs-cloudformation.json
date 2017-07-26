@@ -270,206 +270,206 @@
         "WillowTaskDef": {
             "Type": "AWS::ECS::TaskDefinition",
             "Properties": {
-                "containerDefinitions": [
+                "ContainerDefinitions": [
                     {
-                        "essential": true,
-                        "image": "835219480274.dkr.ecr.eu-west-2.amazonaws.com/willow-fedora:latest",
-                        "mountPoints": [
+                        "Essential": true,
+                        "Image": "835219480274.dkr.ecr.eu-west-2.amazonaws.com/willow-fedora:latest",
+                        "MountPoints": [
                             {
-                                "containerPath": "/fcrepo4_home/",
-                                "sourceVolume": "Fcrepo4_Home"
+                                "ContainerPath": "/fcrepo4_home/",
+                                "SourceVolume": "Fcrepo4_Home"
                             },
                             {
-                                "containerPath": "/fcrepo4_data/",
-                                "sourceVolume": "Fcrepo4_Data"
+                                "ContainerPath": "/fcrepo4_data/",
+                                "SourceVolume": "Fcrepo4_Data"
                             }
                         ],
-                        "memoryReservation": 500,
-                        "environment": [
+                        "MemoryReservation": 500,
+                        "Environment": [
                             {
-                                "name": "POSTGRES_USER",
-                                "value": "postgres"
+                                "Name": "POSTGRES_USER",
+                                "Value": "postgres"
                             },
                             {
-                                "name": "POSTGRES_PASSWORD",
-                                "value": "password"
+                                "Name": "POSTGRES_PASSWORD",
+                                "Value": "password"
                             },
                             {
-                                "name": "SECRET_KEY_BASE_TEST",
-                                "value": "sample_test_key"
+                                "Name": "SECRET_KEY_BASE_TEST",
+                                "Value": "sample_test_key"
                             },
                             {
-                                "name": "WILLOW_EMAIL",
-                                "value": "willow@cottagelabs.com"
+                                "Name": "WILLOW_EMAIL",
+                                "Value": "willow@cottagelabs.com"
                             },
                             {
-                                "name": "WILLOW_PASSWORD",
-                                "value": "sample_willow_pass"
+                                "Name": "WILLOW_PASSWORD",
+                                "Value": "sample_willow_pass"
                             },
                             {
-                                "name": "WILLOW_NAME",
-                                "value": "Willow (Admin)"
+                                "Name": "WILLOW_NAME",
+                                "Value": "Willow (Admin)"
                             },
                             {
-                                "name": "WILLOW_EXPOSED_PORT",
-                                "value": "80"
+                                "Name": "WILLOW_EXPOSED_PORT",
+                                "Value": "80"
                             },
                             {
-                                "name": "GEOBLACKLIGHT_EXPOSED_PORT",
-                                "value": "81"
+                                "Name": "GEOBLACKLIGHT_EXPOSED_PORT",
+                                "Value": "81"
                             }
                         ],
-                        "name": "fedora"
+                        "Name": "fedora"
                     },
                     {
-                        "essential": true,
-                        "image": "835219480274.dkr.ecr.eu-west-2.amazonaws.com/willow-redis:latest",
-                        "mountPoints": [
+                        "Essential": true,
+                        "Image": "835219480274.dkr.ecr.eu-west-2.amazonaws.com/willow-redis:latest",
+                        "MountPoints": [
                             {
-                                "containerPath": "/data",
-                                "sourceVolume": "Redis_Data"
+                                "ContainerPath": "/data",
+                                "SourceVolume": "Redis_Data"
                             }
                         ],
-                        "memoryReservation": 250,
-                        "name": "redis"
+                        "MemoryReservation": 250,
+                        "Name": "redis"
                     },
                     {
-                        "essential": true,
-                        "image": "835219480274.dkr.ecr.eu-west-2.amazonaws.com/willow-solr:latest",
-                        "mountPoints": [
+                        "Essential": true,
+                        "Image": "835219480274.dkr.ecr.eu-west-2.amazonaws.com/willow-solr:latest",
+                        "MountPoints": [
                             {
-                                "containerPath": "/solr_home",
-                                "sourceVolume": "Solr_Home"
+                                "ContainerPath": "/solr_home",
+                                "SourceVolume": "Solr_Home"
                             }
                         ],
-                        "memoryReservation": 250,
-                        "name": "solr"
+                        "MemoryReservation": 250,
+                        "Name": "solr"
                     },
                     {
-                        "essential": true,
-                        "image": "835219480274.dkr.ecr.eu-west-2.amazonaws.com/willow:latest",
-                        "links": [
+                        "Essential": true,
+                        "Image": "835219480274.dkr.ecr.eu-west-2.amazonaws.com/willow:latest",
+                        "Links": [
                             "redis",
                             "solr",
                             "fedora"
                         ],
-                        "mountPoints": [
+                        "MountPoints": [
                             {
-                                "containerPath": "/derivatives",
-                                "sourceVolume": "Derivatives"
+                                "ContainerPath": "/derivatives",
+                                "SourceVolume": "Derivatives"
                             }
                         ],
-                        "memoryReservation": 500,
-                        "environment": [
+                        "MemoryReservation": 500,
+                        "Environment": [
                             {
-                                "name": "POSTGRES_USER",
-                                "value": "postgres"
+                                "Name": "POSTGRES_USER",
+                                "Value": "postgres"
                             },
                             {
-                                "name": "POSTGRES_PASSWORD",
-                                "value": "password"
+                                "Name": "POSTGRES_PASSWORD",
+                                "Value": "password"
                             },
                             {
-                                "name": "SECRET_KEY_BASE_TEST",
-                                "value": "sample_test_key"
+                                "Name": "SECRET_KEY_BASE_TEST",
+                                "Value": "sample_test_key"
                             },
                             {
-                                "name": "WILLOW_EMAIL",
-                                "value": "willow@cottagelabs.com"
+                                "Name": "WILLOW_EMAIL",
+                                "Value": "willow@cottagelabs.com"
                             },
                             {
-                                "name": "WILLOW_PASSWORD",
-                                "value": "sample_willow_pass"
+                                "Name": "WILLOW_PASSWORD",
+                                "Value": "sample_willow_pass"
                             },
                             {
-                                "name": "WILLOW_NAME",
-                                "value": "Willow (Admin)"
+                                "Name": "WILLOW_NAME",
+                                "Value": "Willow (Admin)"
                             },
                             {
-                                "name": "WILLOW_EXPOSED_PORT",
-                                "value": "80"
+                                "Name": "WILLOW_EXPOSED_PORT",
+                                "Value": "80"
                             },
                             {
-                                "name": "GEOBLACKLIGHT_EXPOSED_PORT",
-                                "value": "81"
+                                "Name": "GEOBLACKLIGHT_EXPOSED_PORT",
+                                "Value": "81"
                             },
                             {
-                                "name": "SECRET_KEY_BASE_PRODUCTION",
-                                "value": "sample_prod_key"
+                                "Name": "SECRET_KEY_BASE_PRODUCTION",
+                                "Value": "sample_prod_key"
                             },
                             {
-                                "name": "WILLOW_SEED",
-                                "value": "false"
+                                "Name": "WILLOW_SEED",
+                                "Value": "false"
                             },
                             {
-                                "name": "GEOBLACKLIGHT_SEED",
-                                "value": "false"
+                                "Name": "GEOBLACKLIGHT_SEED",
+                                "Value": "false"
                             },
                             {
-                                "name": "RAILS_SERVE_STATIC_FILES",
-                                "value": "true"
+                                "Name": "RAILS_SERVE_STATIC_FILES",
+                                "Value": "true"
                             },
                             {
-                                "name": "MESSAGE_STREAM",
-                                "value": "false"
+                                "Name": "MESSAGE_STREAM",
+                                "Value": "false"
                             },
                             {
-                                "name": "MESSAGE_STREAM_NAME",
-                                "value": "willow-message-stream"
+                                "Name": "MESSAGE_STREAM_NAME",
+                                "Value": "willow-message-stream"
                             },
                             {
-                                "name": "MESSAGE_STREAM_SHARD_COUNT",
-                                "value": "1"
+                                "Name": "MESSAGE_STREAM_SHARD_COUNT",
+                                "Value": "1"
                             },
                             {
-                                "name": "MESSAGE_STREAM_PARTITION_KEY",
-                                "value": "willow"
+                                "Name": "MESSAGE_STREAM_PARTITION_KEY",
+                                "Value": "willow"
                             },
                             {
-                                "name": "MESSAGE_STREAM_REGION",
-                                "value": "eu-west-2"
+                                "Name": "MESSAGE_STREAM_REGION",
+                                "Value": "eu-west-2"
                             }
                         ],
-                        "name": "willow",
-                        "portMappings": [
+                        "Name": "willow",
+                        "PortMappings": [
                             {
-                                "containerPort": 3000,
-                                "hostPort": 80
+                                "ContainerPort": 3000,
+                                "HostPort": 80
                             }
                         ]
                     }
                 ],
-                "family": "willow",
-                "volumes": [
+                "Family": "willow",
+                "Volumes": [
                     {
-                        "host": {
-                            "sourcePath": "solr_home"
+                        "Host": {
+                            "SourcePath": "solr_home"
                         },
-                        "name": "Solr_Home"
+                        "Name": "Solr_Home"
                     },
                     {
-                        "host": {
-                            "sourcePath": "redis_data"
+                        "Host": {
+                            "SourcePath": "redis_data"
                         },
-                        "name": "Redis_Data"
+                        "Name": "Redis_Data"
                     },
                     {
-                        "host": {
-                            "sourcePath": "derivatives"
+                        "Host": {
+                            "SourcePath": "derivatives"
                         },
-                        "name": "Derivatives"
+                        "Name": "Derivatives"
                     },
                     {
-                        "host": {
-                            "sourcePath": "fcrepo4_home"
+                        "Host": {
+                            "SourcePath": "fcrepo4_home"
                         },
-                        "name": "Fcrepo4_Home"
+                        "Name": "Fcrepo4_Home"
                     },
                     {
-                        "host": {
-                            "sourcePath": "fcrepo4_data"
+                        "Host": {
+                            "SourcePath": "fcrepo4_data"
                         },
-                        "name": "Fcrepo4_Data"
+                        "Name": "Fcrepo4_Data"
                     }
                 ]
             },
@@ -482,7 +482,7 @@
         "WillowSolrECR": {
             "Type": "AWS::ECR::Repository",
             "Properties": {
-                "repositoryName": "willow-solr"
+                "RepositoryName": "willow-solr"
             },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
@@ -493,7 +493,7 @@
         "WillowRedisECR": {
             "Type": "AWS::ECR::Repository",
             "Properties": {
-                "repositoryName": "willow-redis"
+                "RepositoryName": "willow-redis"
             },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
@@ -504,7 +504,7 @@
         "WillowFedoraECR": {
             "Type": "AWS::ECR::Repository",
             "Properties": {
-                "repositoryName": "willow-fedora"
+                "RepositoryName": "willow-fedora"
             },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
@@ -515,7 +515,7 @@
         "WillowAppECR": {
             "Type": "AWS::ECR::Repository",
             "Properties": {
-                "repositoryName": "willow"
+                "RepositoryName": "willow"
             },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
@@ -526,7 +526,6 @@
         "ecsInstanceRole": {
             "Type": "AWS::IAM::Role",
             "Properties": {
-                "Description": "Allows EC2 instances to call AWS services on your behalf.",
                 "AssumeRolePolicyDocument": {
                     "Version": "2012-10-17",
                     "Statement": [
@@ -539,7 +538,7 @@
                         }
                     ]
                 },
-                "RoleName": "ecsInstanceRole",
+                "ManagedPolicyArns": ["arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"],
                 "Path": "/"
             },
             "Metadata": {
@@ -556,8 +555,7 @@
                     {
                         "Ref": "ecsInstanceRole"
                     }
-                ],
-                "InstanceProfileName": "ecsInstanceProfile"
+                ]
             },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
@@ -568,51 +566,11 @@
         "WillowECSGroup": {
             "Type": "AWS::AutoScaling::AutoScalingGroup",
             "Properties": {
-                "DesiredCapacity": 1,
+                "DesiredCapacity": "1",
                 "Tags": [],
-                "EnabledMetrics": [
-                    {
-                        "Metric": "GroupStandbyInstances",
-                        "Granularity": "1Minute"
-                    },
-                    {
-                        "Metric": "GroupInServiceInstances",
-                        "Granularity": "1Minute"
-                    },
-                    {
-                        "Metric": "GroupTerminatingInstances",
-                        "Granularity": "1Minute"
-                    },
-                    {
-                        "Metric": "GroupTotalInstances",
-                        "Granularity": "1Minute"
-                    },
-                    {
-                        "Metric": "GroupMaxSize",
-                        "Granularity": "1Minute"
-                    },
-                    {
-                        "Metric": "GroupMinSize",
-                        "Granularity": "1Minute"
-                    },
-                    {
-                        "Metric": "GroupPendingInstances",
-                        "Granularity": "1Minute"
-                    },
-                    {
-                        "Metric": "GroupDesiredCapacity",
-                        "Granularity": "1Minute"
-                    }
-                ],
-                "AutoScalingGroupName": "Willow ECS Group",
-                "DefaultCooldown": 300,
-                "MinSize": 1,
-                "MaxSize": 1,
-                "VPCZoneIdentifier": "subnet-7aeef802,subnet-b22115f8",
+                "MinSize": "1",
+                "MaxSize": "1",
                 "HealthCheckGracePeriod": 120,
-                "TerminationPolicies": [
-                    "Default"
-                ],
                 "LaunchConfigurationName": {
                     "Ref": "WillowECSLaunchConfiguration"
                 },
@@ -620,8 +578,8 @@
                     "eu-west-2a",
                     "eu-west-2b"
                 ],
-                "HealthCheckType": "EC2",
-                "NewInstancesProtectedFromScaleIn": false
+                "VPCZoneIdentifier": ["subnet-7aeef802", "subnet-b22115f8"],
+                "HealthCheckType": "EC2"
             },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
@@ -636,10 +594,8 @@
                 "IamInstanceProfile": {
                     "Ref": "ecsInstanceProfile"
                 },
-                "EbsOptimized": false,
-                "InstanceMonitoring": {
-                    "Enabled": true
-                },
+                "AssociatePublicIpAddress": true,
+                "InstanceMonitoring": true,
                 "BlockDeviceMappings": [
                     {
                         "DeviceName": "/dev/xvda",
@@ -666,7 +622,6 @@
                         "Ref": "PublicHttpHttpsSshSecurityGroup"
                     }
                 ],
-                "LaunchConfigurationName": "willow-ecs",
                 "ImageId": "ami-ff15039b",
                 "InstanceType": "t2.medium"
             },
@@ -679,77 +634,34 @@
         "PublicHttpHttpsSshSecurityGroup": {
             "Type": "AWS::EC2::SecurityGroup",
             "Properties": {
-                "IpPermissionsEgress": [
+                "GroupDescription": "Public access to HTTP(S) and SSH",
+                "SecurityGroupEgress": [
                     {
                         "IpProtocol": "-1",
-                        "PrefixListIds": [],
-                        "IpRanges": [
-                            {
-                                "CidrIp": "0.0.0.0/0"
-                            }
-                        ],
-                        "UserIdGroupPairs": [],
-                        "Ipv6Ranges": []
+                        "CidrIp": "0.0.0.0/0"
                     }
                 ],
-                "Description": "Public access to ports 22, 80 and 443",
-                "IpPermissions": [
+                "SecurityGroupIngress": [
                     {
-                        "PrefixListIds": [],
                         "FromPort": 80,
-                        "IpRanges": [
-                            {
-                                "CidrIp": "0.0.0.0/0"
-                            }
-                        ],
+                        "CidrIp": "0.0.0.0/0",
                         "ToPort": 80,
-                        "IpProtocol": "tcp",
-                        "UserIdGroupPairs": [],
-                        "Ipv6Ranges": [
-                            {
-                                "CidrIpv6": "::/0"
-                            }
-                        ]
+                        "IpProtocol": "tcp"
                     },
                     {
-                        "PrefixListIds": [],
                         "FromPort": 22,
-                        "IpRanges": [
-                            {
-                                "CidrIp": "0.0.0.0/0"
-                            }
-                        ],
+                        "CidrIp": "0.0.0.0/0",
                         "ToPort": 22,
-                        "IpProtocol": "tcp",
-                        "UserIdGroupPairs": [],
-                        "Ipv6Ranges": [
-                            {
-                                "CidrIpv6": "::/0"
-                            }
-                        ]
+                        "IpProtocol": "tcp"
                     },
                     {
-                        "PrefixListIds": [],
                         "FromPort": 443,
-                        "IpRanges": [
-                            {
-                                "CidrIp": "0.0.0.0/0"
-                            }
-                        ],
+                        "CidrIp": "0.0.0.0/0",
                         "ToPort": 443,
-                        "IpProtocol": "tcp",
-                        "UserIdGroupPairs": [],
-                        "Ipv6Ranges": [
-                            {
-                                "CidrIpv6": "::/0"
-                            }
-                        ]
+                        "IpProtocol": "tcp"
                     }
                 ],
-                "GroupName": "Public ssh, http, https",
-                "VpcId": "vpc-925bb2fb",
-                "OwnerId": "835219480274",
-                "GroupId": "sg-8c9321e5"
+                "VpcId": "vpc-925bb2fb"
             },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
