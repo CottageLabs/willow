@@ -1,25 +1,31 @@
 # AWS ECS Willow deployment
 
-1. If not logged in:
+
+1. Create ECRs: `willow-solr`, `willow-fedora`, `willow-redis` and `willow-app`
+2. Build Willow using Docker Compose or another way (e.g. Ansible playbook with docker-py).
+3. Push to ECRs (2 options):
+
+    a. If using Ansible with docker-py, this gives you a few attributes which allow you to specify that pushing should happen after building. ECR URL to push to is specified in the env vars in this case.
+
+    b. Or, use the manual option. Once you build the Docker images, this should be run in the same build environment:
 
     ```
-    ./gen-login.sh  # generates login.sh
-    ./login.sh  # contains private secrets for your AWS account
+    # assuming logged into AWS and able to push to ECR
+    docker tag <local image reference> <ECR URL/repo-name:tag>
+    # e.g.
+    # docker tag cottagelabs/willow-solr 835219480274.dkr.ecr.eu-west-2.amazonaws.com/willow-solr:latest
+    
+    docker push <ECR URL/repo-name:tag>
+    # e.g.
+    # docker push 835219480274.dkr.ecr.eu-west-2.amazonaws.com/willow-solr:latest
     ```
-1. Create ECRs by hand. See `build-and-push.sh` for the necessary ECRs. The CloudFormation template also has them.
-1. Make sure ECS is fully set up on the AWS account (special role is created, you're happy with the VPC, networking and security group setup).
-1. Create the willow cluster. Use the command from `scratch.sh` for `create-cluster` if you like.
-1. Create some EC2 instances which can run the ECS containers. Make sure the instances are showing up under the cluster in ECS.
-1. `./build-and-push.sh`
-1. run the commands to create a service and register a task definition in scratch.sh in that order, manually, ensuring each one succeeds. Check their results via the aws cli or web console.
+
+1. Make sure ECS is fully set up on the AWS account (special role is created, you're happy with the VPC, networking and security group setup, and ECS-capable instances are provisioned).
+
+1. Make sure RDS is set up. You will need the host, username and password variables for Postgres in the next step.
+
+1. Create a task definition using the `sample-willow-taskdef.json` in this folder. Search for all instances of `REPLACE` and replace them with suitable values, usually random generated credentials. Finally, decide on memory constraints - suitable guesstimates of `memory` and `memoryReservation` are in place in the sample task definition.
+
+1. Create an ECS service running the Willow task with a desired count of 1.
+
 1. Willow should be running on ECS.
-
-TODOs (this is just indicative - actual list worked on tracked by Willow project management):
-
-- [ ] Finish CloudFormation template
-- [ ] Integrate RDS. `db` container already removed from CloudFormation and taskdef.json, but RDS definition not yet added.
-
-    How will containers know they need to wait on RDS before they start? CloudFormation supposed to be able to specify dependencies.
-
-- [ ] Integrate an ELB in front
-- [ ] Add nginx for serving static assets.
