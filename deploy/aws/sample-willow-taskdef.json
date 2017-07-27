@@ -17,6 +17,10 @@
       "memory": 4096,
       "environment": [
         {
+          "name": "POSTGRES_HOST",
+          "value": "REPLACE ME db"
+        },
+        {
           "name": "POSTGRES_USER",
           "value": "REPLACE ME postgres"
         },
@@ -102,6 +106,10 @@
       "memoryReservation": 3072,
       "memory": 4096,
       "environment": [
+        {
+          "name": "POSTGRES_HOST",
+          "value": "REPLACE ME db"
+        },
         {
           "name": "POSTGRES_USER",
           "value": "REPLACE ME postgres"
