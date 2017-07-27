@@ -871,7 +871,27 @@
                     {
                         "Ref": "PublicHttpHttpsSshSecurityGroup"
                     }
-                ]
+                ],
+                "BlockDeviceMappings": [
+                    {
+                        "DeviceName": "/dev/xvda",
+                        "Ebs": {
+                            "DeleteOnTermination": true,
+                            "SnapshotId": "snap-03798fceb166952d0",
+                            "VolumeSize": 8,
+                            "VolumeType": "gp2"
+                        }
+                    },
+                    {
+                        "DeviceName": "/dev/xvdcz",
+                        "Ebs": {
+                            "DeleteOnTermination": true,
+                            "Encrypted": false,
+                            "VolumeSize": 30,
+                            "VolumeType": "gp2"
+                        }
+                    }
+                ],
             },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
