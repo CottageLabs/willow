@@ -152,7 +152,7 @@
         },
         {
           "name": "MESSAGE_STREAM",
-          "value": "false"
+          "value": "REPLACE ME # Willow messaging stream: either to the AWS cloud or on a local Kinesalite instance # Set to 'aws' for AWS, or 'kinesalite' for local Kinesalite, or 'false' for none"
         },
         {
           "name": "MESSAGE_STREAM_NAME",
