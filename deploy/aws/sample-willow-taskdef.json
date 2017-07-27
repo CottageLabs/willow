@@ -1,0 +1,208 @@
+{
+  "containerDefinitions": [
+    {
+      "essential": true,
+      "image": "REPLACE ME. <ECR URL/repository name:tag> e.g. 835219480274.dkr.ecr.eu-west-2.amazonaws.com/willow-fedora:latest",
+      "mountPoints": [
+        {
+          "containerPath": "/fcrepo4_home/",
+          "sourceVolume": "Fcrepo4_Home"
+        },
+        {
+          "containerPath": "/fcrepo4_data/",
+          "sourceVolume": "Fcrepo4_Data"
+        }
+      ],
+      "memoryReservation": 3072,
+      "memory": 4096,
+      "environment": [
+        {
+          "name": "POSTGRES_USER",
+          "value": "REPLACE ME postgres"
+        },
+        {
+          "name": "POSTGRES_PASSWORD",
+          "value": "REPLACE ME password"
+        },
+        {
+          "name": "SECRET_KEY_BASE_TEST",
+          "value": "REPLACE ME sample_test_key"
+        },
+        {
+          "name": "SECRET_KEY_BASE_PRODUCTION",
+          "value": "REPLACE ME sample_prod_key"
+        },
+        {
+          "name": "WILLOW_EMAIL",
+          "value": "willow@cottagelabs.com"
+        },
+        {
+          "name": "WILLOW_PASSWORD",
+          "value": "REPLACE ME sample_willow_pass"
+        },
+        {
+          "name": "WILLOW_NAME",
+          "value": "Willow (Admin)"
+        },
+        {
+          "name": "WILLOW_EXPOSED_PORT",
+          "value": "80"
+        },
+        {
+          "name": "FEDORA_XMS_MEMORY",
+          "value": "1536m"
+        },
+        {
+          "name": "FEDORA_XMX_MEMORY",
+          "value": "2560m"
+        }
+      ],
+      "name": "fedora"
+    },
+    {
+      "essential": true,
+      "image": "REPLACE ME. <ECR URL/repository name:tag> e.g. 835219480274.dkr.ecr.eu-west-2.amazonaws.com/willow-redis:latest",
+      "mountPoints": [
+        {
+          "containerPath": "/data",
+          "sourceVolume": "Redis_Data"
+        }
+      ],
+      "memoryReservation": 768,
+      "memory": 1024,
+      "name": "redis"
+    },
+    {
+      "essential": true,
+      "image": "REPLACE ME. <ECR URL/repository name:tag> e.g. 835219480274.dkr.ecr.eu-west-2.amazonaws.com/willow-solr:latest",
+      "mountPoints": [
+        {
+          "containerPath": "/solr_home",
+          "sourceVolume": "Solr_Home"
+        }
+      ],
+      "memoryReservation": 4096,
+      "memory": 5120,
+      "name": "solr"
+    },
+    {
+      "essential": true,
+      "image": "835219480274.dkr.ecr.eu-west-2.amazonaws.com/willow-app:latest",
+      "links": [
+        "redis",
+        "solr",
+        "fedora"
+      ],
+      "mountPoints": [
+        {
+          "containerPath": "/derivatives",
+          "sourceVolume": "Derivatives"
+        }
+      ],
+      "memoryReservation": 3072,
+      "memory": 4096,
+      "environment": [
+        {
+          "name": "POSTGRES_USER",
+          "value": "REPLACE ME postgres"
+        },
+        {
+          "name": "POSTGRES_PASSWORD",
+          "value": "REPLACE ME password"
+        },
+        {
+          "name": "SECRET_KEY_BASE_TEST",
+          "value": "REPLACE ME sample_test_key"
+        },
+        {
+          "name": "WILLOW_EMAIL",
+          "value": "willow@cottagelabs.com"
+        },
+        {
+          "name": "WILLOW_PASSWORD",
+          "value": "REPLACE ME sample_willow_pass"
+        },
+        {
+          "name": "WILLOW_NAME",
+          "value": "Willow (Admin)"
+        },
+        {
+          "name": "WILLOW_EXPOSED_PORT",
+          "value": "80"
+        },
+        {
+          "name": "SECRET_KEY_BASE_PRODUCTION",
+          "value": "REPLACE ME sample_prod_key"
+        },
+        {
+          "name": "WILLOW_SEED",
+          "value": "false"
+        },
+        {
+          "name": "RAILS_SERVE_STATIC_FILES",
+          "value": "true"
+        },
+        {
+          "name": "MESSAGE_STREAM",
+          "value": "false"
+        },
+        {
+          "name": "MESSAGE_STREAM_NAME",
+          "value": "willow-message-stream"
+        },
+        {
+          "name": "MESSAGE_STREAM_SHARD_COUNT",
+          "value": "1"
+        },
+        {
+          "name": "MESSAGE_STREAM_PARTITION_KEY",
+          "value": "willow"
+        },
+        {
+          "name": "MESSAGE_STREAM_REGION",
+          "value": "eu-west-2"
+        }
+      ],
+      "name": "willow",
+      "portMappings": [
+        {
+          "containerPort": 3000,
+          "hostPort": 80
+        }
+      ]
+    }
+  ],
+  "family": "willow",
+  "volumes": [
+      {
+        "host": {
+          "sourcePath": "solr_home"
+        },
+        "name": "Solr_Home"
+      },
+      {
+        "host": {
+          "sourcePath": "redis_data"
+        },
+        "name": "Redis_Data"
+      },
+      {
+        "host": {
+          "sourcePath": "derivatives"
+        },
+        "name": "Derivatives"
+      },
+      {
+        "host": {
+          "sourcePath": "fcrepo4_home"
+        },
+        "name": "Fcrepo4_Home"
+      },
+      {
+        "host": {
+          "sourcePath": "fcrepo4_data"
+        },
+        "name": "Fcrepo4_Data"
+      }
+    ]
+}
