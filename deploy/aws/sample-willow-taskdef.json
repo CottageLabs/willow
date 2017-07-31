@@ -92,11 +92,6 @@
     {
       "essential": true,
       "image": "835219480274.dkr.ecr.eu-west-2.amazonaws.com/willow-app:latest",
-      "links": [
-        "redis",
-        "solr",
-        "fedora"
-      ],
       "mountPoints": [
         {
           "containerPath": "/derivatives",
@@ -117,6 +112,18 @@
         {
           "name": "POSTGRES_PASSWORD",
           "value": "REPLACE ME password"
+        },
+        {
+          "name": "FEDORA_HOST",
+          "value": "REPLACE ME fedora"
+        },
+        {
+          "name": "SOLR_HOST",
+          "value": "REPLACE ME fedora"
+        },
+        {
+          "name": "REDIS_HOST",
+          "value": "REPLACE ME fedora"
         },
         {
           "name": "SECRET_KEY_BASE_TEST",
