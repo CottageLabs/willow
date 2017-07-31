@@ -40,6 +40,8 @@ $ git submodule update --init --recursive
 
 __example .env file__
 ```bash
+# POSTGRES_HOST=hostname, defaults to "db" used by docker-compose
+# POSTGRES_PORT=5432 by default
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=password
 
@@ -59,6 +61,8 @@ GEOBLACKLIGHT_EXPOSED_PORT=81
 
 __example .env.production file__
 ```bash
+# You will probably need to set POSTGRES_HOST and possibly POSTGRES_PORT in production (see example.env above).
+
 # this should be a very long random key. You can use "$ bundle exec rake secret" to generate one.
 SECRET_KEY_BASE_PRODUCTION=
 
@@ -90,8 +94,6 @@ MESSAGE_STREAM_REGION=eu-west-1
 # Amazon AWS credentials
 AWS_ACCESS_KEY_ID=<some AWS access key>
 AWS_SECRET_ACCESS_KEY=<some AWS secret key>
-
-
 ```
 
 __example .env.development file__
@@ -118,7 +120,6 @@ MESSAGE_STREAM_PARTITION_KEY=willow
 # Endpoint only used when MESSAGE_STREAM=kinesalite
 MESSAGE_STREAM_ENDPOINT=http://kinesalite:4567
 ```
-  
 
 8. Run `docker-compose up` to download, build and initialise the infrastructure
 
