@@ -1,16 +1,16 @@
 FROM solr:6.4
 
-ENV SOLR_HOME=/solr_home
-
-ADD config/willow $SOLR_HOME/willow_config
-ADD config/geoblacklight $SOLR_HOME/geoblacklight_config
-COPY docker-entrypoint.sh /
+ENV SOLR_CONFIG_DIR=/solr_conf \
+    SOLR_HOME=/solr_home
 
 USER root
-RUN chown -R solr:solr $SOLR_HOME
-
+RUN mkdir $SOLR_HOME $SOLR_CONFIG_DIR
+RUN chown -R solr:solr $SOLR_HOME $SOLR_CONFIG_DIR
 
 USER solr
-RUN cp /opt/solr/server/solr/solr.xml $SOLR_HOME
+ADD config/willow $SOLR_CONFIG_DIR/willow_config
+ADD config/geoblacklight $SOLR_CONFIG_DIR/geoblacklight_config
+COPY docker-entrypoint.sh /
+
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
