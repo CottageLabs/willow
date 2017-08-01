@@ -1,4 +1,5 @@
 #! /bin/sh
+# See the associated Fedora Commons Dockerfile for an explanation of important environment variables.
 
 # Options as recommended at https://wiki.duraspace.org/display/FEDORA4X/Java+HotSpot+VM+Options+recommendations
 export CATALINA_OPTS="$CATALINA_OPTS -Djava.awt.headless=true"

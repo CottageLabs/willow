@@ -1,10 +1,20 @@
 #!/bin/bash
 
+# See the associated Fedora Commons Dockerfile for an explanation of important environment variables.
+
 set -e
 
 if [[ "$VERBOSE" = "yes" ]]; then
     set -x
 fi
+
+ln -sf $WILLOW_FEDORA_STATIC_DIR/bin $FCREPO4_HOME/
+ln -sf $WILLOW_FEDORA_STATIC_DIR/conf $FCREPO4_HOME/
+ln -sf $WILLOW_FEDORA_STATIC_DIR/lib $FCREPO4_HOME/
+
+mkdir $FCREPO4_HOME/logs $FCREPO4_HOME/webapps $FCREPO4_HOME/work $FCREPO4_HOME/temp
+
+ln -sf $WILLOW_FEDORA_STATIC_DIR/webapps/ROOT.war $FCREPO4_HOME/webapps/ROOT.war
 
 # TODO: create seed test data rather than reindexing pre-cooked data
 #fedora_created=$FCREPO4_HOME/fedora_created
