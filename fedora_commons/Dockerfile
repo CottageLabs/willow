@@ -24,7 +24,7 @@ FROM tomcat:9
 # "
 
 # For Willow purposes:
-# CATALINA_HOME is set by the Tomcar Docker image. There should be no need to change it.
+# CATALINA_HOME is set by the Tomcat Docker image. There should be no need to change it.
 # CATALINA_BASE is the directory where settings specific to the Fedora Commons app need to be held.
 
 # As per the description above, certain directories in CATALINA_BASE are static assets (bin, conf, lib)
