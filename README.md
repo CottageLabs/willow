@@ -42,6 +42,9 @@ __example .env file__
 ```bash
 # POSTGRES_HOST=hostname, defaults to "db" used by docker-compose
 # POSTGRES_PORT=5432 by default
+# FEDORA_URL_SCHEME, FEDORA_HOST and FEDORA_PORT can be set. Default values are provided if not set.
+# SOLR_URL_SCHEME, SOLR_HOST and SOLR_PORT can be set. Default values are provided if not set.
+# REDIS_HOST and REDIS_PORT can be set. Default values are provided if not set.
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=password
 
