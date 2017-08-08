@@ -1,5 +1,7 @@
 FROM solr:6.4
 
+ENV SOLR_HOME=/solr_home
+
 RUN mkdir -p /solr_conf
 ADD config/willow /solr_conf/willow_config
 ADD config/geoblacklight /solr_conf/geoblacklight_config
