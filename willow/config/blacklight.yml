@@ -1,10 +1,9 @@
 development:
   adapter: solr
-  url: http://solr:8983/solr/willow_development
+  url: <%= ENV['SOLR_URL_SCHEME'] || 'http' %>://<%= ENV['SOLR_HOST'] || 'solr' %>:<%= ENV['SOLR_PORT'] || '8983' %>/solr/willow_development
 test: &test
   adapter: solr
-  url: http://solr:8983/solr/willow_test
+  url: <%= ENV['SOLR_URL_SCHEME'] || 'http' %>://<%= ENV['SOLR_HOST'] || 'solr' %>:<%= ENV['SOLR_PORT'] || '8983' %>/solr/willow_test
 production:
   adapter: solr
-  url: http://solr:8983/solr/willow_production
-
+  url: <%= ENV['SOLR_URL_SCHEME'] || 'http' %>://<%= ENV['SOLR_HOST'] || 'solr' %>:<%= ENV['SOLR_PORT'] || '8983' %>/solr/willow_production
