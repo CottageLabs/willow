@@ -23,7 +23,7 @@ bundle exec rake db:migrate
 bundle exec rake curation_concerns:workflow:load
 
 # check that Solr is running
-SOLR=$(curl --silent --connect-timeout 45 "http://$SOLR_HOST:$SOLR_PORT/solr/" | grep "Apache SOLR")
+SOLR=$(curl --silent --connect-timeout 45 "http://${SOLR_HOST:-solr}:${SOLR_PORT:-8983}/solr/" | grep "Apache SOLR")
 if [ -n "$SOLR" ] ; then
     echo "Solr is running..."
 else
@@ -32,7 +32,7 @@ else
 fi
 
 # check that Fedora is running
-FEDORA=$(curl --silent --connect-timeout 45 "http://$FEDORA_HOST:$FEDORA_PORT/" | grep "Fedora Commons Repository")
+FEDORA=$(curl --silent --connect-timeout 45 "http://${FEDORA_HOST:-fedora}:${FEDORA_PORT:-8080}/" | grep "Fedora Commons Repository")
 if [ -n "$FEDORA" ] ; then
     echo "Fedora is running..."
 else
