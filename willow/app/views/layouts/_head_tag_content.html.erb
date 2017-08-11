@@ -3,7 +3,7 @@
 
 <!-- added for use on small devices like phones -->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="resourcesync" href="<%= sufia.capability_list_url %>"/>
+<link rel="resourcesync" href="<%= hyrax.capability_list_url %>"/>
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
 <!-- Twitter card metadata -->
@@ -18,6 +18,8 @@
 
 <!-- application js -->
 <%= javascript_include_tag 'application' %>
+<%= tinymce_assets if can? :update, ContentBlock %>
+<%= render 'shared/appearance_styles' %>
 
 <!-- Google Analytics -->
 <%= render partial: '/ga', formats: [:html] %>

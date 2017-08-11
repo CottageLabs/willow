@@ -1,5 +1,5 @@
 # Generated via
-#  `rails generate curation_concerns:work Article`
+#  `rails generate hyrax:work Article`
 require 'rails_helper'
 include Warden::Test::Helpers
 
@@ -13,11 +13,19 @@ RSpec.feature 'Create a Article' do
     end
 
     before do
+      # AdminSet.find_or_create_default_admin_set_id
       login_as user
     end
 
     scenario do
-      visit new_curation_concerns_article_path
+      visit '/dashboard'
+      click_link "Works"
+      click_link "Add new work"
+
+      choose "payload_concern", option: "Article"
+      click_button "Create work"
+
+      expect(page).to have_content "Add New Article"
       fill_in 'Title', with: 'Test Article'
       click_button 'Create Article'
       expect(page).to have_content 'Test Article'

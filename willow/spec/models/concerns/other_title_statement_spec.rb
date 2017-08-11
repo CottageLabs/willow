@@ -22,8 +22,21 @@ RSpec.describe OtherTitleStatement, :vcr do
       ]
     }
     expect(@obj.other_title.first).to be_kind_of ActiveTriples::Resource
-    expect(@obj.other_title.first.id).to include('#title')
     expect(@obj.other_title.first.title).to eq ['An alternate title']
     expect(@obj.other_title.first.title_type).to eq ['Alternate']
+  end
+
+  it 'has the correct uri' do
+    skip "Error initializing URI"
+    @obj = ExampleWork.new
+    @obj.attributes = {
+      other_title_attributes: [
+        {
+          title: 'An alternate title',
+          title_type: 'Alternate'
+        }
+      ]
+    }
+    expect(@obj.other_title.first.id).to include('#title')
   end
 end

@@ -1,5 +1,5 @@
 require 'rails_helper'
-require 'support/curation_concerns/session_helpers'
+require 'support/hyrax/session_helpers'
 require 'support/notifications'
 require 'support/jisc_rdss_schemas'
 
@@ -14,7 +14,7 @@ require 'support/jisc_rdss_schemas'
 # Be sure that the files above are not committed to git!
 
 
-describe CurationConcerns::DatasetsController, :type => :controller do
+describe Hyrax::DatasetsController, :type => :controller do
   let(:depositor_user) { create(:user, email: 'josiah@example.com', title: 'Professor of Psychoceramics',
                                 display_name: 'Josiah Carberry', orcid: '0000-0002-1825-0097' ) }
   let(:dataset) { create(:dataset,
@@ -74,10 +74,10 @@ describe CurationConcerns::DatasetsController, :type => :controller do
     let(:actor) { double(create: create_status) }
 
     before :each do
-      allow(CurationConcerns::CurationConcern).to receive(:actor).and_return(actor)
-      allow(controller).to receive(:curation_concern).and_return(dataset)
+      allow(Hyrax::CurationConcern).to receive(:actor).and_return(actor)
+      allow(controller).to receive(:hyrax).and_return(dataset)
 
-      @message = notification_message_for('create_work.sufia') do
+      @message = notification_message_for('create_work.hyrax') do
         post :create, params: { dataset: { title: [''] } }
       end
       @messageHeader=@message[:messageHeader]
@@ -95,7 +95,7 @@ describe CurationConcerns::DatasetsController, :type => :controller do
     end
 
     it 'messageType is create' do
-      expect(@messageHeader[:messageType]).to eql('create_work.sufia.Dataset')
+      expect(@messageHeader[:messageType]).to eql('create_work.hyrax.Dataset')
     end
 
     it 'payload contains objectTitle' do

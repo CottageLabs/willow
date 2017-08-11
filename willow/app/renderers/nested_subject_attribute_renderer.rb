@@ -1,5 +1,4 @@
-# app/renderers/email_attribute_renderer.rb
-class NestedSubjectAttributeRenderer < CurationConcerns::Renderers::FacetedAttributeRenderer
+class NestedSubjectAttributeRenderer < Hyrax::Renderers::FacetedAttributeRenderer
   private
   def li_value(value)
     value = JSON.parse(value)

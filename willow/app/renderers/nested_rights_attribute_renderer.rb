@@ -1,5 +1,4 @@
-# app/renderers/email_attribute_renderer.rb
-class NestedRightsAttributeRenderer < CurationConcerns::Renderers::AttributeRenderer
+class NestedRightsAttributeRenderer < Hyrax::Renderers::AttributeRenderer
   private
   def attribute_value_to_html(value)
     value = JSON.parse(value)
@@ -43,7 +42,7 @@ class NestedRightsAttributeRenderer < CurationConcerns::Renderers::AttributeRend
       nil
     end
     if label.blank? and !value.blank?
-      label = CurationConcerns::LicenseService.new.label(value)
+      label = Hyrax::LicenseService.new.label(value)
     end
     if label.nil?
       nil

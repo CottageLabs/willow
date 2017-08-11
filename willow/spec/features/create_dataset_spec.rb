@@ -1,5 +1,5 @@
 # Generated via
-#  `rails generate curation_concerns:work Dataset`
+#  `rails generate hyrax:work Dataset`
 require 'rails_helper'
 include Warden::Test::Helpers
 
@@ -13,11 +13,20 @@ RSpec.feature 'Create a Dataset' do
     end
 
     before do
+      # AdminSet.find_or_create_default_admin_set_id
       login_as user
     end
 
     scenario do
-      visit new_curation_concerns_dataset_path
+      visit '/dashboard'
+      click_link "Works"
+      click_link "Add new work"
+
+      choose "payload_concern", option: "Dataset"
+      click_button "Create work"
+
+      expect(page).to have_content "Add New Dataset"
+
       fill_in 'Title', with: 'Test Dataset'
       click_button 'Create Dataset'
       expect(page).to have_content 'Test Dataset'
