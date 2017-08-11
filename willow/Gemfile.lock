@@ -495,6 +495,7 @@ GEM
     parser (2.4.0.0)
       ast (~> 2.2)
     parslet (1.8.0)
+    pg (0.19.0)
     posix-spawn (0.3.13)
     power_converter (0.1.2)
     powerpack (0.1.1)
@@ -712,7 +713,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.3.13)
     stomp (1.4.4)
     sxp (1.0.0)
       rdf (~> 2.0)
@@ -777,8 +777,9 @@ DEPENDENCIES
   jquery-rails
   json-schema (~> 2.8.0)
   listen (>= 3.0.5, < 3.2)
+  pg (~> 0.19.0)
   puma (~> 3.7)
-  rails (~> 5.1.2)
+  rails (~> 5.1.3)
   rails-controller-testing (~> 1.0.2)
   rsolr (>= 1.0)
   rspec-rails
@@ -786,7 +787,6 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   selenium-webdriver
   solr_wrapper (>= 0.3)
-  sqlite3
   tinymce-rails-imageupload (= 4.0.17.beta.2)
   turbolinks (~> 5)
   tzinfo-data
