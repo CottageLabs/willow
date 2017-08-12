@@ -31,7 +31,6 @@ RSpec.describe SubjectStatement, :vcr do
   end
 
   it 'has the correct uri' do
-    skip "Error initializing URI"
     @obj = ExampleWork.new
     @obj.attributes = {
       subject_nested_attributes: [

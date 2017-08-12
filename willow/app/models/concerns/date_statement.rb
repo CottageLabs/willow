@@ -6,13 +6,13 @@ class DateStatement < ActiveTriples::Resource
   property :description, predicate: ::RDF::Vocab::DC.description
 
   ## Necessary to get AT to create hash URIs.
-  # def initialize(uri, parent)
-  #   if uri.try(:node?)
-  #     uri = RDF::URI("#date#{uri.to_s.gsub('_:', '')}")
-  #   elsif uri.start_with?("#")
-  #     uri = RDF::URI(uri)
-  #   end
-  #   super
-  # end
+  def initialize(uri, parent)
+    if uri.try(:node?)
+      uri = RDF::URI("#date#{uri.to_s.gsub('_:', '')}")
+    elsif uri.start_with?("#")
+      uri = RDF::URI(uri)
+    end
+    super
+  end
 
 end

@@ -11,13 +11,13 @@ class ProjectStatement < ActiveTriples::Resource
   property :grant_number, predicate: Arpfo.grant_number
 
   ## Necessary to get AT to create hash URIs.
-  # def initialize(uri, parent)
-  #   if uri.try(:node?)
-  #     uri = RDF::URI("#project#{uri.to_s.gsub('_:', '')}")
-  #   elsif uri.start_with?("#")
-  #     uri = RDF::URI(uri)
-  #   end
-  #   super
-  # end
+  def initialize(uri, parent)
+    if uri.try(:node?)
+      uri = RDF::URI("#project#{uri.to_s.gsub('_:', '')}")
+    elsif uri.start_with?("#")
+      uri = RDF::URI(uri)
+    end
+    super
+  end
 
 end

@@ -50,7 +50,6 @@ RSpec.describe Dataset, :vcr do
     end
 
     it 'has the correct uri' do
-      skip "Error initializing URI"
       @obj = build(:dataset, other_title_attributes: [{
             title: 'Another title',
             title_type: 'Title type'
@@ -74,7 +73,6 @@ RSpec.describe Dataset, :vcr do
     end
 
     it 'destroys other titles' do
-      skip "Destroy doesn't work because of id intializing a blank node and not iri"
       @obj = build(:dataset, other_title_attributes: [{
           title: 'Another title',
           title_type: 'Title type'
@@ -117,7 +115,6 @@ RSpec.describe Dataset, :vcr do
     end
 
     it 'has the correct uri' do
-      skip "Error initializing URI"
       @obj = build(:dataset, date_attributes: [{
             date: '2017-01-01',
             description: 'Date definition'
@@ -142,7 +139,6 @@ RSpec.describe Dataset, :vcr do
     end
 
     it 'destroys date' do
-      skip "Destroy doesn't work because of id intializing a blank node and not iri"
       @obj = build(:dataset, date_attributes: [{
           date: '2017-01-01',
           description: 'date definition'
@@ -190,7 +186,6 @@ RSpec.describe Dataset, :vcr do
     end
 
     it 'has the correct uri' do
-      skip "Error initializing URI"
       @obj = build(:dataset, rights_nested_attributes: [{
             label: 'A rights label',
             definition: 'A definition of the rights',
@@ -206,7 +201,6 @@ RSpec.describe Dataset, :vcr do
     end
 
     it 'destroys rights' do
-      skip "Destroy doesn't work because of id intializing a blank node and not iri"
       @obj = build(:dataset, rights_nested_attributes: [{ label: 'test label' }] )
       expect(@obj.rights_nested.size).to eq(1)
       @obj.attributes = {
@@ -253,7 +247,6 @@ RSpec.describe Dataset, :vcr do
     end
 
     it 'has the correct uri' do
-      skip "Error initializing URI"
       @obj = build(:dataset,  creator_nested_attributes: [{
             first_name: 'Foo',
             last_name: 'Bar',
@@ -342,7 +335,6 @@ RSpec.describe Dataset, :vcr do
     end
 
     it 'destroys creator' do
-      skip "Destroy doesn't work because of id intializing a blank node and not iri"
       @obj = build(:dataset, creator_nested_attributes: [{
             first_name: 'Foo',
             last_name: 'Bar',
@@ -398,7 +390,6 @@ RSpec.describe Dataset, :vcr do
     end
 
     it 'has the correct uri' do
-      skip "Error initializing URI"
       @obj = build(:dataset, subject_nested_attributes: [{
             label: 'Subject label',
             definition: 'Subject label definition',
@@ -426,7 +417,6 @@ RSpec.describe Dataset, :vcr do
     end
 
     it 'destroys subject' do
-      skip "Destroy doesn't work because of id intializing a blank node and not iri"
       @obj = build(:dataset, subject_nested_attributes: [{
           label: 'Subject label',
           definition: 'Subject label definition',
@@ -490,7 +480,6 @@ RSpec.describe Dataset, :vcr do
     end
 
     it 'has the correct uri' do
-      skip "Error initializing URI"
       @obj = build(:dataset, relation_attributes: [
           {
             label: 'A relation label',
@@ -593,7 +582,6 @@ RSpec.describe Dataset, :vcr do
     end
 
     it 'destroys relation' do
-      skip "Destroy doesn't work because of id intializing a blank node and not iri"
       @obj = build(:dataset, relation_attributes: [{
           label: 'test label',
           url: 'http://example.com/relation',
@@ -642,7 +630,6 @@ RSpec.describe Dataset, :vcr do
     end
 
     it 'has the correct uri' do
-      skip "Error initializing URI"
       @obj = build(:dataset, admin_metadata_attributes: [{
           question: 'An admin question needing an answer',
           response: 'Response to admin question'
@@ -668,7 +655,6 @@ RSpec.describe Dataset, :vcr do
     end
 
     it 'destroys admin_metadata' do
-      skip "Destroy doesn't work because of id intializing a blank node and not iri"
       @obj = build(:dataset, admin_metadata_attributes: [{
             question: 'An admin question needing an answer',
             response: 'Response to admin question'

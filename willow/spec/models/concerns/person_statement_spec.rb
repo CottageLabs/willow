@@ -33,7 +33,6 @@ RSpec.describe PersonStatement, :vcr do
   end
 
   it 'has the correct uri' do
-    skip "Error initializing URI"
     @obj = ExampleWork.new
     @obj.attributes = {
       creator_nested_attributes: [
