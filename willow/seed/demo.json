@@ -595,7 +595,7 @@
         "workflow_name": "one_step_mediated_deposit",
         "permission_template_access" : [
           {
-            "agent_type": "user", "agent_id": "user@willow", "access": "deposit"
+            "agent_type": "group", "agent_id": "registered", "access": "deposit"
           }
         ]
       }

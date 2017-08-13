@@ -113,6 +113,7 @@ namespace :willow do
         user = User.where(email: workflow_responsibility["user_email"]).first
         agent = Sipity::Agent.where(proxy_for_id: user, proxy_for_type: user.class.name).first_or_create!
         workflow = Sipity::Workflow.where(name: workflow_responsibility["workflow_name"]).first
+        workflow.update_attributes(active: true) # ensure the one_step_mediated_deposit is active
         role = Sipity::Role.where(name: workflow_responsibility["role_name"]).first
         workflow_role = Sipity::WorkflowRole.where(workflow: workflow, role: role).first
 
