@@ -75,7 +75,7 @@ describe Hyrax::ArticlesController, :type => :controller do
 
     before :each do
       allow(Hyrax::CurationConcern).to receive(:actor).and_return(actor)
-      allow(controller).to receive(:hyrax).and_return(article)
+      allow(controller).to receive(:curation_concern).and_return(article)
 
       @message = notification_message_for('create_work.hyrax') do
         post :create, params: { article: { title: [''] } }

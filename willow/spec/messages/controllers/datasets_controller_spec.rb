@@ -75,7 +75,7 @@ describe Hyrax::DatasetsController, :type => :controller do
 
     before :each do
       allow(Hyrax::CurationConcern).to receive(:actor).and_return(actor)
-      allow(controller).to receive(:hyrax).and_return(dataset)
+      allow(controller).to receive(:curation_concern).and_return(dataset)
 
       @message = notification_message_for('create_work.hyrax') do
         post :create, params: { dataset: { title: [''] } }

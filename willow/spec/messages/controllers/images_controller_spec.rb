@@ -49,7 +49,7 @@ describe Hyrax::ImagesController, :type => :controller do
 
     before :each do
       allow(Hyrax::CurationConcern).to receive(:actor).and_return(actor)
-      allow(controller).to receive(:hyrax).and_return(work)
+      allow(controller).to receive(:curation_concern).and_return(work)
 
       @message = notification_message_for('create_work.hyrax') do
         post :create, params: { work: { title: [''] } }
