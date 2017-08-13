@@ -102,6 +102,7 @@ namespace :willow do
     # finished administrative sets
     ##############################################
 
+    Rake::Task['hyrax:workflow:load'].execute
 
 
     ##############################################
