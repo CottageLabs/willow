@@ -3,29 +3,27 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.feature 'Create a Image' do
+RSpec.feature 'Create a Image', vcr: true do
   context 'a logged in user' do
-    let(:user_attributes) do
-      { email: 'test@example.com' }
-    end
-    let(:user) do
-      User.new(user_attributes) { |u| u.save(validate: false) }
-    end
+    let(:user) { create(:user) }
 
     before do
-      AdminSet.find_or_create_default_admin_set_id
       login_as user
     end
 
     scenario do
-      visit '/dashboard'
-      click_link "Works"
-      click_link "Add new work"
+      visit new_hyrax_image_path
 
-      choose "payload_concern", option: "Image"
-      click_button "Create work"
+      fill_in 'Title', with: 'Test Image'
+      fill_in 'Creator', with: 'Alice Bob'
+      fill_in 'Keyword', with: 'Foo'
+      select('In Copyright', from: 'Rights statement')
+      choose('open')
+      check('agreement')
+      click_on('Files')
+      attach_file('files[]', "#{fixture_path}/files/hello_world.pdf")
 
-      expect(page).to have_content "Add New Image"
+      # cannot save without invoking Fedora and thus a problem of unrepeatable tests results...
     end
   end
 end
