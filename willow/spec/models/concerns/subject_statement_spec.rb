@@ -24,10 +24,24 @@ RSpec.describe SubjectStatement, :vcr do
       ]
     }
     expect(@obj.subject_nested.first).to be_kind_of ActiveTriples::Resource
-    expect(@obj.subject_nested.first.id).to include('#subject')
     expect(@obj.subject_nested.first.label).to eq ['A subject label']
     expect(@obj.subject_nested.first.definition).to eq ['The definition of the subject']
     expect(@obj.subject_nested.first.classification).to eq ['LCSH']
     expect(@obj.subject_nested.first.homepage).to eq ['http://example.com/lcsh']
+  end
+
+  it 'has the correct uri' do
+    @obj = ExampleWork.new
+    @obj.attributes = {
+      subject_nested_attributes: [
+        {
+          label: 'A subject label',
+          definition: 'The definition of the subject',
+          classification: 'LCSH',
+          homepage: 'http://example.com/lcsh'
+        }
+      ]
+    }
+    expect(@obj.subject_nested.first.id).to include('#subject')
   end
 end

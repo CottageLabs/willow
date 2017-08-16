@@ -1,11 +1,11 @@
 en:
-  sufia:
+  hyrax:
     icons:
       article:     'fa fa-file-text-o'
     select_type:
       article:
         name:               "Article"
-        description:        "Article works"
+        description:        "Article with RIOXX metadata schema properties"
   simple_form:
     labels:
       article:

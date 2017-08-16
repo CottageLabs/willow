@@ -1,0 +1,395 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://solr:8983/solr/willow_test/select?f.based_near_label_sim.facet.limit=6&f.contributor_sim.facet.limit=6&f.creator_nested_sim.facet.limit=6&f.creator_sim.facet.limit=6&f.file_format_sim.facet.limit=6&f.funder_sim.facet.limit=6&f.human_readable_type_sim.facet.limit=6&f.keyword_sim.facet.limit=6&f.language_sim.facet.limit=6&f.member_of_collections_ssim.facet.limit=6&f.publisher_sim.facet.limit=6&f.resource_type_sim.facet.limit=6&f.subject_nested_sim.facet.limit=6&f.subject_sim.facet.limit=6&f.tagged_version_sim.facet.limit=6&facet=true&facet.field=generic_type_sim&fq=%7B!terms%20f=has_model_ssim%7DAdminSet&qf=title_tesim%20description_tesim%20creator_tesim%20keyword_tesim&qt=search&rows=100&sort=score%20desc,%20system_create_dtsi%20desc&wt=json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.12.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Last-Modified:
+      - Sun, 13 Aug 2017 16:46:55 GMT
+      Etag:
+      - '"ZjM4MDAwMDAwMDAwMDAwMFNvbHI="'
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '1670'
+    body:
+      encoding: UTF-8
+      string: '{"responseHeader":{"status":0,"QTime":1,"params":{"facet.field":["human_readable_type_sim","resource_type_sim","creator_sim","creator_nested_sim","contributor_sim","keyword_sim","subject_sim","subject_nested_sim","language_sim","based_near_label_sim","publisher_sim","funder_sim","tagged_version_sim","file_format_sim","member_of_collections_ssim","generic_type_sim"],"qt":"search","f.language_sim.facet.limit":"6","f.file_format_sim.facet.limit":"6","f.tagged_version_sim.facet.limit":"6","f.publisher_sim.facet.limit":"6","f.resource_type_sim.facet.limit":"6","fq":["{!terms
+        f=id}","{!terms f=has_model_ssim}AdminSet"],"sort":"score desc, system_create_dtsi
+        desc","rows":"100","f.creator_sim.facet.limit":"6","f.human_readable_type_sim.facet.limit":"6","f.creator_nested_sim.facet.limit":"6","f.member_of_collections_ssim.facet.limit":"6","f.funder_sim.facet.limit":"6","f.contributor_sim.facet.limit":"6","f.subject_nested_sim.facet.limit":"6","qf":"title_tesim
+        description_tesim creator_tesim keyword_tesim","f.based_near_label_sim.facet.limit":"6","facet":"true","wt":"json","f.keyword_sim.facet.limit":"6","f.subject_sim.facet.limit":"6"}},"response":{"numFound":0,"start":0,"maxScore":0.0,"docs":[]},"facet_counts":{"facet_queries":{},"facet_fields":{"human_readable_type_sim":[],"resource_type_sim":[],"creator_sim":[],"creator_nested_sim":[],"contributor_sim":[],"keyword_sim":[],"subject_sim":[],"subject_nested_sim":[],"language_sim":[],"based_near_label_sim":[],"publisher_sim":[],"funder_sim":[],"tagged_version_sim":[],"file_format_sim":[],"member_of_collections_ssim":[],"generic_type_sim":[]},"facet_ranges":{},"facet_intervals":{},"facet_heatmaps":{}}}
+
+'
+    http_version: 
+  recorded_at: Sun, 13 Aug 2017 16:47:03 GMT
+- request:
+    method: get
+    uri: http://solr:8983/solr/willow_test/select?f.based_near_label_sim.facet.limit=6&f.contributor_sim.facet.limit=6&f.creator_nested_sim.facet.limit=6&f.creator_sim.facet.limit=6&f.file_format_sim.facet.limit=6&f.funder_sim.facet.limit=6&f.human_readable_type_sim.facet.limit=6&f.keyword_sim.facet.limit=6&f.language_sim.facet.limit=6&f.member_of_collections_ssim.facet.limit=6&f.publisher_sim.facet.limit=6&f.resource_type_sim.facet.limit=6&f.subject_nested_sim.facet.limit=6&f.subject_sim.facet.limit=6&f.tagged_version_sim.facet.limit=6&facet=true&facet.field=generic_type_sim&fq=%7B!terms%20f=has_model_ssim%7DAdminSet&qf=title_tesim%20description_tesim%20creator_tesim%20keyword_tesim&qt=search&rows=100&sort=score%20desc,%20system_create_dtsi%20desc&wt=json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.12.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Last-Modified:
+      - Sun, 13 Aug 2017 16:46:55 GMT
+      Etag:
+      - '"ZjM4MDAwMDAwMDAwMDAwMFNvbHI="'
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '1670'
+    body:
+      encoding: UTF-8
+      string: '{"responseHeader":{"status":0,"QTime":1,"params":{"facet.field":["human_readable_type_sim","resource_type_sim","creator_sim","creator_nested_sim","contributor_sim","keyword_sim","subject_sim","subject_nested_sim","language_sim","based_near_label_sim","publisher_sim","funder_sim","tagged_version_sim","file_format_sim","member_of_collections_ssim","generic_type_sim"],"qt":"search","f.language_sim.facet.limit":"6","f.file_format_sim.facet.limit":"6","f.tagged_version_sim.facet.limit":"6","f.publisher_sim.facet.limit":"6","f.resource_type_sim.facet.limit":"6","fq":["{!terms
+        f=id}","{!terms f=has_model_ssim}AdminSet"],"sort":"score desc, system_create_dtsi
+        desc","rows":"100","f.creator_sim.facet.limit":"6","f.human_readable_type_sim.facet.limit":"6","f.creator_nested_sim.facet.limit":"6","f.member_of_collections_ssim.facet.limit":"6","f.funder_sim.facet.limit":"6","f.contributor_sim.facet.limit":"6","f.subject_nested_sim.facet.limit":"6","qf":"title_tesim
+        description_tesim creator_tesim keyword_tesim","f.based_near_label_sim.facet.limit":"6","facet":"true","wt":"json","f.keyword_sim.facet.limit":"6","f.subject_sim.facet.limit":"6"}},"response":{"numFound":0,"start":0,"maxScore":0.0,"docs":[]},"facet_counts":{"facet_queries":{},"facet_fields":{"human_readable_type_sim":[],"resource_type_sim":[],"creator_sim":[],"creator_nested_sim":[],"contributor_sim":[],"keyword_sim":[],"subject_sim":[],"subject_nested_sim":[],"language_sim":[],"based_near_label_sim":[],"publisher_sim":[],"funder_sim":[],"tagged_version_sim":[],"file_format_sim":[],"member_of_collections_ssim":[],"generic_type_sim":[]},"facet_ranges":{},"facet_intervals":{},"facet_heatmaps":{}}}
+
+'
+    http_version: 
+  recorded_at: Sun, 13 Aug 2017 16:47:03 GMT
+- request:
+    method: get
+    uri: http://solr:8983/solr/willow_test/select?f.based_near_label_sim.facet.limit=6&f.contributor_sim.facet.limit=6&f.creator_nested_sim.facet.limit=6&f.creator_sim.facet.limit=6&f.file_format_sim.facet.limit=6&f.funder_sim.facet.limit=6&f.human_readable_type_sim.facet.limit=6&f.keyword_sim.facet.limit=6&f.language_sim.facet.limit=6&f.member_of_collections_ssim.facet.limit=6&f.publisher_sim.facet.limit=6&f.resource_type_sim.facet.limit=6&f.subject_nested_sim.facet.limit=6&f.subject_sim.facet.limit=6&f.tagged_version_sim.facet.limit=6&facet=true&facet.field=generic_type_sim&fq=-suppressed_bsi:true&qf=title_tesim%20description_tesim%20creator_tesim%20keyword_tesim&qt=search&rows=100&sort=title_si%20asc&wt=json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.12.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Last-Modified:
+      - Sun, 13 Aug 2017 16:46:55 GMT
+      Etag:
+      - '"ZjM4MDAwMDAwMDAwMDAwMFNvbHI="'
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '1795'
+    body:
+      encoding: UTF-8
+      string: '{"responseHeader":{"status":0,"QTime":5,"params":{"facet.field":["human_readable_type_sim","resource_type_sim","creator_sim","creator_nested_sim","contributor_sim","keyword_sim","subject_sim","subject_nested_sim","language_sim","based_near_label_sim","publisher_sim","funder_sim","tagged_version_sim","file_format_sim","member_of_collections_ssim","generic_type_sim"],"qt":"search","f.language_sim.facet.limit":"6","f.file_format_sim.facet.limit":"6","f.tagged_version_sim.facet.limit":"6","f.publisher_sim.facet.limit":"6","f.resource_type_sim.facet.limit":"6","fq":["({!terms
+        f=edit_access_group_ssim}public,registered) OR edit_access_person_ssim:email\\-259568577293351069731830153650778143031@test.com","{!terms
+        f=has_model_ssim}Collection","-suppressed_bsi:true"],"sort":"title_si asc","rows":"100","f.creator_sim.facet.limit":"6","f.human_readable_type_sim.facet.limit":"6","f.creator_nested_sim.facet.limit":"6","f.member_of_collections_ssim.facet.limit":"6","f.funder_sim.facet.limit":"6","f.contributor_sim.facet.limit":"6","f.subject_nested_sim.facet.limit":"6","qf":"title_tesim
+        description_tesim creator_tesim keyword_tesim","f.based_near_label_sim.facet.limit":"6","facet":"true","wt":"json","f.keyword_sim.facet.limit":"6","f.subject_sim.facet.limit":"6"}},"response":{"numFound":0,"start":0,"maxScore":0.0,"docs":[]},"facet_counts":{"facet_queries":{},"facet_fields":{"human_readable_type_sim":[],"resource_type_sim":[],"creator_sim":[],"creator_nested_sim":[],"contributor_sim":[],"keyword_sim":[],"subject_sim":[],"subject_nested_sim":[],"language_sim":[],"based_near_label_sim":[],"publisher_sim":[],"funder_sim":[],"tagged_version_sim":[],"file_format_sim":[],"member_of_collections_ssim":[],"generic_type_sim":[]},"facet_ranges":{},"facet_intervals":{},"facet_heatmaps":{}}}
+
+'
+    http_version: 
+  recorded_at: Sun, 13 Aug 2017 16:47:04 GMT
+- request:
+    method: post
+    uri: http://fedora:8080/rest/willow_test
+    body:
+      encoding: UTF-8
+      string: |2
+
+        <> <info:fedora/fedora-system:def/model#hasModel> "Hydra::AccessControl" .
+    headers:
+      Authorization:
+      - Basic ZmVkb3JhQWRtaW46ZmVkb3JhQWRtaW4=
+      User-Agent:
+      - Faraday v0.12.2
+      Content-Type:
+      - text/turtle
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: ''
+    headers:
+      Etag:
+      - W/"3ced64c63fc1a2e0b79065db41914e5dafc26880"
+      Last-Modified:
+      - Sun, 13 Aug 2017 16:47:04 GMT
+      Location:
+      - http://fedora:8080/rest/willow_test/5b/8f/5e/ff/5b8f5eff-bd62-4a19-827c-00ff464f0da7
+      Content-Type:
+      - text/plain
+      Content-Length:
+      - '84'
+      Date:
+      - Sun, 13 Aug 2017 16:47:04 GMT
+    body:
+      encoding: UTF-8
+      string: http://fedora:8080/rest/willow_test/5b/8f/5e/ff/5b8f5eff-bd62-4a19-827c-00ff464f0da7
+    http_version: 
+  recorded_at: Sun, 13 Aug 2017 16:47:04 GMT
+- request:
+    method: get
+    uri: http://fedora:8080/rest/willow_test/5b/8f/5e/ff/5b8f5eff-bd62-4a19-827c-00ff464f0da7
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic ZmVkb3JhQWRtaW46ZmVkb3JhQWRtaW4=
+      User-Agent:
+      - Faraday v0.12.2
+      Prefer:
+      - return=representation
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Etag:
+      - W/"3ced64c63fc1a2e0b79065db41914e5dafc26880"
+      Last-Modified:
+      - Sun, 13 Aug 2017 16:47:04 GMT
+      Link:
+      - <http://www.w3.org/ns/ldp#BasicContainer>;rel="type"
+      - <http://www.w3.org/ns/ldp#Container>;rel="type"
+      - <http://www.w3.org/ns/ldp#Resource>;rel="type"
+      Accept-Patch:
+      - application/sparql-update
+      Accept-Post:
+      - text/turtle,text/rdf+n3,text/n3,application/rdf+xml,application/n-triples,application/ld+json,multipart/form-data,application/sparql-update
+      Allow:
+      - MOVE,COPY,DELETE,POST,HEAD,GET,PUT,PATCH,OPTIONS
+      Preference-Applied:
+      - return=representation
+      Vary:
+      - Accept, Range, Accept-Encoding, Accept-Language
+      - Prefer
+      Content-Type:
+      - text/turtle;charset=utf-8
+      Content-Length:
+      - '3180'
+      Date:
+      - Sun, 13 Aug 2017 16:47:04 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        @prefix premis:  <http://www.loc.gov/premis/rdf/v1#> .
+        @prefix owl:  <http://www.w3.org/2002/07/owl#> .
+        @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+        @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+        @prefix ns020:  <http://projecthydra.org/ns/auth/acl#> .
+        @prefix acl:  <http://www.w3.org/ns/auth/acl#> .
+        @prefix ns004:  <http://projecthydra.org/works/models#> .
+        @prefix ns003:  <http://id.loc.gov/vocabulary/relators/> .
+        @prefix ns002:  <http://pcdm.org/models#> .
+        @prefix ns001:  <info:fedora/fedora-system:def/model#> .
+        @prefix xsi:  <http://www.w3.org/2001/XMLSchema-instance> .
+        @prefix ns008:  <http://rdfs.org/sioc/ns#> .
+        @prefix ns007:  <http://id.loc.gov/vocabulary/identifiers/> .
+        @prefix xmlns:  <http://www.w3.org/2000/xmlns/> .
+        @prefix ns006:  <http://pcdm.org/use#> .
+        @prefix ns005:  <http://www.openarchives.org/ore/terms/> .
+        @prefix xml:  <http://www.w3.org/XML/1998/namespace> .
+        @prefix ns009:  <http://www.loc.gov/mods/rdf/v1#> .
+        @prefix dcterms:  <http://purl.org/dc/terms/> .
+        @prefix event:  <http://fedora.info/definitions/v4/event#> .
+        @prefix prov:  <http://www.w3.org/ns/prov#> .
+        @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+        @prefix test:  <info:fedora/test/> .
+        @prefix ns011:  <http://data-vocabulary.org/> .
+        @prefix ns010:  <http://purl.org/spar/datacite/> .
+        @prefix ns015:  <http://www.w3.org/2003/12/exif/ns#> .
+        @prefix ns014:  <http://fedora.info/definitions/1/0/access/ObjState#> .
+        @prefix ns013:  <http://www.w3.org/2006/vcard/ns#> .
+        @prefix ns012:  <http://rdf-vocabulary.ddialliance.org/discovery#> .
+        @prefix ns019:  <http://projecthydra.org/ns/mix/> .
+        @prefix ns018:  <http://sweet.jpl.nasa.gov/2.2/reprDataFormat.owl#> .
+        @prefix ns017:  <http://projecthydra.org/ns/fits/> .
+        @prefix ns016:  <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#> .
+        @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+        @prefix fedora:  <http://fedora.info/definitions/v4/repository#> .
+        @prefix ebucore:  <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
+        @prefix ldp:  <http://www.w3.org/ns/ldp#> .
+        @prefix iana:  <http://www.iana.org/assignments/relation/> .
+        @prefix xs:  <http://www.w3.org/2001/XMLSchema> .
+        @prefix config:  <info:fedoraconfig/> .
+        @prefix dc:  <http://purl.org/dc/elements/1.1/> .
+
+        <http://fedora:8080/rest/willow_test/5b/8f/5e/ff/5b8f5eff-bd62-4a19-827c-00ff464f0da7>
+                rdf:type               fedora:Container ;
+                rdf:type               fedora:Resource ;
+                fedora:lastModifiedBy  "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                fedora:createdBy       "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                fedora:created         "2017-08-13T16:47:04.105Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                fedora:lastModified    "2017-08-13T16:47:04.105Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                ns001:hasModel         "Hydra::AccessControl"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                rdf:type               ldp:RDFSource ;
+                rdf:type               ldp:Container ;
+                fedora:writable        "true"^^<http://www.w3.org/2001/XMLSchema#boolean> ;
+                fedora:hasParent       <http://fedora:8080/rest/willow_test> .
+    http_version: 
+  recorded_at: Sun, 13 Aug 2017 16:47:04 GMT
+- request:
+    method: post
+    uri: http://solr:8983/solr/willow_test/update?softCommit=true&wt=json
+    body:
+      encoding: UTF-8
+      string: '[{"system_create_dtsi":"2017-08-13T16:47:04Z","system_modified_dtsi":"2017-08-13T16:47:04Z","has_model_ssim":"Hydra::AccessControl","id":"5b8f5eff-bd62-4a19-827c-00ff464f0da7"}]'
+    headers:
+      User-Agent:
+      - Faraday v0.12.2
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '43'
+    body:
+      encoding: UTF-8
+      string: '{"responseHeader":{"status":0,"QTime":13}}
+
+'
+    http_version: 
+  recorded_at: Sun, 13 Aug 2017 16:47:04 GMT
+- request:
+    method: get
+    uri: http://fedora:8080/rest/willow_test/5b/8f/5e/ff/5b8f5eff-bd62-4a19-827c-00ff464f0da7
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic ZmVkb3JhQWRtaW46ZmVkb3JhQWRtaW4=
+      User-Agent:
+      - Faraday v0.12.2
+      Prefer:
+      - return=representation
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Etag:
+      - W/"3ced64c63fc1a2e0b79065db41914e5dafc26880"
+      Last-Modified:
+      - Sun, 13 Aug 2017 16:47:04 GMT
+      Link:
+      - <http://www.w3.org/ns/ldp#BasicContainer>;rel="type"
+      - <http://www.w3.org/ns/ldp#Container>;rel="type"
+      - <http://www.w3.org/ns/ldp#Resource>;rel="type"
+      Accept-Patch:
+      - application/sparql-update
+      Accept-Post:
+      - text/turtle,text/rdf+n3,text/n3,application/rdf+xml,application/n-triples,application/ld+json,multipart/form-data,application/sparql-update
+      Allow:
+      - MOVE,COPY,DELETE,POST,HEAD,GET,PUT,PATCH,OPTIONS
+      Preference-Applied:
+      - return=representation
+      Vary:
+      - Accept, Range, Accept-Encoding, Accept-Language
+      - Prefer
+      Content-Type:
+      - text/turtle;charset=utf-8
+      Content-Length:
+      - '3180'
+      Date:
+      - Sun, 13 Aug 2017 16:47:04 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        @prefix premis:  <http://www.loc.gov/premis/rdf/v1#> .
+        @prefix owl:  <http://www.w3.org/2002/07/owl#> .
+        @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+        @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+        @prefix ns020:  <http://projecthydra.org/ns/auth/acl#> .
+        @prefix acl:  <http://www.w3.org/ns/auth/acl#> .
+        @prefix ns004:  <http://projecthydra.org/works/models#> .
+        @prefix ns003:  <http://id.loc.gov/vocabulary/relators/> .
+        @prefix ns002:  <http://pcdm.org/models#> .
+        @prefix ns001:  <info:fedora/fedora-system:def/model#> .
+        @prefix xsi:  <http://www.w3.org/2001/XMLSchema-instance> .
+        @prefix ns008:  <http://rdfs.org/sioc/ns#> .
+        @prefix ns007:  <http://id.loc.gov/vocabulary/identifiers/> .
+        @prefix xmlns:  <http://www.w3.org/2000/xmlns/> .
+        @prefix ns006:  <http://pcdm.org/use#> .
+        @prefix ns005:  <http://www.openarchives.org/ore/terms/> .
+        @prefix xml:  <http://www.w3.org/XML/1998/namespace> .
+        @prefix ns009:  <http://www.loc.gov/mods/rdf/v1#> .
+        @prefix dcterms:  <http://purl.org/dc/terms/> .
+        @prefix event:  <http://fedora.info/definitions/v4/event#> .
+        @prefix prov:  <http://www.w3.org/ns/prov#> .
+        @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+        @prefix test:  <info:fedora/test/> .
+        @prefix ns011:  <http://data-vocabulary.org/> .
+        @prefix ns010:  <http://purl.org/spar/datacite/> .
+        @prefix ns015:  <http://www.w3.org/2003/12/exif/ns#> .
+        @prefix ns014:  <http://fedora.info/definitions/1/0/access/ObjState#> .
+        @prefix ns013:  <http://www.w3.org/2006/vcard/ns#> .
+        @prefix ns012:  <http://rdf-vocabulary.ddialliance.org/discovery#> .
+        @prefix ns019:  <http://projecthydra.org/ns/mix/> .
+        @prefix ns018:  <http://sweet.jpl.nasa.gov/2.2/reprDataFormat.owl#> .
+        @prefix ns017:  <http://projecthydra.org/ns/fits/> .
+        @prefix ns016:  <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#> .
+        @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+        @prefix fedora:  <http://fedora.info/definitions/v4/repository#> .
+        @prefix ebucore:  <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
+        @prefix ldp:  <http://www.w3.org/ns/ldp#> .
+        @prefix iana:  <http://www.iana.org/assignments/relation/> .
+        @prefix xs:  <http://www.w3.org/2001/XMLSchema> .
+        @prefix config:  <info:fedoraconfig/> .
+        @prefix dc:  <http://purl.org/dc/elements/1.1/> .
+
+        <http://fedora:8080/rest/willow_test/5b/8f/5e/ff/5b8f5eff-bd62-4a19-827c-00ff464f0da7>
+                rdf:type               fedora:Container ;
+                rdf:type               fedora:Resource ;
+                fedora:lastModifiedBy  "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                fedora:createdBy       "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                fedora:created         "2017-08-13T16:47:04.105Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                fedora:lastModified    "2017-08-13T16:47:04.105Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                ns001:hasModel         "Hydra::AccessControl"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                rdf:type               ldp:RDFSource ;
+                rdf:type               ldp:Container ;
+                fedora:writable        "true"^^<http://www.w3.org/2001/XMLSchema#boolean> ;
+                fedora:hasParent       <http://fedora:8080/rest/willow_test> .
+    http_version: 
+  recorded_at: Sun, 13 Aug 2017 16:47:04 GMT
+recorded_with: VCR 3.0.3

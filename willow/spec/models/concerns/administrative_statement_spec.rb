@@ -20,8 +20,18 @@ RSpec.describe AdministrativeStatement, :vcr do
         }]
     }
     expect(@obj.admin_metadata.first).to be_kind_of ActiveTriples::Resource
-    expect(@obj.admin_metadata.first.id).to include('#admin_metadata')
     expect(@obj.admin_metadata.first.question).to eq ['An admin question needing an answer']
     expect(@obj.admin_metadata.first.response).to eq ['Response to admin question']
+  end
+
+  it 'has the correct uri' do
+    @obj = ExampleWork.new
+    @obj.attributes = {
+      admin_metadata_attributes: [{
+          question: 'An admin question needing an answer',
+          response: 'Response to admin question'
+        }]
+    }
+    expect(@obj.admin_metadata.first.id).to include('#admin_metadata')
   end
 end

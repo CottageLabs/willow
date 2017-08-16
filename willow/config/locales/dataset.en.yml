@@ -1,11 +1,11 @@
 en:
-  sufia:
+  hyrax:
     icons:
-      dataset:     'fa fa-file-text-o'
+      dataset:     'fa fa-cubes'
     select_type:
       dataset:
         name:               "Dataset"
-        description:        "Dataset works"
+        description:        "Dataset with Datacite metadata schema properties"
   simple_form:
     labels:
       dataset:

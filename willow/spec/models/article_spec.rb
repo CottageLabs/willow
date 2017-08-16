@@ -1,9 +1,8 @@
 # Generated via
-#  `rails generate curation_concerns:work Article`
+#  `rails generate hyrax:work Article`
 require 'rails_helper'
 
 RSpec.describe Article, :vcr do
-
   describe 'class'  do
     it 'has human readable type article' do
       @obj = build(:article)
@@ -105,9 +104,13 @@ RSpec.describe Article, :vcr do
     it 'accepts date attributes' do
       @obj = build(:article, date_attributes: [{ date: '2017-01-01', description: 'Date definition' }])
       expect(@obj.date.first).to be_kind_of ActiveTriples::Resource
-      expect(@obj.date.first.id).to include('#date')
       expect(@obj.date.first.date).to eq ['2017-01-01']
       expect(@obj.date.first.description).to eq ['Date definition']
+    end
+
+    it 'has the correct uri' do
+      @obj = build(:article, date_attributes: [{ date: '2017-01-01', description: 'Date definition' }])
+      expect(@obj.date.first.id).to include('#date')
     end
 
     it 'rejects date attributes if date is blank' do
@@ -168,9 +171,18 @@ RSpec.describe Article, :vcr do
                                                           }])
       expect(@obj.creator_nested.size).to eq(2)
       expect(@obj.creator_nested[0]).to be_kind_of ActiveTriples::Resource
-      expect(@obj.creator_nested[0].id).to include('#person')
       expect(@obj.creator_nested[1]).to be_kind_of ActiveTriples::Resource
-      expect(@obj.creator_nested[1].id).to include('#person')
+    end
+
+    it 'has the correct uri' do
+      @obj = build(:article, creator_nested_attributes: [{
+                                                              first_name: 'Foo',
+                                                              last_name: 'Bar',
+                                                              orcid: '0000-0000-0000-0000',
+                                                              affiliation: 'Author affiliation',
+                                                              role: 'Author'
+                                                          }])
+      expect(@obj.creator_nested.first.id).to include('#person')
     end
 
     it 'rejects person if first name and last name are blank' do
@@ -300,10 +312,19 @@ RSpec.describe Article, :vcr do
           }]
       )
       expect(@obj.rights_nested.first).to be_kind_of ActiveTriples::Resource
-      expect(@obj.rights_nested.first.id).to include('#rights')
       expect(@obj.rights_nested.first.label).to eq ['A rights label']
       expect(@obj.rights_nested.first.definition).to eq ['A definition of the rights']
       expect(@obj.rights_nested.first.webpage).to eq ['http://example.com/rights']
+    end
+
+    it 'has the correct uri' do
+      @obj = build(:article, rights_nested_attributes: [{
+            label: 'A rights label',
+            definition: 'A definition of the rights',
+            webpage: 'http://example.com/rights'
+          }]
+      )
+      expect(@obj.rights_nested.first.id).to include('#rights')
     end
 
     it 'rejects rights attributes if any attribute is blank' do
@@ -365,11 +386,21 @@ RSpec.describe Article, :vcr do
           }]
       )
       expect(@obj.subject_nested.first).to be_kind_of ActiveTriples::Resource
-      expect(@obj.subject_nested.first.id).to include('#subject')
       expect(@obj.subject_nested.first.label).to eq ['Subject label']
       expect(@obj.subject_nested.first.definition).to eq ['Subject label definition']
       expect(@obj.subject_nested.first.classification).to eq ['LCSH']
       expect(@obj.subject_nested.first.homepage).to eq ['http://example.com/homepage']
+    end
+
+    it 'has the correct uri' do
+      @obj = build(:article, subject_nested_attributes: [{
+            label: 'Subject label',
+            definition: 'Subject label definition',
+            classification: 'LCSH',
+            homepage: 'http://example.com/homepage'
+          }]
+      )
+      expect(@obj.subject_nested.first.id).to include('#subject')
     end
 
     it 'rejects subject attributes if label is blank' do
@@ -444,13 +475,27 @@ RSpec.describe Article, :vcr do
       )
       expect(@obj.relation.size).to eq 1
       expect(@obj.relation.first).to be_kind_of ActiveTriples::Resource
-      expect(@obj.relation.first.id).to include('#relation')
       expect(@obj.relation.first.label).to eq ['A relation label']
       expect(@obj.relation.first.url).to eq ['http://example.com/relation']
       expect(@obj.relation.first.identifier).to eq ['123456']
       expect(@obj.relation.first.identifier_scheme).to eq ['local']
       expect(@obj.relation.first.relationship_name).to eq ['Is part of']
       expect(@obj.relation.first.relationship_role).to eq ['http://example.com/isPartOf']
+    end
+
+    it 'has the correct uri' do
+      @obj = build(:article, relation_attributes: [
+          {
+            label: 'A relation label',
+            url: 'http://example.com/relation',
+            identifier: '123456',
+            identifier_scheme: 'local',
+            relationship_name: 'Is part of',
+            relationship_role: 'http://example.com/isPartOf'
+          }
+        ]
+      )
+      expect(@obj.relation.first.id).to include('#relation')
     end
 
     it 'rejects relation if label is blank' do
@@ -589,9 +634,17 @@ RSpec.describe Article, :vcr do
       )
       expect(@obj.admin_metadata.size).to eq(1)
       expect(@obj.admin_metadata.first).to be_kind_of ActiveTriples::Resource
-      expect(@obj.admin_metadata.first.id).to include('#admin_metadata')
       expect(@obj.admin_metadata.first.question).to eq ['An admin question needing an answer']
       expect(@obj.admin_metadata.first.response).to eq ['Response to admin question']
+    end
+
+    it 'has the correct uri' do
+      @obj = build(:article, admin_metadata_attributes: [{
+          question: 'An admin question needing an answer',
+          response: 'Response to admin question'
+        }]
+      )
+      expect(@obj.admin_metadata.first.id).to include('#admin_metadata')
     end
 
     it 'rejects attributes if question blank' do
@@ -641,12 +694,23 @@ RSpec.describe Article, :vcr do
           }]
       )
       expect(@obj.project.first).to be_kind_of ActiveTriples::Resource
-      expect(@obj.project.first.id).to include('#project')
       expect(@obj.project.first.identifier).to eq ['123456']
       expect(@obj.project.first.title).to eq ['Project title']
       expect(@obj.project.first.funder_name).to eq ['Funder']
       expect(@obj.project.first.funder_id).to eq ['f34566']
       expect(@obj.project.first.grant_number).to eq ['11111']
+    end
+
+    it 'has the correct uri' do
+      @obj = build(:article, project_attributes: [{
+            identifier: '123456',
+            title: 'Project title',
+            funder_name: 'Funder',
+            funder_id: 'f34566',
+            grant_number: '11111',
+          }]
+      )
+      expect(@obj.project.first.id).to include('#project')
     end
 
     it 'rejects project attributes if all blank' do

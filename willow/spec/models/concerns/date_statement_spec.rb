@@ -22,8 +22,20 @@ RSpec.describe DateStatement, :vcr do
       ]
     }
     expect(@obj.date.first).to be_kind_of ActiveTriples::Resource
-    expect(@obj.date.first.id).to include('#date')
     expect(@obj.date.first.date).to eq ['2017-01-02']
     expect(@obj.date.first.description).to eq ['A description of the date']
+  end
+
+  it 'has the correct uri' do
+    @obj = ExampleWork.new
+    @obj.attributes = {
+      date_attributes: [
+        {
+          date: '2017-01-02',
+          description: 'A description of the date',
+        }
+      ]
+    }
+    expect(@obj.date.first.id).to include('#date')
   end
 end

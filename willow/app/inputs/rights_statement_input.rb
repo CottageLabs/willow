@@ -20,7 +20,7 @@ class RightsStatementInput < NestedAttributesInput
       field_name = name_for(attribute_name, index, field)
       field_id = id_for(attribute_name, index, field)
       field_value = rights_statement.send(field).first
-      active_options = CurationConcerns::LicenseService.new.select_active_options
+      active_options = Hyrax::LicenseService.new.select_active_options
 
       out << "<div class='row'>"
       out << "  <div class='col-md-3'>"

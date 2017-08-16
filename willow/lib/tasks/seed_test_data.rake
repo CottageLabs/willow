@@ -1,11 +1,13 @@
 namespace :willow do
   desc 'Seeds test data, will read from specified file usage: willow:seed_test_data["seed_file.json"]'
   task :"seed_test_data", [:seedfile] => :environment do |task, args|
-
+    Work = Book
     seedfile = args.seedfile
     unless args.seedfile.present?
-      seedfile = "/seed/demo.json"
+      seedfile = Rails.root.join("seed","demo.json")
     end
+
+    root_dir = File.dirname(File.dirname(seedfile))
 
     if (File.exists?(seedfile))
       puts("Running seedfile: #{seedfile}")
@@ -77,14 +79,13 @@ namespace :willow do
           **arguments)
 
         if administrative_set.has_key?("permission_template")
-          pt = Sufia::PermissionTemplate
-                   .where(admin_set_id: administrative_set["id"],
-                          workflow_name: administrative_set["permission_template"]["workflow_name"])
+          pt = Hyrax::PermissionTemplate
+                   .where(admin_set_id: administrative_set["id"])
                    .first_or_create!
 
           if administrative_set["permission_template"].has_key?("permission_template_access")
             administrative_set["permission_template"]["permission_template_access"].each do |pta|
-              Sufia::PermissionTemplateAccess
+              Hyrax::PermissionTemplateAccess
                   .where(permission_template: pt,
                          agent_type: pta["agent_type"],
                          agent_id: pta["agent_id"],
@@ -100,7 +101,8 @@ namespace :willow do
 
     # finished administrative sets
     ##############################################
-
+    
+    Hyrax::Workflow::WorkflowImporter.load_workflows
 
 
     ##############################################
@@ -110,8 +112,10 @@ namespace :willow do
     if seed.has_key?("workflow_responsibilities")
       seed["workflow_responsibilities"].each do |workflow_responsibility|
         user = User.where(email: workflow_responsibility["user_email"]).first
-        agent = Sipity::Agent.where(proxy_for: user).first_or_create!
+        agent = Sipity::Agent.where(proxy_for_id: user, proxy_for_type: user.class.name).first_or_create!
         workflow = Sipity::Workflow.where(name: workflow_responsibility["workflow_name"]).first
+        workflow.active = true # ensure the one_step_mediated_deposit is active
+        workflow.save
         role = Sipity::Role.where(name: workflow_responsibility["role_name"]).first
         workflow_role = Sipity::WorkflowRole.where(workflow: workflow, role: role).first
 
@@ -196,7 +200,7 @@ namespace :willow do
             end
 
             unless fileset.files.any?
-              Hydra::Works::UploadFileToFileSet.call(fileset, open(file["path"]))
+              Hydra::Works::UploadFileToFileSet.call(fileset, open(File.join(root_dir, file["path"])))
               CreateDerivativesJob.perform_now(fileset, fileset.files.first.id)
             end
 

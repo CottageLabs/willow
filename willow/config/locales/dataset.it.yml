@@ -1,0 +1,45 @@
+it:
+  hyrax:
+    icons:
+      dataset:     'fa fa-cubes'
+    select_type:
+      dataset:
+        name:               "Dataset"
+        description:        "Dataset con proprietà di metadati Datacite"
+  simple_form:
+    labels:
+      dataset:
+        based_near:       "Location"
+        description:      "Abstract or Summary"
+        keyword:          "Keyword"
+        date_created:     "Date Created"
+        related_url:      "Related URL"
+        files:            "Upload a new version of this file from your computer"
+        collection_ids:   "Add as member of collection"
+        admin_set_id:     "Add as member of administrative set"
+        doi:              "DOI"
+        other_title:      "Additional titles for the dataset"
+        creator_nested:   "Creator"
+        rights_nested:    "Rights"
+        subject_nested:   "Subject"
+        relation:         "Related work"
+        admin_metadata:   "Information for administrative purposes"
+
+    hints:
+      dataset:
+        resource: "Pre-defined categories to describe the type of content being uploaded, such as &quot;article&quot; or &quot;dataset.&quot;  More than one type may be selected."
+        title: "A name to aid in identifying the dataset."
+        other_title: "Additional titles associated with the dataset. For example, the subtitle for the dataset."
+        keyword: "Words or phrases you select to describe what the dataset is about. These are used to search for content."
+        subject_nested: "Headings or index terms describing what the dataset is about; these do need to conform to an existing vocabulary."
+        creator_nested: "The person or group responsible for the dataset. The first name, last name, orcid and role are required."
+        relation: "Details of specific content (audio, video, PDF document) related to the dataset. An example is the URL of an artcle based on this dataset. If adding a related work, add information in all 3 fields - title, url and relationship."
+        date: "The different dates relevant to the dataset."
+        description: "Free-text notes about the dataset. Examples include abstracts of a paper or citation information for a journal article."
+        doi: "The DOI identifying the dataset."
+        identifier: "A unique handle identifying the dataset. An example would be a DOI for a journal article, or an ISBN or OCLC number for a book."
+        language: "The language of the dataset's content."
+        publisher: "The person or group making the dataset available. Generally this is the institution."
+        rights_nested: "Licensing and distribution information governing access to the dataset."
+        admin_metadata: "An illustrative field to gather additional information, mostly of an administrative nature, which can be customized to each institutions' needs."
+

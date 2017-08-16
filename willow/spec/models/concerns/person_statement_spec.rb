@@ -25,11 +25,26 @@ RSpec.describe PersonStatement, :vcr do
       ]
     }
     expect(@obj.creator_nested.first).to be_kind_of ActiveTriples::Resource
-    expect(@obj.creator_nested.first.id).to include('#person')
     expect(@obj.creator_nested.first.first_name).to eq ['Foo']
     expect(@obj.creator_nested.first.last_name).to eq ['Bar']
     expect(@obj.creator_nested.first.orcid).to eq ['0000-0000-0000-0000']
     expect(@obj.creator_nested.first.affiliation).to eq ['author affiliation']
     expect(@obj.creator_nested.first.role).to eq ['Author']
+  end
+
+  it 'has the correct uri' do
+    @obj = ExampleWork.new
+    @obj.attributes = {
+      creator_nested_attributes: [
+        {
+          first_name: 'Foo',
+          last_name: 'Bar',
+          orcid: '0000-0000-0000-0000',
+          affiliation: 'author affiliation',
+          role: 'Author'
+        }
+      ]
+    }
+    expect(@obj.creator_nested.first.id).to include('#person')
   end
 end

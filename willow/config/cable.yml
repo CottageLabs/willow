@@ -7,3 +7,4 @@ test:
 production:
   adapter: redis
   url: redis://redis:6379/1
+  channel_prefix: willow_production

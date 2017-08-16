@@ -1,3 +1,20 @@
-# This is a helper for spec tests which DO NOT require the full rails stack (e.g. libs - perhaps)
-# If you need the full rails stack, require 'rails_helper' instead which in turn will require 'spec_helper'
+require 'rails_helper'
+require 'active_fedora/noid/rspec'
 
+RSpec.configure do |config|
+  config.expect_with :rspec do |expectations|
+    expectations.include_chain_clauses_in_custom_matcher_descriptions = true
+  end
+
+  config.mock_with :rspec do |mocks|
+    mocks.verify_partial_doubles = true
+  end
+
+  config.shared_context_metadata_behavior = :apply_to_host_groups
+
+  # Excepton for deleting database-backed minter 
+  include ActiveFedora::Noid::RSpec
+
+  config.before(:suite) { disable_production_minter! }
+  config.after(:suite)  { enable_production_minter! }
+end

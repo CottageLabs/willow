@@ -1,4 +1,4 @@
-class ProjectAttributeRenderer < CurationConcerns::Renderers::FacetedAttributeRenderer
+class ProjectAttributeRenderer < Hyrax::Renderers::FacetedAttributeRenderer
   private
   def li_value(value)
     value = JSON.parse(value)

@@ -1,5 +1,4 @@
-# app/renderers/email_attribute_renderer.rb
-class RelationAttributeRenderer < CurationConcerns::Renderers::RightsAttributeRenderer
+class RelationAttributeRenderer < Hyrax::Renderers::AttributeRenderer
   private
   def attribute_value_to_html(value)
     value = JSON.parse(value)
