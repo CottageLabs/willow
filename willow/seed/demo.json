@@ -82,7 +82,6 @@
         "date_created": ["2012-04-22"],
         "subject": ["willow journal"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       }
     },
@@ -99,7 +98,6 @@
         "date_created": ["2013-05-12"],
         "subject": ["medicine"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       }
 
@@ -117,7 +115,6 @@
         "date_created": ["2014-06-01"],
         "subject": ["anything"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       }
     },
@@ -134,7 +131,6 @@
         "date_created": ["2015-01-20"],
         "subject": ["willow"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       }
     }
@@ -154,7 +150,6 @@
         "date_created": ["2017-01-01"],
         "subject": ["willow image"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -183,7 +178,6 @@
         "date_created": ["2017-01-01"],
         "subject": ["willow image"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -212,7 +206,6 @@
         "date_created": ["2017-01-01"],
         "subject": ["willow image"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -241,7 +234,6 @@
         "date_created": ["2017-01-01"],
         "subject": ["willow image"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -270,7 +262,6 @@
         "date_created": ["2017-01-01"],
         "subject": ["willow image"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -299,7 +290,6 @@
         "date_created": ["2017-01-01"],
         "subject": ["Education"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -333,7 +323,6 @@
         "date_created": ["2017-01-01"],
         "subject": ["Education"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -375,7 +364,6 @@
         "date_created": ["2017-01-01"],
         "subject": ["Education"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -410,7 +398,6 @@
         "date_created": ["2017-01-01"],
         "subject": ["Physics"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -445,7 +432,6 @@
         "date_created": ["2017-01-01"],
         "subject": ["Physics"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -473,7 +459,6 @@
         "date_created": ["2017-01-01"],
         "subject": ["Physics"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -501,7 +486,6 @@
         "date_created": ["2017-01-01"],
         "subject": ["Biology"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -536,7 +520,6 @@
         "date_created": ["2017-01-01"],
         "subject": ["Biology"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -564,7 +547,6 @@
         "date_created": ["2017-01-01"],
         "subject": ["Biology"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
