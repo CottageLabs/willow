@@ -82,7 +82,6 @@
         "date_created": ["2012-04-22"],
         "subject": ["willow journal"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       }
     },
@@ -99,7 +98,6 @@
         "date_created": ["2013-05-12"],
         "subject": ["medicine"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       }
 
@@ -117,7 +115,6 @@
         "date_created": ["2014-06-01"],
         "subject": ["anything"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       }
     },
@@ -134,7 +131,6 @@
         "date_created": ["2015-01-20"],
         "subject": ["willow"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       }
     }
@@ -150,11 +146,11 @@
         "description": ["The Silhouette of a Willow"],
         "keyword": ["willow", "tree"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "rights_statement": ["http://rightsstatements.org/vocab/NoC-NC/1.0/"],
         "publisher": ["University of Willow"],
         "date_created": ["2017-01-01"],
         "subject": ["willow image"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -179,11 +175,11 @@
         "description": ["A large willow tree"],
         "keyword": ["willow", "tree"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "rights_statement": ["http://rightsstatements.org/vocab/NoC-NC/1.0/"],
         "publisher": ["University of Willow"],
         "date_created": ["2017-01-01"],
         "subject": ["willow image"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -208,11 +204,11 @@
         "description": ["Willow Tree"],
         "keyword": ["willow", "tree"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "rights_statement": ["http://rightsstatements.org/vocab/NoC-NC/1.0/"],
         "publisher": ["University of Willow"],
         "date_created": ["2017-01-01"],
         "subject": ["willow image"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -237,11 +233,11 @@
         "description": ["Willow Tree"],
         "keyword": ["willow", "tree"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "rights_statement": ["http://rightsstatements.org/vocab/NoC-NC/1.0/"],
         "publisher": ["University of Willow"],
         "date_created": ["2017-01-01"],
         "subject": ["willow image"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -266,11 +262,11 @@
         "description": ["Willow Tree"],
         "keyword": ["willow", "tree"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "rights_statement": ["http://rightsstatements.org/vocab/NoC-NC/1.0/"],
         "publisher": ["University of Willow"],
         "date_created": ["2017-01-01"],
         "subject": ["willow image"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -295,11 +291,11 @@
         "description": ["Learning Aim Reference Service (LARS) offers a web based search facility. It allows users to search by most commonly used fields for Qualifications, Units, Apprenticeship Frameworks and Apprenticeship Standards and their associated validity and funding details.  LARS downloads are available to allow colleges, training organisations and employers (providers) to interrogate the same LARS data set that is used in the Funding Information System (FIS)."],
         "keyword": ["dataset"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "rights_statement": ["http://rightsstatements.org/vocab/NoC-NC/1.0/"],
         "publisher": ["Skills Funding Agency"],
         "date_created": ["2017-01-01"],
         "subject": ["Education"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -329,11 +325,11 @@
         "creator": ["Skills Funding Agency"],
         "keyword": ["dataset"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "rights_statement": ["http://rightsstatements.org/vocab/NoC-NC/1.0/"],
         "publisher": ["Skills Funding Agency"],
         "date_created": ["2017-01-01"],
         "subject": ["Education"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -371,11 +367,11 @@
         "creator": ["Warwickshire County Council"],
         "keyword": ["dataset"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "rights_statement": ["http://rightsstatements.org/vocab/NoC-NC/1.0/"],
         "publisher": ["Warwickshire County Council"],
         "date_created": ["2017-01-01"],
         "subject": ["Education"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -406,11 +402,11 @@
         "creator": ["Xin Wang", "Jianhua Zhang", "Massimo Scalia"],
         "keyword": ["physics", "mathematics"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "rights_statement": ["http://rightsstatements.org/vocab/NoC-NC/1.0/"],
         "publisher": ["Mathematical Problems in Engineering"],
         "date_created": ["2017-01-01"],
         "subject": ["Physics"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -441,11 +437,11 @@
         "creator": ["Zhiyuan Li", "Yulan Wang", "Fugui Tan"],
         "keyword": ["physics", "mathematics"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "rights_statement": ["http://rightsstatements.org/vocab/NoC-NC/1.0/"],
         "publisher": ["Abstract and Applied Analysis"],
         "date_created": ["2017-01-01"],
         "subject": ["Physics"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -469,11 +465,11 @@
         "creator": ["A. N. Srivastava", "S. D. Singh", "S. N. Singh"],
         "keyword": ["physics", "mathematics"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "rights_statement": ["http://rightsstatements.org/vocab/NoC-NC/1.0/"],
         "publisher": ["International Journal of Mathematics and Mathematical Sciences"],
         "date_created": ["2017-01-01"],
         "subject": ["Physics"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -497,11 +493,11 @@
         "creator": ["Saprativ P. Das", "Arabinda Ghosh", "Ashutosh Gupta", "Arun Goyal", "Debasish Das"],
         "keyword": ["biology"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "rights_statement": ["http://rightsstatements.org/vocab/NoC-NC/1.0/"],
         "publisher": ["BioMed Research International"],
         "date_created": ["2017-01-01"],
         "subject": ["Biology"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -532,11 +528,11 @@
         "creator": ["M. Williams-Tripp", "F. J. N. D'Amico", "C. Pagé", "A. Bertrand", "M. Némoz", "J. A. Brown"],
         "keyword": ["biology"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "rights_statement": ["http://rightsstatements.org/vocab/NoC-NC/1.0/"],
         "publisher": ["The Scientific World Journal"],
         "date_created": ["2017-01-01"],
         "subject": ["Biology"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
@@ -560,11 +556,11 @@
         "creator": ["Margaret J. Couvillon", "Ginny Fitzpatrick", "Anna Dornhaus"],
         "keyword": ["biology"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
+        "rights_statement": ["http://rightsstatements.org/vocab/NoC-NC/1.0/"],
         "publisher": ["Psyche : A Journal of Entomology"],
         "date_created": ["2017-01-01"],
         "subject": ["Biology"],
         "language": ["English"],
-        "based_near": ["UK"],
         "visibility": "open"
       },
       "files" : [
