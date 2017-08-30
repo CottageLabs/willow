@@ -66,7 +66,7 @@ module Hyrax
         end
 
         def messageType
-          "#{@event}.#{@curation_concern_type}"
+          @event
         end
 
         def messageTimings

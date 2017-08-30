@@ -5,17 +5,17 @@ module Hyrax
       included do
 
         def after_create_response
-          ActiveSupport::Notifications.instrument("create_work.hyrax", {curation_concern_type: self.class.curation_concern_type, object: curation_concern})
+          ActiveSupport::Notifications.instrument("MetadataCreate", {curation_concern_type: self.class.curation_concern_type, object: curation_concern})
           super
         end
 
         def after_update_response
-          ActiveSupport::Notifications.instrument("update_work.hyrax", {curation_concern_type: self.class.curation_concern_type, object: curation_concern})
+          ActiveSupport::Notifications.instrument("MetadataUpdate", {curation_concern_type: self.class.curation_concern_type, object: curation_concern})
           super
         end
 
         def after_destroy_response(title)
-          ActiveSupport::Notifications.instrument("destroy_work.hyrax", {curation_concern_type: self.class.curation_concern_type, object: curation_concern})
+          ActiveSupport::Notifications.instrument("MetadataDelete", {curation_concern_type: self.class.curation_concern_type, object: curation_concern})
           super
         end
 
