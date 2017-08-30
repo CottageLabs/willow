@@ -206,8 +206,10 @@ Hyrax.config do |config|
   end
 end
 
-Date::DATE_FORMATS[:standard] = "%d/%m/%Y"
-DateTime::DATE_FORMATS[:standard] = "%d/%m/%Y"
+DEFAULT_DATE_FORMAT = ENV['DEFAULT_DATE_FORMAT'] || '%d/%m/%Y'
+Date::DATE_FORMATS[:standard] = DEFAULT_DATE_FORMAT
+DateTime::DATE_FORMATS[:standard] = DEFAULT_DATE_FORMAT
+Date::DATE_FORMATS[:default] = DEFAULT_DATE_FORMAT
 
 Qa::Authorities::Local.register_subauthority('subjects', 'Qa::Authorities::Local::TableBasedAuthority')
 Qa::Authorities::Local.register_subauthority('languages', 'Qa::Authorities::Local::TableBasedAuthority')
