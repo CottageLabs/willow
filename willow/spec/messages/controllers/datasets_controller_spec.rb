@@ -77,7 +77,7 @@ describe Hyrax::DatasetsController, :type => :controller do
       allow(Hyrax::CurationConcern).to receive(:actor).and_return(actor)
       allow(controller).to receive(:curation_concern).and_return(dataset)
 
-      @message = notification_message_for('create_work.hyrax') do
+      @message = notification_message_for('MetadataCreate') do
         post :create, params: { dataset: { title: [''] } }
       end
       @messageHeader=@message[:messageHeader]
@@ -95,7 +95,7 @@ describe Hyrax::DatasetsController, :type => :controller do
     end
 
     it 'messageType is create' do
-      expect(@messageHeader[:messageType]).to eql('create_work.hyrax.Dataset')
+      expect(@messageHeader[:messageType]).to eql('MetadataCreate')
     end
 
     it 'payload contains objectTitle' do
