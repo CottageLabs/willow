@@ -97,6 +97,23 @@ MESSAGE_STREAM_REGION=eu-west-1
 # Amazon AWS credentials
 AWS_ACCESS_KEY_ID=<some AWS access key>
 AWS_SECRET_ACCESS_KEY=<some AWS secret key>
+
+# Email-related settings
+SMTP_HOST=localhost
+SMTP_PORT=587
+SMTP_USERNAME=user
+SMTP_PASSWORD=pass
+# SMTP_HELO_DOMAIN is not required for all servers. Amazon SES does not need it.
+# SMTP_HELO_DOMAIN=cottagelabs.com
+
+CONTACT_FORM_RECIPIENT_EMAIL=repo-admin@your-institution.ac.uk
+CONTACT_FORM_SUBJECT_PREFIX="Willow Contact form:"
+NOTIFICATIONS_EMAIL_DEFAULT_FROM_ADDRESS=notifications@your-institution.ac.uk
+# Where should links in emails go to? The following options configure the stem / base URL for those links:
+EMAIL_BASE_URL_HOST=repository.your-institution.ac.uk
+EMAIL_BASE_URL_SCHEMA=https
+
+GOOGLE_ANALYTICS_ID=UA-99999999-1
 ```
 
 __example .env.development file__
@@ -122,6 +139,9 @@ MESSAGE_STREAM_PARTITION_KEY=willow
 
 # Endpoint only used when MESSAGE_STREAM=kinesalite
 MESSAGE_STREAM_ENDPOINT=http://kinesalite:4567
+
+# see example.env.production if you're developing an email-related feature. In that case you might
+# want to set some email-related environment variables.
 ```
 
 8. Run `docker-compose up` to download, build and initialise the infrastructure
