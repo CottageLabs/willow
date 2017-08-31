@@ -16,6 +16,9 @@ Rails.application.configure do
 
   config.action_mailer.smtp_settings = smtp_settings
 
-  config.action_mailer.default_url_options = { host: ENV['EMAIL_BASE_URL_HOST'] || 'localhost' }
+  config.action_mailer.default_url_options = {
+      host: ENV['EMAIL_BASE_URL_HOST'] || 'localhost',
+      protocol: ENV['EMAIL_BASE_URL_SCHEMA'] || 'http',
+  }
   config.action_mailer.asset_host = "#{ENV['EMAIL_BASE_URL_SCHEMA'] || 'http'}://#{ENV['EMAIL_BASE_URL_HOST'] || 'localhost'}"
 end
