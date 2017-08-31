@@ -20,10 +20,10 @@ Hyrax.config do |config|
   # config.default_active_workflow_name = 'default'
 
   # Email recipient of messages sent via the contact form
-  config.contact_email = ENV['WILLOW_CONTACT_FORM_RECIPIENT_EMAIL'] || "repo-admin@example.org"
+  config.contact_email = ENV['CONTACT_FORM_RECIPIENT_EMAIL'] || "repo-admin@example.org"
 
   # Text prefacing the subject entered in the contact form
-  config.subject_prefix = ENV['WILLOW_CONTACT_FORM_SUBJECT_PREFIX'] || "Willow Contact form:"
+  config.subject_prefix = ENV['CONTACT_FORM_SUBJECT_PREFIX'] || "Willow Contact form:"
 
   # How many notifications should be displayed on the dashboard
   # config.max_notifications_for_dashboard = 5
