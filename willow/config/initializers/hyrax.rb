@@ -47,7 +47,7 @@ Hyrax.config do |config|
   # config.analytics = false
 
   # Google Analytics tracking ID to gather usage statistics
-  config.google_analytics_id = ENV['WILLOW_GOOGLE_ANALYTICS_ID'] || 'UA-99999999-1'
+  config.google_analytics_id = ENV['GOOGLE_ANALYTICS_ID'] || 'UA-99999999-1'
 
   # Date you wish to start collecting Google Analytic statistics for
   # Leaving it blank will set the start date to when ever the file was uploaded by
