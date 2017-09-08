@@ -107,6 +107,7 @@ SMTP_PASSWORD=pass
 # SMTP_HELO_DOMAIN=cottagelabs.com
 
 CONTACT_FORM_RECIPIENT_EMAIL=repo-admin@your-institution.ac.uk
+CONTACT_FORM_SENDER_EMAIL=repo-admin@your-institution.ac.uk
 CONTACT_FORM_SUBJECT_PREFIX="Willow Contact form:"
 NOTIFICATIONS_EMAIL_DEFAULT_FROM_ADDRESS=notifications@your-institution.ac.uk
 # USER_MANAGEMENT_EMAIL_FROM_ADDRESS is used for things like Forgotten Password.
