@@ -23,7 +23,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 
-gem 'hyrax', github: 'samvera/hyrax'#, :tag => 'v1.0.3'
+gem 'hyrax', github: 'cottagelabs/hyrax'
 
 gem 'blacklight_advanced_search', '~> 6.0'
 
