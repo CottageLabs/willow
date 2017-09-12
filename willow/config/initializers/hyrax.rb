@@ -189,10 +189,10 @@ Hyrax.config do |config|
   ## Fedora import/export tool
   #
   # Path to the Fedora import export tool jar file
-  # config.import_export_jar_file_path = "tmp/fcrepo-import-export.jar"
+  config.import_export_jar_file_path = ENV['IMPORT_EXPORT_JAR_FILE_PATH'] || "tmp/fcrepo-import-export.jar"
   #
   # Location where BagIt files should be exported
-  # config.bagit_dir = "tmp/descriptions"
+  config.bagit_dir = ENV['EXPORT_BAGIT_DIR'] || "tmp/descriptions"
 
   # If browse-everything has been configured, load the configs.  Otherwise, set to nil.
   begin

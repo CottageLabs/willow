@@ -121,6 +121,10 @@ EMAIL_BASE_URL_SCHEMA=https
 BATCH_USER=repo_batch_user@your-institution.ac.uk
 AUDIT_USER=repo_audit_user@your-institution.ac.uk
 
+# Fedora Import/Export tool
+IMPORT_EXPORT_JAR_FILE_PATH=tmp/fcrepo-import-export.jar
+EXPORT_BAGIT_DIR=tmp/descriptions
+
 # Analytics
 GOOGLE_ANALYTICS_ID=UA-99999999-1
 ```
