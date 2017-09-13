@@ -133,7 +133,13 @@ Hyrax.config do |config|
 
   # Location on local file system where derivatives will be stored
   # If you use a multi-server architecture, this MUST be a shared volume
-  # config.derivatives_path = Rails.root.join('tmp', 'derivatives')
+  # Willow uses /derivatives inside Docker. Original Hyrax value was Rails.root.join('tmp', 'derivatives'),
+  # but these are not temporary assets - they're served from that directory after being generated.
+  if ENV['DERIVATIVES_PATH']
+    config.derivatives_path = Pathname.new(ENV['DERIVATIVES_PATH'])
+  else
+    config.derivatives_path = Pathname.new('/derivatives')
+  end
 
   # Should schema.org microdata be displayed?
   # config.display_microdata = true
