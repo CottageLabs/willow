@@ -4,10 +4,7 @@ module Hyrax
       extend ActiveSupport::Concern
       included do
 
-        def after_create_response
-          ActiveSupport::Notifications.instrument("MetadataCreate", {curation_concern_type: self.class.curation_concern_type, object: curation_concern})
-          super
-        end
+        # no after_create_response here as the "create" event should be handled only after the item has been approved
 
         def after_update_response
           ActiveSupport::Notifications.instrument("MetadataUpdate", {curation_concern_type: self.class.curation_concern_type, object: curation_concern})

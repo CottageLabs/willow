@@ -76,9 +76,10 @@ describe Hyrax::ArticlesController, :type => :controller do
     before :each do
       allow(Hyrax::CurationConcern).to receive(:actor).and_return(actor)
       allow(controller).to receive(:curation_concern).and_return(article)
-
+      post :create, params: { article: { title: [''] } }
       @message = notification_message_for('MetadataCreate') do
-        post :create, params: { article: { title: [''] } }
+        # trigger the approve workflow message
+        Hyrax::Notifications::Senders::Approve.call(target: article)
       end
       @messageHeader=@message[:messageHeader]
       @messageBody=@message[:messageBody]

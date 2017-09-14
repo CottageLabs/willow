@@ -76,9 +76,10 @@ describe Hyrax::DatasetsController, :type => :controller do
     before :each do
       allow(Hyrax::CurationConcern).to receive(:actor).and_return(actor)
       allow(controller).to receive(:curation_concern).and_return(dataset)
-
+      post :create, params: { dataset: { title: [''] } }
       @message = notification_message_for('MetadataCreate') do
-        post :create, params: { dataset: { title: [''] } }
+        # trigger the approve workflow message
+        Hyrax::Notifications::Senders::Approve.call(target: dataset)
       end
       @messageHeader=@message[:messageHeader]
       @messageBody=@message[:messageBody]

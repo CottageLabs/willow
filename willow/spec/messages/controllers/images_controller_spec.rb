@@ -50,9 +50,10 @@ describe Hyrax::ImagesController, :type => :controller do
     before :each do
       allow(Hyrax::CurationConcern).to receive(:actor).and_return(actor)
       allow(controller).to receive(:curation_concern).and_return(work)
-
+      post :create, params: { work: { title: [''] } }
       @message = notification_message_for('MetadataCreate') do
-        post :create, params: { work: { title: [''] } }
+        # trigger the approve workflow message
+        Hyrax::Notifications::Senders::Approve.call(target: work)
       end
       @messageHeader=@message[:messageHeader]
       @messageBody=@message[:messageBody]
