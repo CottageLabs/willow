@@ -7,6 +7,8 @@ Hyrax.config do |config|
   config.register_curation_concern :dataset
   # Injected via `rails g hyrax:work Article`
   config.register_curation_concern :article
+  # Injected via `rails g hyrax:work RdssDataset`
+  config.register_curation_concern :rdss_dataset
   # Register roles that are expected by your implementation.
   # @see Hyrax::RoleRegistry for additional details.
   # @note there are magical roles as defined in Hyrax::RoleRegistry::MAGIC_ROLES
