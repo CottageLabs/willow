@@ -1,0 +1,8 @@
+fr:
+  hyrax:
+    icons:
+      rdss_dataset:     'fa fa-file-text-o'
+    select_type:
+      rdss_dataset:
+        name:               "Rdss Dataset"
+        description:        "Rdss dataset œuvres"
