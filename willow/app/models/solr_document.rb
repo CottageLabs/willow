@@ -22,7 +22,7 @@ class SolrDocument
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
 
-  # Do content negotiation for AF models. 
+  # Do content negotiation for AF models.
 
   use_extension( Hydra::ContentNegotiation )
 
@@ -72,5 +72,9 @@ class SolrDocument
 
   def project
     self[Solrizer.solr_name('project', :displayable)]
+  end
+
+  def identifier_nested
+    self[Solrizer.solr_name('identifier_nested', :displayable)]
   end
 end

@@ -768,4 +768,81 @@ RSpec.describe Article, :vcr do
     end
   end
 
+  describe 'nested attributes for identifier_object' do
+    it 'accepts identifier object attributes' do
+      @obj = build(:article, identifier_nested_attributes: [{
+          obj_id_scheme: 'ISBN',
+          obj_id: '123456'
+        }]
+      )
+      expect(@obj.identifier_nested.size).to eq(1)
+      expect(@obj.identifier_nested.first).to be_kind_of ActiveTriples::Resource
+      expect(@obj.identifier_nested.first.obj_id_scheme).to eq ['ISBN']
+      expect(@obj.identifier_nested.first.obj_id).to eq ['123456']
+    end
+
+    it 'has the correct uri' do
+      @obj = build(:article, identifier_nested_attributes: [{
+          obj_id_scheme: 'ISBN',
+          obj_id: '123456'
+        }]
+      )
+      expect(@obj.identifier_nested.first.id).to include('#identifier')
+    end
+
+    it 'rejects attributes if scheme or id are blank' do
+      @obj = build(:article, identifier_nested_attributes: [
+          {
+            obj_id_scheme: 'ISBN'
+          },
+          {
+            obj_id: '123456'
+          },
+          {
+            obj_id_scheme: '',
+            obj_id: nil
+          },
+          {
+            obj_id_scheme: 'ISBN',
+            obj_id: '123456'
+          }]
+      )
+      expect(@obj.identifier_nested.size).to eq(1)
+    end
+
+    it 'destroys identifier object' do
+      @obj = build(:article, identifier_nested_attributes: [{
+            obj_id_scheme: 'ISBN',
+            obj_id: '123456'
+          }]
+      )
+      expect(@obj.identifier_nested.size).to eq(1)
+      @obj.attributes = {
+        identifier_nested_attributes: [{
+            id: @obj.identifier_nested.first.id,
+            obj_id_scheme: 'ISBN',
+            obj_id: '123456',
+            _destroy: "1"
+          }]
+      }
+      expect(@obj.identifier_nested.size).to eq(0)
+    end
+
+    it 'indexes the identifier object' do
+      @obj = build(:article, identifier_nested_attributes: [{
+            obj_id_scheme: 'ISBN',
+            obj_id: '123456'
+        }, {
+            obj_id_scheme: 'ISSN',
+            obj_id: '1dfsdfsd56'
+        }]
+      )
+      @doc = @obj.to_solr
+      expect(@doc).to include('identifier_nested_ssim')
+      expect(@doc).to include('identifier_nested_ssm')
+      expect(@doc['identifier_isbn_ssim']).to match_array(['123456'])
+      expect(@doc['identifier_issn_ssim']).to match_array(['1dfsdfsd56'])
+    end
+  end
+
 end

@@ -3,6 +3,6 @@
 module Hyrax
   class ArticlePresenter < Hyrax::WorkShowPresenter
     delegate :doi, :publisher, :coverage, :apc, :tagged_version, :creator_nested, :date, :rights_nested,
-      :relation, :subject_nested, :project, :admin_metadata, to: :solr_document
+      :relation, :subject_nested, :project, :admin_metadata, :identifier_nested, to: :solr_document
   end
 end

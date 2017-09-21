@@ -26,6 +26,7 @@ pt-BR:
         apc:              "Article processing charge"
         tagged_version:   "Version of work"
         project:          "Project and funder"
+        identifier_nested: "Identifiers"
 
     hints:
       article:
@@ -47,5 +48,5 @@ pt-BR:
         tagged_version: "The 'version' of the resource being described. Select from the provided drop-down list."
         admin_metadata: "An illustrative field to gather additional information, mostly of an administrative nature, which can be customized to each institutions' needs."
         project: "information regarding the funding body and the project associated with this article."
-
+        identifier_nested: "Identifiers for the article"
 

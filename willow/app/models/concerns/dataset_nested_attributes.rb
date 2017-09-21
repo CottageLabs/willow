@@ -14,6 +14,7 @@ module DatasetNestedAttributes
     accepts_nested_attributes_for :subject_nested, reject_if: :subject_blank, allow_destroy: true
     accepts_nested_attributes_for :relation, reject_if: :relation_blank, allow_destroy: true
     accepts_nested_attributes_for :admin_metadata, reject_if: :admin_metadata_blank, allow_destroy: true
+    accepts_nested_attributes_for :identifier_nested, reject_if: :identifier_blank, allow_destroy: true
 
     # other_title_blank
     resource_class.send(:define_method, :other_title_blank) do |attributes|
@@ -62,6 +63,12 @@ module DatasetNestedAttributes
     # admin_metadata_blank
     resource_class.send(:define_method, :admin_metadata_blank) do |attributes|
       Array(attributes[:question]).all?(&:blank?)
+    end
+
+    # identifier_blank - need identifier and scheme attributes
+    resource_class.send(:define_method, :identifier_blank) do |attributes|
+      (Array(attributes[:obj_id]).all?(&:blank?) ||
+       Array(attributes[:obj_id_scheme]).all?(&:blank?))
     end
   end
 end

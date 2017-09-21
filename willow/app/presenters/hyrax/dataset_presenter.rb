@@ -3,6 +3,6 @@
 module Hyrax
   class DatasetPresenter < Hyrax::WorkShowPresenter
     delegate :doi, :other_title, :creator_nested, :date, :rights_nested,
-      :relation, :subject_nested, :admin_metadata, to: :solr_document
+      :relation, :subject_nested, :admin_metadata, :identifier_nested, to: :solr_document
   end
 end
