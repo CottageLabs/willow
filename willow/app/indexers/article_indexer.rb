@@ -48,6 +48,14 @@ class ArticleIndexer < Hyrax::WorkIndexer
       solr_doc[Solrizer.solr_name('funder_id', :facetable)] = object.project.map { |p| p.funder_id.first }.reject(&:blank?)
       solr_doc[Solrizer.solr_name('grant_number', :stored_searchable)] = object.project.map { |p| p.grant_number.first }.reject(&:blank?)
       solr_doc[Solrizer.solr_name('project', :displayable)] = object.project.to_json
+      # identifier
+      solr_doc[Solrizer.solr_name('identifier_nested', :symbol)] = object.identifier_nested.map { |i| i.obj_id.first }
+      solr_doc[Solrizer.solr_name('identifier_nested', :displayable)] = object.identifier_nested.to_json
+      object.identifier_nested.each do |i|
+        unless (i.obj_id_scheme.first.blank? or i.obj_id.first.blank?)
+          solr_doc[Solrizer.solr_name("identifier_#{i.obj_id_scheme.first.downcase}", :symbol)] = i.obj_id.reject(&:blank?)
+        end
+      end
     end
   end
 end

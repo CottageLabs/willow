@@ -14,6 +14,7 @@ module ArticleNestedAttributes
     accepts_nested_attributes_for :relation, reject_if: :relation_blank, allow_destroy: true
     accepts_nested_attributes_for :admin_metadata, reject_if: :admin_metadata_blank, allow_destroy: true
     accepts_nested_attributes_for :project, reject_if: :project_blank, allow_destroy: true
+    accepts_nested_attributes_for :identifier_nested, reject_if: :identifier_blank, allow_destroy: true
 
     # date_blank
     resource_class.send(:define_method, :date_blank) do |attributes|
@@ -68,6 +69,12 @@ module ArticleNestedAttributes
 
     resource_class.send(:define_method, :project_attributes) do
       [:identifier, :title, :funder_name, :funder_id, :grant_number]
+    end
+
+    # identifier_blank - need identifier and scheme attributes
+    resource_class.send(:define_method, :identifier_blank) do |attributes|
+      (Array(attributes[:obj_id]).all?(&:blank?) ||
+       Array(attributes[:obj_id_scheme]).all?(&:blank?))
     end
   end
 end

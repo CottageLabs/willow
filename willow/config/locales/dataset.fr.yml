@@ -24,6 +24,7 @@ fr:
         subject_nested:   "Subject"
         relation:         "Related work"
         admin_metadata:   "Information for administrative purposes"
+        identifier_nested: "Identifiers"
 
     hints:
       dataset:
@@ -42,4 +43,5 @@ fr:
         publisher: "The person or group making the dataset available. Generally this is the institution."
         rights_nested: "Licensing and distribution information governing access to the dataset."
         admin_metadata: "An illustrative field to gather additional information, mostly of an administrative nature, which can be customized to each institutions' needs."
+        identifier_nested: "Identifiers for the article"
 
