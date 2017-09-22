@@ -271,6 +271,28 @@ module Hyrax
                   fileIdentifier: download_url(fs, host: Rails.application.routes.default_url_options[:host]),
                   fileName: fs.first_title,
                   fileSize: fs.file_size.first,
+                  fileChecksum: fs.original_checksum.map{|c| {
+                      checksumType: UNKNOWN_ID,
+                      checksumValue: c
+                  }},
+                  fileCompositionLevel: UNKNOWN,
+                  fileDateModified: [
+                      {
+                          dateValue: UNKNOWN,
+                          dateType: UNKNOWN_ID
+                      }
+                  ],
+                  fileUse: UNKNOWN_ID,
+                  filePreservationEvent: [
+                    {
+                        preservationEventValue: UNKNOWN,
+                        preservationEventType: UNKNOWN_ID,
+                        preservationEventDetail: UNKNOWN
+                    }  
+                  ],
+                  fileUploadStatus: UNKNOWN_ID,
+                  fileStorageStatus: UNKNOWN_ID,
+                  fileStorageLocation: UNKNOWN,
                   fileStorageType: UNKNOWN_ID
               }
             end

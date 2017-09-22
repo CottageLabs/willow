@@ -31,7 +31,8 @@ describe Hyrax::ImagesController, :type => :controller do
                       publisher: ["Society of Psychoceramics"],
                       date_created: ['2014-04-01'],
                       subject: ["Psychoceramics"],
-                      language: ["English"]
+                      language: ["English"],
+                      import_url: 'true'
   ) }
 
 
@@ -43,15 +44,20 @@ describe Hyrax::ImagesController, :type => :controller do
     sign_in depositor_user
   end
 
-  describe '#create' do
+  describe '#update' do
     let(:create_status) { true }
     let(:actor) { double(create: create_status) }
 
     before :each do
       allow(Hyrax::CurationConcern).to receive(:actor).and_return(actor)
       allow(controller).to receive(:curation_concern).and_return(work)
+      allow_any_instance_of(Hyrax::Notifications::Subscribers::BuildMessage).to receive(:download_url).and_return('http://some.url.com/download/1')
+      allow_any_instance_of(FileSet).to receive(:file_size).and_return([12345])
+      allow_any_instance_of(FileSet).to receive(:original_checksum).and_return(['12345'])
+
+
       post :create, params: { work: { title: [''] } }
-      @message = notification_message_for(Hyrax::Notifications::Events::METADATA_CREATE) do
+      @message = notification_message_for(Hyrax::Notifications::Events::METADATA_UPDATE) do
         # trigger the approve workflow message
         Hyrax::Notifications::Senders::Approve.call(target: work)
       end
@@ -65,16 +71,16 @@ describe Hyrax::ImagesController, :type => :controller do
       expect(@jsonPayload).to_not be_nil
 
       expect(@validator.fully_validate(
-          file_fixture("schemas/jisc_rdss/messages/metadata/create/request_schema.json").read,
+          file_fixture("schemas/jisc_rdss/messages/metadata/update/request_schema.json").read,
           @jsonPayload)).to be_empty
     end
 
-    it 'messageType is create' do
-      expect(@messageHeader[:messageType]).to eql('MetadataCreate')
+    it 'messageType is update' do
+      expect(@messageHeader[:messageType]).to eql('MetadataUpdate')
     end
 
     it 'payload contains objectTitle' do
-      expect(@messageBodyPayload[:objectTitle]).to eql(work.title.first)
+      expect(@messageBodyPayload[:objectTitle]).to eql('Do Mug Fairies Exist? An experiment in self-cleaning crockery')
     end
   end
 end
