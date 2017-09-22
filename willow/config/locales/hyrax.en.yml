@@ -45,9 +45,9 @@ en:
   hyrax:
     product_name:           "Willow"
     product_twitter_handle: "@SamveraRepo"
-    institution_name:       "Cottage Labs"
-    institution_name_full:  "Cottage Labs LLP"
-    account_name:           "My Cottage Labs Account Id"
+    institution_name:       "%{institution_name}"
+    institution_name_full:  "%{institution_name_full}"
+    account_name:           "My Willow Id"
     directory:
       suffix:               "@example.org"
     footer:
