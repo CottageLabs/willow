@@ -117,6 +117,9 @@ USER_MANAGEMENT_EMAIL_FROM_ADDRESS=no-reply@your-institution.ac.uk
 EMAIL_BASE_URL_HOST=repository.your-institution.ac.uk
 EMAIL_BASE_URL_SCHEMA=https
 
+# Optional custom host URL generation setting - if not present it will use EMAIL_BASE_URL_HOST above
+DEFAULT_URL_OPTIONS_HOST=repository.your-institution.ac.uk
+
 # Batch works editing
 BATCH_USER=repo_batch_user@your-institution.ac.uk
 AUDIT_USER=repo_audit_user@your-institution.ac.uk

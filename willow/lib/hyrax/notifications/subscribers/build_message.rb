@@ -4,6 +4,7 @@ module Hyrax
   module Notifications
     module Subscribers
       class BuildMessage
+        include Hyrax::Engine.routes.url_helpers
 
         UNKNOWN="UNKNOWN"
         UNKNOWN_ID=0
@@ -107,7 +108,7 @@ module Hyrax
                     }
                 }
               }
-            when [Dataset, Article].include?(@curation_concern_type) && @event != 'destroy_work.hyrax'
+            when [Dataset, Article].include?(@curation_concern_type) && !destroy?
               @object.creator_nested.map{|c|
                 {
                   person: {
@@ -146,7 +147,7 @@ module Hyrax
                                } ]
                 }
               }
-            when [Dataset, Article].include?(@curation_concern_type) && @event != 'destroy_work.hyrax'
+            when [Dataset, Article].include?(@curation_concern_type) && !destroy?
               @object.rights_nested.map{|r|
                 {
                     rightsStatement: r.definition.to_a,
@@ -174,7 +175,7 @@ module Hyrax
                   dateType: UNKNOWN_ID
               }]
 
-            when [Dataset, Article].include?(@curation_concern_type) && @event != 'destroy_work.hyrax'
+            when [Dataset, Article].include?(@curation_concern_type) && !destroy?
               @object.date.map{|d|
                 {
                     dateValue: d.date.first,
@@ -263,20 +264,30 @@ module Hyrax
 
         def objectFile
           files = []
-          if @event != 'destroy_work.hyrax'
+          if !destroy? # cannot send files with delete as they are gone
             @object.file_sets.each do |fs|
-              fs.files.each do |f|
-                files << {
-                    fileUuid: f.id,
-                    fileIdentifier: f.uri.to_s,
-                    fileName: f.file_name.first,
-                    fileSize: f.file_size.first,
-                    fileStorageType: UNKNOWN_ID
-                }
-              end
+              files << {
+                  fileUuid: fs.id,
+                  fileIdentifier: download_url(fs, host: Rails.application.routes.default_url_options[:host]),
+                  fileName: fs.first_title,
+                  fileSize: fs.file_size.first,
+                  fileStorageType: UNKNOWN_ID
+              }
             end
           end
           files
+        end
+
+        def destroy?
+          @event == Hyrax::Notifications::Events::METADATA_DELETE
+        end
+
+        def inactive?
+          @object.state.id == 'http://fedora.info/definitions/1/0/access/ObjState#inactive'.freeze
+        end
+
+        def active?
+          @object.state.id == 'http://fedora.info/definitions/1/0/access/ObjState#active'.freeze
         end
 
       end
