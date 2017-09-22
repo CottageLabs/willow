@@ -288,7 +288,7 @@ module Hyrax
                         preservationEventValue: UNKNOWN,
                         preservationEventType: UNKNOWN_ID,
                         preservationEventDetail: UNKNOWN
-                    }  
+                    }
                   ],
                   fileUploadStatus: UNKNOWN_ID,
                   fileStorageStatus: UNKNOWN_ID,
