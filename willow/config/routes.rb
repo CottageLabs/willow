@@ -33,5 +33,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
 
-# Used to generate URLs in libraries that do not have full access to the Rails stack. Will default to the email host name if not provided.
-Rails.application.routes.default_url_options[:host] = ENV['DEFAULT_URL_OPTIONS_HOST'] || ENV['EMAIL_BASE_URL_HOST'] || 'localhost'
+# Used to generate URLs in libraries that do not have access to the Rails request pipeline. The same settings
+# are used for email generation.
+Rails.application.routes.default_url_options[:host] = ENV['DEFAULT_URL_OPTIONS_HOST'] || 'localhost'
+Rails.application.routes.default_url_options[:protocol] = ENV['DEFAULT_URL_OPTIONS_PROTOCOL'] || 'http'

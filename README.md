@@ -113,12 +113,10 @@ NOTIFICATIONS_EMAIL_DEFAULT_FROM_ADDRESS=notifications@your-institution.ac.uk
 # USER_MANAGEMENT_EMAIL_FROM_ADDRESS is used for things like Forgotten Password.
 # Make sure it's an email + domain you are allowed to send on behalf of, or your user management emails won't work!
 USER_MANAGEMENT_EMAIL_FROM_ADDRESS=no-reply@your-institution.ac.uk
-# Where should links in emails go to? The following options configure the stem / base URL for those links:
-EMAIL_BASE_URL_HOST=repository.your-institution.ac.uk
-EMAIL_BASE_URL_SCHEMA=https
 
-# Optional custom host URL generation setting - if not present it will use EMAIL_BASE_URL_HOST above
+# Configuration of URL generation for Emails and API Messages
 DEFAULT_URL_OPTIONS_HOST=repository.your-institution.ac.uk
+DEFAULT_URL_OPTIONS_PROTOCOL=http
 
 # Batch works editing
 BATCH_USER=repo_batch_user@your-institution.ac.uk
