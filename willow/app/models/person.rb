@@ -24,9 +24,8 @@ class Person < ActiveFedora::Base
   property :identifier_nested, predicate: ::RDF::Vocab::Identifiers.id, class_name: "ObjectIdentifier"
   property :contact_nested, predicate: ::RDF::Vocab::DCAT.contactPoint, class_name: "ContactStatement"
   include AgentNestedAttributes
-  # ToDo - associate with organisation
-  #   belongs_to :organisation, predicate: ::RDF::Vocab::VMD.affiliation
-  #     , class_name: 'ActiveFedora::Base'
+  # Associate with organisation
+  has_and_belongs_to_many :organisations, predicate: ::RDF::Vocab::VMD.affiliation
   # ToDo - associating with person role for datasets
   #   has_many :datasets, through: :person_roles
 end
