@@ -1,5 +1,3 @@
-# Generated via
-#  `rails generate hyrax:work Book`
 class Grant < ActiveFedora::Base
   include ::BasicModelBehavior
 

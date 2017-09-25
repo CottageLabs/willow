@@ -1,5 +1,3 @@
-# Generated via
-#  `rails generate hyrax:work Book`
 class Project < ActiveFedora::Base
   include ::BasicModelBehavior
 
@@ -9,7 +7,8 @@ class Project < ActiveFedora::Base
 
   self.human_readable_type = 'Project'
 
-  # TODO: have not related Project to collection as it is not a Hyrax Work
+  # TODO: Relate project to collection
+  #       Have not related project to hyrax collection as it is not a Hyrax Work
 
   property :title, predicate: ::RDF::Vocab::DC.title do |index|
     index.as :stored_searchable

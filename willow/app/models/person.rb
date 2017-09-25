@@ -1,5 +1,3 @@
-# Generated via
-#  `rails generate hyrax:work Book`
 class Person < ActiveFedora::Base
   include ::BasicModelBehavior
 
