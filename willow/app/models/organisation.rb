@@ -18,8 +18,8 @@ class Organisation < ActiveFedora::Base
   property :identifier_nested, predicate: ::RDF::Vocab::Identifiers.id, class_name: "ObjectIdentifier"
   property :contact_nested, predicate: ::RDF::Vocab::DCAT.contactPoint, class_name: "ContactStatement"
   include AgentNestedAttributes
-  # ToDo - associate with person
-  #   has_many :persons
+  # Associate with person
+  has_many :persons
   # ToDo - associating with organisation role for datasets
   #   has_many :datasets, through: :organisation_roles
 end
