@@ -1,5 +1,3 @@
-# Generated via
-#  `rails generate hyrax:work Book`
 class Organisation < ActiveFedora::Base
   include ::BasicModelBehavior
 
