@@ -19,6 +19,6 @@ module Willow
     # config.active_record.raise_in_transactional_callbacks = true
 
     # autoload the lib folder
-    config.autoload_paths << Rails.root.join('lib')
+    config.eager_load_paths << Rails.root.join('lib')
   end
 end
