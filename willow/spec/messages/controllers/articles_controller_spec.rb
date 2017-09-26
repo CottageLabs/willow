@@ -57,7 +57,8 @@ describe Hyrax::ArticlesController, :type => :controller do
                                                          classification: 'PSC',
                                                          homepage: 'http://example.com/homepage'
                                                      }],
-                         language: ["English"]
+                         language: ["English"],
+                         import_url: 'true'
   ) }
 
 
@@ -77,7 +78,7 @@ describe Hyrax::ArticlesController, :type => :controller do
       allow(Hyrax::CurationConcern).to receive(:actor).and_return(actor)
       allow(controller).to receive(:curation_concern).and_return(article)
       post :create, params: { article: { title: [''] } }
-      @message = notification_message_for('MetadataCreate') do
+      @message = notification_message_for(Hyrax::Notifications::Events::METADATA_UPDATE) do
         # trigger the approve workflow message
         Hyrax::Notifications::Senders::Approve.call(target: article)
       end
@@ -96,11 +97,11 @@ describe Hyrax::ArticlesController, :type => :controller do
     end
 
     it 'messageType is create' do
-      expect(@messageHeader[:messageType]).to eql('MetadataCreate')
+      expect(@messageHeader[:messageType]).to eql('MetadataUpdate')
     end
 
     it 'payload contains objectTitle' do
-      expect(@messageBodyPayload[:objectTitle]).to eql(article.title.first)
+      expect(@messageBodyPayload[:objectTitle]).to eql('Do Mug Fairies Exist? An experiment in self-cleaning crockery')
     end
   end
 end
