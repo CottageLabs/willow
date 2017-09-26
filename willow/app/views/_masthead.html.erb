@@ -1,6 +1,6 @@
 <%= render '/shared/select_work_type_modal' if create_work_presenter.many? %>
 <nav id="masthead" class="navbar navbar-inverse navbar-static-top" role="navigation">
-  <%- if ENV["INSTITUTION_LOGO"].present? %>
+  <%- if Willow::Config.institution_logo %>
     <%= render partial: '/logo_pic' %>
   <% end %>
   <div class="container-fluid">
@@ -16,7 +16,7 @@
     </div>
 
     <div class="pull-right" style="display: inline-block !important" id="cl-name">
-      <%= t('hyrax.institution_name', institution_name: ENV["INSTITUTION_NAME"]) %>
+      <%= Hyrax::Institution.name %>
     </div>
 
   </div>
