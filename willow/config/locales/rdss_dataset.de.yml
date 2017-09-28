@@ -1,8 +1,34 @@
 de:
   hyrax:
     icons:
-      rdss_dataset:     'fa fa-file-text-o'
+      dataset:     'fa fa-cubes'
     select_type:
       rdss_dataset:
-        name:               "Rdss Dataset"
-        description:        "Rdss dataset Werke"
+        name:               "RDSS Dataset"
+        description:        "Dataset mit JISC RDSS Metadaten Schema Eigenschaften"
+  simple_form:
+    labels:
+      rdss_dataset:
+        description:      "Abstract or Summary"
+        keyword:          "Keyword"
+        files:            "Upload a new version of this file from your computer"
+        collection_ids:   "Add as member of collection"
+        admin_set_id:     "Add as member of administrative set"
+        creator_nested:   "Creator"
+        rights_nested:    "Rights"
+        relation:         "Related work"
+        identifier_nested: "Identifiers"
+
+    hints:
+      rdss_dataset:
+        resource: "Pre-defined categories to describe the type of content being uploaded, such as &quot;article&quot; or &quot;dataset.&quot;  More than one type may be selected."
+        title: "A name to aid in identifying the dataset."
+        keyword: "Words or phrases you select to describe what the dataset is about. These are used to search for content."
+        creator_nested: "The person or group responsible for the dataset. The first name, last name, orcid and role are required."
+        relation: "Details of specific content (audio, video, PDF document) related to the dataset. An example is the URL of an artcle based on this dataset. If adding a related work, add information in all 3 fields - title, url and relationship."
+        date: "The different dates relevant to the dataset."
+        description: "Free-text notes about the dataset. Examples include abstracts of a paper or citation information for a journal article."
+        rights_nested: "Licensing and distribution information governing access to the dataset."
+        identifier_nested: "Identifiers for the dataset"
+        category: "Category for the dataset"
+        rating: "Rating for the dataset"
