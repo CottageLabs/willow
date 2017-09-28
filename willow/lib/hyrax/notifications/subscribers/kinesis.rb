@@ -5,7 +5,7 @@ module Hyrax
     module Subscribers
       class Kinesis < Subscriber
 
-        def self.register_aws(events: ['MetadataCreate', 'MetadataUpdate', 'MetadataDelete'],
+        def self.register_aws(events: [Events::METADATA_CREATE, Events::METADATA_UPDATE, Events::METADATA_DELETE],
             region: 'eu-west-1',
             stream_name: 'willow-message-stream', shard_count: 1, partition_key: 'willow')
 
@@ -23,7 +23,7 @@ module Hyrax
           @subscriber = self.new(region, stream_name, shard_count, partition_key).subscribe(events)
         end
 
-        def self.register_kinesalite(events: ['MetadataCreate', 'MetadataUpdate', 'MetadataDelete'],
+        def self.register_kinesalite(events: [Events::METADATA_CREATE, Events::METADATA_UPDATE, Events::METADATA_DELETE],
             endpoint: nil, region: 'nowhere',
             stream_name: 'willow-message-stream', shard_count: 1, partition_key: 'willow')
 

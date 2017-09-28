@@ -3,7 +3,7 @@ module Hyrax
     module Subscribers
       class Subscriber
 
-        def self.register(events: ['MetadataCreate', 'MetadataUpdate', 'MetadataDelete'])
+        def self.register(events: [Events::METADATA_CREATE, Events::METADATA_UPDATE, Events::METADATA_DELETE])
           @subscriber = self.new().subscribe(events)
         end
 
