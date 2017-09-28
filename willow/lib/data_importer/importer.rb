@@ -10,16 +10,27 @@ module DataImporter
         # puts response
 
 
-        x = {}
+        tree = {}
+
+        # This code intends to iterate through an AWS bucket to construct a hash-tree
+        # /folder1/folder2/folder3/fileA
+        # /folder1/folder2/folder3/fileB
+        # /folder1/folder2/fileC
+        # should result in:
+        # { folder1: {folder2: {folder3: { fileA: {}, fileB: {} }, fileC: {} } } }
+        # However it is still work in progress!
 
         response.contents.each do |item|
           # puts "item"
           # puts item
           puts item.key
 
-          puts item.key.split("/").inspect
+          split_into_hash(item.key, tree)
+
           # puts item.class
         end
+        
+        puts tree
 
 
         # puts response.contents.map(&:key)
@@ -35,7 +46,9 @@ module DataImporter
 
       outer, inner = path.split("/", 2)
       if inner
-        hash[outer] = split_into_hash(inner)
+        hash[outer] = (hash[outer] || {}).merge(split_into_hash(inner))
+      else
+        hash[outer] = (hash[outer] || {}).merge({})
       end
       hash
     end
