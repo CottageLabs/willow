@@ -18,6 +18,7 @@ RSpec.describe PersonStatement, :vcr do
         {
           first_name: 'Foo',
           last_name: 'Bar',
+          name: 'Foo Bar',
           orcid: '0000-0000-0000-0000',
           affiliation: 'author affiliation',
           role: 'Author'

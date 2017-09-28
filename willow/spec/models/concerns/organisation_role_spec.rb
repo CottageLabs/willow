@@ -12,4 +12,9 @@ RSpec.describe OrganisationRole do
     expect(t.macro).to eq(:belongs_to)
   end
 
+  it "should belong to and have many rdss datasets" do
+    t = OrganisationRole.reflect_on_association(:rdss_datasets)
+    expect(t.macro).to eq(:has_and_belongs_to_many)
+  end
+
 end

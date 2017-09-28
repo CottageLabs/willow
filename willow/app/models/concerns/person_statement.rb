@@ -4,6 +4,7 @@ class PersonStatement < ActiveTriples::Resource
   configure type: ::RDF::Vocab::FOAF.Person
   property :first_name, predicate: ::RDF::Vocab::FOAF.givenName
   property :last_name, predicate: ::RDF::Vocab::FOAF.familyName
+  property :name, predicate: ::RDF::Vocab::VCARD.hasName
   # property :identifier, predicate: ::RDF::Vocab::DataCite.hasIdentifier
   # property :identifier_scheme, predicate: ::RDF::Vocab::DataCite.usesIdentifierScheme
   property :orcid, predicate: ::RDF::Vocab::DataCite.orcid
