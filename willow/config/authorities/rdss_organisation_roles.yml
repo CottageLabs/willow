@@ -1,0 +1,21 @@
+terms:
+  - id: funder
+    term: funder
+  - id: hostingInstitution
+    term: hostingInstitution
+  - id: rightsHolder
+    term: rightsHolder
+  - id: sponsor
+    term: sponsor
+  - id: publisher
+    term: publisher
+  - id: registrationAgency
+    term: registrationAgency
+  - id: registrationAuthority
+    term: registrationAuthority
+  - id: distributor
+    term: distributor
+  - id: advocacy
+    term: advocacy
+  - id: author
+    term: author
