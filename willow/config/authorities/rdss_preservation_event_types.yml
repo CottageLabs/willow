@@ -1,0 +1,33 @@
+terms:
+  - id: capture
+    term: capture
+  - id: compression
+    term: compression
+  - id: creation
+    term: creation
+  - id: deaccession
+    term: deaccession
+  - id: decompression
+    term: decompression
+  - id: decryption
+    term: decryption
+  - id: deletion
+    term: deletion
+  - id: digital signature validation
+    term: digital signature validation
+  - id: fixity check
+    term: fixity check
+  - id: ingestion
+    term: ingestion
+  - id: message digest calculation
+    term: message digest calculation
+  - id: migration
+    term: migration
+  - id: normalisation
+    term: normalisation
+  - id: replication
+    term: replication
+  - id: validation
+    term: validation
+  - id: virus check
+    term: virus check

@@ -1,0 +1,31 @@
+terms:
+  - id: charity
+    term: charity
+  - id: commercial
+    term: commercial
+  - id: funder
+    term: funder
+  - id: furtherEducation
+    term: furtherEducation
+  - id: government
+    term: government
+  - id: health
+    term: health
+  - id: heritage
+    term: heritage
+  - id: higherEducation
+    term: higherEducation
+  - id: other
+    term: other
+  - id: professionalBody
+    term: professionalBody
+  - id: research
+    term: research
+  - id: school
+    term: school
+  - id: skills
+    term: skills
+  - id: billing
+    term: billing
+  - id: display
+    term: display

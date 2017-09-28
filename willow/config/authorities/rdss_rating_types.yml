@@ -1,0 +1,7 @@
+terms:
+  - id: normal
+    term: Normal
+  - id: high
+    term: High
+  - id: veryHigh
+    term: Very high

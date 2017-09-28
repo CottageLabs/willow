@@ -1,0 +1,75 @@
+terms:
+  - id: isCitedBy
+    term: isCitedBy
+  - id: cites
+    term: cites
+  - id: isSupplementTo
+    term: isSupplementTo
+  - id: isSupplementedBy
+    term: isSupplementedBy
+  - id: isContinuedBy
+    term: isContinuedBy
+  - id: continues
+    term: continues
+  - id: hasMetadata
+    term: hasMetadata
+  - id: isMetadataFor
+    term: isMetadataFor
+  - id: isNewVersionOf
+    term: isNewVersionOf
+  - id: isPreviousVersionOf
+    term: isPreviousVersionOf
+  - id: isPartOf
+    term: isPartOf
+  - id: hasPart
+    term: hasPart
+  - id: isReferencedBy
+    term: isReferencedBy
+  - id: references
+    term: references
+  - id: isDocumentedBy
+    term: isDocumentedBy
+  - id: documents
+    term: documents
+  - id: isCompiledBy
+    term: isCompiledBy
+  - id: compiles
+    term: compiles
+  - id: isVariantFormOf
+    term: isVariantFormOf
+  - id: isOriginalFormOf
+    term: isOriginalFormOf
+  - id: isIdenticalTo
+    term: isIdenticalTo
+  - id: isReviewedBy
+    term: isReviewedBy
+  - id: reviews
+    term: reviews
+  - id: isDerivedFrom
+    term: isDerivedFrom
+  - id: isSourceOf
+    term: isSourceOf
+  - id: isCommentOn
+    term: isCommentOn
+  - id: hasComment
+    term: hasComment
+  - id: isReplyTo
+    term: isReplyTo
+  - id: hasReply
+    term: hasReply
+  - id: basedOnData
+    term: basedOnData
+  - id: hasRelatedMaterial
+    term: hasRelatedMaterial
+  - id: isBasedOn
+    term: isBasedOn
+  - id: isBasisFor
+    term: isBasisFor
+  - id: requires
+    term: requires
+  - id: isRequiredBy
+    term: isRequiredBy
+  - id: hasParent
+    term: hasParent
+  - id: isParentOf
+    term: isParentOf
