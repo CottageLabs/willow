@@ -9,7 +9,7 @@ module ArticleNestedAttributes
 
     accepts_nested_attributes_for :date, reject_if: :date_blank, allow_destroy: true
     accepts_nested_attributes_for :creator_nested, reject_if: :creator_blank, allow_destroy: true
-    accepts_nested_attributes_for :rights_nested, reject_if: :rights_blank, allow_destroy: true
+    accepts_nested_attributes_for :license_nested, reject_if: :license_blank, allow_destroy: true
     accepts_nested_attributes_for :subject_nested, reject_if: :subject_blank, allow_destroy: true
     accepts_nested_attributes_for :relation, reject_if: :relation_blank, allow_destroy: true
     accepts_nested_attributes_for :admin_metadata, reject_if: :admin_metadata_blank, allow_destroy: true
@@ -29,14 +29,14 @@ module ArticleNestedAttributes
       Array(attributes[:orcid]).all?(&:blank?)
     end
 
-    # rights_blank - similar to all_blank for defined rights attributes
-    resource_class.send(:define_method, :rights_blank) do |attributes|
-      rights_attributes.all? do |key|
+    # license_blank - similar to all_blank for defined license attributes
+    resource_class.send(:define_method, :license_blank) do |attributes|
+      license_attributes.all? do |key|
         Array(attributes[key]).all?(&:blank?)
       end
     end
 
-    resource_class.send(:define_method, :rights_attributes) do
+    resource_class.send(:define_method, :license_attributes) do
       [:label, :definition, :webpage]
     end
 

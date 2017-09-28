@@ -4,14 +4,14 @@ module Hyrax
   class ArticleForm < Hyrax::Forms::WorkForm
     self.model_class = ::Article
     self.terms += [:creator_nested, :resource_type, :doi, :identifier_nested,
-      :coverage, :apc, :date, :tagged_version, :rights_nested, :subject_nested,
+      :coverage, :apc, :date, :tagged_version, :license_nested, :subject_nested,
       :relation, :project, :admin_metadata]
     self.terms -= [:based_near, :creator, :contributor, :date_created,
       :identifier, :license, :related_url, :subject]
-    self.required_fields += [:creator_nested, :publisher, :date, :resource_type, :rights_nested]
+    self.required_fields += [:creator_nested, :publisher, :date, :resource_type, :license_nested]
     self.required_fields -= [:creator, :keyword, :license, :rights_statement]
 
-    NESTED_ASSOCIATIONS = [:date, :creator_nested, :rights_nested,
+    NESTED_ASSOCIATIONS = [:date, :creator_nested, :license_nested,
       :subject_nested, :relation, :admin_metadata, :project, :identifier_nested].freeze
 
     protected
@@ -50,7 +50,7 @@ module Hyrax
         ]
       end
 
-      def self.permitted_rights_params
+      def self.permitted_license_params
         [:id,
          :_destroy,
          {
@@ -115,7 +115,7 @@ module Hyrax
         permitted << { date_attributes: permitted_date_params }
         permitted << { relation_attributes: permitted_relation_params }
         permitted << { admin_metadata_attributes: permitted_admin_params }
-        permitted << { rights_nested_attributes: permitted_rights_params }
+        permitted << { license_nested_attributes: permitted_license_params }
         permitted << { creator_nested_attributes: permitted_creator_params }
         permitted << { subject_nested_attributes: permitted_subject_params }
         permitted << { project_attributes: permitted_project_params }

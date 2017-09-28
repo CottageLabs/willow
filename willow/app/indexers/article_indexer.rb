@@ -27,9 +27,9 @@ class ArticleIndexer < Hyrax::WorkIndexer
       solr_doc[Solrizer.solr_name('creator_nested', :stored_searchable)] = creators
       solr_doc[Solrizer.solr_name('creator_nested', :displayable)] = object.creator_nested.to_json
       # rights
-      solr_doc[Solrizer.solr_name('rights_nested', :stored_searchable)] = object.rights_nested.map { |r| r.webpage.first }.reject(&:blank?)
-      solr_doc[Solrizer.solr_name('rights_nested', :facetable)] = object.rights_nested.map { |r| r.webpage.first }.reject(&:blank?)
-      solr_doc[Solrizer.solr_name('rights_nested', :displayable)] = object.rights_nested.to_json
+      solr_doc[Solrizer.solr_name('license_nested', :stored_searchable)] = object.license_nested.map { |r| r.webpage.first }.reject(&:blank?)
+      solr_doc[Solrizer.solr_name('license_nested', :facetable)] = object.license_nested.map { |r| r.webpage.first }.reject(&:blank?)
+      solr_doc[Solrizer.solr_name('license_nested', :displayable)] = object.license_nested.to_json
       # subject
       solr_doc[Solrizer.solr_name('subject_nested', :stored_searchable)] = object.subject_nested.map { |s| s.label.first }.reject(&:blank?)
       solr_doc[Solrizer.solr_name('subject_nested', :facetable)] = object.subject_nested.map { |s| s.label.first }.reject(&:blank?)

@@ -96,7 +96,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("date_submitted", :stored_sortable, type: :date), label: I18n.t('willow.fields.date_submitted'), itemprop: 'dateSubmitted'
     config.add_index_field solr_name("date_updated", :stored_sortable, type: :date), label: I18n.t('willow.fields.date_updated'), itemprop: 'dateUpdated'
     config.add_index_field solr_name("rights", :stored_searchable), label: I18n.t('willow.fields.rights'), helper_method: :license_links
-    config.add_index_field solr_name("rights_nested", :stored_searchable), label: I18n.t('willow.fields.rights_nested'), helper_method: :license_links
+    config.add_index_field solr_name("license_nested", :stored_searchable), label: I18n.t('willow.fields.license_nested'), helper_method: :license_links
     config.add_index_field solr_name("resource_type", :stored_searchable), label: I18n.t('willow.fields.resource_type'), link_to_search: solr_name("resource_type", :facetable)
     config.add_index_field solr_name("file_format", :stored_searchable), label: I18n.t('willow.fields.file_format'), link_to_search: solr_name("file_format", :facetable)
     config.add_index_field solr_name("identifier", :stored_searchable), label: I18n.t('willow.fields.identifier'), helper_method: :index_field_link, field_name: 'identifier'
@@ -127,7 +127,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name("date_modified", :stored_searchable), label: I18n.t('willow.fields.date_modified')
     config.add_show_field solr_name("date_created", :stored_searchable), label: I18n.t('willow.fields.date_created')
     config.add_show_field solr_name("rights", :stored_searchable), label: I18n.t('willow.fields.rights')
-    config.add_show_field solr_name("rights_nested", :displayable), label: I18n.t('willow.fields.rights_nested')
+    config.add_show_field solr_name("license_nested", :displayable), label: I18n.t('willow.fields.license_nested')
     config.add_show_field solr_name("resource_type", :stored_searchable), label: I18n.t('willow.fields.resource_type')
     config.add_show_field solr_name("format", :stored_searchable), label: I18n.t('willow.fields.format')
     config.add_show_field solr_name("identifier", :symbol), label: I18n.t('willow.fields.identifier')
@@ -141,7 +141,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name("coverage", :stored_searchable), label: I18n.t('willow.fields.coverage')
     config.add_show_field solr_name("apc", :stored_searchable), label: I18n.t('willow.fields.apc')
     config.add_show_field solr_name("tagged_version", :stored_searchable), label: I18n.t('willow.fields.tagged_version')
-    config.add_show_field solr_name("project_nested", :stored_searchable), label: I18n.t('willow.fields.project_nested')
+    config.add_show_field solr_name("project_nested", :displayable), label: I18n.t('willow.fields.project_nested')
     config.add_show_field solr_name("identifier_nested", :displayable), label: I18n.t('willow.fields.identifier_nested')
     config.add_show_field solr_name("category", :stored_searchable), label: I18n.t('willow.fields.category')
     config.add_show_field solr_name("rating", :stored_searchable), label: I18n.t('willow.fields.rating')
@@ -329,8 +329,8 @@ class CatalogController < ApplicationController
       }
     end
 
-    config.add_search_field('rights_nested') do |field|
-      solr_name = solr_name("rights_nested", :stored_searchable)
+    config.add_search_field('license_nested') do |field|
+      solr_name = solr_name("license_nested", :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name

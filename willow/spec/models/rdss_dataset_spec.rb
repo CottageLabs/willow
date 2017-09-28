@@ -122,56 +122,56 @@ RSpec.describe RdssDataset do
 
   describe 'nested attributes for rights' do
     it 'accepts rights attributes' do
-      @obj = build(:rdss_dataset, rights_nested_attributes: [{
+      @obj = build(:rdss_dataset, license_nested_attributes: [{
             label: 'A rights label',
             definition: 'A definition of the rights',
             webpage: 'http://example.com/rights'
           }]
       )
-      expect(@obj.rights_nested.first).to be_kind_of ActiveTriples::Resource
-      expect(@obj.rights_nested.first.label).to eq ['A rights label']
-      expect(@obj.rights_nested.first.definition).to eq ['A definition of the rights']
-      expect(@obj.rights_nested.first.webpage).to eq ['http://example.com/rights']
+      expect(@obj.license_nested.first).to be_kind_of ActiveTriples::Resource
+      expect(@obj.license_nested.first.label).to eq ['A rights label']
+      expect(@obj.license_nested.first.definition).to eq ['A definition of the rights']
+      expect(@obj.license_nested.first.webpage).to eq ['http://example.com/rights']
     end
 
     it 'has the correct uri' do
-      @obj = build(:rdss_dataset, rights_nested_attributes: [{
+      @obj = build(:rdss_dataset, license_nested_attributes: [{
             label: 'A rights label',
             definition: 'A definition of the rights',
             webpage: 'http://example.com/rights'
           }]
       )
-      expect(@obj.rights_nested.first.id).to include('#rights')
+      expect(@obj.license_nested.first.id).to include('#rights')
     end
 
     it 'rejects rights attributes if all blank' do
-      @obj = build(:rdss_dataset, rights_nested_attributes: [{ label: '' }] )
-      expect(@obj.rights_nested.size).to eq(0)
+      @obj = build(:rdss_dataset, license_nested_attributes: [{ label: '' }] )
+      expect(@obj.license_nested.size).to eq(0)
     end
 
     it 'destroys rights' do
-      @obj = build(:rdss_dataset, rights_nested_attributes: [{ label: 'test label' }] )
-      expect(@obj.rights_nested.size).to eq(1)
+      @obj = build(:rdss_dataset, license_nested_attributes: [{ label: 'test label' }] )
+      expect(@obj.license_nested.size).to eq(1)
       @obj.attributes = {
-        rights_nested_attributes: [{
-            id: @obj.rights_nested.first.id,
+        license_nested_attributes: [{
+            id: @obj.license_nested.first.id,
             label: 'test label',
             _destroy: "1"
           }]
       }
-      expect(@obj.rights_nested.size).to eq(0)
+      expect(@obj.license_nested.size).to eq(0)
     end
 
     it 'indexes the rights' do
-      @obj = build(:rdss_dataset, rights_nested_attributes: [{
+      @obj = build(:rdss_dataset, license_nested_attributes: [{
             label: 'A rights label',
             definition: 'A definition of the rights',
             webpage: 'http://example.com/rights'
           }]
       )
       @doc = @obj.to_solr
-      expect(@doc['rights_nested_sim']).to eq ['http://example.com/rights']
-      expect(@doc).to include('rights_nested_tesim')
+      expect(@doc['license_nested_sim']).to eq ['http://example.com/rights']
+      expect(@doc).to include('license_nested_tesim')
     end
   end
 
