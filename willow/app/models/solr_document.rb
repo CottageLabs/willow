@@ -77,4 +77,13 @@ class SolrDocument
   def identifier_nested
     self[Solrizer.solr_name('identifier_nested', :displayable)]
   end
+
+  def category
+    self[Solrizer.solr_name('category', :stored_searchable)]
+  end
+
+  def rating
+    self[Solrizer.solr_name('rating', :stored_searchable)]
+  end
+
 end
