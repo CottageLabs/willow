@@ -11,8 +11,9 @@
 <%= presenter.attribute_to_html(:apc, label: 'Article processing charge') %>
 <%= presenter.attribute_to_html(:tagged_version, render_as: :faceted, label: 'Version of article') %>
 <%= presenter.attribute_to_html(:project, render_as: :project,label: 'Project and funder') %>
-<%= presenter.attribute_to_html(:relation, render_as: :relation, label: 'Related work') %>
 <%= presenter.attribute_to_html(:resource_type, render_as: :faceted) %>
-<%= presenter.attribute_to_html(:admin_metadata, render_as: :admin_metadata, label: 'Information for administrative purposes') %>
-<%= presenter.attribute_to_html(:source) %>
+<%= presenter.attribute_to_html(:relation, render_as: :relation, label: 'Related work') %>
+<%= presenter.attribute_to_html(:rights_statement) %>
 <%= presenter.attribute_to_html(:rights_nested, render_as: :nested_rights, label: 'Rights') %>
+<%= presenter.attribute_to_html(:source) %>
+<%= presenter.attribute_to_html(:admin_metadata, render_as: :admin_metadata, label: 'Information for administrative purposes') %>
