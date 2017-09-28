@@ -1,9 +1,11 @@
 <%= presenter.attribute_to_html(:creator_nested, render_as: :nested_creator, label: 'Creator') %>
+<%= presenter.attribute_to_html(:identifier_nested, render_as: :nested_identifier, label: 'Identifiers') %>
+<%= presenter.attribute_to_html(:keyword, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:date, render_as: :nested_date) %>
-<%= presenter.attribute_to_html(:relation, render_as: :relation, label: 'Related work') %>
 <%= presenter.attribute_to_html(:resource_type, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:category, render_as: :faceted) %>
-<%= presenter.attribute_to_html(:source) %>
+<%= presenter.attribute_to_html(:relation, render_as: :relation, label: 'Related work') %>
+<%= presenter.attribute_to_html(:rights_statement) %>
 <%= presenter.attribute_to_html(:rights_nested, render_as: :nested_rights, label: 'Rights') %>
 <%= presenter.attribute_to_html(:rating, render_as: :faceted) %>
-
+<%= presenter.attribute_to_html(:source) %>
