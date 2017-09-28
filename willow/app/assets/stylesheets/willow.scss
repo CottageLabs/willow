@@ -184,3 +184,12 @@ form .field-wrapper label[required="required"]::after {
   content: " *";
   color: red;
 }
+
+#logo_pic {
+  padding: 0;
+}
+
+#logo_pic img {
+  object-fit: contain;
+  height: 100%;
+}
