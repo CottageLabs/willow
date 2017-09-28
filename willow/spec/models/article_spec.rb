@@ -305,30 +305,30 @@ RSpec.describe Article, :vcr do
 
   describe 'nested attributes for rights' do
     it 'accepts rights attributes' do
-      @obj = build(:article, rights_nested_attributes: [{
+      @obj = build(:article, license_nested_attributes: [{
             label: 'A rights label',
             definition: 'A definition of the rights',
             webpage: 'http://example.com/rights'
           }]
       )
-      expect(@obj.rights_nested.first).to be_kind_of ActiveTriples::Resource
-      expect(@obj.rights_nested.first.label).to eq ['A rights label']
-      expect(@obj.rights_nested.first.definition).to eq ['A definition of the rights']
-      expect(@obj.rights_nested.first.webpage).to eq ['http://example.com/rights']
+      expect(@obj.license_nested.first).to be_kind_of ActiveTriples::Resource
+      expect(@obj.license_nested.first.label).to eq ['A rights label']
+      expect(@obj.license_nested.first.definition).to eq ['A definition of the rights']
+      expect(@obj.license_nested.first.webpage).to eq ['http://example.com/rights']
     end
 
     it 'has the correct uri' do
-      @obj = build(:article, rights_nested_attributes: [{
+      @obj = build(:article, license_nested_attributes: [{
             label: 'A rights label',
             definition: 'A definition of the rights',
             webpage: 'http://example.com/rights'
           }]
       )
-      expect(@obj.rights_nested.first.id).to include('#rights')
+      expect(@obj.license_nested.first.id).to include('#rights')
     end
 
     it 'rejects rights attributes if any attribute is blank' do
-      @obj = build(:article, rights_nested_attributes: [{
+      @obj = build(:article, license_nested_attributes: [{
             label: 'A rights label'
           }, {
             definition: 'A definition of the rights'
@@ -340,27 +340,27 @@ RSpec.describe Article, :vcr do
             webpage: ''
           }]
       )
-      expect(@obj.rights_nested.size).to eq(3)
+      expect(@obj.license_nested.size).to eq(3)
     end
 
     it 'destroys rights' do
-      @obj = build(:article, rights_nested_attributes: [{
+      @obj = build(:article, license_nested_attributes: [{
             label: 'test label'
           }]
       )
-      expect(@obj.rights_nested.size).to eq(1)
+      expect(@obj.license_nested.size).to eq(1)
       @obj.attributes = {
-        rights_nested_attributes: [{
-            id: @obj.rights_nested.first.id,
+        license_nested_attributes: [{
+            id: @obj.license_nested.first.id,
             label: 'test label',
             _destroy: "1"
           }]
       }
-      expect(@obj.rights_nested.size).to eq(0)
+      expect(@obj.license_nested.size).to eq(0)
     end
 
     it 'indexes the rights' do
-      @obj = build(:article, rights_nested_attributes: [{
+      @obj = build(:article, license_nested_attributes: [{
             label: 'A rights label',
             definition: 'A definition of the rights',
             webpage: 'http://example.com/rights'
@@ -370,9 +370,9 @@ RSpec.describe Article, :vcr do
           }]
       )
       @doc = @obj.to_solr
-      expect(@doc['rights_nested_sim']).to match_array(
+      expect(@doc['license_nested_sim']).to match_array(
         ['http://example.com/rights', 'http://example.com/rights_2nd'])
-      expect(@doc).to include('rights_nested_tesim')
+      expect(@doc).to include('license_nested_tesim')
     end
   end
 

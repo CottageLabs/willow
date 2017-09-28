@@ -1,17 +1,17 @@
-class RightsStatementInput < NestedAttributesInput
+class LicenseStatementInput < NestedAttributesInput
 
   protected
 
-    # The markup here is also duplicated in app/assets/javascripts/templates/editor/rights_statement.hbs
+    # The markup here is also duplicated in app/assets/javascripts/templates/editor/license_statement.hbs
     # Any changes to this markup should also be reflected there as well
     def build_components(attribute_name, value, index, options)
       out = ''
 
-      rights_statement = value
+      license_statement = value
 
       # Inherit required for fields validated in nested attributes
       required  = false
-      if object.required?(:rights_nested) and index == 0
+      if object.required?(:license_nested) and index == 0
         required = true
       end
 
@@ -19,7 +19,7 @@ class RightsStatementInput < NestedAttributesInput
       field = :webpage
       field_name = name_for(attribute_name, index, field)
       field_id = id_for(attribute_name, index, field)
-      field_value = rights_statement.send(field).first
+      field_value = license_statement.send(field).first
       active_options = Hyrax::LicenseService.new.select_active_options
 
       out << "<div class='row'>"
@@ -39,7 +39,7 @@ class RightsStatementInput < NestedAttributesInput
       field = :definition
       field_name = name_for(attribute_name, index, field)
       field_id = id_for(attribute_name, index, field)
-      field_value = rights_statement.send(field).first
+      field_value = license_statement.send(field).first
 
       out << "<div class='row'>"
       out << "  <div class='col-md-3'>"
@@ -59,7 +59,7 @@ class RightsStatementInput < NestedAttributesInput
       field = :start_date
       field_name = name_for(attribute_name, index, field)
       field_id = id_for(attribute_name, index, field)
-      field_value = rights_statement.send(field).first
+      field_value = license_statement.send(field).first
 
       out << "  <div class='col-md-3'>"
       out << template.label_tag(field_name, field.to_s.humanize, required: false)

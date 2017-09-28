@@ -1,11 +1,11 @@
 <div class="multi-nested">
-  <%= f.input :rights_nested,
-    as: :rights_statement,
+  <%= f.input :license_nested,
+    as: :license_statement,
     input_html: {
       class: '',
-      data: {name: :rights_nested}
+      data: {name: :license_nested}
     },
-    required: f.object.required?(:rights_nested)
+    required: f.object.required?(:license_nested)
   %>
   <button type="button" class="btn btn-link add">
     <span class="glyphicon glyphicon-plus"></span>

@@ -37,9 +37,9 @@ class RdssDatasetIndexer < Hyrax::WorkIndexer
       end
       solr_doc[Solrizer.solr_name('orcid', :symbol)] = object.creator_nested.map { |c| c.orcid.first }.reject(&:blank?)
       # rights
-      solr_doc[Solrizer.solr_name('rights_nested', :stored_searchable)] = object.rights_nested.map { |r| r.webpage.first }.reject(&:blank?)
-      solr_doc[Solrizer.solr_name('rights_nested', :facetable)] = object.rights_nested.map { |r| r.webpage.first }.reject(&:blank?)
-      solr_doc[Solrizer.solr_name('rights_nested', :displayable)] = object.rights_nested.to_json
+      solr_doc[Solrizer.solr_name('license_nested', :stored_searchable)] = object.license_nested.map { |r| r.webpage.first }.reject(&:blank?)
+      solr_doc[Solrizer.solr_name('license_nested', :facetable)] = object.license_nested.map { |r| r.webpage.first }.reject(&:blank?)
+      solr_doc[Solrizer.solr_name('license_nested', :displayable)] = object.license_nested.to_json
       # relation
       solr_doc[Solrizer.solr_name('relation_url', :facetable)] = object.relation.map { |r| r.url.first }.reject(&:blank?)
       solr_doc[Solrizer.solr_name('relation_id', :facetable)] = object.relation.map { |r| r.identifier.first }.reject(&:blank?)

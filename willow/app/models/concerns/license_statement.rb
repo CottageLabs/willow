@@ -1,4 +1,4 @@
-class RightsStatement < ActiveTriples::Resource
+class LicenseStatement < ActiveTriples::Resource
   include CommonMethods
 
   configure type: ::RDF::Vocab::DC.RightsStatement

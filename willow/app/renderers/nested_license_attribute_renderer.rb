@@ -1,4 +1,4 @@
-class NestedRightsAttributeRenderer < Hyrax::Renderers::AttributeRenderer
+class NestedLicenseAttributeRenderer < Hyrax::Renderers::AttributeRenderer
   private
   def attribute_value_to_html(value)
     value = JSON.parse(value)
@@ -18,7 +18,7 @@ class NestedRightsAttributeRenderer < Hyrax::Renderers::AttributeRenderer
       if v.include?('webpage') and not v['webpage'].blank? and not v['webpage'][0].blank?
         webpage = v['webpage'][0]
       end
-      license = rights_attribute_to_html(label, webpage)
+      license = license_attribute_to_html(label, webpage)
       if license
         row << license
       end
@@ -35,7 +35,7 @@ class NestedRightsAttributeRenderer < Hyrax::Renderers::AttributeRenderer
     %(#{html})
   end
 
-  def rights_attribute_to_html(label, value)
+  def license_attribute_to_html(label, value)
     begin
       parsed_uri = URI.parse(value)
     rescue

@@ -23,7 +23,7 @@ RSpec.feature 'Create an Article', vcr: true do
       fill_in 'Publisher', with: 'Publisher of Foo'
       fill_in 'article_date_attributes_0_date', with: '01/01/2001'
       select('Journal Article/Review', from: 'article_resource_type')
-      select('Public Domain Mark 1.0', from: 'article_rights_nested_attributes_0_webpage')
+      select('Public Domain Mark 1.0', from: 'article_license_nested_attributes_0_webpage')
       choose('open')
       check('agreement')
       click_on('Files')

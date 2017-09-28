@@ -19,7 +19,7 @@ class RdssDataset < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
   property :date, predicate: ::RDF::Vocab::DC.date, class_name:"DateStatement"
-  property :rights_nested, predicate: ::RDF::Vocab::DC.license, class_name:"RightsStatement"
+  property :license_nested, predicate: ::RDF::Vocab::DC.license, class_name:"LicenseStatement"
   property :relation, predicate: ::RDF::Vocab::DC.relation, class_name:"RelationStatement"
   property :identifier_nested, predicate: ::RDF::Vocab::Identifiers.id, class_name: "ObjectIdentifier"
   property :creator_nested, predicate: ::RDF::Vocab::SIOC.has_creator, class_name:"PersonStatement"

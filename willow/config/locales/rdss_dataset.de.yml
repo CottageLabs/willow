@@ -15,7 +15,7 @@ de:
         collection_ids:   "Add as member of collection"
         admin_set_id:     "Add as member of administrative set"
         creator_nested:   "Creator"
-        rights_nested:    "Rights"
+        license_nested:   "License"
         relation:         "Related work"
         identifier_nested: "Identifiers"
 
@@ -28,7 +28,7 @@ de:
         relation: "Details of specific content (audio, video, PDF document) related to the dataset. An example is the URL of an artcle based on this dataset. If adding a related work, add information in all 3 fields - title, url and relationship."
         date: "The different dates relevant to the dataset."
         description: "Free-text notes about the dataset. Examples include abstracts of a paper or citation information for a journal article."
-        rights_nested: "Licensing and distribution information governing access to the dataset."
+        license_nested: "Licensing and distribution information governing access to the dataset."
         identifier_nested: "Identifiers for the dataset"
         category: "Category for the dataset"
         rating: "Rating for the dataset"
