@@ -19,15 +19,9 @@ RSpec.feature 'Create a RdssDataset', vcr: true, js: false do
     end
 
     scenario do
-      visit '/dashboard'
-      click_link "Works"
-      click_link "Add new work"
+      visit new_hyrax_rdss_dataset_path
 
-      # If you generate more than one work uncomment these lines
-      # choose "payload_concern", option: "RdssDataset"
-      # click_button "Create work"
-
-      expect(page).to have_content "Rdss dataset works"
+      expect(page).to have_content "Add New RDSS Dataset"
     end
   end
 end
