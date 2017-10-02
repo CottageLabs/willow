@@ -89,7 +89,7 @@ module Hyrax
         ]
       end
 
-      def self.permitted_organisation_params
+      def self.permitted_org_params
         [:id,
          :_destroy,
          {
