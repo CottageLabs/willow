@@ -28,7 +28,7 @@ fr:
         title: "A name to aid in identifying the dataset."
         keyword: "Words or phrases you select to describe what the dataset is about. These are used to search for content."
         creator_nested: "The person or group responsible for the dataset. The first name, last name, orcid and role are required."
-        relation: "Details of specific content (audio, video, PDF document) related to the dataset. An example is the URL of an artcle based on this dataset. If adding a related work, add information in all 3 fields - title, url and relationship."
+        relation: "Details of specific content (audio, video, PDF document) related to the dataset. An example is the URL of an artcle based on this dataset. If adding a related work, add information in all fields - title, identifier and relationship."
         date: "The different dates relevant to the dataset."
         description: "Free-text notes about the dataset. Examples include abstracts of a paper or citation information for a journal article."
         license_nested: "Licensing and distribution information governing access to the dataset."
