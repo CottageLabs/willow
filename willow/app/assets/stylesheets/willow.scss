@@ -29,8 +29,8 @@ body.dashboard {
 footer.navbar.navbar-inverse {
   font-size: 18px;
   color: #aaa;
-  margin-top: 50px;
-  min-height: 220px;
+  margin-top: 20px;
+  min-height: 170px;
 }
 
 footer.navbar.navbar-inverse a {
@@ -52,8 +52,7 @@ footer.navbar.navbar-inverse a:hover {
 
 #masthead {
   min-height: 50px;
-  padding-top: 20px;
-  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 ul.nav.navbar-nav.col-sm-5.col-md-6 {
@@ -186,13 +185,22 @@ form .field-wrapper label[required="required"]::after {
 
 #logo_pic {
   padding: 0;
+  float:left;
+  height: 100%;
+  width: 50%;
 }
 
 #logo_pic img {
   object-fit: contain;
   height: 100%;
+  margin-top: -20px;
 }
 
 #logo {
   padding-left: 20px;
+}
+
+#navbar-col-2 {
+  widht: 50%;
+  float: right;
 }

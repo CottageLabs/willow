@@ -1,3 +1,12 @@
-<a id="logo" class="navbar-brand" href="<%= hyrax.root_path %>" data-no-turbolink="true">
-  <span class="institution_name"><%= application_name.upcase %></span>
-</a>
+<div id="logo_pic">
+  <%- unless Willow::Config.institution_logo.blank? %>
+    <a class="pull-left" href="<%= hyrax.root_path %>" data-no-turbolink="true">
+      <img src=<%=Willow::Config.institution_logo%> />
+    </a>
+  <% else %>
+    <span class="institution_name hidden-xs hidden-sm"><a id="logo" class="navbar-brand"
+       href="<%= hyrax.root_path %>" data-no-turbolink="true">
+      <%= application_name.upcase %>
+    </a></span>
+  <% end %>
+</div>
