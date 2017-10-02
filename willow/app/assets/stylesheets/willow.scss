@@ -40,7 +40,6 @@ footer.navbar.navbar-inverse a {
 
 footer.navbar.navbar-inverse a:hover {
   text-decoration: underline;
-	
 }
 
 .navbar-text.text-left {
@@ -63,7 +62,7 @@ ul.nav.navbar-nav.col-sm-5.col-md-6 {
 
 
 #user_utility_links {
-  margin: 0;  
+  margin: 0;
 }
 
 #tabtoolbar {
@@ -192,4 +191,8 @@ form .field-wrapper label[required="required"]::after {
 #logo_pic img {
   object-fit: contain;
   height: 100%;
+}
+
+#logo {
+  padding-left: 20px;
 }
