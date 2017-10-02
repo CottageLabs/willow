@@ -3,13 +3,28 @@
 module Hyrax
   class ArticleForm < Hyrax::Forms::WorkForm
     self.model_class = ::Article
-    self.terms += [:creator_nested, :resource_type, :doi, :identifier_nested,
-      :coverage, :apc, :date, :tagged_version, :license_nested, :subject_nested,
-      :relation, :project, :admin_metadata]
-    self.terms -= [:based_near, :creator, :contributor, :date_created,
-      :identifier, :license, :related_url, :subject]
-    self.required_fields += [:creator_nested, :publisher, :date, :resource_type, :license_nested]
-    self.required_fields -= [:creator, :keyword, :license, :rights_statement]
+    self.terms -= [
+      # Fields not interested in
+      :based_near, :creator, :contributor, :date_created, :identifier,
+      :license, :related_url, :subject,
+      # Fields interested in, but removing to re-order
+      :title, :description, :keyword, :language, :publisher, :rights_statement,
+      :source
+     ]
+
+    self.terms += [:title, :creator_nested, :resource_type, :rights_statement,
+      :license_nested, :publisher, :date, :description, :doi, :identifier_nested,
+      :keyword, :subject_nested, :language, :coverage, :apc, :tagged_version, 
+      :relation, :project, :source, :admin_metadata]
+
+    self.required_fields -= [
+      # Fields not interested in
+      :creator, :keyword,
+      # Fields interested in, but removing to re-order
+      :title, :rights_statement]
+
+    self.required_fields += [:title, :creator_nested, :resource_type,
+      :rights_statement, :license_nested, :publisher, :date]
 
     NESTED_ASSOCIATIONS = [:date, :creator_nested, :license_nested,
       :subject_nested, :relation, :admin_metadata, :project, :identifier_nested].freeze

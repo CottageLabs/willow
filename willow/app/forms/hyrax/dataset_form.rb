@@ -4,12 +4,27 @@ module Hyrax
   class DatasetForm < Hyrax::Forms::WorkForm
     self.model_class = ::Dataset
 
-    self.terms += [:creator_nested, :resource_type, :other_title, :doi, :identifier_nested,
-       :date, :license_nested, :subject_nested, :relation, :admin_metadata]
-    self.terms -= [:based_near, :creator, :contributor, :date_created,
-      :identifier,  :license, :related_url, :subject]
-    self.required_fields += [:creator_nested, :publisher, :date, :resource_type, :license_nested]
-    self.required_fields -= [:creator, :keyword, :license, :rights_statement]
+    self.terms -= [
+      # Fields not interested in
+      :based_near, :creator, :contributor, :date_created, :identifier,
+      :license, :related_url, :subject,
+      # Fields interested in, but removing to re-order
+      :title, :description, :keyword, :rights_statement, :language, :publisher, :source
+    ]
+
+    self.terms += [:title, :creator_nested, :rights_statement, :license_nested,
+      :publisher, :date, :resource_type, :other_title, :doi, :identifier_nested, 
+      :description, :keyword, :subject_nested, :language, :relation, :source, 
+      :admin_metadata]
+
+    self.required_fields -= [
+      # Fields not interested in
+      :creator, :keyword,
+      # Fields interested in, but removing to re-order
+      :title, :rights_statement]
+
+    self.required_fields += [:title, :creator_nested, :rights_statement,
+      :license_nested, :publisher, :date, :resource_type]
 
     NESTED_ASSOCIATIONS = [:other_title, :date, :creator_nested, :license_nested,
       :subject_nested, :relation, :admin_metadata, :identifier_nested].freeze
