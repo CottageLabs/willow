@@ -5,11 +5,11 @@ class PersonStatement < ActiveTriples::Resource
   property :first_name, predicate: ::RDF::Vocab::FOAF.givenName
   property :last_name, predicate: ::RDF::Vocab::FOAF.familyName
   property :name, predicate: ::RDF::Vocab::VCARD.hasName
-  # property :identifier, predicate: ::RDF::Vocab::DataCite.hasIdentifier
-  # property :identifier_scheme, predicate: ::RDF::Vocab::DataCite.usesIdentifierScheme
   property :orcid, predicate: ::RDF::Vocab::DataCite.orcid
   property :role, predicate: ::RDF::Vocab::MODS.roleRelationship
   property :affiliation, predicate: ::RDF::Vocab::VMD.affiliation
+  property :uri, predicate: ::RDF::Vocab::Identifiers.uri
+  property :identifier, predicate: ::RDF::Vocab::Identifiers.local
 
   ## Necessary to get AT to create hash URIs.
   def initialize(uri, parent)
