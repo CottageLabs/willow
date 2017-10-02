@@ -18,6 +18,9 @@ fr:
         license_nested:   "License"
         relation:         "Related work"
         identifier_nested: "Identifiers"
+        rights_holder:     "Rights holder"
+        organisation_nested: "Organisation"
+        preservation_nested: "Preservation event"
 
     hints:
       rdss_dataset:
@@ -32,3 +35,6 @@ fr:
         identifier_nested: "Identifiers for the dataset"
         category: "Category for the dataset"
         rating: "Rating for the dataset"
+        rights_holder: "The person or organisation who holds the rights for the work"
+        organisation_nested: "The organisation or group responsible for the dataset."
+        preservation_nested: "Add a preservation event"

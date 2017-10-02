@@ -4,14 +4,14 @@ module Hyrax
   class RdssDatasetForm < Hyrax::Forms::WorkForm
     self.model_class = ::RdssDataset
     self.terms += [:creator_nested, :resource_type, :category, :identifier_nested,
-      :date, :license_nested, :relation, :rating]
+      :date, :rights_holder, :license_nested, :relation, :organisation_nested, :rating]
     self.terms -= [:based_near, :creator, :contributor, :date_created,
       :identifier, :language, :license, :related_url, :publisher, :subject]
     self.required_fields += [:creator_nested, :date, :resource_type, :license_nested]
     self.required_fields -= [:creator, :keyword, :license]
 
     NESTED_ASSOCIATIONS = [:date, :creator_nested, :license_nested, :relation,
-      :identifier_nested].freeze
+      :identifier_nested, :organisation_nested].freeze
 
     protected
 
@@ -72,6 +72,17 @@ module Hyrax
         ]
       end
 
+      def self.permitted_organisation_params
+        [:id,
+         :_destroy,
+         {
+           name: [],
+           role: [],
+           identifier: []
+         },
+        ]
+      end
+
       def self.build_permitted_params
         permitted = super
         permitted << { date_attributes: permitted_date_params }
@@ -79,6 +90,7 @@ module Hyrax
         permitted << { license_nested_attributes: permitted_license_params }
         permitted << { creator_nested_attributes: permitted_creator_params }
         permitted << { identifier_nested_attributes: permitted_identifier_params }
+        permitted << { organisation_nested_attributes: permitted_org_params }
         permitted
       end
   end
