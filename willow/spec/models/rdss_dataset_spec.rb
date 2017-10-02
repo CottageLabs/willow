@@ -32,7 +32,7 @@ RSpec.describe RdssDataset do
       @obj = build(:rdss_dataset, rating: ['Normal'])
       @doc = @obj.to_solr
       expect(@doc['rating_sim']).to eq ['Normal']
-      expect(@doc).to include('rating_tesim')
+      expect(@doc['rating_tesim']).to eq ['Normal']
     end
   end
 
@@ -47,7 +47,22 @@ RSpec.describe RdssDataset do
       @obj = build(:rdss_dataset, category: ['Category'])
       @doc = @obj.to_solr
       expect(@doc['category_sim']).to eq ['Category']
-      expect(@doc).to include('category_tesim')
+      expect(@doc['category_tesim']).to eq ['Category']
+    end
+  end
+
+  describe 'rights holder' do
+    it 'has a rights_holder' do
+      @obj = build(:rdss_dataset, rights_holder: ['Willow'])
+      expect(@obj.rights_holder).to be_kind_of ActiveTriples::Relation
+      expect(@obj.rights_holder).to eq ['Willow']
+    end
+
+    it 'indexes rights_holder' do
+      @obj = build(:rdss_dataset, rights_holder: ['Willow'])
+      @doc = @obj.to_solr
+      expect(@doc['rights_holder_sim']).to eq ['Willow']
+      expect(@doc['rights_holder_tesim']).to eq ['Willow']
     end
   end
 
@@ -518,6 +533,196 @@ RSpec.describe RdssDataset do
     end
   end
 
+  describe 'nested attributes for organisation' do
+    it 'accepts organisation attributes' do
+      @obj = build(:rdss_dataset,  organisation_nested_attributes: [{
+            name: 'Foo Bar',
+            role: 'Funder'
+          },
+          {
+            name: 'Foo Bar',
+            role: 'Editor',
+            identifier: '1234567',
+            uri: 'http://localhost/organisation/1234567'
+          }]
+      )
+      expect(@obj.organisation_nested.size).to eq(2)
+      expect(@obj.organisation_nested[0]).to be_kind_of ActiveTriples::Resource
+      expect(@obj.organisation_nested[1]).to be_kind_of ActiveTriples::Resource
+    end
+
+    it 'has the correct uri' do
+      @obj = build(:rdss_dataset,  organisation_nested_attributes: [{
+          name: 'Foo Bar',
+          role: 'Editor',
+          identifier: '1234567',
+          uri: 'http://localhost/organisation/1234567'
+        }]
+      )
+      expect(@obj.organisation_nested.first.id).to include('#organisation')
+    end
+
+    it 'rejects organisation if name and role are blank' do
+      @obj = build(:rdss_dataset, organisation_nested_attributes: [
+          {
+            name: 'Foo Bar',
+            role: 'Baz'
+          },
+          {
+            name: 'Foo Bar',
+          },
+          {
+            name: '',
+            role: 'Baz'
+          },
+          {
+            name: 'Foo Bar',
+            role: nil
+          }
+        ]
+      )
+      expect(@obj.organisation_nested.size).to eq(1)
+    end
+
+    it 'destroys organisation' do
+      @obj = build(:rdss_dataset, organisation_nested_attributes: [{
+          name: 'Foo Bar',
+          role: 'Editor',
+          identifier: '1234567',
+          uri: 'http://localhost/organisation/1234567'
+        }]
+      )
+      expect(@obj.organisation_nested.size).to eq(1)
+      @obj.attributes = {
+        organisation_nested_attributes: [{
+          id:  @obj.organisation_nested.first.id,
+          name: 'Foo Bar',
+          role: 'Editor',
+          identifier: '1234567',
+          uri: 'http://localhost/organisation/1234567',
+          _destroy: "1"
+        }]
+      }
+      expect(@obj.organisation_nested.size).to eq(0)
+    end
+
+    it 'indexes the organisation' do
+      @obj = build(:rdss_dataset, organisation_nested_attributes: [{
+          name: 'Foo Bar',
+          role: 'Baz',
+          identifier: '1234567',
+          uri: 'http://localhost/organisation/1234567'
+        },{
+          name: ['Boo Far'],
+          role: 'Baz',
+          identifier: 'Org34245234',
+      }]
+      )
+      @doc = @obj.to_solr
+      expect(@doc['organisation_nested_sim']).to match_array(['Foo Bar', 'Boo Far'])
+      expect(@doc['organisation_nested_tesim']).to match_array(['Foo Bar', 'Boo Far'])
+      expect(@doc).to include('organisation_nested_ssm')
+      expect(@doc['baz_sim']).to match_array(['Foo Bar', 'Boo Far'])
+      expect(@doc['baz_tesim']).to match_array(['Foo Bar', 'Boo Far'])
+    end
+  end
+
+  describe 'nested attributes for preservation' do
+    it 'accepts preservation attributes' do
+      @obj = build(:rdss_dataset,  preservation_nested_attributes: [{
+          name: 'Foo Bar',
+          event_type: 'Baz',
+          date: '2017-04-01 10:23:45',
+          description: 'Event description',
+          outcome: 'Success'
+        },
+        {
+          name: 'Boo Far',
+          event_type: 'Faz',
+        }]
+      )
+      expect(@obj.preservation_nested.size).to eq(2)
+      expect(@obj.preservation_nested[0]).to be_kind_of ActiveTriples::Resource
+      expect(@obj.preservation_nested[1]).to be_kind_of ActiveTriples::Resource
+    end
+
+    it 'has the correct uri' do
+      @obj = build(:rdss_dataset,  preservation_nested_attributes: [{
+          name: 'Foo Bar',
+          event_type: 'Baz',
+          date: '2017-04-01 10:23:45',
+          description: 'Event description',
+          outcome: 'Success'
+        }]
+      )
+      expect(@obj.preservation_nested.first.id).to include('#preservation')
+    end
+
+    it 'rejects preservation if all are blank' do
+      @obj = build(:rdss_dataset, preservation_nested_attributes: [
+          {
+            name: 'Foo Bar',
+            event_type: 'Baz',
+            date: '2017-04-01 10:23:45',
+            description: 'Event description',
+            outcome: 'Success'
+          },
+          {
+            name: 'Foo Bar',
+          },
+          {
+            name: '',
+          },
+          {
+            name: nil,
+          }
+        ]
+      )
+      expect(@obj.preservation_nested.size).to eq(2)
+    end
+
+    it 'destroys preservation' do
+      @obj = build(:rdss_dataset, preservation_nested_attributes: [{
+          name: 'Foo Bar',
+          event_type: 'Baz',
+          date: '2017-04-01 10:23:45',
+          description: 'Event description',
+          outcome: 'Success'
+        }]
+      )
+      expect(@obj.preservation_nested.size).to eq(1)
+      @obj.attributes = {
+        preservation_nested_attributes: [{
+          id:  @obj.preservation_nested.first.id,
+          name: 'Foo Bar',
+          event_type: 'Baz',
+          date: '2017-04-01 10:23:45',
+          description: 'Event description',
+          outcome: 'Success',
+          _destroy: "1"
+        }]
+      }
+      expect(@obj.preservation_nested.size).to eq(0)
+    end
+
+    it 'indexes the preservation' do
+      @obj = build(:rdss_dataset, preservation_nested_attributes: [{
+          name: 'Foo Bar',
+          event_type: 'Baz',
+          date: '2017-04-01 10:23:45',
+          description: 'Event description',
+          outcome: 'Success'
+        },{
+          name: ['Boo Far']
+      }]
+      )
+      @doc = @obj.to_solr
+      expect(@doc['preservation_nested_sim']).to match_array(['Foo Bar', 'Boo Far'])
+      expect(@doc['preservation_nested_tesim']).to match_array(['Foo Bar', 'Boo Far'])
+      expect(@doc).to include('preservation_nested_ssm')
+    end
+  end
+
   describe 'associated with person role' do
     it "have many person roles" do
       t = RdssDataset.reflect_on_association(:person_roles)
@@ -525,8 +730,8 @@ RSpec.describe RdssDataset do
     end
   end
 
-  describe 'associated with organsiation role' do
-    it "have many organsiation roles" do
+  describe 'associated with organisation role' do
+    it "have many organisation roles" do
       t = RdssDataset.reflect_on_association(:organisation_roles)
       expect(t.macro).to eq(:has_many)
     end
