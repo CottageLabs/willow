@@ -12,6 +12,8 @@ module RdssDatasetNestedAttributes
     accepts_nested_attributes_for :relation, reject_if: :relation_blank, allow_destroy: true
     accepts_nested_attributes_for :identifier_nested, reject_if: :identifier_blank, allow_destroy: true
     accepts_nested_attributes_for :creator_nested, reject_if: :creator_blank, allow_destroy: true
+    accepts_nested_attributes_for :organisation_nested, reject_if: :org_blank, allow_destroy: true
+    accepts_nested_attributes_for :preservation_nested, reject_if: :all_blank, allow_destroy: true
 
     # date_blank
     resource_class.send(:define_method, :date_blank) do |attributes|
@@ -51,5 +53,12 @@ module RdssDatasetNestedAttributes
       Array(attributes[:role]).all?(&:blank?) ||
       Array(attributes[:orcid]).all?(&:blank?)
     end
+
+    # org_blank
+    resource_class.send(:define_method, :org_blank) do |attributes|
+      Array(attributes[:name]).all?(&:blank?) ||
+      Array(attributes[:role]).all?(&:blank?)
+    end
+
   end
 end

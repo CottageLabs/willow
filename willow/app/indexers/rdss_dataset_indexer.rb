@@ -52,7 +52,26 @@ class RdssDatasetIndexer < Hyrax::WorkIndexer
           solr_doc[Solrizer.solr_name("identifier_#{i.obj_id_scheme.first.downcase}", :symbol)] = i.obj_id.reject(&:blank?)
         end
       end
+      # organisation and role
+      orgs = object.organisation_nested.map { |o| (o.name.first) }.reject(&:blank?).uniq
+      solr_doc[Solrizer.solr_name('organisation_nested', :facetable)] = orgs
+      solr_doc[Solrizer.solr_name('organisation_nested', :stored_searchable)] = orgs
+      solr_doc[Solrizer.solr_name('organisation_nested', :displayable)] = object.organisation_nested.to_json
+      object.organisation_nested.each do |o|
+        unless (o.role.first.blank? or o.name.blank?)
+          field_name = Solrizer.solr_name("#{o.role.first.downcase}", :stored_searchable)
+          solr_doc[field_name] ||= []
+          solr_doc[field_name].push(*o.name.reject(&:blank?))
+          field_name = Solrizer.solr_name("#{o.role.first.downcase}", :facetable)
+          solr_doc[field_name] ||= []
+          solr_doc[field_name].push(*o.name.reject(&:blank?))
+        end
+      end
+      # preservation
+      events = object.preservation_nested.map { |p| (p.name.first) }.reject(&:blank?).uniq
+      solr_doc[Solrizer.solr_name('preservation_nested', :facetable)] = events
+      solr_doc[Solrizer.solr_name('preservation_nested', :stored_searchable)] = events
+      solr_doc[Solrizer.solr_name('preservation_nested', :displayable)] = object.preservation_nested.to_json
     end
   end
-
 end
