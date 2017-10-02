@@ -20,6 +20,7 @@ class Dataset < ActiveFedora::Base
   property :subject_nested, predicate: ::RDF::Vocab::DC.subject, class_name:"SubjectStatement"
   property :relation, predicate: ::RDF::Vocab::DC.relation, class_name:"RelationStatement"
   property :admin_metadata, predicate: ::RDF::Vocab::MODS.adminMetadata, class_name: "AdministrativeStatement"
+  property :identifier_nested, predicate: ::RDF::Vocab::Identifiers.id, class_name: "ObjectIdentifier"
 
   # This must be included at the end, because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)

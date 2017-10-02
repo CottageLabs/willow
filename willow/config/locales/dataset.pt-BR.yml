@@ -24,6 +24,7 @@ pt-BR:
         subject_nested:   "Subject"
         relation:         "Related work"
         admin_metadata:   "Information for administrative purposes"
+        identifier_nested: "Identifiers"
 
     hints:
       dataset:
@@ -35,11 +36,11 @@ pt-BR:
         creator_nested: "The person or group responsible for the dataset. The first name, last name, orcid and role are required."
         relation: "Details of specific content (audio, video, PDF document) related to the dataset. An example is the URL of an artcle based on this dataset. If adding a related work, add information in all 3 fields - title, url and relationship."
         date: "The different dates relevant to the dataset."
-        description: "Free-text notes about the dataset. Examples include abstracts of a paper or citation information for a journal article."
+        description: "Free-text notes about the dataset."
         doi: "The DOI identifying the dataset."
-        identifier: "A unique handle identifying the dataset. An example would be a DOI for a journal article, or an ISBN or OCLC number for a book."
+        identifier: "A unique handle identifying the dataset. An example would be a DOI for the dataset"
         language: "The language of the dataset's content."
         publisher: "The person or group making the dataset available. Generally this is the institution."
         rights_nested: "Licensing and distribution information governing access to the dataset."
         admin_metadata: "An illustrative field to gather additional information, mostly of an administrative nature, which can be customized to each institutions' needs."
-
+        identifier_nested: "Identifiers for the dataset"

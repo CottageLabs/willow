@@ -3,15 +3,15 @@
 module Hyrax
   class DatasetForm < Hyrax::Forms::WorkForm
     self.model_class = ::Dataset
-    self.terms += [:creator_nested, :resource_type, :doi, :other_title, :date,
-      :rights_nested, :subject_nested, :relation, :admin_metadata]
+    self.terms += [:creator_nested, :resource_type, :other_title, :doi, :identifier_nested,
+       :date, :rights_nested, :subject_nested, :relation, :admin_metadata]
     self.terms -= [:based_near, :creator, :contributor, :date_created,
-      :identifier,  :license, :rights_statement, :related_url, :subject]
+      :identifier,  :license, :related_url, :subject]
     self.required_fields += [:creator_nested, :publisher, :date, :resource_type, :rights_nested]
     self.required_fields -= [:creator, :keyword, :license, :rights_statement]
 
     NESTED_ASSOCIATIONS = [:other_title, :date, :creator_nested, :rights_nested,
-      :subject_nested, :relation, :admin_metadata].freeze
+      :subject_nested, :relation, :admin_metadata, :identifier_nested].freeze
 
     protected
 
@@ -96,6 +96,16 @@ module Hyrax
         ]
       end
 
+      def self.permitted_identifier_params
+        [:id,
+         :_destroy,
+         {
+           obj_id_scheme: [],
+           obj_id: []
+         },
+        ]
+      end
+
       def self.build_permitted_params
         permitted = super
         permitted << { other_title_attributes: permitted_other_params }
@@ -105,6 +115,7 @@ module Hyrax
         permitted << { rights_nested_attributes: permitted_rights_params }
         permitted << { creator_nested_attributes: permitted_creator_params }
         permitted << { subject_nested_attributes: permitted_subject_params }
+        permitted << { identifier_nested_attributes: permitted_identifier_params }
         permitted
       end
 

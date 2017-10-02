@@ -27,13 +27,13 @@ class Article < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
   property :admin_metadata, predicate: ::RDF::Vocab::MODS.adminMetadata, class_name: "AdministrativeStatement"
-  property :creator_nested, predicate: ::RDF::Vocab::SIOC.has_creator, class_name:"PersonStatement" 
+  property :creator_nested, predicate: ::RDF::Vocab::SIOC.has_creator, class_name:"PersonStatement"
   property :date, predicate: ::RDF::Vocab::DC.date, class_name:"DateStatement"
   property :project, predicate: RioxxTerms.project, class_name:"ProjectStatement"
   property :relation, predicate: ::RDF::Vocab::DC.relation, class_name:"RelationStatement"
   property :rights_nested, predicate: ::RDF::Vocab::DC.license, class_name:"RightsStatement"
   property :subject_nested, predicate: ::RDF::Vocab::DC.subject, class_name:"SubjectStatement"
-
+  property :identifier_nested, predicate: ::RDF::Vocab::Identifiers.id, class_name: "ObjectIdentifier"
 
   # This must be included at the end, because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)
