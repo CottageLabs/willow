@@ -1,0 +1,18 @@
+<% if f.object.model_class == ::RdssDataset %>
+  <%= f.input key,
+    as: :multi_value_select,
+    collection: RdssRatingTypesService.select_all_options,
+    input_html: {
+      class: 'form-control',
+      prompt: 'Select version'
+    }
+  %>
+<% elsif f.object.class.multiple? key %>
+  <%= f.input key,
+    as: :multi_value,
+    input_html: { class: 'form-control' },
+    required: f.object.required?(key)
+  %>
+<% else %>
+  <%= f.input key, required: f.object.required?(key) %>
+<% end %>

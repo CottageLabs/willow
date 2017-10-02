@@ -3,12 +3,29 @@
 module Hyrax
   class RdssDatasetForm < Hyrax::Forms::WorkForm
     self.model_class = ::RdssDataset
-    self.terms += [:creator_nested, :resource_type, :category, :identifier_nested,
-      :date, :rights_holder, :license_nested, :relation, :organisation_nested, :rating]
-    self.terms -= [:based_near, :creator, :contributor, :date_created,
-      :identifier, :language, :license, :related_url, :publisher, :subject]
-    self.required_fields += [:creator_nested, :date, :resource_type, :license_nested]
-    self.required_fields -= [:creator, :keyword, :license]
+
+    self.terms -= [
+      # Fields not interested in
+      :based_near, :creator, :contributor, :date_created,
+      :identifier, :language, :license, :related_url, :publisher, :subject,
+      # Fields interested in, but removing to re-order
+      :title, :description, :keyword, :rights_statement, :source
+    ]
+
+    self.terms += [:title, :creator_nested, :rights_statement, :rights_holder,
+      :license_nested, :description, :keyword, :date, :identifier_nested,
+      :resource_type, :category, :organisation_nested, :relation, :rating, :source]
+
+    self.required_fields -= [
+      # Fields not interested in
+      :creator, :keyword,
+      # Fields interested in, but removing to re-order
+      :title, :rights_statement
+    ]
+
+    self.required_fields += [:title, :creator_nested, :rights_statement,
+      :rights_holder, :license_nested]
+
 
     NESTED_ASSOCIATIONS = [:date, :creator_nested, :license_nested, :relation,
       :identifier_nested, :organisation_nested].freeze

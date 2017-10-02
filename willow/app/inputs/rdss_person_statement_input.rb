@@ -52,7 +52,7 @@ protected
     out << "<div class='row'>"
 
     # --- role
-    role_options = DatasetAgentRolesService.select_all_options
+    role_options = RdssPersonRolesService.select_all_options
     field = :role
     field_name = name_for(attribute_name, index, field)
     field_id = id_for(attribute_name, index, field)
