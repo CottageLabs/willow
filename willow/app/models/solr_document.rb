@@ -86,4 +86,16 @@ class SolrDocument
     self[Solrizer.solr_name('rating', :stored_searchable)]
   end
 
+  def rights_holder
+    self[Solrizer.solr_name('rights_holder', :stored_searchable)]
+  end
+
+  def organisation_nested
+    self[Solrizer.solr_name('organisation_nested', :displayable)]
+  end
+
+  def preservation_nested
+    self[Solrizer.solr_name('preservation_nested', :displayable)]
+  end
+
 end

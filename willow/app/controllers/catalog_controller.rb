@@ -58,6 +58,8 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('member_of_collections', :symbol), limit: 5, label: I18n.t('willow.fields.member_of_collections')
     config.add_facet_field solr_name('rating', :facetable), limit: 5, label: I18n.t('willow.fields.rating')
     config.add_facet_field solr_name('category', :facetable), limit: 5, label: I18n.t('willow.fields.category')
+    config.add_facet_field solr_name('rights_holder', :facetable), limit: 5, label: I18n.t('willow.fields.rights_holder')
+    config.add_facet_field solr_name("organisation_nested", :facetable), label: I18n.t('willow.fields.organisation_nested'), limit: 5
 
     # The generic_type isn't displayed on the facet list
     # It's used to give a label to the filter that comes from the user profile
@@ -109,7 +111,9 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("identifier_nested", :symbol), label: I18n.t('willow.fields.identifier_nested')
     config.add_index_field solr_name("category", :stored_searchable), label: I18n.t('willow.fields.category')
     config.add_index_field solr_name("rating", :stored_searchable), label: I18n.t('willow.fields.rating')
-
+    config.add_index_field solr_name("rights_holder", :stored_searchable), label: I18n.t('willow.fields.rights_holder')
+    config.add_index_field solr_name("organisation_nested", :stored_searchable), label: I18n.t('willow.fields.organsiation_nested'), itemprop: 'organsiation', link_to_search: solr_name("organisation_nested", :facetable)
+    config.add_index_field solr_name("preservation_nested", :stored_searchable), label: I18n.t('willow.fields.preservation_nested'), itemprop: 'preservation')
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
     config.add_show_field solr_name("title", :stored_searchable), label: I18n.t('willow.fields.title')
@@ -145,6 +149,9 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name("identifier_nested", :displayable), label: I18n.t('willow.fields.identifier_nested')
     config.add_show_field solr_name("category", :stored_searchable), label: I18n.t('willow.fields.category')
     config.add_show_field solr_name("rating", :stored_searchable), label: I18n.t('willow.fields.rating')
+    config.add_show_field solr_name("rights_holder", :stored_searchable), label: I18n.t('willow.fields.rights_holder')
+    config.add_show_field solr_name("organisation_nested", :displayable), label: I18n.t('willow.fields.organisation_nested')
+    config.add_show_field solr_name("preservation_nested", :displayable), label: I18n.t('willow.fields.preservation_nested')
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
@@ -363,6 +370,22 @@ class CatalogController < ApplicationController
 
     config.add_search_field('rating') do |field|
       solr_name = solr_name("rating", :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('rights_holder') do |field|
+      solr_name = solr_name("rating", :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('organisation_nested') do |field|
+      solr_name = solr_name("organisation_nested", :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name

@@ -1,0 +1,15 @@
+<div class="multi-nested">
+  <%= f.input :organisation_nested,
+    as: :organisation_statement,
+    input_html: {
+      class: '',
+      data: {name: :organisation_nested},
+    },
+    required: f.object.required?(:organisation_nested)
+  %>
+
+  <button type="button" class="btn btn-link add">
+    <span class="glyphicon glyphicon-plus"></span>
+    <span class="controls-add-text">Add another Organisation</span>
+  </button>
+</div>
