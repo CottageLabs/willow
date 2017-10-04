@@ -3,15 +3,16 @@
 module Hyrax
   class ArticleForm < Hyrax::Forms::WorkForm
     self.model_class = ::Article
-    self.terms += [:creator_nested, :resource_type, :doi, :coverage, :apc, :date,
-      :tagged_version, :rights_nested, :subject_nested, :relation, :project, :admin_metadata]
+    self.terms += [:creator_nested, :resource_type, :doi, :identifier_nested,
+      :coverage, :apc, :date, :tagged_version, :rights_nested, :subject_nested,
+      :relation, :project, :admin_metadata]
     self.terms -= [:based_near, :creator, :contributor, :date_created,
-      :identifier, :license, :rights_statement, :related_url, :subject]
+      :identifier, :license, :related_url, :subject]
     self.required_fields += [:creator_nested, :publisher, :date, :resource_type, :rights_nested]
     self.required_fields -= [:creator, :keyword, :license, :rights_statement]
 
     NESTED_ASSOCIATIONS = [:date, :creator_nested, :rights_nested,
-      :subject_nested, :relation, :admin_metadata, :project].freeze
+      :subject_nested, :relation, :admin_metadata, :project, :identifier_nested].freeze
 
     protected
 
@@ -99,6 +100,16 @@ module Hyrax
         ]
       end
 
+      def self.permitted_identifier_params
+        [:id,
+         :_destroy,
+         {
+           obj_id_scheme: [],
+           obj_id: []
+         },
+        ]
+      end
+
       def self.build_permitted_params
         permitted = super
         permitted << { date_attributes: permitted_date_params }
@@ -108,6 +119,7 @@ module Hyrax
         permitted << { creator_nested_attributes: permitted_creator_params }
         permitted << { subject_nested_attributes: permitted_subject_params }
         permitted << { project_attributes: permitted_project_params }
+        permitted << { identifier_nested_attributes: permitted_identifier_params }
         permitted
       end
 

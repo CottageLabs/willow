@@ -30,6 +30,7 @@ it:
       funder: 'Funder'
       human_readable_type: 'type'
       identifier: 'Identifier'
+      identifier_nested: 'Identifier'
       keyword: 'Keyword'
       language: 'Language'
       lease_expiration_date: 'Lease expiration date'

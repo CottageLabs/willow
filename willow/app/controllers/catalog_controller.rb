@@ -104,6 +104,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("doi", :stored_searchable), label: I18n.t('willow.fields.doi')
     config.add_index_field solr_name("other_title", :stored_searchable), label: I18n.t('willow.fields.other_title')
     config.add_index_field solr_name("funder", :stored_searchable), label: I18n.t('willow.fields.funder')
+    config.add_index_field solr_name("identifier_nested", :symbol), label: I18n.t('willow.fields.identifier_nested')
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
@@ -125,7 +126,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name("rights_nested", :displayable), label: I18n.t('willow.fields.rights_nested')
     config.add_show_field solr_name("resource_type", :stored_searchable), label: I18n.t('willow.fields.resource_type')
     config.add_show_field solr_name("format", :stored_searchable), label: I18n.t('willow.fields.format')
-    config.add_show_field solr_name("identifier", :stored_searchable), label: I18n.t('willow.fields.identifier')
+    config.add_show_field solr_name("identifier", :symbol), label: I18n.t('willow.fields.identifier')
     #Dataset show fields
     config.add_show_field solr_name("doi", :stored_searchable), label: I18n.t('willow.fields.doi')
     config.add_show_field solr_name("other_title", :displayable), label: I18n.t('willow.fields.other_title')
@@ -137,7 +138,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name("apc", :stored_searchable), label: I18n.t('willow.fields.apc')
     config.add_show_field solr_name("tagged_version", :stored_searchable), label: I18n.t('willow.fields.tagged_version')
     config.add_show_field solr_name("project_nested", :stored_searchable), label: I18n.t('willow.fields.project_nested')
-
+    config.add_show_field solr_name("identifier_nested", :displayable), label: I18n.t('willow.fields.identifier_nested')
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
@@ -194,6 +195,14 @@ class CatalogController < ApplicationController
 
     config.add_search_field('creator_nested') do |field|
       solr_name = solr_name("creator_nested", :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('identifier_nested') do |field|
+      solr_name = solr_name("identifier_nested", :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name

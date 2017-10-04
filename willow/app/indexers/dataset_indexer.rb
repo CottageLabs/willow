@@ -11,7 +11,7 @@ class DatasetIndexer < Hyrax::WorkIndexer
 
   # Custom indexing behavior
   def generate_solr_document
-   super.tap do |solr_doc|
+    super.tap do |solr_doc|
       # other title
       solr_doc[Solrizer.solr_name('other_title', :stored_searchable)] = object.other_title.map { |r| r.title.first }
       solr_doc[Solrizer.solr_name('other_title', :displayable)] = object.other_title.to_json
@@ -43,6 +43,14 @@ class DatasetIndexer < Hyrax::WorkIndexer
       solr_doc[Solrizer.solr_name('relation', :displayable)] = object.relation.to_json
       # admin metadata
       solr_doc[Solrizer.solr_name('admin_metadata', :displayable)] = object.admin_metadata.to_json
-   end
+      # identifier
+      solr_doc[Solrizer.solr_name('identifier_nested', :symbol)] = object.identifier_nested.map { |i| i.obj_id.first }
+      solr_doc[Solrizer.solr_name('identifier_nested', :displayable)] = object.identifier_nested.to_json
+      object.identifier_nested.each do |i|
+        unless (i.obj_id_scheme.first.blank? or i.obj_id.first.blank?)
+          solr_doc[Solrizer.solr_name("identifier_#{i.obj_id_scheme.first.downcase}", :symbol)] = i.obj_id.reject(&:blank?)
+        end
+      end
+    end
   end
 end

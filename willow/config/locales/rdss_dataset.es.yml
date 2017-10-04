@@ -1,0 +1,10 @@
+es:
+  hyrax:
+    icons:
+      rdss_dataset:     'fa fa-file-text-o'
+    select_type:
+      rdss_dataset:
+        # TODO: translate `human_name` into Spanish
+        name:               "Rdss Dataset"
+        # TODO: translate `human_name` into Spanish
+        description:        "Rdss dataset trabajos"
