@@ -1,0 +1,14 @@
+{
+    "vocabularyId": 16,
+    "vocabularyName": "storageType",
+    "vocabularyValues": [
+        {
+            "valueId": 1,
+            "valueName": "S3"
+        },
+        {
+            "valueId": 2,
+            "valueName": "HTTP"
+        }
+    ]
+}

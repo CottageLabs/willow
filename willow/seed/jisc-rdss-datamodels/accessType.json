@@ -1,0 +1,26 @@
+{
+    "vocabularyId": 1,
+    "vocabularyName": "accessType",
+    "vocabularyValues": [
+        {
+            "valueId": 1,
+            "valueName": "open"
+        },
+        {
+            "valueId": 2,
+            "valueName": "safeguarded"
+        },
+        {
+            "valueId": 3,
+            "valueName": "controlled"
+        },
+        {
+            "valueId": 4,
+            "valueName": "restricted"
+        },
+        {
+            "valueId": 5,
+            "valueName": "closed"
+        }
+    ]
+}
