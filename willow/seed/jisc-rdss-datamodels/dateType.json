@@ -1,0 +1,46 @@
+{
+    "vocabularyId": 3,
+    "vocabularyName": "dateType",
+    "vocabularyValues": [
+        {
+            "valueId": 1,
+            "valueName": "accepted"
+        },
+        {
+            "valueId": 2,
+            "valueName": "approved"
+        },
+        {
+            "valueId": 3,
+            "valueName": "available"
+        },
+        {
+            "valueId": 4,
+            "valueName": "copyrighted"
+        },
+        {
+            "valueId": 5,
+            "valueName": "collected"
+        },
+        {
+            "valueId": 6,
+            "valueName": "created"
+        },
+        {
+            "valueId": 7,
+            "valueName": "issued"
+        },
+        {
+            "valueId": 8,
+            "valueName": "modified"
+        },
+        {
+            "valueId": 9,
+            "valueName": "posted"
+        },
+        {
+            "valueId": 10,
+            "valueName": "published"
+        }
+    ]
+}

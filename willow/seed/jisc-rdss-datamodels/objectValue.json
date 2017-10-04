@@ -1,0 +1,18 @@
+{
+    "vocabularyId": 7,
+    "vocabularyName": "objectValue",
+    "vocabularyValues": [
+        {
+            "valueId": 1,
+            "valueName": "normal"
+        },
+        {
+            "valueId": 2,
+            "valueName": "high"
+        },
+        {
+            "valueId": 3,
+            "valueName": "veryHigh"
+        }
+    ]
+}

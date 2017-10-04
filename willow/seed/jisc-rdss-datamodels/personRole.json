@@ -1,0 +1,90 @@
+{
+    "vocabularyId": 11,
+    "vocabularyName": "personRole",
+    "vocabularyValues": [
+        {
+            "valueId": 1,
+            "valueName": "administrator"
+        },
+        {
+            "valueId": 2,
+            "valueName": "contactPerson"
+        },
+        {
+            "valueId": 3,
+            "valueName": "dataAnalyser"
+        },
+        {
+            "valueId": 4,
+            "valueName": "dataCollector"
+        },
+        {
+            "valueId": 5,
+            "valueName": "dataCreator"
+        },
+        {
+            "valueId": 6,
+            "valueName": "dataManager"
+        },
+        {
+            "valueId": 7,
+            "valueName": "editor"
+        },
+        {
+            "valueId": 8,
+            "valueName": "investigator"
+        },
+        {
+            "valueId": 9,
+            "valueName": "producer"
+        },
+        {
+            "valueId": 10,
+            "valueName": "projectLeader"
+        },
+        {
+            "valueId": 12,
+            "valueName": "publisher"
+        },
+        {
+            "valueId": 13,
+            "valueName": "projectMember"
+        },
+        {
+            "valueId": 14,
+            "valueName": "relatedPerson"
+        },
+        {
+            "valueId": 15,
+            "valueName": "researcher"
+        },
+        {
+            "valueId": 16,
+            "valueName": "researcherGroup"
+        },
+        {
+            "valueId": 17,
+            "valueName": "rightsHolder"
+        },
+        {
+            "valueId": 18,
+            "valueName": "sponsor"
+        },
+        {
+            "valueId": 19,
+            "valueName": "supervisor"
+        },
+        {
+            "valueId": 20,
+            "valueName": "other"
+        },
+        {
+            "valueId": 21,
+            "valueName": "author"
+        },
+        {
+          "valueId": 22,
+          "valueName": "depositingUser"
+        }
+    ]
+}

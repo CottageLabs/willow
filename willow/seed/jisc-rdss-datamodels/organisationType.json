@@ -1,0 +1,66 @@
+{
+    "vocabularyId": 9,
+    "vocabularyName": "organisationType",
+    "vocabularyValues": [
+        {
+            "valueId": 1,
+            "valueName": "charity"
+        },
+        {
+            "valueId": 2,
+            "valueName": "commercial"
+        },
+        {
+            "valueId": 3,
+            "valueName": "funder"
+        },
+        {
+            "valueId": 4,
+            "valueName": "furtherEducation"
+        },
+        {
+            "valueId": 5,
+            "valueName": "government"
+        },
+        {
+            "valueId": 6,
+            "valueName": "health"
+        },
+        {
+            "valueId": 7,
+            "valueName": "heritage"
+        },
+        {
+            "valueId": 8,
+            "valueName": "higherEducation"
+        },
+        {
+            "valueId": 9,
+            "valueName": "other"
+        },
+        {
+            "valueId": 10,
+            "valueName": "professionalBody"
+        },
+        {
+            "valueId": 11,
+            "valueName": "research"
+        },
+        {
+            "valueId": 12,
+            "valueName": "school"
+        },
+        {
+            "valueId": 13,
+            "valueName": "skills"
+        },
+        {
+            "valueId": 14,
+            "valueName": "billing"
+        },
+        {
+            "valueId": 15,
+            "valueName": "display"
+        }
+    ]
+}

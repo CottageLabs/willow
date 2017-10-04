@@ -1,0 +1,154 @@
+{
+    "vocabularyId": 13,
+    "vocabularyName": "relationType",
+    "vocabularyValues": [
+        {
+            "valueId": 1,
+            "valueName": "cites"
+        },
+        {
+            "valueId": 2,
+            "valueName": "isCitedBy"
+        },
+        {
+            "valueId": 3,
+            "valueName": "isSupplementTo"
+        },
+        {
+            "valueId": 4,
+            "valueName": "isSupplementedBy"
+        },
+        {
+            "valueId": 5,
+            "valueName": "continues"
+        },
+        {
+            "valueId": 6,
+            "valueName": "isContinuedBy"
+        },
+        {
+            "valueId": 7,
+            "valueName": "hasMetadata"
+        },
+        {
+            "valueId": 8,
+            "valueName": "isMetadataFor"
+        },
+        {
+            "valueId": 9,
+            "valueName": "isNewVersionOf"
+        },
+        {
+            "valueId": 10,
+            "valueName": "isPreviousVersionOf"
+        },
+        {
+            "valueId": 11,
+            "valueName": "isPartOf"
+        },
+        {
+            "valueId": 12,
+            "valueName": "hasPart"
+        },
+        {
+            "valueId": 13,
+            "valueName": "isReferencedBy"
+        },
+        {
+            "valueId": 14,
+            "valueName": "references"
+        },
+        {
+            "valueId": 15,
+            "valueName": "isDocumentedBy"
+        },
+        {
+            "valueId": 16,
+            "valueName": "documents"
+        },
+        {
+            "valueId": 17,
+            "valueName": "isCompiledBy"
+        },
+        {
+            "valueId": 18,
+            "valueName": "compiles"
+        },
+        {
+            "valueId": 19,
+            "valueName": "isVariantFormOf"
+        },
+        {
+            "valueId": 20,
+            "valueName": "isOriginalFormOf"
+        },
+        {
+            "valueId": 21,
+            "valueName": "isIdenticalTo"
+        },
+        {
+            "valueId": 22,
+            "valueName": "isReviewedBy"
+        },
+        {
+            "valueId": 23,
+            "valueName": "reviews"
+        },
+        {
+            "valueId": 24,
+            "valueName": "isDerivedFrom"
+        },
+        {
+            "valueId": 25,
+            "valueName": "isSourceOf"
+        },
+        {
+            "valueId": 26,
+            "valueName": "isCommentOn"
+        },
+        {
+            "valueId": 27,
+            "valueName": "hasComment"
+        },
+        {
+            "valueId": 28,
+            "valueName": "isReplyTo"
+        },
+        {
+            "valueId": 29,
+            "valueName": "hasReply"
+        },
+        {
+            "valueId": 30,
+            "valueName": "basedOnData"
+        },
+        {
+            "valueId": 31,
+            "valueName": "hasRelatedMaterial"
+        },
+        {
+            "valueId": 32,
+            "valueName": "isBasedOn"
+        },
+        {
+            "valueId": 33,
+            "valueName": "isBasisFor"
+        },
+        {
+            "valueId": 34,
+            "valueName": "requires"
+        },
+        {
+            "valueId": 35,
+            "valueName": "isRequiredBy"
+        },
+        {
+            "valueId": 36,
+            "valueName": "hasParent"
+        },
+        {
+            "valueId": 37,
+            "valueName": "isParentOf"
+        }
+    ]
+}

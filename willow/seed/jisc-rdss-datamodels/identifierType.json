@@ -1,0 +1,78 @@
+{
+    "vocabularyId": 6,
+    "vocabularyName": "identifierType",
+    "vocabularyValues": [
+        {
+            "valueId": 1,
+            "valueName": "ARK"
+        },
+        {
+            "valueId": 2,
+            "valueName": "arXiv"
+        },
+        {
+            "valueId": 3,
+            "valueName": "bibcode"
+        },
+        {
+            "valueId": 4,
+            "valueName": "DOI"
+        },
+        {
+            "valueId": 5,
+            "valueName": "EAN13"
+        },
+        {
+            "valueId": 6,
+            "valueName": "EISSN"
+        },
+        {
+            "valueId": 7,
+            "valueName": "Handle"
+        },
+        {
+            "valueId": 8,
+            "valueName": "ISBN"
+        },
+        {
+            "valueId": 9,
+            "valueName": "ISSN"
+        },
+        {
+            "valueId": 10,
+            "valueName": "ISTC"
+        },
+        {
+            "valueId": 11,
+            "valueName": "LISSN"
+        },
+        {
+            "valueId": 12,
+            "valueName": "LSID"
+        },
+        {
+            "valueId": 13,
+            "valueName": "PMID"
+        },
+        {
+            "valueId": 14,
+            "valueName": "PUID"
+        },
+        {
+            "valueId": 15,
+            "valueName": "PURL"
+        },
+        {
+            "valueId": 16,
+            "valueName": "UPC"
+        },
+        {
+            "valueId": 17,
+            "valueName": "URL"
+        },
+        {
+            "valueId": 18,
+            "valueName": "URN"
+        }
+    ]
+}

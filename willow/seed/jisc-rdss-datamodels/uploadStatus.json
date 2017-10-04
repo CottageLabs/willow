@@ -1,0 +1,18 @@
+{
+    "vocabularyId": 17,
+    "vocabularyName": "uploadStatus",
+    "vocabularyValues": [
+        {
+            "valueId": 1,
+            "valueName": "uploadStarted"
+        },
+        {
+            "valueId": 2,
+            "valueName": "uploadComplete"
+        },
+        {
+            "valueId": 3,
+            "valueName": "uploadAborted"
+        }
+    ]
+}
