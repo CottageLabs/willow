@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe RightsStatement, :vcr do
+RSpec.describe LicenseStatement, :vcr do
   before do
     class ExampleWork < ActiveFedora::Base
-      property :rights_nested, predicate: ::RDF::Vocab::DC.rights, class_name:"RightsStatement"
-      accepts_nested_attributes_for :rights_nested
+      property :license_nested, predicate: ::RDF::Vocab::DC.rights, class_name:"LicenseStatement"
+      accepts_nested_attributes_for :license_nested
     end
   end
   after do
@@ -14,7 +14,7 @@ RSpec.describe RightsStatement, :vcr do
   it 'creates a rights active triple resource with an id, label, definition and webpage' do
     @obj = ExampleWork.new
     @obj.attributes = {
-      rights_nested_attributes: [
+      license_nested_attributes: [
         {
           label: 'A rights label',
           definition: 'A definition of the rights',
@@ -22,16 +22,16 @@ RSpec.describe RightsStatement, :vcr do
         }
       ]
     }
-    expect(@obj.rights_nested.first).to be_kind_of ActiveTriples::Resource
-    expect(@obj.rights_nested.first.label).to eq ['A rights label']
-    expect(@obj.rights_nested.first.definition).to eq ['A definition of the rights']
-    expect(@obj.rights_nested.first.webpage).to eq ['http://example.com/rights']
+    expect(@obj.license_nested.first).to be_kind_of ActiveTriples::Resource
+    expect(@obj.license_nested.first.label).to eq ['A rights label']
+    expect(@obj.license_nested.first.definition).to eq ['A definition of the rights']
+    expect(@obj.license_nested.first.webpage).to eq ['http://example.com/rights']
   end
 
   it 'has the correct uri' do
     @obj = ExampleWork.new
     @obj.attributes = {
-      rights_nested_attributes: [
+      license_nested_attributes: [
         {
           label: 'A rights label',
           definition: 'A definition of the rights',
@@ -39,6 +39,6 @@ RSpec.describe RightsStatement, :vcr do
         }
       ]
     }
-    expect(@obj.rights_nested.first.id).to include('#rights')
+    expect(@obj.license_nested.first.id).to include('#rights')
   end
 end

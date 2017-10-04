@@ -20,7 +20,7 @@ en:
         doi:              "DOI"
         other_title:      "Additional titles for the dataset"
         creator_nested:   "Creator"
-        rights_nested:    "Rights"
+        license_nested:   "License"
         subject_nested:   "Subject"
         relation:         "Related work"
         admin_metadata:   "Information for administrative purposes"
@@ -41,7 +41,7 @@ en:
         identifier: "A unique handle identifying the dataset. An example would be a DOI for the dataset."
         language: "The language of the dataset's content."
         publisher: "The person or group making the dataset available. Generally this is the institution."
-        rights_nested: "Licensing and distribution information governing access to the dataset."
+        license_nested: "Licensing and distribution information governing access to the dataset."
         admin_metadata: "An illustrative field to gather additional information, mostly of an administrative nature, which can be customized to each institutions' needs."
         identifier_nested: "Identifiers for the dataset"
 

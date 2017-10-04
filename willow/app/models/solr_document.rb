@@ -42,8 +42,8 @@ class SolrDocument
     self[Solrizer.solr_name('date', :displayable)]
   end
 
-  def rights_nested
-    self[Solrizer.solr_name('rights_nested', :displayable)]
+  def license_nested
+    self[Solrizer.solr_name('license_nested', :displayable)]
   end
 
   def relation
@@ -77,4 +77,25 @@ class SolrDocument
   def identifier_nested
     self[Solrizer.solr_name('identifier_nested', :displayable)]
   end
+
+  def category
+    self[Solrizer.solr_name('category', :stored_searchable)]
+  end
+
+  def rating
+    self[Solrizer.solr_name('rating', :stored_searchable)]
+  end
+
+  def rights_holder
+    self[Solrizer.solr_name('rights_holder', :stored_searchable)]
+  end
+
+  def organisation_nested
+    self[Solrizer.solr_name('organisation_nested', :displayable)]
+  end
+
+  def preservation_nested
+    self[Solrizer.solr_name('preservation_nested', :displayable)]
+  end
+
 end

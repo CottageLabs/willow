@@ -40,7 +40,7 @@ describe Hyrax::DatasetsController, :type => :controller do
                                            'that this hypothesis is true, as the author has very infrequently had to resort ' +
                                            'to cleaning the mugs himself.'],
                          keyword: ["mug", "fairies", "psychoceramics"],
-                         rights_nested_attributes: [{
+                         license_nested_attributes: [{
                                                         label: 'A rights label',
                                                         definition: 'A definition of the rights',
                                                         webpage: 'http://creativecommons.org/publicdomain/zero/1.0/'

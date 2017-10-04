@@ -31,7 +31,7 @@ class Article < ActiveFedora::Base
   property :date, predicate: ::RDF::Vocab::DC.date, class_name:"DateStatement"
   property :project, predicate: RioxxTerms.project, class_name:"ProjectStatement"
   property :relation, predicate: ::RDF::Vocab::DC.relation, class_name:"RelationStatement"
-  property :rights_nested, predicate: ::RDF::Vocab::DC.license, class_name:"RightsStatement"
+  property :license_nested, predicate: ::RDF::Vocab::DC.license, class_name:"LicenseStatement"
   property :subject_nested, predicate: ::RDF::Vocab::DC.subject, class_name:"SubjectStatement"
   property :identifier_nested, predicate: ::RDF::Vocab::Identifiers.id, class_name: "ObjectIdentifier"
 

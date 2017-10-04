@@ -13,7 +13,9 @@ class NestedCreatorAttributeRenderer < Hyrax::Renderers::FacetedAttributeRendere
         creator_name += v['last_name']
       end
       creator_name = creator_name.join(' ').strip
-      if creator_name
+      if v.include?('name') and not v['name'][0].blank?
+        creator << link_to(ERB::Util.h(v['name'][0]), search_path(v['name'][0]))
+      elsif creator_name
         creator << link_to(ERB::Util.h(creator_name), search_path(creator_name))
       end
       if v.include?('affiliation') and not v['affiliation'].blank? and not v['affiliation'][0].blank?

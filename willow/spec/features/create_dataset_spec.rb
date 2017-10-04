@@ -23,7 +23,7 @@ RSpec.feature 'Create a Dataset', vcr: true do
       fill_in 'Publisher', with: 'Publisher of Foo'
       fill_in 'dataset_date_attributes_0_date', with: '01/01/2001'
       select('Dataset', from: 'Resource type')
-      select('Public Domain Mark 1.0', from: 'dataset_rights_nested_attributes_0_webpage')
+      select('Public Domain Mark 1.0', from: 'dataset_license_nested_attributes_0_webpage')
       choose('open')
       check('agreement')
       click_on('Files')

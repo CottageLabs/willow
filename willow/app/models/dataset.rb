@@ -16,7 +16,7 @@ class Dataset < ActiveFedora::Base
   property :other_title, predicate: ::RDF::Vocab::Bibframe.titleVariation, class_name:"OtherTitleStatement"
   property :date, predicate: ::RDF::Vocab::DC.date, class_name:"DateStatement"
   property :creator_nested, predicate: ::RDF::Vocab::SIOC.has_creator, class_name:"PersonStatement"
-  property :rights_nested, predicate: ::RDF::Vocab::DC.license, class_name:"RightsStatement"
+  property :license_nested, predicate: ::RDF::Vocab::DC.license, class_name:"LicenseStatement"
   property :subject_nested, predicate: ::RDF::Vocab::DC.subject, class_name:"SubjectStatement"
   property :relation, predicate: ::RDF::Vocab::DC.relation, class_name:"RelationStatement"
   property :admin_metadata, predicate: ::RDF::Vocab::MODS.adminMetadata, class_name: "AdministrativeStatement"
