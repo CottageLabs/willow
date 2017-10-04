@@ -147,8 +147,8 @@ module Hyrax
                                } ]
                 }
               }
-            when [Dataset, Article].include?(@curation_concern_type) && !destroy?
-              @object.rights_nested.map{|r|
+            when [Dataset, Article].include?(@curation_concern_type) && @event != 'destroy_work.hyrax'
+              @object.license_nested.map{|r|
                 {
                     rightsStatement: r.definition.to_a,
                     rightsHolder: [ UNKNOWN ],
