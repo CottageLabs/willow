@@ -4,9 +4,11 @@ require 'fileutils'
 module DataImporter
   class Importer
 
+    UNKNOWN = 'UNKNOWN'.freeze
     attr_reader :hash, :collection, :bucket, :import_dir, :filter
     # http://testdata.researchdata.alpha.jisc.ac.uk.s3.eu-west-2.amazonaws.com/
-    def initialize(bucket: 'test-importer-data', region: 'eu-west-2', import_dir: 'tmp/imports', filter: nil,
+    def initialize(bucket: 'test-importer-data', region: 'eu-west-2',
+                   import_dir: 'tmp/importer', filter: nil,
                    collection_id: nil, importing_user_email: nil)
       @s3 = Aws::S3::Client.new(region: region)
       @bucket = bucket
@@ -58,9 +60,8 @@ module DataImporter
 
               if File.basename(filename) == 'metadata.json'
                 hash[dirname][:metadata] = filename
-              else
-                hash[dirname][:files].append(filename)
               end
+              hash[dirname][:files].append(filename)
 
             else
               puts "Ignoring #{item.key} (filter: #{@filter})"
@@ -80,36 +81,125 @@ module DataImporter
       @collection.each do |item|
         metadata = JSON.parse(File.read(item[:metadata]))
 
+        puts metadata
+
+        work = RdssDataset.where(id: item[:id]).first || RdssDataset.new() #id: item[:id])
+        work.title = [metadata['objectTitle'].present? ? metadata['objectTitle'] : UNKNOWN]
+
+        if metadata["objectPersonRole"].present?
+          work.creator_nested_attributes = metadata["objectPersonRole"].map { |i|
+            {
+              name: i["person"]["personIdentifierValue"] || UNKNOWN,
+              orcid: UNKNOWN,
+              role: @vocabs.vocabularies["personRole"][i["role"]]
+            }
+          }
+        end
+
+        work.description = [metadata['objectDescription']] if metadata["objectDescription"].present?
+
+        if metadata["objectRights"].present?
+          work.license_nested_attributes = metadata["objectRights"].map {|i| { label: i["licenceName"] || UNKNOWN } }
+        end
+
+        # This causes a term error - need to investigate why
+        # if metadata["objectDate"].present?
+        #   work.date_attributes = metadata["objectDate"].map {|i|
+        #     {
+        #       date: i['dateValue'],
+        #       description: @vocabs.vocabularies["dateType"][i["dateType"]]
+        #     }
+        #   }
+        # end
+
+        work.keyword = metadata["objectKeywords"] if metadata["objectKeywords"].present?
+        work.category = metadata["objectCategory"] if metadata["objectCategory"].present?
+        work.resource_type = [@vocabs.vocabularies["resourceType"][metadata["objectResourceType"]]] if metadata["objectResourceType"].present?
+
+        if metadata["objectIdentifier"].present?
+          work.identifier_nested_attributes = metadata["objectIdentifier"].map {|i|
+            {
+              obj_id: i['identifierValue'],
+              obj_id_scheme: @vocabs.vocabularies["identifierType"][i["identifierType"]] || UNKNOWN
+            }
+          }
+        end
+
+        if metadata["objectRelatedIdentifier"].present?
+          work.relation_attributes = metadata["objectRelatedIdentifier"].map {|i|
+            {
+                label: UNKNOWN,
+                url: UNKNOWN,
+                identifier: i['identifierValue'],
+                identifier_scheme: @vocabs.vocabularies["identifierType"][i["identifierType"]] || UNKNOWN,
+                relationship_name: UNKNOWN,
+                relationship_role: UNKNOWN
+            }
+          }
+        end
+
+
+        if metadata["objectOrganisationRole"].present?
+          work.organisation_nested_attributes = metadata["objectOrganisationRole"].map {|i|
+            {
+                name: i['organisation']['organisationName'] || UNKNOWN,
+                role: @vocabs.vocabularies["organisationRole"][i["role"]] || UNKNOWN,
+                identifier:  @vocabs.vocabularies["organisationType"][i["organisation"]["organisationType"]] || UNKNOWN,
+                uri: UNKNOWN
+            }
+          }
+        end
+
+        item[:files].each do |file|
+          fileset = FileSet.create(label: File.basename(file), title: [File.basename(file)])
+          Hydra::Works::UploadFileToFileSet.call(fileset, open(file))
+          CreateDerivativesJob.perform_now(fileset, fileset.files.first.id)
+          work.ordered_members << fileset
+          fileset.save!
+
+          unless work.representative_id.present?
+            work.representative_id = fileset.id
+            work.thumbnail_id = fileset.thumbnail_id
+          end
+        end
+
+        work.save!
+
+        puts item[:files]
+
+        # NB ordered_members is important here; members will not appear in blacklight!
+        #work.ordered_members <<
 
 
 
-        work = Book.where(id: item[:id]).first || Book.new(id: item[:id])
-        work.title = [item['objectTitle']]
 
 
 
-
-
+        puts "-----------------"
         puts "ID: #{item[:id]}"
-        puts "RESOURCE TYPE: #{@vocabs.vocabularies["resourceType"][metadata["objectResourceType"]]}"
-
-        metadata["objectIdentifier"].each do |i|
-          puts "IDENTIFIER: #{@vocabs.vocabularies["identifierType"][i["identifierType"]]} : #{i["identifierValue"]}"
+        puts "TITLE: #{work.title.to_json}"
+        work.creator_nested.each do |i|
+          puts "CREATOR: #{i.to_json}"
+        end
+        work.license_nested.each do |i|
+          puts "LICENSE: #{i.to_json}"
+        end
+        work.date.each do |i|
+          puts "DATE: #{i.to_json}"
+        end
+        puts "KEYWORD: #{work.keyword.to_json}"
+        puts "CATEGORY: #{work.category.to_json}"
+        puts "RESOURCE-TYPE: #{work.resource_type.to_json}"
+        work.identifier_nested.each do |i|
+          puts "IDENTIFIER: #{i.to_json}"
+        end
+        work.relation.each do |i|
+          puts "RELATION: #{i.to_json}"
+        end
+        work.organisation_nested.each do |i|
+          puts "ORGANISATION: #{i.to_json}"
         end
 
-        metadata["objectPersonRole"].each do |i|
-          puts "PERSON: #{@vocabs.vocabularies["personRole"][i["role"]]} : #{i["person"]["personIdentifierValue"]} : #{@vocabs.vocabularies["personIdentifierType"][i['person']['personIdentifierType']]} "
-        end
-
-
-
-
-        # #puts metadata
-        #
-        # puts "TESST1"
-        # puts metadata["objectResourceType"]
-        # # objectResourceType is resourceType
-        # puts @vocabs.vocabularies["resourceType"][metadata["objectResourceType"]]
 
       end
 
@@ -118,74 +208,4 @@ module DataImporter
 
   end
 end
-
-
-# puts JSON.pretty_generate(hash)
-
-
-    # def parse_entry(item, collection, s3)
-    #   # ignore folders, just focus on files
-    #   if !item.key.ends_with?('/')
-    #     dirs, _, filename = item.key.rpartition('/')
-    #     collection[dirs] ||= {}
-    #
-    #     if filename == 'metadata.json'
-    #       collection[dirs][:metadata] = JSON.parse('{}')
-    #
-    #       #s3.get_object(item)
-    #
-    #       resp = s3.get_object(bucket: 'test-importer-data', key: item.key)
-    #       puts resp.body.read
-    #
-    #
-    #     end
-    #
-    #
-    #
-    #
-    #   end
-    #
-    #   # dirs = key.split("/")
-    #   # dirs.each do |dir|
-    #   #   hash[dir]
-    #   # end
-    #
-    #
-    # end
-
-    # def parse_dirs(dirs)
-    #
-    # end
-    #
-    #
-    #
-    # def split_into_hash(path, hash={})
-    #
-    #   outer, inner = path.split("/", 2)
-    #   if inner
-    #     hash[outer] = (hash[outer] || {}).merge(split_into_hash(inner))
-    #   else
-    #     hash[outer] = (hash[outer] || {}).merge({})
-    #   end
-    #   hash
-    # end
-
-
-
-
-      #
-      #
-      #
-      #
-      # components = path.split("/")
-      # is_dir = path.ends_with?("/")
-      #
-      #
-      # components.each do |c|
-      #   h[c] ||= {}
-
-
-
-
-    #end
 
