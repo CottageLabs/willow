@@ -7,9 +7,10 @@ module DataImporter
     UNKNOWN = 'UNKNOWN'.freeze
     attr_reader :hash, :collection, :bucket, :import_dir, :filter
     # http://testdata.researchdata.alpha.jisc.ac.uk.s3.eu-west-2.amazonaws.com/
-    def initialize(bucket: 'test-importer-data', region: 'eu-west-2',
+    def initialize(bucket: , region:,
                    import_dir: 'tmp/importer', filter: nil,
-                   collection_id: nil, importing_user_email: nil)
+                   collection_id: nil, importing_user_email: nil,
+                   visibility: 'open')
       @s3 = Aws::S3::Client.new(region: region)
       @bucket = bucket
       @import_dir = import_dir
@@ -18,6 +19,7 @@ module DataImporter
       @importing_user_email = importing_user_email
       @collection = []
       @hash = {}
+      @visibility = visibility
 
       @vocabs = VocabularyImporter.new('seed/jisc-rdss-datamodels')
     end
@@ -59,10 +61,13 @@ module DataImporter
               }
 
               if File.basename(filename) == 'metadata.json'
-                hash[dirname][:metadata] = filename
+                hash[dirname][:metadata_file] = filename
               end
-              hash[dirname][:files].append(filename)
 
+              # we don't actually want to load the metadata files as part of the repository item
+              unless ['metadata.json', 'original_oai_dc_metadata.json'].include?(File.basename(filename))
+                hash[dirname][:files].append(filename)
+              end
             else
               puts "Ignoring #{item.key} (filter: #{@filter})"
             end
@@ -79,12 +84,15 @@ module DataImporter
     def import_into_willow
       puts "Importing into Willow"
       @collection.each do |item|
-        metadata = JSON.parse(File.read(item[:metadata]))
+        metadata = JSON.parse(File.read(item[:metadata_file]))
 
         puts metadata
 
         work = RdssDataset.where(id: item[:id]).first || RdssDataset.new() #id: item[:id])
         work.title = [metadata['objectTitle'].present? ? metadata['objectTitle'] : UNKNOWN]
+        work.visibility = @visibility
+        work.date_uploaded = DateTime.now.utc
+        work.import_url = item[:metadata_file]
 
         if metadata["objectPersonRole"].present?
           work.creator_nested_attributes = metadata["objectPersonRole"].map { |i|
@@ -99,18 +107,32 @@ module DataImporter
         work.description = [metadata['objectDescription']] if metadata["objectDescription"].present?
 
         if metadata["objectRights"].present?
-          work.license_nested_attributes = metadata["objectRights"].map {|i| { label: i["licenceName"] || UNKNOWN } }
+          work.license_nested_attributes = metadata["objectRights"].map {|i|
+            {
+                label: i["licenceName"] || UNKNOWN,
+                webpage: i["licenceIdentifier"] || UNKNOWN
+            }
+          }
+        else
+          work.license_nested_attributes = [
+            {
+                label: UNKNOWN,
+                webpage: UNKNOWN
+            }
+          ]
         end
 
-        # This causes a term error - need to investigate why
-        # if metadata["objectDate"].present?
-        #   work.date_attributes = metadata["objectDate"].map {|i|
-        #     {
-        #       date: i['dateValue'],
-        #       description: @vocabs.vocabularies["dateType"][i["dateType"]]
-        #     }
-        #   }
-        # end
+        # All works require a rights holder, however this field is not present in the metadata
+        work.rights_holder = [UNKNOWN]
+
+        if metadata["objectDate"].present?
+          work.date_attributes = metadata["objectDate"].map {|i|
+            {
+              date: i['dateValue'],
+              description: @vocabs.vocabularies["dateType"][i["dateType"]]
+            }
+          }
+        end
 
         work.keyword = metadata["objectKeywords"] if metadata["objectKeywords"].present?
         work.category = metadata["objectCategory"] if metadata["objectCategory"].present?
@@ -152,6 +174,7 @@ module DataImporter
 
         item[:files].each do |file|
           fileset = FileSet.create(label: File.basename(file), title: [File.basename(file)])
+          fileset.visibility = @visibility
           Hydra::Works::UploadFileToFileSet.call(fileset, open(file))
           CreateDerivativesJob.perform_now(fileset, fileset.files.first.id)
           work.ordered_members << fileset
@@ -165,18 +188,13 @@ module DataImporter
 
         work.save!
 
-        puts item[:files]
-
-        # NB ordered_members is important here; members will not appear in blacklight!
-        #work.ordered_members <<
-
-
-
-
+        # send message to api
+        ActiveSupport::Notifications.instrument(Hyrax::Notifications::Events::METADATA_CREATE, {
+            curation_concern_type: work.class, object: work})
 
 
         puts "-----------------"
-        puts "ID: #{item[:id]}"
+        puts "ID: #{work.id}"
         puts "TITLE: #{work.title.to_json}"
         work.creator_nested.each do |i|
           puts "CREATOR: #{i.to_json}"

@@ -1,21 +1,21 @@
 terms:
-  - id: Accepted
+  - id: accepted
     term: Accepted
-  - id: Approved
+  - id: approved
     term: Approved
-  - id: Available
+  - id: available
     term: Available
-  - id: Copyrighted
+  - id: copyrighted
     term: Copyrighted
-  - id: Collected
+  - id: collected
     term: Collected
-  - id: Created
+  - id: created
     term: Created
-  - id: Issued
+  - id: issued
     term: Issued
-  - id: Modified
+  - id: modified
     term: Modified
-  - id: Posted
+  - id: posted
     term: Posted
-  - id: Published
+  - id: published
     term: Published

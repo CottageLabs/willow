@@ -26,3 +26,6 @@ terms:
     - id: http://www.europeana.eu/portal/rights/rr-r.html
       term: All rights reserved
       active: true
+    - id: UNKNOWN
+      term: UNKNOWN
+      active: true
