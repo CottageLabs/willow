@@ -83,145 +83,166 @@ module DataImporter
 
     def import_into_willow
       puts "Importing into Willow"
+
       @collection.each do |item|
-        metadata = JSON.parse(File.read(item[:metadata_file]))
+        
+        begin
 
-        puts metadata
+          puts "Importing #{item[:metadata_file]}..."
 
-        work = RdssDataset.where(id: item[:id]).first || RdssDataset.new() #id: item[:id])
-        work.title = [metadata['objectTitle'].present? ? metadata['objectTitle'] : UNKNOWN]
-        work.visibility = @visibility
-        work.date_uploaded = DateTime.now.utc
-        work.import_url = item[:metadata_file]
+          work = import_item(item)
 
-        if metadata["objectPersonRole"].present?
-          work.creator_nested_attributes = metadata["objectPersonRole"].map { |i|
-            {
-              name: i["person"]["personIdentifierValue"] || UNKNOWN,
-              orcid: UNKNOWN,
-              role: @vocabs.vocabularies["personRole"][i["role"]]
-            }
-          }
-        end
-
-        work.description = [metadata['objectDescription']] if metadata["objectDescription"].present?
-
-        if metadata["objectRights"].present?
-          work.license_nested_attributes = metadata["objectRights"].map {|i|
-            {
-                label: i["licenceName"] || UNKNOWN,
-                webpage: i["licenceIdentifier"] || UNKNOWN
-            }
-          }
-        else
-          work.license_nested_attributes = [
-            {
-                label: UNKNOWN,
-                webpage: UNKNOWN
-            }
-          ]
-        end
-
-        # All works require a rights holder, however this field is not present in the metadata
-        work.rights_holder = [UNKNOWN]
-
-        if metadata["objectDate"].present?
-          work.date_attributes = metadata["objectDate"].map {|i|
-            {
-              date: i['dateValue'],
-              description: @vocabs.vocabularies["dateType"][i["dateType"]]
-            }
-          }
-        end
-
-        work.keyword = metadata["objectKeywords"] if metadata["objectKeywords"].present?
-        work.category = metadata["objectCategory"] if metadata["objectCategory"].present?
-        work.resource_type = [@vocabs.vocabularies["resourceType"][metadata["objectResourceType"]]] if metadata["objectResourceType"].present?
-
-        if metadata["objectIdentifier"].present?
-          work.identifier_nested_attributes = metadata["objectIdentifier"].map {|i|
-            {
-              obj_id: i['identifierValue'],
-              obj_id_scheme: @vocabs.vocabularies["identifierType"][i["identifierType"]] || UNKNOWN
-            }
-          }
-        end
-
-        if metadata["objectRelatedIdentifier"].present?
-          work.relation_attributes = metadata["objectRelatedIdentifier"].map {|i|
-            {
-                label: UNKNOWN,
-                url: UNKNOWN,
-                identifier: i['identifierValue'],
-                identifier_scheme: @vocabs.vocabularies["identifierType"][i["identifierType"]] || UNKNOWN,
-                relationship_name: UNKNOWN,
-                relationship_role: UNKNOWN
-            }
-          }
-        end
-
-
-        if metadata["objectOrganisationRole"].present?
-          work.organisation_nested_attributes = metadata["objectOrganisationRole"].map {|i|
-            {
-                name: i['organisation']['organisationName'] || UNKNOWN,
-                role: @vocabs.vocabularies["organisationRole"][i["role"]] || UNKNOWN,
-                identifier:  @vocabs.vocabularies["organisationType"][i["organisation"]["organisationType"]] || UNKNOWN,
-                uri: UNKNOWN
-            }
-          }
-        end
-
-        item[:files].each do |file|
-          fileset = FileSet.create(label: File.basename(file), title: [File.basename(file)])
-          fileset.visibility = @visibility
-          Hydra::Works::UploadFileToFileSet.call(fileset, open(file))
-          CreateDerivativesJob.perform_now(fileset, fileset.files.first.id)
-          work.ordered_members << fileset
-          fileset.save!
-
-          unless work.representative_id.present?
-            work.representative_id = fileset.id
-            work.thumbnail_id = fileset.thumbnail_id
+          puts "ID: #{work.id}"
+          puts "TITLE: #{work.title.to_json}"
+          work.creator_nested.each do |i|
+            puts "CREATOR: #{i.to_json}"
           end
-        end
+          work.license_nested.each do |i|
+            puts "LICENSE: #{i.to_json}"
+          end
+          work.date.each do |i|
+            puts "DATE: #{i.to_json}"
+          end
+          puts "KEYWORD: #{work.keyword.to_json}"
+          puts "CATEGORY: #{work.category.to_json}"
+          puts "RESOURCE-TYPE: #{work.resource_type.to_json}"
+          work.identifier_nested.each do |i|
+            puts "IDENTIFIER: #{i.to_json}"
+          end
+          work.relation.each do |i|
+            puts "RELATION: #{i.to_json}"
+          end
+          work.organisation_nested.each do |i|
+            puts "ORGANISATION: #{i.to_json}"
+          end
 
-        work.save!
-
-        # send message to api
-        ActiveSupport::Notifications.instrument(Hyrax::Notifications::Events::METADATA_CREATE, {
-            curation_concern_type: work.class, object: work})
+          puts "-------"
 
 
-        puts "-----------------"
-        puts "ID: #{work.id}"
-        puts "TITLE: #{work.title.to_json}"
-        work.creator_nested.each do |i|
-          puts "CREATOR: #{i.to_json}"
-        end
-        work.license_nested.each do |i|
-          puts "LICENSE: #{i.to_json}"
-        end
-        work.date.each do |i|
-          puts "DATE: #{i.to_json}"
-        end
-        puts "KEYWORD: #{work.keyword.to_json}"
-        puts "CATEGORY: #{work.category.to_json}"
-        puts "RESOURCE-TYPE: #{work.resource_type.to_json}"
-        work.identifier_nested.each do |i|
-          puts "IDENTIFIER: #{i.to_json}"
-        end
-        work.relation.each do |i|
-          puts "RELATION: #{i.to_json}"
-        end
-        work.organisation_nested.each do |i|
-          puts "ORGANISATION: #{i.to_json}"
-        end
+        rescue Exception => e
+          puts "ERROR during import of #{item[:metadata_file]}"
+          puts e.message
+          puts e.backtrace.inspect
 
+        end
 
       end
 
-      self
+    end
+
+
+    def import_item(item)
+      metadata = JSON.parse(File.read(item[:metadata_file]))
+
+      work = RdssDataset.where(id: item[:id]).first || RdssDataset.new() #id: item[:id])
+      work.title = [metadata['objectTitle'].present? ? metadata['objectTitle'] : UNKNOWN]
+      work.visibility = @visibility
+      work.state = Vocab::FedoraResourceStatus.active
+      work.date_uploaded = DateTime.now.utc
+      work.import_url = item[:metadata_file]
+      work.rights_statement = [UNKNOWN] #['http://rightsstatements.org/vocab/CNE/1.0/'] # Copyright not evaluated
+
+      if metadata["objectPersonRole"].present?
+        work.creator_nested_attributes = metadata["objectPersonRole"].map { |i|
+          {
+            name: i["person"]["personIdentifierValue"] || UNKNOWN,
+            orcid: UNKNOWN,
+            role: @vocabs.vocabularies["personRole"][i["role"]]
+          }
+        }
+      end
+
+      work.description = [metadata['objectDescription']] if metadata["objectDescription"].present?
+
+      if metadata["objectRights"].present?
+        work.license_nested_attributes = metadata["objectRights"].map {|i|
+          {
+              label: i["licenceName"] || UNKNOWN,
+              webpage: i["licenceIdentifier"] || UNKNOWN
+          }
+        }
+      else
+        work.license_nested_attributes = [
+          {
+              label: UNKNOWN,
+              webpage: UNKNOWN
+          }
+        ]
+      end
+
+      # All works require a rights holder, however this field is not present in the metadata
+      work.rights_holder = [UNKNOWN]
+
+      if metadata["objectDate"].present?
+        work.date_attributes = metadata["objectDate"].map {|i|
+          {
+            date: i['dateValue'],
+            description: @vocabs.vocabularies["dateType"][i["dateType"]]
+          }
+        }
+      end
+
+      work.keyword = metadata["objectKeywords"] if metadata["objectKeywords"].present?
+      work.category = metadata["objectCategory"] if metadata["objectCategory"].present?
+      work.resource_type = [@vocabs.vocabularies["resourceType"][metadata["objectResourceType"]]] if metadata["objectResourceType"].present?
+
+      if metadata["objectIdentifier"].present?
+        work.identifier_nested_attributes = metadata["objectIdentifier"].map {|i|
+          {
+            obj_id: i['identifierValue'],
+            obj_id_scheme: @vocabs.vocabularies["identifierType"][i["identifierType"]] || UNKNOWN
+          }
+        }
+      end
+
+      if metadata["objectRelatedIdentifier"].present?
+        work.relation_attributes = metadata["objectRelatedIdentifier"].map {|i|
+          {
+              label: UNKNOWN,
+              url: UNKNOWN,
+              identifier: i['identifierValue'],
+              identifier_scheme: @vocabs.vocabularies["identifierType"][i["identifierType"]] || UNKNOWN,
+              relationship_name: UNKNOWN,
+              relationship_role: UNKNOWN
+          }
+        }
+      end
+
+
+      if metadata["objectOrganisationRole"].present?
+        work.organisation_nested_attributes = metadata["objectOrganisationRole"].map {|i|
+          {
+              name: i['organisation']['organisationName'] || UNKNOWN,
+              role: @vocabs.vocabularies["organisationRole"][i["role"]] || UNKNOWN,
+              identifier:  @vocabs.vocabularies["organisationType"][i["organisation"]["organisationType"]] || UNKNOWN,
+              uri: UNKNOWN
+          }
+        }
+      end
+
+      item[:files].each do |file|
+        fileset = FileSet.create(label: File.basename(file), title: [File.basename(file)])
+        fileset.visibility = @visibility
+        Hydra::Works::UploadFileToFileSet.call(fileset, open(file))
+        CreateDerivativesJob.perform_now(fileset, fileset.files.first.id)
+        work.ordered_members << fileset
+        fileset.save!
+
+        unless work.representative_id.present?
+          work.representative_id = fileset.id
+          work.thumbnail_id = fileset.thumbnail_id
+        end
+      end
+
+      work.save!
+
+      # send message to api
+      ActiveSupport::Notifications.instrument(Hyrax::Notifications::Events::METADATA_CREATE, {
+          curation_concern_type: work.class, object: work})
+
+
+
+      work
     end
 
   end
