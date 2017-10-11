@@ -9,8 +9,7 @@ namespace :willow do
     import_filter = ENV['IMPORT_FILTER'] || nil
     import_user = ENV['IMPORT_USER'] || nil
     import_collection_id = ENV['IMPORT_COLLECTION_ID'] || nil
-
-
+    import_visibility = ENV['IMPORT_VISIBILITY'] || 'open'
 
 
     puts "Task to import JISC RDSS data from an S3 bucket into Willow"
@@ -23,11 +22,13 @@ namespace :willow do
     puts "   Bucket filter (IMPORT_FILTER): #{import_filter}"
     puts "   Importing user (IMPORT_USER): #{import_user}"
     puts "   Collection_id (IMPORT_COLLECTION_ID): #{import_collection_id}"
+    puts "   Visibility (IMPORT_VISIBILITY): #{import_visibility}"
 
 
     importer = DataImporter::Importer.new(bucket: bucket, region: region,
-                                          import_dir: import_folder, filter: import_filter,
-                                          collection_id: import_collection_id, importing_user_email: import_user)
+                                          import_folder: import_folder, import_filter: import_filter,
+                                          import_user: import_user, import_collection_id: import_collection_id,
+                                          import_visibility: import_visibility)
 
     importer.sync_with_s3()
 
