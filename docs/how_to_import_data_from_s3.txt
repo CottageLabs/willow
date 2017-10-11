@@ -1,0 +1,53 @@
+How to Import data into Willow from an S3 bucket
+================================================
+
+Willow has a rake task to facilitate the import of data from an S3 bucket. The files within the S3 bucket must be
+grouped into separate folders, with one folder per repository object. Each repository object must have a metadata.json
+file which conforms to the JISC RDSS metadata format.
+
+An example S3 bucket structure might be:
+
+  dir1/metadata.json
+  dir1/file1.doc
+  dir1/file2.pdf
+  dir2/dir3/metadata.json
+  dir2/dir3/file3.gif
+  dir2/dir4/metadata.json
+  dir2/dir4/file4.txt
+
+In order to access the S3 bucket, Amazon keys (AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY) are required. The S3
+importer must be run from within a Willow container. The access keys should be set as environmental variables within the
+container.
+
+The import is performed with the rake task willow:import. Two additional parameters are required: the AWS region of the
+bucket and the bucket name itself.
+
+For example, running from a development environment and creating a Willow container using docker-compose:
+
+$ docker-compose run --rm -e AWS_ACCESS_KEY_ID=XXXX -e AWS_SECRET_ACCESS_KEY=XXXX willow bash
+
+Then to perform the import of all items in the "test-importer-data" bucket in the "eu-west-2" region, we can run (within
+the container):
+
+$ rake willow:import["eu-west-2","test-importer-data"]
+
+
+
+The importer takes a number of optional parameters specified via environmental variables. The INPUT_FILTER option allows
+for a subset of items to be imported, e.g. IMPORT_FILTER=dir1/ will cause only the first repository object in the above
+example (dir1/metadata.json, dir1/file1.doc, dir1/file2.pdf) to be imported. Whereas, IMPORT_FILTER=dir2/ will cause the
+last two items to be imported (dir2/dir3/ and dir2/dir4/) and IMPORT_FILTER=dir2/dir3/ will cause only the middle item
+to be imported (dir2/dir3/).
+
+The optional parameters can be specified as part of the command line before the rake command, e.g.
+
+$ IMPORT_FILTER=dir2/dir3 rake willow:import["eu-west-2","test-importer-data"]
+
+
+Optional parameters include:
+
+IMPORT_FOLDER: the location of a temporary folder to which items are downloaded prior to importing. Defaults to tmp/importer
+IMPORT_FILTER: a filter to restrict which items get imported. Only files whose path matches the filter will be imported
+IMPORT_USER: the email address of the user to which items should be loaded as.
+IMPORT_COLLECTION_ID: the id of the collection to which items should be loaded into
+IMPORT_VISIBILITY: the visibility of the items being imported. Defaults to 'open'

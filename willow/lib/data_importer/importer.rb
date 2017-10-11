@@ -6,20 +6,22 @@ module DataImporter
 
     UNKNOWN = 'UNKNOWN'.freeze
     attr_reader :hash, :collection, :bucket, :import_dir, :filter
-    # http://testdata.researchdata.alpha.jisc.ac.uk.s3.eu-west-2.amazonaws.com/
+
     def initialize(bucket: , region:,
-                   import_dir: 'tmp/importer', filter: nil,
-                   collection_id: nil, importing_user_email: nil,
-                   visibility: 'open')
+                   import_folder: 'tmp/importer', import_filter: nil,
+                   import_user: nil, import_collection_id: nil,
+                   import_visibility: 'open')
       @s3 = Aws::S3::Client.new(region: region)
       @bucket = bucket
-      @import_dir = import_dir
-      @filter = filter
-      @collection_id = collection_id
-      @importing_user_email = importing_user_email
+      @import_folder = import_folder
+      @import_filter = import_filter
+      @import_user = import_user
+      @import_collection_id = import_collection_id
+      @import_visibility = import_visibility
+
       @collection = []
       @hash = {}
-      @visibility = visibility
+
 
       @vocabs = VocabularyImporter.new('seed/jisc-rdss-datamodels')
     end
@@ -28,8 +30,8 @@ module DataImporter
 
     def sync_with_s3
       puts "Synchronising with S3"
-      unless File.directory?(@import_dir)
-        FileUtils.mkdir_p(@import_dir)
+      unless File.directory?(@import_folder)
+        FileUtils.mkdir_p(@import_folder)
       end
 
       @s3.list_objects_v2(bucket: @bucket).each do |response|
@@ -38,10 +40,10 @@ module DataImporter
           # we are only interested in files
           unless item.key.ends_with?('/')
 
-            if @filter.nil? || @filter.present? && item.key.starts_with?(@filter)
+            if @import_filter.nil? || @import_filter.present? && item.key.starts_with?(@import_filter)
 
               # Download the S3 files, unless they are already downloaded
-              filename = File.join(@import_dir, item.key)
+              filename = File.join(@import_folder, item.key)
               dirname = File.dirname(filename)
               # unless the file is already on disk and the sizes match, copy the file to disk
               if File.exist?(filename) && File.size(filename) == item.size
@@ -69,7 +71,7 @@ module DataImporter
                 hash[dirname][:files].append(filename)
               end
             else
-              puts "Ignoring #{item.key} (filter: #{@filter})"
+              puts "Ignoring #{item.key} (filter: #{@import_filter})"
             end
           end
 
@@ -85,7 +87,7 @@ module DataImporter
       puts "Importing into Willow"
 
       @collection.each do |item|
-        
+
         begin
 
           puts "Importing #{item[:metadata_file]}..."
@@ -136,11 +138,12 @@ module DataImporter
 
       work = RdssDataset.where(id: item[:id]).first || RdssDataset.new() #id: item[:id])
       work.title = [metadata['objectTitle'].present? ? metadata['objectTitle'] : UNKNOWN]
-      work.visibility = @visibility
+      work.visibility = @import_visibility
       work.state = Vocab::FedoraResourceStatus.active
       work.date_uploaded = DateTime.now.utc
       work.import_url = item[:metadata_file]
       work.rights_statement = [UNKNOWN] #['http://rightsstatements.org/vocab/CNE/1.0/'] # Copyright not evaluated
+      work.depositor = @import_user if @import_user.present?
 
       if metadata["objectPersonRole"].present?
         work.creator_nested_attributes = metadata["objectPersonRole"].map { |i|
@@ -222,7 +225,7 @@ module DataImporter
 
       item[:files].each do |file|
         fileset = FileSet.create(label: File.basename(file), title: [File.basename(file)])
-        fileset.visibility = @visibility
+        fileset.visibility = @import_visibility
         Hydra::Works::UploadFileToFileSet.call(fileset, open(file))
         CreateDerivativesJob.perform_now(fileset, fileset.files.first.id)
         work.ordered_members << fileset
@@ -239,8 +242,6 @@ module DataImporter
       # send message to api
       ActiveSupport::Notifications.instrument(Hyrax::Notifications::Events::METADATA_CREATE, {
           curation_concern_type: work.class, object: work})
-
-
 
       work
     end
