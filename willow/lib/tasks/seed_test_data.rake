@@ -201,7 +201,7 @@ namespace :willow do
 
             unless fileset.files.any?
               Hydra::Works::UploadFileToFileSet.call(fileset, open(File.join(root_dir, file["path"])))
-              CreateDerivativesJob.perform_now(fileset, fileset.files.first.id)
+              CharacterizeJob.perform_now(fileset, fileset.files.first.id)
             end
 
             unless newWork.representative_id.present?
