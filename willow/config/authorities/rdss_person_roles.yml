@@ -1,44 +1,60 @@
 terms:
-  - id: ContactPerson
+  - id: contactPerson
     term: ContactPerson
-  - id: DataCollector
+  - id: dataCollector
     term: DataCollector
-  - id: DataCurator
+  - id: dataCurator
     term: DataCurator
-  - id: DataManager
+  - id: dataManager
     term: DataManager
-  - id: Distributor
+  - id: distributor
     term: Distributor
-  - id: Editor
+  - id: editor
     term: Editor
-  - id: HostingInstitution
+  - id: hostingInstitution
     term: HostingInstitution
-  - id: Producer
+  - id: producer
     term: Producer
-  - id: ProjectLeader
+  - id: projectLeader
     term: ProjectLeader
-  - id: ProjectManager
+  - id: projectManager
     term: ProjectManager
-  - id: ProjectMember
+  - id: projectMember
     term: ProjectMember
-  - id: RegistrationAgency
+  - id: registrationAgency
     term: RegistrationAgency
-  - id: RegistrationAuthority
+  - id: registrationAuthority
     term: RegistrationAuthority
-  - id: RelatedPerson
+  - id: relatedPerson
     term: RelatedPerson
-  - id: Researcher
+  - id: researcher
     term: Researcher
-  - id: ResearchGroup
+  - id: researchGroup
     term: ResearchGroup
-  - id: RightsHolder
+  - id: rightsHolder
     term: RightsHolder
-  - id: Sponsor
+  - id: sponsor
     term: Sponsor
-  - id: Supervisor
+  - id: supervisor
     term: Supervisor
-  - id: WorkPackageLeader
+  - id: workPackageLeader
     term: WorkPackageLeader
-  - id: Other
+  - id: other
     term: Other
 
+  - id: administrator
+    term: Administrator
+  - id: contactPerson
+    term: ContactPerson
+  - id: dataAnalyser
+    term: DataAnalyser
+  - id: dataCreator
+    term: DataCreator
+  - id: investigator
+    term: Investigator
+  - id: publisher
+    term: Publisher
+  - id: author
+    term: Author
+  - id: depositingUser
+    term: DepositingUser

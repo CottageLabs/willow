@@ -10,13 +10,13 @@ describe RdssDateTypesService do
   describe "#select_all_options" do
     it "returns all terms" do
       expect(described_class.select_all_options).to include(
-        ["Collected", 'Collected'])
+        ["Collected", 'collected'])
     end
   end
 
   describe "#label" do
     it "resolves for ids of all terms" do
-      expect(described_class.label('Posted')).to eq("Posted")
+      expect(described_class.label('posted')).to eq("Posted")
     end
   end
 end

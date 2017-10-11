@@ -1,0 +1,14 @@
+{
+    "vocabularyId": 2,
+    "vocabularyName": "checksumType",
+    "vocabularyValues": [
+        {
+            "valueId": 1,
+            "valueName": "md5"
+        },
+        {
+            "valueId": 2,
+            "valueName": "sha256"
+        }
+    ]
+}

@@ -1,0 +1,46 @@
+{
+    "vocabularyId": 8,
+    "vocabularyName": "organisationRole",
+    "vocabularyValues": [
+        {
+            "valueId": 1,
+            "valueName": "funder"
+        },
+        {
+            "valueId": 2,
+            "valueName": "hostingInstitution"
+        },
+        {
+            "valueId": 3,
+            "valueName": "rightsHolder"
+        },
+        {
+            "valueId": 4,
+            "valueName": "sponsor"
+        },
+        {
+            "valueId": 5,
+            "valueName": "publisher"
+        },
+        {
+            "valueId": 6,
+            "valueName": "registrationAgency"
+        },
+        {
+            "valueId": 7,
+            "valueName": "registrationAuthority"
+        },
+        {
+            "valueId": 8,
+            "valueName": "distributor"
+        },
+        {
+            "valueId": 9,
+            "valueName": "advocacy"
+        },
+        {
+            "valueId": 10,
+            "valueName": "author"
+        }
+    ]
+}
