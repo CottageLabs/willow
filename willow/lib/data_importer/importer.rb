@@ -233,7 +233,7 @@ module DataImporter
         fileset = FileSet.create(label: File.basename(file), title: [File.basename(file)])
         fileset.visibility = @import_visibility
         Hydra::Works::UploadFileToFileSet.call(fileset, open(file))
-        CreateDerivativesJob.perform_now(fileset, fileset.files.first.id)
+        CharacterizeJob.perform_now(fileset, fileset.files.first.id)
         work.ordered_members << fileset
         fileset.save!
 

@@ -270,7 +270,7 @@ module Hyrax
                   fileUuid: fs.id,
                   fileIdentifier: download_url(fs, host: Rails.application.routes.default_url_options[:host]),
                   fileName: fs.first_title,
-                  fileSize: fs.file_size.first,
+                  fileSize: fs.file_size.first.try(:to_i),
                   fileChecksum: fs.original_checksum.map{|c| {
                       checksumType: UNKNOWN_ID,
                       checksumValue: c
