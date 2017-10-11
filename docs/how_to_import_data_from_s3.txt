@@ -48,6 +48,6 @@ Optional parameters include:
 
 IMPORT_FOLDER: the location of a temporary folder to which items are downloaded prior to importing. Defaults to tmp/importer
 IMPORT_FILTER: a filter to restrict which items get imported. Only files whose path matches the filter will be imported
-IMPORT_USER: the email address of the user to which items should be loaded as.
+IMPORT_USER: the email address of the user to which items should be loaded as, will default to Hyrax BATCH_USER if not specified
 IMPORT_COLLECTION_ID: the id of the collection to which items should be loaded into
 IMPORT_VISIBILITY: the visibility of the items being imported. Defaults to 'open'

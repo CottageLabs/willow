@@ -19,6 +19,12 @@ module DataImporter
       @import_collection_id = import_collection_id
       @import_visibility = import_visibility
 
+      if @import_collection_id.present?
+        @import_collection = Collection.find(@import_collection_id)
+      else
+        @import_collection = nil
+      end
+
       @collection = []
       @hash = {}
 
@@ -238,6 +244,15 @@ module DataImporter
       end
 
       work.save!
+
+      # add work to collection if provided
+      if @import_collection.present?
+        unless @import_collection.members.include?(work)
+          puts "Adding work to collection"
+          @import_collection.ordered_members << work
+          @import_collection.save!
+        end
+      end
 
       # send message to api
       ActiveSupport::Notifications.instrument(Hyrax::Notifications::Events::METADATA_CREATE, {

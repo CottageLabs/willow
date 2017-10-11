@@ -7,7 +7,7 @@ namespace :willow do
 
     import_folder = ENV['IMPORT_FOLDER'] || 'tmp/importer'
     import_filter = ENV['IMPORT_FILTER'] || nil
-    import_user = ENV['IMPORT_USER'] || nil
+    import_user = ENV['IMPORT_USER'] || ENV['BATCH_USER'] || nil
     import_collection_id = ENV['IMPORT_COLLECTION_ID'] || nil
     import_visibility = ENV['IMPORT_VISIBILITY'] || 'open'
 
