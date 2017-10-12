@@ -16,7 +16,7 @@ describe RdssPreservationEventTypesService do
 
   describe "#label" do
     it "resolves for ids of all terms" do
-      expect(described_class.label('message digest calculation')).to eq("message digest calculation")
+      expect(described_class.label('messageDigestCalculation')).to eq("message digest calculation")
     end
   end
 end
