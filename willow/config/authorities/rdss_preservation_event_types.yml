@@ -13,13 +13,15 @@ terms:
     term: decryption
   - id: deletion
     term: deletion
-  - id: digital signature validation
+  - id: digitalSignatureValidation
     term: digital signature validation
+  - id: download
+    term: download
   - id: fixity check
     term: fixity check
   - id: ingestion
     term: ingestion
-  - id: message digest calculation
+  - id: messageDigestCalculation
     term: message digest calculation
   - id: migration
     term: migration
@@ -27,6 +29,8 @@ terms:
     term: normalisation
   - id: replication
     term: replication
+  - id: update
+    term: update
   - id: validation
     term: validation
   - id: virus check
