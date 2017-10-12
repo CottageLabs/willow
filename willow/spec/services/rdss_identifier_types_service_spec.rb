@@ -10,7 +10,7 @@ describe RdssIdentifierTypesService do
   describe "#select_all_options" do
     it "returns all terms" do
       expect(described_class.select_all_options).to include(
-        ["PUIDPREMIS", 'PUIDPREMIS'])
+        ["PUID", 'PUID'])
     end
   end
 
