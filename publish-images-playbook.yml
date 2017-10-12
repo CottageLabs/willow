@@ -1,0 +1,73 @@
+---
+
+#
+# Usage:
+#
+#     $ ansible-playbook publish-images-playbook.yml --extra-vars="registry=aws_account_id.dkr.ecr.region.amazonaws.com/"
+#
+
+- hosts: "localhost"
+  connection: "local"
+
+  vars:
+    repos:
+      - name: "Willow repository"
+        repo: "https://github.com/JiscRDSS/rdss-willow"
+        version: "master"
+        dest: "./src/willow"
+    images:
+      - name: "{{ registry }}willow-solr"
+        path: "./src/willow/solr"
+        dockerfile: "Dockerfile"
+        tag: "latest"
+      - name: "{{ registry }}willow-redis"
+        path: "./src/willow/redis/"
+        dockerfile: "Dockerfile"
+        tag: "latest"
+      - name: "{{ registry }}willow-fcrepo4"
+        path: "./src/willow/fedora_commons/"
+        dockerfile: "Dockerfile"
+        tag: "latest"
+      - name: "{{ registry }}willow"
+        path: "./src/willow/willow/"
+        dockerfile: "Dockerfile"
+        tag: "latest"
+      - name: "{{ registry }}willow-geoblacklight"
+        tag: "latest"
+        path: "./src/willow/geoblacklight/"
+        dockerfile: "Dockerfile"
+      - name: "{{ registry }}willow-db"
+        tag: "latest"
+        path: "./src/willow/db/"
+        dockerfile: "Dockerfile"
+
+  tasks:
+
+    - name: "Ensure that the variable registry is defined"
+      fail:
+        msg: "Variable registry is undefined"
+      when: "registry is not defined"
+
+    - name: "Install docker-py"
+      pip:
+        name: "docker-py"
+        extra_args: "--user"
+
+    - name: "Clone repositories"
+      git:
+        accept_hostkey: "yes"
+        repo: "{{ item.repo }}"
+        dest: "{{ item.dest }}"
+        version: "{{ item.version }}"
+      with_items: "{{ repos }}"
+
+    - name: "Build and publish images"
+      docker_image:
+        name: "{{ item.name }}"
+        tag: "{{ item.tag }}"
+        path: "{{ item.path }}"
+        dockerfile: "{{ item.dockerfile }}"
+        push: "yes"
+        state: "present"
+        force: "yes"
+      with_items: "{{ images }}"
