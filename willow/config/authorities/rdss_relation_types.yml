@@ -1,16 +1,16 @@
 terms:
-  - id: isCitedBy
-    term: isCitedBy
   - id: cites
     term: cites
+  - id: isCitedBy
+    term: isCitedBy
   - id: isSupplementTo
     term: isSupplementTo
   - id: isSupplementedBy
     term: isSupplementedBy
-  - id: isContinuedBy
-    term: isContinuedBy
   - id: continues
     term: continues
+  - id: isContinuedBy
+    term: isContinuedBy
   - id: hasMetadata
     term: hasMetadata
   - id: isMetadataFor

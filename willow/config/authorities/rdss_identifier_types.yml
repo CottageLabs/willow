@@ -13,8 +13,6 @@ terms:
     term: EISSN
   - id: Handle
     term: Handle
-  - id: IGSN
-    term: IGSN
   - id: ISBN
     term: ISBN
   - id: ISSN
@@ -27,8 +25,8 @@ terms:
     term: LSID
   - id: PMID
     term: PMID
-  - id: PUIDPREMIS
-    term: PUIDPREMIS
+  - id: PUID
+    term: PUID
   - id: PURL
     term: PURL
   - id: UPC

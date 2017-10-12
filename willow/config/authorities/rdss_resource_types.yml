@@ -49,8 +49,6 @@ terms:
     term: unkown
   - id: website
     term: website
-  - id: workingPaper
-    term: workingPaper
   - id: workflow
     term: workflow
   - id: equipment
