@@ -1,0 +1,34 @@
+{
+    "vocabularyId": 5,
+    "vocabularyName": "fileUse",
+    "vocabularyValues": [
+        {
+            "valueId": 1,
+            "valueName": "originalFile"
+        },
+        {
+            "valueId": 2,
+            "valueName": "thumbnailImage"
+        },
+        {
+            "valueId": 3,
+            "valueName": "extractedText"
+        },
+        {
+            "valueId": 4,
+            "valueName": "preservationMasterFile"
+        },
+        {
+            "valueId": 5,
+            "valueName": "intermediateFile"
+        },
+        {
+            "valueId": 6,
+            "valueName": "serviceFile"
+        },
+        {
+            "valueId": 7,
+            "valueName": "transcript"
+        }
+    ]
+}
