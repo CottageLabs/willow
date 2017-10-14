@@ -2,7 +2,7 @@
 #  `rails generate hyrax:work Dataset`
 module Hyrax
   class DatasetPresenter < Hyrax::WorkShowPresenter
-    delegate :doi, :other_title, :creator_nested, :date, :license_nested,
-      :relation, :subject_nested, :admin_metadata, :identifier_nested, to: :solr_document
+    delegate :creator_nested, :organisation_nested, :date, :rights_holder, :license_nested, :identifier_nested,
+      :relation, :category, :rating, :preservation_nested, to: :solr_document
   end
 end

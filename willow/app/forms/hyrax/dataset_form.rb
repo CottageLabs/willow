@@ -6,40 +6,31 @@ module Hyrax
 
     self.terms -= [
       # Fields not interested in
-      :based_near, :creator, :contributor, :date_created, :identifier,
-      :license, :related_url, :subject,
+      :based_near, :creator, :contributor, :date_created,
+      :identifier, :language, :license, :related_url, :publisher, :subject,
       # Fields interested in, but removing to re-order
-      :title, :description, :keyword, :rights_statement, :language, :publisher, :source
+      :title, :description, :keyword, :rights_statement, :source
     ]
 
-    self.terms += [:title, :creator_nested, :rights_statement, :license_nested,
-      :publisher, :date, :resource_type, :other_title, :doi, :identifier_nested, 
-      :description, :keyword, :subject_nested, :language, :relation, :source, 
-      :admin_metadata]
+    self.terms += [:title, :creator_nested, :rights_statement, :rights_holder,
+      :license_nested, :description, :keyword, :date, :identifier_nested,
+      :resource_type, :category, :organisation_nested, :relation, :rating, :source]
 
     self.required_fields -= [
       # Fields not interested in
       :creator, :keyword,
       # Fields interested in, but removing to re-order
-      :title, :rights_statement]
+      :title, :rights_statement
+    ]
 
     self.required_fields += [:title, :creator_nested, :rights_statement,
-      :license_nested, :publisher, :date, :resource_type]
+      :rights_holder, :license_nested]
 
-    NESTED_ASSOCIATIONS = [:other_title, :date, :creator_nested, :license_nested,
-      :subject_nested, :relation, :admin_metadata, :identifier_nested].freeze
+
+    NESTED_ASSOCIATIONS = [:date, :creator_nested, :license_nested, :relation,
+      :identifier_nested, :organisation_nested].freeze
 
     protected
-
-      def self.permitted_other_params
-        [:id,
-         :_destroy,
-         {
-           title: [],
-           title_type: []
-         },
-        ]
-      end
 
       def self.permitted_date_params
         [:id,
@@ -65,16 +56,6 @@ module Hyrax
         ]
       end
 
-      def self.permitted_admin_params
-        [:id,
-         :_destroy,
-         {
-           question: [],
-           response: []
-         },
-        ]
-      end
-
       def self.permitted_license_params
         [:id,
          :_destroy,
@@ -91,23 +72,9 @@ module Hyrax
         [:id,
          :_destroy,
          {
-           first_name: [],
-           last_name: [],
+           name: [],
            orcid: [],
-           role: [],
-           affiliation: []
-         },
-        ]
-      end
-
-      def self.permitted_subject_params
-        [:id,
-         :_destroy,
-         {
-           label: [],
-           definition: [],
-           classification: [],
-           homepage: []
+           role: []
          },
         ]
       end
@@ -122,18 +89,26 @@ module Hyrax
         ]
       end
 
-      def self.build_permitted_params
-        permitted = super
-        permitted << { other_title_attributes: permitted_other_params }
-        permitted << { date_attributes: permitted_date_params }
-        permitted << { relation_attributes: permitted_relation_params }
-        permitted << { admin_metadata_attributes: permitted_admin_params }
-        permitted << { license_nested_attributes: permitted_license_params }
-        permitted << { creator_nested_attributes: permitted_creator_params }
-        permitted << { subject_nested_attributes: permitted_subject_params }
-        permitted << { identifier_nested_attributes: permitted_identifier_params }
-        permitted
+      def self.permitted_org_params
+        [:id,
+         :_destroy,
+         {
+           name: [],
+           role: [],
+           identifier: []
+         },
+        ]
       end
 
+      def self.build_permitted_params
+        permitted = super
+        permitted << { date_attributes: permitted_date_params }
+        permitted << { relation_attributes: permitted_relation_params }
+        permitted << { license_nested_attributes: permitted_license_params }
+        permitted << { creator_nested_attributes: permitted_creator_params }
+        permitted << { identifier_nested_attributes: permitted_identifier_params }
+        permitted << { organisation_nested_attributes: permitted_org_params }
+        permitted
+      end
   end
 end

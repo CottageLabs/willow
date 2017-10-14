@@ -40,6 +40,7 @@ describe Hyrax::ArticlesController, :type => :controller do
                                           'that this hypothesis is true, as the author has very infrequently had to resort ' +
                                           'to cleaning the mugs himself.'],
                          keyword: ["mug", "fairies", "psychoceramics"],
+                         rights_statement: ['Copyright not evaluated'],
                          license_nested_attributes: [{
                                              label: 'A rights label',
                                              definition: 'A definition of the rights',
@@ -50,7 +51,10 @@ describe Hyrax::ArticlesController, :type => :controller do
                                                date: '2017-01-01',
                                                description: 'http://purl.org/dc/terms/dateAccepted',
                                            }],
-                         doi: "http://dx.doi.org/10.5555/2014-04-01",
+                         identifier_nested_attributes: [{
+                                              obj_id: "http://dx.doi.org/10.5555/2014-04-01",
+                                              obj_id_scheme: 'DOI'
+                                          }],
                          subject_nested_attributes: [{
                                                          label: 'Psychoceramics',
                                                          definition: 'The study of cracked pots',

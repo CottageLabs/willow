@@ -1,4 +1,4 @@
-<% if f.object.model_class == ::RdssDataset %>
+<% if f.object.model_class == ::Dataset %>
   <%= f.input key,
     as: :multi_value_select,
     collection: RdssRatingTypesService.select_all_options,

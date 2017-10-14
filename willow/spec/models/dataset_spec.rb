@@ -2,7 +2,7 @@
 #  `rails generate hyrax:work Dataset`
 require 'rails_helper'
 
-RSpec.describe Dataset, :vcr do
+RSpec.describe Dataset do
   it 'has human readable type dataset' do
     @obj = build(:dataset)
     expect(@obj.human_readable_type).to eq('Dataset')
@@ -21,84 +21,48 @@ RSpec.describe Dataset, :vcr do
     end
   end
 
-  describe 'doi' do
-    it 'has a single valued doi' do
-      @obj = build(:dataset, doi: '0000-0000-0000-0000')
-      expect(@obj.doi).to be_kind_of String
-      expect(@obj.doi).to eq '0000-0000-0000-0000'
-    end
-  end
-
-  describe 'publisher' do
-    it 'has publisher' do
-      @obj = build(:dataset, publisher: ['Willow'])
-      expect(@obj.publisher).to be_kind_of ActiveTriples::Relation
-      expect(@obj.publisher).to eq ['Willow']
-    end
-  end
-
-  describe 'nested attributes for other title' do
-    it 'accepts other title attributes' do
-      @obj = build(:dataset, other_title_attributes: [{
-            title: 'Another title',
-            title_type: 'Title type'
-          }]
-      )
-      expect(@obj.other_title.first).to be_kind_of ActiveTriples::Resource
-      expect(@obj.other_title.first.title).to eq ['Another title']
-      expect(@obj.other_title.first.title_type).to eq ['Title type']
+  describe 'rating' do
+    it 'has a rating' do
+      @obj = build(:dataset, rating: ['Normal'])
+      expect(@obj.rating).to be_kind_of ActiveTriples::Relation
+      expect(@obj.rating).to eq ['Normal']
     end
 
-    it 'has the correct uri' do
-      @obj = build(:dataset, other_title_attributes: [{
-            title: 'Another title',
-            title_type: 'Title type'
-          }]
-      )
-      expect(@obj.other_title.first.id).to include('#title')
-    end
-
-    it 'rejects other title attributes if title is blank' do
-      @obj = build(:dataset, other_title_attributes: [{
-            title: 'Another title',
-            title_type: 'Title type'
-          }, {
-            title: 'A third title'
-          }, {
-            title_type: 'Title type'
-          }
-        ]
-      )
-      expect(@obj.other_title.size).to eq(2)
-    end
-
-    it 'destroys other titles' do
-      @obj = build(:dataset, other_title_attributes: [{
-          title: 'Another title',
-          title_type: 'Title type'
-        }]
-      )
-      expect(@obj.other_title.size).to eq(1)
-      @obj.attributes = {
-        other_title_attributes: [{
-          id: @obj.other_title.first.id,
-          title: 'Another title',
-          title_type: 'Title type',
-          _destroy: "1"
-        }]
-      }
-      expect(@obj.other_title.size).to eq(0)
-    end
-
-    it 'indexes the other titles' do
-      @obj = build(:dataset, other_title_attributes: [{
-          title: 'Another title',
-          title_type: 'Title type'
-        }]
-      )
+    it 'indexes rating' do
+      @obj = build(:dataset, rating: ['Normal'])
       @doc = @obj.to_solr
-      expect(@doc).to include('other_title_tesim')
-      expect(@doc['other_title_tesim']).to eq ['Another title']
+      expect(@doc['rating_sim']).to eq ['Normal']
+      expect(@doc['rating_tesim']).to eq ['Normal']
+    end
+  end
+
+  describe 'category' do
+    it 'has a category' do
+      @obj = build(:dataset, category: ['Category'])
+      expect(@obj.category).to be_kind_of ActiveTriples::Relation
+      expect(@obj.category).to eq ['Category']
+    end
+
+    it 'indexes category' do
+      @obj = build(:dataset, category: ['Category'])
+      @doc = @obj.to_solr
+      expect(@doc['category_sim']).to eq ['Category']
+      expect(@doc['category_tesim']).to eq ['Category']
+    end
+  end
+
+  describe 'rights holder' do
+    it 'has a rights_holder' do
+      @obj = build(:dataset, rights_holder: ['Willow'])
+      expect(@obj.rights_holder).to be_kind_of ActiveTriples::Relation
+      expect(@obj.rights_holder).to eq ['Willow']
+    end
+
+    it 'indexes rights_holder' do
+      @obj = build(:dataset, rights_holder: ['Willow'])
+      @doc = @obj.to_solr
+      expect(@doc['rights_holder_sim']).to eq ['Willow']
+      expect(@doc['rights_holder_tesim']).to eq ['Willow']
     end
   end
 
@@ -223,236 +187,6 @@ RSpec.describe Dataset, :vcr do
       @doc = @obj.to_solr
       expect(@doc['license_nested_sim']).to eq ['http://example.com/rights']
       expect(@doc).to include('license_nested_tesim')
-    end
-  end
-
-  describe 'nested attributes for creator' do
-    it 'accepts person attributes' do
-      @obj = build(:dataset,  creator_nested_attributes: [{
-            first_name: 'Foo',
-            last_name: 'Bar',
-            orcid: '0000-0000-0000-0000',
-            affiliation: 'Author affiliation',
-            role: 'Author'
-          },
-          {
-            last_name: 'Hello world',
-            orcid: '0001-0001-0001-0001',
-            role: 'Author'
-          }]
-      )
-      expect(@obj.creator_nested.size).to eq(2)
-      expect(@obj.creator_nested[0]).to be_kind_of ActiveTriples::Resource
-      expect(@obj.creator_nested[1]).to be_kind_of ActiveTriples::Resource
-    end
-
-    it 'has the correct uri' do
-      @obj = build(:dataset,  creator_nested_attributes: [{
-            first_name: 'Foo',
-            last_name: 'Bar',
-            orcid: '0000-0000-0000-0000',
-            affiliation: 'Author affiliation',
-            role: 'Author'
-          }]
-      )
-      expect(@obj.creator_nested.first.id).to include('#person')
-    end
-
-    it 'rejects person if first name and last name are blank' do
-      @obj = build(:dataset, creator_nested_attributes: [
-          {
-            first_name: 'Foo',
-            orcid: '0000-0000-0000-0000',
-            role: 'Author'
-          },
-          {
-            last_name: 'Bar',
-            orcid: '0000-0000-0000-0000',
-            role: 'Author'
-          },
-          {
-            first_name: '',
-            last_name: nil,
-            orcid: '0000-0000-0000-0000',
-            role: 'Author'
-          },
-          {
-            orcid: '0000-0000-0000-0000',
-            role: 'Author'
-          }
-        ]
-      )
-      expect(@obj.creator_nested.size).to eq(2)
-    end
-
-    it 'rejects person if orcid is blank' do
-      @obj = build(:dataset, creator_nested_attributes: [
-          {
-            first_name: 'Foo',
-            last_name: 'Bar',
-            role: 'Author'
-          },
-          {
-            first_name: 'Foo',
-            last_name: 'Bar',
-            orcid: '',
-            role: 'Author'
-          }
-        ]
-      )
-      expect(@obj.creator_nested.size).to eq(0)
-    end
-
-    it 'rejects person if role is blank' do
-      @obj = build(:dataset, creator_nested_attributes: [
-          {
-            first_name: 'Foo',
-            last_name: 'Bar',
-            orcid: '0000-0000-0000-0000'
-          },
-          {
-            first_name: 'Foo',
-            last_name: 'Bar',
-            orcid: '0000-0000-0000-0000',
-            affiliation: 'Author affiliation',
-            role: nil
-          }
-        ]
-      )
-      expect(@obj.creator_nested.size).to eq(0)
-    end
-
-    it 'rejects person if all are blank' do
-      @obj = build(:dataset, creator_nested_attributes: [
-          {
-            first_name: '',
-            last_name: nil,
-            role: nil
-          }
-        ]
-      )
-      expect(@obj.creator_nested.size).to eq(0)
-    end
-
-    it 'destroys creator' do
-      @obj = build(:dataset, creator_nested_attributes: [{
-            first_name: 'Foo',
-            last_name: 'Bar',
-            orcid: '0000-0000-0000-0000',
-            affiliation: 'Author affiliation',
-            role: 'Author'
-          }]
-      )
-      expect(@obj.creator_nested.size).to eq(1)
-      @obj.attributes = {
-        creator_nested_attributes: [{
-            id: @obj.creator_nested.first.id,
-            first_name: 'Foo',
-            last_name: 'Bar',
-            orcid: '0000-0000-0000-0000',
-            affiliation: 'Author affiliation',
-            role: 'Author',
-            _destroy: "1"
-          }]
-      }
-      expect(@obj.creator_nested.size).to eq(0)
-    end
-
-    it 'indexes the creator' do
-      @obj = build(:dataset, creator_nested_attributes: [{
-            first_name: ['Foo'],
-            last_name: 'Bar',
-            orcid: '0000-0000-0000-0000',
-            role: 'Author'
-          }]
-      )
-      @doc = @obj.to_solr
-      expect(@doc['creator_nested_sim']).to eq ['Foo Bar']
-      expect(@doc['creator_nested_tesim']).to eq ['Foo Bar']
-      expect(@doc).to include('creator_nested_ssm')
-    end
-  end
-
-  describe 'nested attributes for subject' do
-    it 'accepts subject attributes' do
-      @obj = build(:dataset, subject_nested_attributes: [{
-            label: 'Subject label',
-            definition: 'Subject label definition',
-            classification: 'LCSH',
-            homepage: 'http://example.com/homepage'
-          }]
-      )
-      expect(@obj.subject_nested.first).to be_kind_of ActiveTriples::Resource
-      expect(@obj.subject_nested.first.label).to eq ['Subject label']
-      expect(@obj.subject_nested.first.definition).to eq ['Subject label definition']
-      expect(@obj.subject_nested.first.classification).to eq ['LCSH']
-      expect(@obj.subject_nested.first.homepage).to eq ['http://example.com/homepage']
-    end
-
-    it 'has the correct uri' do
-      @obj = build(:dataset, subject_nested_attributes: [{
-            label: 'Subject label',
-            definition: 'Subject label definition',
-            classification: 'LCSH',
-            homepage: 'http://example.com/homepage'
-          }]
-      )
-      expect(@obj.subject_nested.first.id).to include('#subject')
-    end
-
-    it 'rejects subject attributes if label is blank' do
-      @obj = build(:dataset, subject_nested_attributes: [{
-            label: 'Subject label',
-            definition: 'Subject label definition',
-            classification: 'LCSH',
-            homepage: 'http://example.com/homepage'
-          }, {
-            classification: 'LCSH',
-            homepage: 'http://example.com/homepage'
-          }, {
-            label: ''
-          }]
-      )
-      expect(@obj.subject_nested.size).to eq(1)
-    end
-
-    it 'destroys subject' do
-      @obj = build(:dataset, subject_nested_attributes: [{
-          label: 'Subject label',
-          definition: 'Subject label definition',
-          classification: 'LCSH',
-          homepage: 'http://example.com/homepage'
-        }]
-      )
-      expect(@obj.subject_nested.size).to eq(1)
-      @obj.attributes = {
-        subject_nested_attributes: [{
-          id: @obj.subject_nested.first.id,
-          label: 'Subject label',
-          definition: 'Subject label definition',
-          classification: 'LCSH',
-          homepage: 'http://example.com/homepage',
-          _destroy: "1"
-        }]
-      }
-      expect(@obj.subject_nested.size).to eq(0)
-    end
-
-    it 'indexes the subject' do
-      @obj = build(:dataset, subject_nested_attributes: [{
-          label: 'Subject label',
-          definition: 'Subject label definition',
-          classification: 'LCSH',
-          homepage: 'http://example.com/homepage'
-        }, {
-          label: 'Subject label 2',
-        }]
-      )
-      @doc = @obj.to_solr
-      expect(@doc).to include('subject_nested_tesim')
-      expect(@doc).to include('subject_nested_sim')
-      expect(@doc['subject_nested_tesim']).to match_array(['Subject label', 'Subject label 2'])
-      expect(@doc['subject_nested_sim']).to match_array(['Subject label', 'Subject label 2'])
     end
   end
 
@@ -616,63 +350,6 @@ RSpec.describe Dataset, :vcr do
     end
   end
 
-  describe 'nested attributes for admin_metadata' do
-    it 'accepts admin_metadata attributes' do
-      @obj = build(:dataset, admin_metadata_attributes: [{
-          question: 'An admin question needing an answer',
-          response: 'Response to admin question'
-        }]
-      )
-      expect(@obj.admin_metadata.size).to eq(1)
-      expect(@obj.admin_metadata.first).to be_kind_of ActiveTriples::Resource
-      expect(@obj.admin_metadata.first.question).to eq ['An admin question needing an answer']
-      expect(@obj.admin_metadata.first.response).to eq ['Response to admin question']
-    end
-
-    it 'has the correct uri' do
-      @obj = build(:dataset, admin_metadata_attributes: [{
-          question: 'An admin question needing an answer',
-          response: 'Response to admin question'
-        }]
-      )
-      expect(@obj.admin_metadata.first.id).to include('#admin_metadata')
-    end
-
-    it 'rejects attributes if question blank' do
-      @obj = build(:dataset, admin_metadata_attributes: [
-          {
-            question: 'An admin question needing an answer'
-          },
-          {
-            response: 'a response'
-          },
-          {
-            question: '',
-            response: nil
-          }]
-      )
-      expect(@obj.admin_metadata.size).to eq(1)
-    end
-
-    it 'destroys admin_metadata' do
-      @obj = build(:dataset, admin_metadata_attributes: [{
-            question: 'An admin question needing an answer',
-            response: 'Response to admin question'
-          }]
-      )
-      expect(@obj.admin_metadata.size).to eq(1)
-      @obj.attributes = {
-        admin_metadata_attributes: [{
-            id: @obj.admin_metadata.first.id,
-            question: 'An admin question needing an answer',
-            response: 'Response to admin question',
-            _destroy: "1"
-          }]
-      }
-      expect(@obj.admin_metadata.size).to eq(0)
-    end
-  end
-
   describe 'nested attributes for identifier_object' do
     it 'accepts identifier object attributes' do
       @obj = build(:dataset, identifier_nested_attributes: [{
@@ -749,4 +426,315 @@ RSpec.describe Dataset, :vcr do
       expect(@doc['identifier_issn_ssim']).to match_array(['1dfsdfsd56'])
     end
   end
+
+  describe 'nested attributes for creator' do
+    it 'accepts person attributes' do
+      @obj = build(:dataset,  creator_nested_attributes: [{
+            first_name: 'Foo',
+            last_name: 'Bar',
+            name: 'Foo Bar',
+            orcid: '0000-0000-0000-0000',
+            affiliation: 'Author affiliation',
+            role: 'Author'
+          },
+          {
+            name: 'Hello world',
+            orcid: '0001-0001-0001-0001',
+            role: 'Author'
+          }]
+      )
+      expect(@obj.creator_nested.size).to eq(2)
+      expect(@obj.creator_nested[0]).to be_kind_of ActiveTriples::Resource
+      expect(@obj.creator_nested[1]).to be_kind_of ActiveTriples::Resource
+    end
+
+    it 'has the correct uri' do
+      @obj = build(:dataset,  creator_nested_attributes: [{
+            first_name: 'Foo',
+            last_name: 'Bar',
+            name: 'Foo Bar',
+            orcid: '0000-0000-0000-0000',
+            affiliation: 'Author affiliation',
+            role: 'Author'
+          }]
+      )
+      expect(@obj.creator_nested.first.id).to include('#person')
+    end
+
+    it 'rejects person if name, role and orcid are blank' do
+      @obj = build(:dataset, creator_nested_attributes: [
+          {
+            first_name: 'Foo',
+            orcid: '0000-0000-0000-0000',
+            role: 'Author'
+          },
+          {
+            name: 'Foo Bar',
+            orcid: '',
+            role: 'Author'
+          },
+          {
+            name: 'Foo Bar',
+            orcid: '0000-0000-0000-0000',
+            role: nil
+          },
+          {
+            name: 'Foo Bar',
+            orcid: '0000-0000-0000-0000',
+            role: 'Author'
+          }
+        ]
+      )
+      expect(@obj.creator_nested.size).to eq(1)
+    end
+
+    it 'destroys creator' do
+      @obj = build(:dataset, creator_nested_attributes: [{
+            name: 'Foo Bar',
+            orcid: '0000-0000-0000-0000',
+            affiliation: 'Author affiliation',
+            role: 'Author'
+          }]
+      )
+      expect(@obj.creator_nested.size).to eq(1)
+      @obj.attributes = {
+        creator_nested_attributes: [{
+            id: @obj.creator_nested.first.id,
+            name: 'Foo Bar',
+            orcid: '0000-0000-0000-0000',
+            affiliation: 'Author affiliation',
+            role: 'Author',
+            _destroy: "1"
+          }]
+      }
+      expect(@obj.creator_nested.size).to eq(0)
+    end
+
+    it 'indexes the creator' do
+      @obj = build(:dataset, creator_nested_attributes: [{
+            name: ['Foo Bar'],
+            orcid: '0000-0000-0000-0000',
+            role: 'Author',
+            affiliation: 'Author affiliation',
+          },{
+            name: ['Boo Far'],
+            orcid: '0000-0000-0000-1111',
+            role: 'Author',
+            affiliation: 'Author affiliation',
+          }]
+      )
+      @doc = @obj.to_solr
+      expect(@doc['creator_nested_sim']).to match_array(['Foo Bar', 'Boo Far'])
+      expect(@doc['creator_nested_tesim']).to match_array(['Foo Bar', 'Boo Far'])
+      expect(@doc).to include('creator_nested_ssm')
+      expect(@doc['author_sim']).to match_array(['Foo Bar', 'Boo Far'])
+      expect(@doc['author_tesim']).to match_array(['Foo Bar', 'Boo Far'])
+      expect(@doc['orcid_ssim']).to match_array(['0000-0000-0000-0000', '0000-0000-0000-1111'])
+    end
+  end
+
+  describe 'nested attributes for organisation' do
+    it 'accepts organisation attributes' do
+      @obj = build(:dataset,  organisation_nested_attributes: [{
+            name: 'Foo Bar',
+            role: 'Funder'
+          },
+          {
+            name: 'Foo Bar',
+            role: 'Editor',
+            identifier: '1234567',
+            uri: 'http://localhost/organisation/1234567'
+          }]
+      )
+      expect(@obj.organisation_nested.size).to eq(2)
+      expect(@obj.organisation_nested[0]).to be_kind_of ActiveTriples::Resource
+      expect(@obj.organisation_nested[1]).to be_kind_of ActiveTriples::Resource
+    end
+
+    it 'has the correct uri' do
+      @obj = build(:dataset,  organisation_nested_attributes: [{
+          name: 'Foo Bar',
+          role: 'Editor',
+          identifier: '1234567',
+          uri: 'http://localhost/organisation/1234567'
+        }]
+      )
+      expect(@obj.organisation_nested.first.id).to include('#organisation')
+    end
+
+    it 'rejects organisation if name and role are blank' do
+      @obj = build(:dataset, organisation_nested_attributes: [
+          {
+            name: 'Foo Bar',
+            role: 'Baz'
+          },
+          {
+            name: 'Foo Bar',
+          },
+          {
+            name: '',
+            role: 'Baz'
+          },
+          {
+            name: 'Foo Bar',
+            role: nil
+          }
+        ]
+      )
+      expect(@obj.organisation_nested.size).to eq(1)
+    end
+
+    it 'destroys organisation' do
+      @obj = build(:dataset, organisation_nested_attributes: [{
+          name: 'Foo Bar',
+          role: 'Editor',
+          identifier: '1234567',
+          uri: 'http://localhost/organisation/1234567'
+        }]
+      )
+      expect(@obj.organisation_nested.size).to eq(1)
+      @obj.attributes = {
+        organisation_nested_attributes: [{
+          id:  @obj.organisation_nested.first.id,
+          name: 'Foo Bar',
+          role: 'Editor',
+          identifier: '1234567',
+          uri: 'http://localhost/organisation/1234567',
+          _destroy: "1"
+        }]
+      }
+      expect(@obj.organisation_nested.size).to eq(0)
+    end
+
+    it 'indexes the organisation' do
+      @obj = build(:dataset, organisation_nested_attributes: [{
+          name: 'Foo Bar',
+          role: 'Baz',
+          identifier: '1234567',
+          uri: 'http://localhost/organisation/1234567'
+        },{
+          name: ['Boo Far'],
+          role: 'Baz',
+          identifier: 'Org34245234',
+      }]
+      )
+      @doc = @obj.to_solr
+      expect(@doc['organisation_nested_sim']).to match_array(['Foo Bar', 'Boo Far'])
+      expect(@doc['organisation_nested_tesim']).to match_array(['Foo Bar', 'Boo Far'])
+      expect(@doc).to include('organisation_nested_ssm')
+      expect(@doc['baz_sim']).to match_array(['Foo Bar', 'Boo Far'])
+      expect(@doc['baz_tesim']).to match_array(['Foo Bar', 'Boo Far'])
+    end
+  end
+
+  describe 'nested attributes for preservation' do
+    it 'accepts preservation attributes' do
+      @obj = build(:dataset,  preservation_nested_attributes: [{
+          name: 'Foo Bar',
+          event_type: 'Baz',
+          date: '2017-04-01 10:23:45',
+          description: 'Event description',
+          outcome: 'Success'
+        },
+        {
+          name: 'Boo Far',
+          event_type: 'Faz',
+        }]
+      )
+      expect(@obj.preservation_nested.size).to eq(2)
+      expect(@obj.preservation_nested[0]).to be_kind_of ActiveTriples::Resource
+      expect(@obj.preservation_nested[1]).to be_kind_of ActiveTriples::Resource
+    end
+
+    it 'has the correct uri' do
+      @obj = build(:dataset,  preservation_nested_attributes: [{
+          name: 'Foo Bar',
+          event_type: 'Baz',
+          date: '2017-04-01 10:23:45',
+          description: 'Event description',
+          outcome: 'Success'
+        }]
+      )
+      expect(@obj.preservation_nested.first.id).to include('#preservation')
+    end
+
+    it 'rejects preservation if all are blank' do
+      @obj = build(:dataset, preservation_nested_attributes: [
+          {
+            name: 'Foo Bar',
+            event_type: 'Baz',
+            date: '2017-04-01 10:23:45',
+            description: 'Event description',
+            outcome: 'Success'
+          },
+          {
+            name: 'Foo Bar',
+          },
+          {
+            name: '',
+          },
+          {
+            name: nil,
+          }
+        ]
+      )
+      expect(@obj.preservation_nested.size).to eq(2)
+    end
+
+    it 'destroys preservation' do
+      @obj = build(:dataset, preservation_nested_attributes: [{
+          name: 'Foo Bar',
+          event_type: 'Baz',
+          date: '2017-04-01 10:23:45',
+          description: 'Event description',
+          outcome: 'Success'
+        }]
+      )
+      expect(@obj.preservation_nested.size).to eq(1)
+      @obj.attributes = {
+        preservation_nested_attributes: [{
+          id:  @obj.preservation_nested.first.id,
+          name: 'Foo Bar',
+          event_type: 'Baz',
+          date: '2017-04-01 10:23:45',
+          description: 'Event description',
+          outcome: 'Success',
+          _destroy: "1"
+        }]
+      }
+      expect(@obj.preservation_nested.size).to eq(0)
+    end
+
+    it 'indexes the preservation' do
+      @obj = build(:dataset, preservation_nested_attributes: [{
+          name: 'Foo Bar',
+          event_type: 'Baz',
+          date: '2017-04-01 10:23:45',
+          description: 'Event description',
+          outcome: 'Success'
+        },{
+          name: ['Boo Far']
+      }]
+      )
+      @doc = @obj.to_solr
+      expect(@doc['preservation_nested_sim']).to match_array(['Foo Bar', 'Boo Far'])
+      expect(@doc['preservation_nested_tesim']).to match_array(['Foo Bar', 'Boo Far'])
+      expect(@doc).to include('preservation_nested_ssm')
+    end
+  end
+
+  describe 'associated with person role' do
+    it "have many person roles" do
+      t = Dataset.reflect_on_association(:person_roles)
+      expect(t.macro).to eq(:has_many)
+    end
+  end
+
+  describe 'associated with organisation role' do
+    it "have many organisation roles" do
+      t = Dataset.reflect_on_association(:organisation_roles)
+      expect(t.macro).to eq(:has_many)
+    end
+  end
+
 end

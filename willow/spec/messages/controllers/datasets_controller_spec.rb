@@ -23,15 +23,13 @@ describe Hyrax::DatasetsController, :type => :controller do
                          title: ['Do Mug Fairies Exist? An experiment in self-cleaning crockery'],
                          resource_type: ["Dataset"],
                          creator_nested_attributes: [{
-                                                         first_name: 'Ed',
-                                                         last_name: 'Pentz',
+                                                         name: 'Ed Pentz',
                                                          orcid: '0000-0000-0000-0000',
                                                          affiliation: 'Author affiliation',
                                                          role: 'Author'
                                                      },
                                                      {
-                                                         first_name: 'Hello',
-                                                         last_name: 'World',
+                                                         name: 'Hello World',
                                                          orcid: '0001-0001-0001-0001',
                                                          role: 'Author'
                                                      }],
@@ -40,24 +38,41 @@ describe Hyrax::DatasetsController, :type => :controller do
                                            'that this hypothesis is true, as the author has very infrequently had to resort ' +
                                            'to cleaning the mugs himself.'],
                          keyword: ["mug", "fairies", "psychoceramics"],
+                         category: ["Category 1", "catrgory 2",],
+                         rights_statement: ['Copyright notevaluated'],
+                         rights_holder: ['Ed Pentz', 'Hello World'],
                          license_nested_attributes: [{
                                                         label: 'A rights label',
                                                         definition: 'A definition of the rights',
                                                         webpage: 'http://creativecommons.org/publicdomain/zero/1.0/'
                                                     }],
-                         publisher: ["Society of Psychoceramics"],
                          date_attributes: [{
                                                date: '2017-01-01',
                                                description: 'http://purl.org/dc/terms/dateAccepted',
                                            }],
-                         doi: "http://dx.doi.org/10.5555/2014-04-01",
-                         subject_nested_attributes: [{
-                                                         label: 'Psychoceramics',
-                                                         definition: 'The study of cracked pots',
-                                                         classification: 'PSC',
-                                                         homepage: 'http://example.com/homepage'
+                         identifier_nested_attributes: [{
+                                              obj_id: "http://dx.doi.org/10.5555/2014-04-01",
+                                              obj_id_scheme: 'DOI'
+                                          }],
+                         organisation_nested_attributes: [{
+                                                         name: 'Organisation 1',
+                                                         role: 'Sponsor'
+                                                     },
+                                                     {
+                                                         name: 'Society of Psychoceramics',
+                                                         role: 'Publisher',
+                                                         identifier: 'o12345'
                                                      }],
-                         language: ["English"],
+                         relation_attributes: [
+                                      {
+                                        label: 'A relation label',
+                                        url: 'http://example.com/relation',
+                                        identifier: '123456',
+                                        identifier_scheme: 'local',
+                                        relationship_name: 'Is part of',
+                                        relationship_role: 'http://example.com/isPartOf'
+                                      }],
+                         rating: ['Normal'],
                          import_url: 'true'
   ) }
 

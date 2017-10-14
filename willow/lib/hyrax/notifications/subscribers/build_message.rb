@@ -108,11 +108,24 @@ module Hyrax
                     }
                 }
               }
-            when [Dataset, Article].include?(@curation_concern_type) && !destroy?
+            when [Article].include?(@curation_concern_type) && !destroy?
               @object.creator_nested.map{|c|
                 {
                   person: {
                          personGivenName: (c.first_name + c.last_name).join(' '),
+                         personIdentifier: c.orcid.map {|o|
+                           {
+                               personIdentifierValue: o,
+                               personIdentifierType: UNKNOWN_ID
+                           }}
+                     }
+                }
+              }
+            when [Dataset].include?(@curation_concern_type) && !destroy?
+              @object.creator_nested.map{|c|
+                {
+                  person: {
+                         personGivenName: c.name.first,
                          personIdentifier: c.orcid.map {|o|
                            {
                                personIdentifierValue: o,
@@ -147,14 +160,29 @@ module Hyrax
                                } ]
                 }
               }
-            when [Dataset, Article].include?(@curation_concern_type) && @event != 'destroy_work.hyrax'
-              @object.license_nested.map{|r|
+            when [Article].include?(@curation_concern_type) && @event != 'destroy_work.hyrax'
+              @object.license_nested.map{|l|
                 {
-                    rightsStatement: r.definition.to_a,
+                    rightsStatement: @object.rights_statement,
                     rightsHolder: [ UNKNOWN ],
                     licence: [ {
-                                   licenceIdentifier: r.webpage.first,
-                                   licenceName: r.label.first
+                                   licenceIdentifier: l.webpage.first,
+                                   licenceName: l.label.first
+                               } ],
+                    access: [ {
+                                  accessType: UNKNOWN_ID,
+                                  accessStatement: UNKNOWN
+                              } ]
+                }
+              }
+            when [Dataset].include?(@curation_concern_type) && @event != 'destroy_work.hyrax'
+              @object.license_nested.map{|l|
+                {
+                    rightsStatement: @object.rights_statement,
+                    rightsHolder: @object.rights_holder,
+                    licence: [ {
+                                   licenceIdentifier: l.webpage.first,
+                                   licenceName: l.label.first
                                } ],
                     access: [ {
                                   accessType: UNKNOWN_ID,
@@ -213,11 +241,13 @@ module Hyrax
           }
 
           if [Dataset, Article].include?(@curation_concern_type)
-            ids << {
-                identifierValue: @object.doi,
-                identifierType: UNKNOWN_ID,
-                relationType: UNKNOWN_ID
-            }
+            @object.identifier_nested.each do |o|
+              ids << {
+                  identifierValue: o.obj_id.first,
+                  identifierType: UNKNOWN_ID,
+                  relationType: UNKNOWN_ID
+              }
+            end
           end
 
           ids << {
@@ -243,15 +273,30 @@ module Hyrax
         end
 
         def objectOrganisationRole
-          [{
-               organisation: {
-                  organisationJiscId: UNKNOWN_ID,
-                  organisationName: UNKNOWN,
-                  organisationType: UNKNOWN_ID,
-                  organisationAddress: UNKNOWN
-              },
-               role: UNKNOWN_ID
-           }]
+          case
+            when [Dataset].include?(@curation_concern_type) && !destroy?
+              @object.organisation_nested.map{|o|
+                {
+                  organisation: {
+                      organisationJiscId: UNKNOWN_ID,
+                      organisationName: o.name.first,
+                      organisationType: UNKNOWN_ID,
+                      organisationAddress: UNKNOWN
+                     },
+                   role: UNKNOWN_ID
+                }
+              }
+            else
+              [{
+                   organisation: {
+                      organisationJiscId: UNKNOWN_ID,
+                      organisationName: UNKNOWN,
+                      organisationType: UNKNOWN_ID,
+                      organisationAddress: UNKNOWN
+                  },
+                   role: UNKNOWN_ID
+               }]
+          end
         end
 
         def objectPreservationEvent
