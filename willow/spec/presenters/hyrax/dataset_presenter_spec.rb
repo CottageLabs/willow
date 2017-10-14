@@ -1,8 +1,8 @@
 # Generated via
-#  `rails generate hyrax:work RdssDataset`
+#  `rails generate hyrax:work Dataset`
 require 'rails_helper'
 
-RSpec.describe Hyrax::Actors::RdssDatasetActor do
+RSpec.describe Hyrax::DatasetPresenter do
   it "has tests" do
     skip "Add your tests here"
   end

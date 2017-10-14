@@ -142,7 +142,7 @@ module DataImporter
     def import_item(item)
       metadata = JSON.parse(File.read(item[:metadata_file]))
 
-      work = RdssDataset.where(id: item[:id]).first || RdssDataset.new() #id: item[:id])
+      work = Dataset.where(id: item[:id]).first || Dataset.new() #id: item[:id])
       work.title = [metadata['objectTitle'].present? ? metadata['objectTitle'] : UNKNOWN]
       work.visibility = @import_visibility
       work.state = Vocab::FedoraResourceStatus.active

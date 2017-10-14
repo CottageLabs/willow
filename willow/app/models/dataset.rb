@@ -1,14 +1,14 @@
 # Generated via
-#  `rails generate hyrax:work RdssDataset`
-class RdssDataset < ActiveFedora::Base
+#  `rails generate hyrax:work Dataset`
+class Dataset < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
 
-  self.indexer = RdssDatasetIndexer
+  self.indexer = DatasetIndexer
   # Change this to restrict which works can be added as a child.
   # self.valid_child_concerns = []
   validates :title, presence: { message: 'Your dataset must have a title.' }
 
-  self.human_readable_type = 'RDSS Dataset'
+  self.human_readable_type = 'Dataset'
 
   # value
   property :rating, predicate: ::RDF::Vocab::VMD.rating do |index|
@@ -43,5 +43,5 @@ class RdssDataset < ActiveFedora::Base
   # remove
   #   creator, contributor, license, publisher, date_created, subject, language,
   #   identifier, based_near, related_url
-  include RdssDatasetNestedAttributes
+  include DatasetNestedAttributes
 end

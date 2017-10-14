@@ -1,5 +1,5 @@
 <div class="multi-nested">
-  <% if f.object.model_class == ::RdssDataset %>
+  <% if f.object.model_class == ::Dataset %>
     <%= f.input :creator_nested,
       as: :rdss_person_statement,
       input_html: {

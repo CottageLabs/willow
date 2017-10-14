@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
-  factory :rdss_dataset do
-    title ["RDSS Dataset"]
+  factory :dataset do
+    title ["Dataset"]
     access_control
     skip_create
     override_new_record

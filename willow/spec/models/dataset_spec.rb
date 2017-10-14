@@ -1,35 +1,35 @@
 # Generated via
-#  `rails generate hyrax:work RdssDataset`
+#  `rails generate hyrax:work Dataset`
 require 'rails_helper'
 
-RSpec.describe RdssDataset do
-  it 'has human readable type rdss_dataset' do
-    @obj = build(:rdss_dataset)
-    expect(@obj.human_readable_type).to eq('RDSS Dataset')
+RSpec.describe Dataset do
+  it 'has human readable type dataset' do
+    @obj = build(:dataset)
+    expect(@obj.human_readable_type).to eq('Dataset')
   end
 
   describe 'title' do
     it 'requires title' do
-      @obj = build(:rdss_dataset, title: nil)
+      @obj = build(:dataset, title: nil)
       #@obj.save!
       expect{@obj.save!}.to raise_error(ActiveFedora::RecordInvalid, 'Validation failed: Title Your dataset must have a title.')
     end
 
     it 'has a multi valued title field' do
-      @obj = build(:rdss_dataset, title: ['test rdss_dataset'])
-      expect(@obj.title).to eq ['test rdss_dataset']
+      @obj = build(:dataset, title: ['test dataset'])
+      expect(@obj.title).to eq ['test dataset']
     end
   end
 
   describe 'rating' do
     it 'has a rating' do
-      @obj = build(:rdss_dataset, rating: ['Normal'])
+      @obj = build(:dataset, rating: ['Normal'])
       expect(@obj.rating).to be_kind_of ActiveTriples::Relation
       expect(@obj.rating).to eq ['Normal']
     end
 
     it 'indexes rating' do
-      @obj = build(:rdss_dataset, rating: ['Normal'])
+      @obj = build(:dataset, rating: ['Normal'])
       @doc = @obj.to_solr
       expect(@doc['rating_sim']).to eq ['Normal']
       expect(@doc['rating_tesim']).to eq ['Normal']
@@ -38,13 +38,13 @@ RSpec.describe RdssDataset do
 
   describe 'category' do
     it 'has a category' do
-      @obj = build(:rdss_dataset, category: ['Category'])
+      @obj = build(:dataset, category: ['Category'])
       expect(@obj.category).to be_kind_of ActiveTriples::Relation
       expect(@obj.category).to eq ['Category']
     end
 
     it 'indexes category' do
-      @obj = build(:rdss_dataset, category: ['Category'])
+      @obj = build(:dataset, category: ['Category'])
       @doc = @obj.to_solr
       expect(@doc['category_sim']).to eq ['Category']
       expect(@doc['category_tesim']).to eq ['Category']
@@ -53,13 +53,13 @@ RSpec.describe RdssDataset do
 
   describe 'rights holder' do
     it 'has a rights_holder' do
-      @obj = build(:rdss_dataset, rights_holder: ['Willow'])
+      @obj = build(:dataset, rights_holder: ['Willow'])
       expect(@obj.rights_holder).to be_kind_of ActiveTriples::Relation
       expect(@obj.rights_holder).to eq ['Willow']
     end
 
     it 'indexes rights_holder' do
-      @obj = build(:rdss_dataset, rights_holder: ['Willow'])
+      @obj = build(:dataset, rights_holder: ['Willow'])
       @doc = @obj.to_solr
       expect(@doc['rights_holder_sim']).to eq ['Willow']
       expect(@doc['rights_holder_tesim']).to eq ['Willow']
@@ -68,7 +68,7 @@ RSpec.describe RdssDataset do
 
   describe 'nested attributes for date' do
     it 'accepts date attributes' do
-      @obj = build(:rdss_dataset, date_attributes: [{
+      @obj = build(:dataset, date_attributes: [{
             date: '2017-01-01',
             description: 'Date definition'
           }]
@@ -79,7 +79,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'has the correct uri' do
-      @obj = build(:rdss_dataset, date_attributes: [{
+      @obj = build(:dataset, date_attributes: [{
             date: '2017-01-01',
             description: 'Date definition'
           }]
@@ -88,7 +88,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'rejects date attributes if date is blank' do
-      @obj = build(:rdss_dataset, date_attributes: [{
+      @obj = build(:dataset, date_attributes: [{
             date: '2017-01-01',
             description: 'date definition'
           }, {
@@ -103,7 +103,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'destroys date' do
-      @obj = build(:rdss_dataset, date_attributes: [{
+      @obj = build(:dataset, date_attributes: [{
           date: '2017-01-01',
           description: 'date definition'
         }]
@@ -121,7 +121,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'indexes the date' do
-      @obj = build(:rdss_dataset, date_attributes: [{
+      @obj = build(:dataset, date_attributes: [{
           date: '2017-01-01',
           description: 'http://purl.org/dc/terms/dateAccepted',
         }, {
@@ -137,7 +137,7 @@ RSpec.describe RdssDataset do
 
   describe 'nested attributes for rights' do
     it 'accepts rights attributes' do
-      @obj = build(:rdss_dataset, license_nested_attributes: [{
+      @obj = build(:dataset, license_nested_attributes: [{
             label: 'A rights label',
             definition: 'A definition of the rights',
             webpage: 'http://example.com/rights'
@@ -150,7 +150,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'has the correct uri' do
-      @obj = build(:rdss_dataset, license_nested_attributes: [{
+      @obj = build(:dataset, license_nested_attributes: [{
             label: 'A rights label',
             definition: 'A definition of the rights',
             webpage: 'http://example.com/rights'
@@ -160,12 +160,12 @@ RSpec.describe RdssDataset do
     end
 
     it 'rejects rights attributes if all blank' do
-      @obj = build(:rdss_dataset, license_nested_attributes: [{ label: '' }] )
+      @obj = build(:dataset, license_nested_attributes: [{ label: '' }] )
       expect(@obj.license_nested.size).to eq(0)
     end
 
     it 'destroys rights' do
-      @obj = build(:rdss_dataset, license_nested_attributes: [{ label: 'test label' }] )
+      @obj = build(:dataset, license_nested_attributes: [{ label: 'test label' }] )
       expect(@obj.license_nested.size).to eq(1)
       @obj.attributes = {
         license_nested_attributes: [{
@@ -178,7 +178,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'indexes the rights' do
-      @obj = build(:rdss_dataset, license_nested_attributes: [{
+      @obj = build(:dataset, license_nested_attributes: [{
             label: 'A rights label',
             definition: 'A definition of the rights',
             webpage: 'http://example.com/rights'
@@ -192,7 +192,7 @@ RSpec.describe RdssDataset do
 
   describe 'nested attributes for relation' do
     it 'accepts relation attributes' do
-      @obj = build(:rdss_dataset, relation_attributes: [
+      @obj = build(:dataset, relation_attributes: [
           {
             label: 'A relation label',
             url: 'http://example.com/relation',
@@ -214,7 +214,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'has the correct uri' do
-      @obj = build(:rdss_dataset, relation_attributes: [
+      @obj = build(:dataset, relation_attributes: [
           {
             label: 'A relation label',
             url: 'http://example.com/relation',
@@ -229,7 +229,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'rejects relation if label is blank' do
-      @obj = build(:rdss_dataset, relation_attributes: [{
+      @obj = build(:dataset, relation_attributes: [{
           label: 'Test label',
           url: 'http://example.com/url',
           identifier: '123456',
@@ -252,7 +252,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'rejects relation if url or identifier is blank' do
-      @obj = build(:rdss_dataset, relation_attributes: [{
+      @obj = build(:dataset, relation_attributes: [{
           label: 'Test label',
           url: 'http://example.com/url',
           identifier: '123456',
@@ -284,7 +284,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'rejects relation if relationship role or relationship name blank' do
-      @obj = build(:rdss_dataset, relation_attributes: [{
+      @obj = build(:dataset, relation_attributes: [{
           label: 'Test label',
           url: 'http://example.com/url',
           identifier: '123456',
@@ -316,7 +316,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'destroys relation' do
-      @obj = build(:rdss_dataset, relation_attributes: [{
+      @obj = build(:dataset, relation_attributes: [{
           label: 'test label',
           url: 'http://example.com/relation',
           relationship_name: 'Is part of'
@@ -336,7 +336,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'indexes relation' do
-      @obj = build(:rdss_dataset, relation_attributes: [{
+      @obj = build(:dataset, relation_attributes: [{
           label: 'test label',
           url: 'http://example.com/relation',
           identifier: '123456',
@@ -352,7 +352,7 @@ RSpec.describe RdssDataset do
 
   describe 'nested attributes for identifier_object' do
     it 'accepts identifier object attributes' do
-      @obj = build(:rdss_dataset, identifier_nested_attributes: [{
+      @obj = build(:dataset, identifier_nested_attributes: [{
           obj_id_scheme: 'ISBN',
           obj_id: '123456'
         }]
@@ -364,7 +364,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'has the correct uri' do
-      @obj = build(:rdss_dataset, identifier_nested_attributes: [{
+      @obj = build(:dataset, identifier_nested_attributes: [{
           obj_id_scheme: 'ISBN',
           obj_id: '123456'
         }]
@@ -373,7 +373,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'rejects attributes if id or scheme are blank' do
-      @obj = build(:rdss_dataset, identifier_nested_attributes: [
+      @obj = build(:dataset, identifier_nested_attributes: [
           {
             obj_id_scheme: 'ISBN'
           },
@@ -393,7 +393,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'destroys identifier object' do
-      @obj = build(:rdss_dataset, identifier_nested_attributes: [{
+      @obj = build(:dataset, identifier_nested_attributes: [{
             obj_id_scheme: 'ISBN',
             obj_id: '123456'
           }]
@@ -411,7 +411,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'indexes the identifier object' do
-      @obj = build(:rdss_dataset, identifier_nested_attributes: [{
+      @obj = build(:dataset, identifier_nested_attributes: [{
             obj_id_scheme: 'ISBN',
             obj_id: '123456'
         }, {
@@ -429,7 +429,7 @@ RSpec.describe RdssDataset do
 
   describe 'nested attributes for creator' do
     it 'accepts person attributes' do
-      @obj = build(:rdss_dataset,  creator_nested_attributes: [{
+      @obj = build(:dataset,  creator_nested_attributes: [{
             first_name: 'Foo',
             last_name: 'Bar',
             name: 'Foo Bar',
@@ -449,7 +449,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'has the correct uri' do
-      @obj = build(:rdss_dataset,  creator_nested_attributes: [{
+      @obj = build(:dataset,  creator_nested_attributes: [{
             first_name: 'Foo',
             last_name: 'Bar',
             name: 'Foo Bar',
@@ -462,7 +462,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'rejects person if name, role and orcid are blank' do
-      @obj = build(:rdss_dataset, creator_nested_attributes: [
+      @obj = build(:dataset, creator_nested_attributes: [
           {
             first_name: 'Foo',
             orcid: '0000-0000-0000-0000',
@@ -489,7 +489,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'destroys creator' do
-      @obj = build(:rdss_dataset, creator_nested_attributes: [{
+      @obj = build(:dataset, creator_nested_attributes: [{
             name: 'Foo Bar',
             orcid: '0000-0000-0000-0000',
             affiliation: 'Author affiliation',
@@ -511,7 +511,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'indexes the creator' do
-      @obj = build(:rdss_dataset, creator_nested_attributes: [{
+      @obj = build(:dataset, creator_nested_attributes: [{
             name: ['Foo Bar'],
             orcid: '0000-0000-0000-0000',
             role: 'Author',
@@ -535,7 +535,7 @@ RSpec.describe RdssDataset do
 
   describe 'nested attributes for organisation' do
     it 'accepts organisation attributes' do
-      @obj = build(:rdss_dataset,  organisation_nested_attributes: [{
+      @obj = build(:dataset,  organisation_nested_attributes: [{
             name: 'Foo Bar',
             role: 'Funder'
           },
@@ -552,7 +552,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'has the correct uri' do
-      @obj = build(:rdss_dataset,  organisation_nested_attributes: [{
+      @obj = build(:dataset,  organisation_nested_attributes: [{
           name: 'Foo Bar',
           role: 'Editor',
           identifier: '1234567',
@@ -563,7 +563,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'rejects organisation if name and role are blank' do
-      @obj = build(:rdss_dataset, organisation_nested_attributes: [
+      @obj = build(:dataset, organisation_nested_attributes: [
           {
             name: 'Foo Bar',
             role: 'Baz'
@@ -585,7 +585,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'destroys organisation' do
-      @obj = build(:rdss_dataset, organisation_nested_attributes: [{
+      @obj = build(:dataset, organisation_nested_attributes: [{
           name: 'Foo Bar',
           role: 'Editor',
           identifier: '1234567',
@@ -607,7 +607,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'indexes the organisation' do
-      @obj = build(:rdss_dataset, organisation_nested_attributes: [{
+      @obj = build(:dataset, organisation_nested_attributes: [{
           name: 'Foo Bar',
           role: 'Baz',
           identifier: '1234567',
@@ -629,7 +629,7 @@ RSpec.describe RdssDataset do
 
   describe 'nested attributes for preservation' do
     it 'accepts preservation attributes' do
-      @obj = build(:rdss_dataset,  preservation_nested_attributes: [{
+      @obj = build(:dataset,  preservation_nested_attributes: [{
           name: 'Foo Bar',
           event_type: 'Baz',
           date: '2017-04-01 10:23:45',
@@ -647,7 +647,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'has the correct uri' do
-      @obj = build(:rdss_dataset,  preservation_nested_attributes: [{
+      @obj = build(:dataset,  preservation_nested_attributes: [{
           name: 'Foo Bar',
           event_type: 'Baz',
           date: '2017-04-01 10:23:45',
@@ -659,7 +659,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'rejects preservation if all are blank' do
-      @obj = build(:rdss_dataset, preservation_nested_attributes: [
+      @obj = build(:dataset, preservation_nested_attributes: [
           {
             name: 'Foo Bar',
             event_type: 'Baz',
@@ -682,7 +682,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'destroys preservation' do
-      @obj = build(:rdss_dataset, preservation_nested_attributes: [{
+      @obj = build(:dataset, preservation_nested_attributes: [{
           name: 'Foo Bar',
           event_type: 'Baz',
           date: '2017-04-01 10:23:45',
@@ -706,7 +706,7 @@ RSpec.describe RdssDataset do
     end
 
     it 'indexes the preservation' do
-      @obj = build(:rdss_dataset, preservation_nested_attributes: [{
+      @obj = build(:dataset, preservation_nested_attributes: [{
           name: 'Foo Bar',
           event_type: 'Baz',
           date: '2017-04-01 10:23:45',
@@ -725,14 +725,14 @@ RSpec.describe RdssDataset do
 
   describe 'associated with person role' do
     it "have many person roles" do
-      t = RdssDataset.reflect_on_association(:person_roles)
+      t = Dataset.reflect_on_association(:person_roles)
       expect(t.macro).to eq(:has_many)
     end
   end
 
   describe 'associated with organisation role' do
     it "have many organisation roles" do
-      t = RdssDataset.reflect_on_association(:organisation_roles)
+      t = Dataset.reflect_on_association(:organisation_roles)
       expect(t.macro).to eq(:has_many)
     end
   end

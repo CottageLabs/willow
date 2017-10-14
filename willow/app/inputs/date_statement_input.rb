@@ -21,7 +21,7 @@ protected
     field_name = name_for(attribute_name, index, field)
     field_id = id_for(attribute_name, index, field)
     field_value = date_statement.send(field).first
-    if object.model_class == ::RdssDataset
+    if object.model_class == ::Dataset
         date_options = RdssDateTypesService.select_all_options
     else
         date_options = DateTypesService.select_all_options

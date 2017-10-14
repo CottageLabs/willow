@@ -1,10 +1,10 @@
 # Generated via
-#  `rails generate hyrax:work RdssDataset`
+#  `rails generate hyrax:work Dataset`
 require 'rails_helper'
 include Warden::Test::Helpers
 
 # NOTE: If you generated more than one work, you have to set "js: true"
-RSpec.feature 'Create a RdssDataset', vcr: true, js: false do
+RSpec.feature 'Create a Dataset', vcr: true, js: false do
   context 'a logged in user' do
     let(:user) { create(:user) }
 
@@ -13,9 +13,9 @@ RSpec.feature 'Create a RdssDataset', vcr: true, js: false do
     end
 
     scenario do
-      visit new_hyrax_rdss_dataset_path
+      visit new_hyrax_dataset_path
 
-      expect(page).to have_content "Add New RDSS Dataset"
+      expect(page).to have_content "Add New Dataset"
     end
   end
 end

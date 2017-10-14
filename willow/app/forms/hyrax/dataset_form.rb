@@ -1,8 +1,8 @@
 # Generated via
-#  `rails generate hyrax:work RdssDataset`
+#  `rails generate hyrax:work Dataset`
 module Hyrax
-  class RdssDatasetForm < Hyrax::Forms::WorkForm
-    self.model_class = ::RdssDataset
+  class DatasetForm < Hyrax::Forms::WorkForm
+    self.model_class = ::Dataset
 
     self.terms -= [
       # Fields not interested in

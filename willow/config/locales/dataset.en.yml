@@ -1,14 +1,14 @@
-fr:
+en:
   hyrax:
     icons:
       dataset:     'fa fa-cubes'
     select_type:
-      rdss_dataset:
-        name:               "RDSS Dataset"
+      dataset:
+        name:               "Dataset"
         description:        "Dataset with JISC RDSS metadata schema properties"
   simple_form:
     labels:
-      rdss_dataset:
+      dataset:
         description:      "Abstract or Summary"
         keyword:          "Keyword"
         files:            "Upload a new version of this file from your computer"
@@ -23,7 +23,7 @@ fr:
         preservation_nested: "Preservation event"
 
     hints:
-      rdss_dataset:
+      dataset:
         resource: "Pre-defined categories to describe the type of content being uploaded, such as &quot;article&quot; or &quot;dataset.&quot;  More than one type may be selected."
         title: "A name to aid in identifying the dataset."
         keyword: "Words or phrases you select to describe what the dataset is about. These are used to search for content."

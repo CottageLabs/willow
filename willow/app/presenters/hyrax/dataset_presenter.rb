@@ -1,7 +1,7 @@
 # Generated via
-#  `rails generate hyrax:work RdssDataset`
+#  `rails generate hyrax:work Dataset`
 module Hyrax
-  class RdssDatasetPresenter < Hyrax::WorkShowPresenter
+  class DatasetPresenter < Hyrax::WorkShowPresenter
     delegate :creator_nested, :organisation_nested, :date, :rights_holder, :license_nested, :identifier_nested,
       :relation, :category, :rating, :preservation_nested, to: :solr_document
   end

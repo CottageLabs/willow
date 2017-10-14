@@ -1,5 +1,5 @@
 <%
-if f.object.model_class == ::RdssDataset
+if f.object.model_class == ::Dataset
   options = RdssResourceTypesService.select_all_options
 else
   options = ArticleResourceTypesService.select_all_options
