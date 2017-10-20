@@ -34,7 +34,7 @@ end
 desc 'Bulk user import into Willow'
 task :user_bulk_import, [:csv_file,:password] => :environment do |task, args|
 
-  default_password =  args.password or 'J1scPa$$wurd&*!'
+  default_password =  args.password || 'J1scPa$$wurd&*!'
 
   unless args&.csv_file
     abort("Aborting import: CSV file must be specified `rake user_bulk_import[<file>]`")
@@ -59,8 +59,8 @@ task :user_bulk_import, [:csv_file,:password] => :environment do |task, args|
     end
 
     if !User.where(email: email).first
-      puts "Adding user `#{name}` with email #{bulk_user['email']}"
-      user = User.new({email: bulk_user['email'], password: default_password, password_confirmation: default_password, display_name: bulk_user['name']})
+      puts "Adding user `#{name}` with email #{email}"
+      user = User.new({email: email, password: default_password, password_confirmation: default_password, display_name: name})
       user.save!
 
       if is_admin
