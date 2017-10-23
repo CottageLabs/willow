@@ -7,6 +7,7 @@ Rails.application.load_tasks
 
 require 'solr_wrapper/rake_task' unless Rails.env.production?
 
+
 task :default_admin_set do
   with_server :development do
     Rake::Task['hyrax:default_admin_set:create'].invoke
@@ -25,6 +26,58 @@ task :demo do
       rescue Interrupt
         puts 'Stopping server'
       end
+    end
+  end
+end
+
+
+desc 'Bulk user import into Willow'
+task :user_bulk_import, [:csv_file,:password] => :environment do |task, args|
+
+  default_password =  args.password || 'J1scPa$$wurd&*!'
+
+  unless args&.csv_file
+    abort("Aborting import: CSV file must be specified `rake user_bulk_import[<file>]`")
+  end
+
+  unless File.exists?(args.csv_file)
+    abort("Aborting import: CSV file specified `#{args.csv_file}` does not exist")
+  end
+
+  puts "Importing users from the bulk csv file: #{args.csv_file}"
+
+  truthiness_check = %w[yes true 1 y]
+  admin = Role.where(name: 'admin').first_or_create!
+  CSV.foreach(args.csv_file, headers:true) do |bulk_user|
+    email = bulk_user['email']
+    name = bulk_user['name']
+
+    if bulk_user.include?('is_admin') and truthiness_check.include?(bulk_user['is_admin'])
+      is_admin = true
+    else
+      is_admin = false
+    end
+
+    if !User.where(email: email).first
+      puts "Adding user `#{name}` with email #{email}"
+      user = User.new({email: email, password: default_password, password_confirmation: default_password, display_name: name})
+      user.save!
+
+      if is_admin
+        unless admin.users.include?(user)
+          admin.users << user
+          admin.save!
+        end
+      end
+      agent = Sipity::Agent.where(proxy_for_id: user, proxy_for_type: user.class.name).first_or_create!
+      workflow = Sipity::Workflow.where(name: 'one_step_mediated_deposit').first
+      workflow.active = true
+      workflow.save
+      role = Sipity::Role.where(name: 'depositing').first
+      workflow_role = Sipity::WorkflowRole.where(workflow: workflow, role: role).first
+      Sipity::WorkflowResponsibility.where(agent: agent, workflow_role: workflow_role).first_or_create!
+    else
+      puts "Skipping `#{name}` as email #{email} already exists"
     end
   end
 end
