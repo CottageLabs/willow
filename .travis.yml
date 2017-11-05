@@ -3,5 +3,4 @@ rvm:
   - 2.4.2
 before_install: cd willow
 env:
-  - RAILS_ENV=test
-  - SECRET_KEY_BASE_TEST=0
+  - RAILS_ENV=test SECRET_KEY_BASE_TEST=0
