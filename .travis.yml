@@ -7,7 +7,7 @@ services:
 
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
-  - cp willow/config/database.yml.travis willow/config/database.yml
+  - cp config/database.yml.travis config/database.yml
 
 before_install: cd willow
 
