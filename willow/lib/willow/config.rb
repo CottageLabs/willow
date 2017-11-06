@@ -1,11 +1,11 @@
 module Willow
   class Config
      def self.institution_name
-       ENV["INSTITUTION_NAME"] || "Cottage Labs"
+       ENV["INSTITUTION_NAME"] || "RDSS Samvera"
      end
 
      def self.institution_name_full
-       ENV["INSTITUTION_NAME_FULL"] || "Cottage Labs LLP"
+       ENV["INSTITUTION_NAME_FULL"] || "Jisc RDSS Samvera"
      end
 
      def self.institution_logo

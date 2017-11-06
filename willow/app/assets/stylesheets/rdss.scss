@@ -4,11 +4,11 @@ body {
 }
 
 body.dashboard {
-    padding-top: 70px;
+  padding-top: 0;
 }
 
 #logo {
-  font-size: 36px;
+  font-size: 24px;
   color: white;
   font-weight: bold;
 }
@@ -20,8 +20,20 @@ body.dashboard {
   height: 360px;
 }
 
+.navbar {
+  border: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+
+.navbar.navbar-inverse {
+  background-color: #e85e13;
+  border: 0;
+}
+
 .navbar.navbar-default.navbar-static-top {
-  color: #555;
+  background-color: #e85e13;
   font-size: 18px;
   margin-bottom: 0;
 }
@@ -42,6 +54,12 @@ footer.navbar.navbar-inverse a:hover {
   text-decoration: underline;
 }
 
+.site-footer {
+  background-color: #c3d1d6;
+  position: absolute;
+  height: auto;
+}
+
 .navbar-text.text-left {
   margin-left: 150px;
 }
@@ -50,55 +68,62 @@ footer.navbar.navbar-inverse a:hover {
   margin-right: 150px;
 }
 
+.dashboard #masthead {
+  position: relative;
+}
+
 #masthead {
   min-height: 50px;
   padding-top: 10px;
 }
 
-ul.nav.navbar-nav.col-sm-5.col-md-6 {
-  padding-left: 15px;
+#masthead-top {
+  background-color: #2B3840;
+  height: 36px;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
-
 
 #user_utility_links {
   margin: 0;
 }
 
 #tabtoolbar {
-  background-color: #222;
+  background-color: #e85e13;
+  padding-bottom: 0;
 }
 
 #tabtoolbar li {
- padding-right: 2px;
+  padding-right: 3px;
 }
 
 #tabtoolbar a {
   color: white;
-  font-weight: bold;
-  height: 52px;
+  height: 53px;
+  background: rgba(108, 0, 0, 0.15);
+  text-transform: none;
+  font-weight: normal;
 }
 
 #tabtoolbar > ul > li.active > a {
-  background-color: #6b6b6b;
-  color: white;
-  border-radius: 5px 5px 0 0;
+  background-color: #fff;
+  color: #2c3841;
 }
 
 #tabtoolbar a:hover, a:focus {
-  background-color: #6b6b6b;
-  color: white;
-  border-radius: 5px 5px 0 0;
+  background-color: #fff;
+  color: #2c3841;
 }
 
 #tabtoolbar > #user_utility_links > li.dropdown.open > a:active, #tabtoolbar > #user_utility_links > li.dropdown.open > a:visited, #tabtoolbar > #user_utility_links > li.dropdown.open > a:focus {
   background-color: #6b6b6b;
   color: white;
-  border-radius: 5px 5px 0 0;
+  border-right: 2px;
 }
 
 #tabtoolbar > #user_utility_links > li.dropdown.open > ul.dropdown-menu.dropdown-menu-right > li > a {
   color: black;
-
 }
 
 div.home_marketing_text {
@@ -131,7 +156,7 @@ div.home_share_work p.text-center a{
 
 #cl-name {
   color: white;
-  font-size: 36px;
+  font-size: 24px;
   font-weight: bold;
 }
 
@@ -146,7 +171,11 @@ div#announcement {
 }
 
 .image-masthead .background-container {
-  background-image: none !important;
+  //background-image: none !important;
+}
+
+.image-masthead {
+  border-bottom: 0;
 }
 
 form .listing {
@@ -198,6 +227,10 @@ form .field-wrapper label[required="required"]::after {
 
 #logo {
   padding-left: 20px;
+}
+
+.jisc-logo {
+  vertical-align: bottom;
 }
 
 #navbar-col-2 {
