@@ -12,4 +12,4 @@ before_script:
 before_install: cd willow
 
 env:
-  - RAILS_ENV=test SECRET_KEY_BASE_TEST="0"
+  - RAILS_ENV=test SECRET_KEY_BASE_TEST=secret
