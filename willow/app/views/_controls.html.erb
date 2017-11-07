@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default navbar-static-top" role="navigation">
-  <div class="container-fluid">
+  <div class="container">
     <div class="row" id="tabtoolbar">
       <ul class="nav navbar-nav col-sm-5 col-md-6">
         <li <%= 'class=active' if current_page?(hyrax.root_path) %>>
@@ -10,12 +10,10 @@
           <%= link_to t(:'hyrax.controls.help'), hyrax.help_path %></li>
         <li <%= 'class=active' if current_page?(hyrax.contact_path) %>>
           <%= link_to t(:'hyrax.controls.contact'), hyrax.contact_path %></li>
-      </ul><!-- /.nav -->
-    </div>
-    <div class="row">
+      </ul>
      <div class="searchbar-right navbar-right col-sm-7 col-md-6">
         <%= render partial: 'catalog/search_form' %>
       </div>
     </div>
   </div>
-</nav><!-- /.navbar -->
+</nav>

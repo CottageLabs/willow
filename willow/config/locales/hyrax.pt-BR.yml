@@ -44,13 +44,13 @@ pt-BR:
           subject_tesim: Sujeito
           title_tesim: Título
   hyrax:
-    account_name: ID da conta da minha Cottage Labs
+    account_name: ID da conta da minha Jisc
     directory:
       suffix: "@ Example.org"
     footer:
       copyright_html: "<strong>Copyright © 2017 Samvera Licenciado</strong> sob a Licença Apache, Versão 2.0"
       service_html: Um serviço de <a href="http://samvera.org/" class="navbar-link" target="_blank">Samvera</a> .
-    institution_name: Cottage Labs
-    institution_name_full: Cottage Labs LLP
-    product_name: Willow
+    institution_name:       "%{institution_name}"
+    institution_name_full:  "%{institution_name_full}"
+    product_name: RDSS Samvera
     product_twitter_handle: "@SamveraRepo"

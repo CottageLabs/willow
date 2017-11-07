@@ -25,7 +25,7 @@ Hyrax.config do |config|
   config.contact_email = ENV['CONTACT_FORM_RECIPIENT_EMAIL'] || "repo-admin@example.org"
 
   # Text prefacing the subject entered in the contact form
-  config.subject_prefix = ENV['CONTACT_FORM_SUBJECT_PREFIX'] || "Willow Contact form:"
+  config.subject_prefix = ENV['CONTACT_FORM_SUBJECT_PREFIX'] || "Jisc Samvera Contact form:"
 
   # How many notifications should be displayed on the dashboard
   # config.max_notifications_for_dashboard = 5

@@ -1,6 +1,16 @@
 <%= render '/shared/select_work_type_modal' if create_work_presenter.many? %>
-<nav id="masthead" class="navbar navbar-inverse navbar-static-top" role="navigation">
+<div id="masthead-top" class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="https://jisc.ac.uk">
+        <img src="/jisc-logo-small.png" class="jisc-logo">
+      </a>
+    </div>
+  </div>
+</div>
+<nav id="masthead" class="navbar navbar-inverse" role="navigation">
   <%= render partial: '/logo' %>
+
   <div id="navbar-col-2">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->

@@ -43,7 +43,7 @@ en:
           subject_tesim: Subject
           title_tesim: Title
   hyrax:
-    product_name:           "Willow"
+    product_name:           "RDSS Samvera"
     product_twitter_handle: "@SamveraRepo"
     institution_name:       "%{institution_name}"
     institution_name_full:  "%{institution_name_full}"
