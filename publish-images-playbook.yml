@@ -12,8 +12,8 @@
   vars:
     repos:
       - name: "Willow repository"
-        repo: "https://github.com/JiscRDSS/rdss-willow"
-        version: "master"
+        repo: "https://github.com/JiscRDSS/rdss-samvera"
+        version: "develop"
         dest: "./src/willow"
     images:
       - name: "{{ registry }}willow-solr"
