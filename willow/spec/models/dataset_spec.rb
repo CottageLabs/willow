@@ -285,7 +285,7 @@ RSpec.describe Dataset, :vcr do
       expect(@obj.creator_nested.size).to eq(2)
     end
 
-    it 'rejects person if orcid is blank' do
+    it 'accepts person if orcid is blank' do
       @obj = build(:dataset, creator_nested_attributes: [
           {
             first_name: 'Foo',
@@ -300,7 +300,7 @@ RSpec.describe Dataset, :vcr do
           }
         ]
       )
-      expect(@obj.creator_nested.size).to eq(0)
+      expect(@obj.creator_nested.size).to eq(2)
     end
 
     it 'rejects person if role is blank' do

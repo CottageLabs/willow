@@ -9,13 +9,13 @@ describe DatasetAgentRolesService do
 
   describe "#select_all_options" do
     it "returns all terms" do
-      expect(described_class.select_all_options).to include(["Data curator", "DataCurator"])
+      expect(described_class.select_all_options).to include(["Data creator", "dataCreator"])
     end
   end
 
   describe "#label" do
     it "resolves for ids of all terms" do
-      expect(described_class.label('DataCollector')).to eq("Data collector")
+      expect(described_class.label('dataCollector')).to eq("Data collector")
     end
   end
 end

@@ -26,6 +26,10 @@ module Hyrax
     self.required_fields += [:title, :creator_nested, :resource_type,
       :rights_statement, :license_nested, :publisher, :date]
 
+    def orcid_required?
+      true
+    end
+
     NESTED_ASSOCIATIONS = [:date, :creator_nested, :license_nested,
       :subject_nested, :relation, :admin_metadata, :project, :identifier_nested].freeze
 
