@@ -30,8 +30,7 @@ module DatasetNestedAttributes
     resource_class.send(:define_method, :creator_blank) do |attributes|
       (Array(attributes[:first_name]).all?(&:blank?) &&
       Array(attributes[:last_name]).all?(&:blank?)) ||
-      Array(attributes[:role]).all?(&:blank?) ||
-      Array(attributes[:orcid]).all?(&:blank?)
+      Array(attributes[:role]).all?(&:blank?)
     end
 
     # license_blank - similar to all_blank for defined license attributes
