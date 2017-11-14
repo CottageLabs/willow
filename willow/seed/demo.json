@@ -1,20 +1,20 @@
 {
   "users" : [
     {
-      "email" : "admin@willow",
+      "email" : "admin@rdss",
       "password" : "password",
-      "name" : "Willow Admin",
+      "name" : "RDSS Samvera Admin",
       "role" : "admin"
     },
     {
-      "email" : "user@willow",
+      "email" : "user@rdss",
       "password" : "demouser",
       "name" : "Demo User",
       "role" : "user",
       "depositor" : true
     },
     {
-      "email" : "workflow@willow",
+      "email" : "workflow@rdss",
       "password": "workflow",
       "name" : "Workflow Admin",
       "role" : "admin"
@@ -23,48 +23,11 @@
 
   "site_text" : {
     "marketing" : [
-      "<div style=\"font-size: 0.5em; padding: 1em; \"><p>Cottage Labs is pleased to offer repository solutions using ",
-      "cutting-edge open source technology <a href=\"https://projecthydra.org/\">Hydra</a> and <a href=\"http://fedorarepository.org/\">Fedora</a>. ",
-      "We can help you from initial requirements, through customisation and integration with your systems, to long term support and maintenance.</p>",
-      "<p>Whether you are a small institution looking to get the essential features out-of-the-box, or a large, research-intensive ",
-      "organisation looking for customisations and integration with local systems, don't hesitate to&nbsp;",
-      "<a href=\"mailto:willow@cottagelabs.com\">contact us</a> to find out what we can do for you.</p>",
-      "<p>Read more about <a href=\"https://cottagelabs.com/willow\">Willow</a> on our website or take a look around this demo system.</p></div>"
+      "<div style=\"font-size: 0.5em; padding: 1em; \"><p>RDSS Samvera is pleased to offer repository solutions using ",
+      "cutting-edge open source technology <a href=\"https://projecthydra.org/\">Hydra</a> and <a href=\"http://fedorarepository.org/\">Fedora</a>. "
     ],
     "about" : [
-      "<p>We have a set of components from the Hydra ecosystem that we support, and we will:</p>",
-      "<ul>",
-      "<li>Help you understand your requirements, model your data, and plan your repository system around you</li>",
-      "<li>Host and maintain everything for you, as your fully featured repository system</li>",
-      "<li>Support, maintain and extend your existing system, if you prefer</li>",
-      "<li>Get you migrated from any legacy systems in place</li>",
-      "<li>Do bespoke development, and help you get integrated with 3rd party systems</li>",
-      "</ul>",
-      "<p>We can join you at any stage of your existing project, including:</p>",
-      "<ul>",
-      "<li>Initial requirements capture and analysis</li>",
-      "<li>Data modelling and system architecture</li>",
-      "<li>Implementation and deployment of the software stack</li>",
-      "<li>Bespoke development, creating or customising existing components</li>",
-      "<li>3rd party system integration - authentication, deposit environments, CRIS and CMS</li>",
-      "<li>Maintenance, upgrades and migrations</li>",
-      "</ul>",
-      "<p>Our developers have many years experience in the repository, research data management and research information space, and will bring that to your project.</p>",
-      "<p>Read more about&nbsp;<a href=\"https://cottagelabs.com/willow\">Willow</a>&nbsp;on our website or take a look around this demo system.</p>",
-      "<h2>About this demo</h2>",
-      "<p>The site you're looking at right now is built with&nbsp;<a href=\"http://hyr.ax/\">Hyrax</a>, a repository front-end which leverages the full power of&nbsp;<a href=\"https://samvera.org/\">Samvera</a>.</p>",
-      "<p>Sufia supports functionality such as:</p>",
-      "<ul>",
-      "<li>Deposit and deposit workflows</li>",
-      "<li>Access controls</li>",
-      "<li>User profiles</li>",
-      "<li>Collection and file management</li>",
-      "<li>Batch editing</li>",
-      "<li>Faceted search and browse</li>",
-      "<li>Preservation functions</li>",
-      "<li>... and much more; head over to their&nbsp;<a href=\"http://sufia.io/\">website</a>&nbsp;to learn more</li>",
-      "</ul>",
-      "<p>As we expand the components that form part of Willow, we'll add more to this demonstrator, so you can keep up to date with what's available.</p>"
+      "About placeholder page."
     ]
   },
 
@@ -78,9 +41,9 @@
         "description": ["This is a collection of articles from the Department of Physics"],
         "keyword": ["journal", "physics"],
         "license": ["http://www.europeana.eu/portal/rights/rr-r.html"],
-        "publisher": ["University of Willow"],
+        "publisher": ["University of RDSS Samvera"],
         "date_created": ["2012-04-22"],
-        "subject": ["willow journal"],
+        "subject": ["RDSS journal"],
         "language": ["English"],
         "visibility": "open"
       }
@@ -94,7 +57,7 @@
         "description": ["This is a collection of resources in the Medical subject area"],
         "keyword": ["medicine"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
-        "publisher": ["University of Willow"],
+        "publisher": ["University of RDSS Samvera"],
         "date_created": ["2013-05-12"],
         "subject": ["medicine"],
         "language": ["English"],
@@ -111,7 +74,7 @@
         "description": ["This is a collection of datasets"],
         "keyword": ["datasets"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
-        "publisher": ["University of Willow"],
+        "publisher": ["University of RDSS Samvera"],
         "date_created": ["2014-06-01"],
         "subject": ["anything"],
         "language": ["English"],
@@ -119,17 +82,17 @@
       }
     },
     {
-      "id" : "study_of_willows",
+      "id" : "study_of_rdss_samvera",
       "metadata" : {
-        "title": ["A Study of Willows"],
+        "title": ["A Study of RDSS Samvera"],
         "resource_type": ["Journal"],
         "creator": [ "Josephine Bloggs" ],
-        "description": ["A study of a variety of different kinds of Willow"],
-        "keyword": ["willow"],
+        "description": ["A study of a variety of different kinds of RDSS Samvera"],
+        "keyword": ["samvera"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
-        "publisher": ["University of Willow"],
+        "publisher": ["University of RDSS Samvera"],
         "date_created": ["2015-01-20"],
-        "subject": ["willow"],
+        "subject": ["samvera"],
         "language": ["English"],
         "visibility": "open"
       }
@@ -138,18 +101,18 @@
 
   "works" : [
     {
-      "id" : "willow1",
+      "id" : "rdss1",
       "metadata" : {
-        "title": ["Willow Tree 1"],
+        "title": ["RDSS Tree 1"],
         "resource_type": ["Article"],
         "creator": ["mattharvey1"],
-        "description": ["The Silhouette of a Willow"],
-        "keyword": ["willow", "tree"],
+        "description": ["The Silhouette of a RDSS"],
+        "keyword": ["samvera", "tree"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
         "rights_statement": ["http://rightsstatements.org/vocab/NoC-NC/1.0/"],
-        "publisher": ["University of Willow"],
+        "publisher": ["University of RDSS Samvera"],
         "date_created": ["2017-01-01"],
-        "subject": ["willow image"],
+        "subject": ["rdss image"],
         "language": ["English"],
         "visibility": "open"
       },
@@ -163,22 +126,22 @@
           }
         }
       ],
-      "collections" : ["study_of_willows"],
+      "collections" : ["study_of_rdss_samvera"],
       "featured" : true
     },
     {
-      "id" : "willow2",
+      "id" : "rdss2",
       "metadata" : {
-        "title": ["Willow Tree 2"],
+        "title": ["RDSS Tree 2"],
         "resource_type": ["Article"],
         "creator": ["oatsy40"],
-        "description": ["A large willow tree"],
-        "keyword": ["willow", "tree"],
+        "description": ["A large rdss tree"],
+        "keyword": ["samvera", "tree"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
         "rights_statement": ["http://rightsstatements.org/vocab/NoC-NC/1.0/"],
-        "publisher": ["University of Willow"],
+        "publisher": ["University of RDSS Samvera"],
         "date_created": ["2017-01-01"],
-        "subject": ["willow image"],
+        "subject": ["rdss image"],
         "language": ["English"],
         "visibility": "open"
       },
@@ -192,22 +155,22 @@
           }
         }
       ],
-      "collections" : ["study_of_willows"],
+      "collections" : ["study_of_rdss_samvera"],
       "featured" : false
     },
     {
-      "id" : "willow3",
+      "id" : "rdss",
       "metadata" : {
-        "title": ["Willow Tree 3"],
+        "title": ["RDSS Tree 3"],
         "resource_type": ["Article"],
         "creator": ["Alan Myers"],
-        "description": ["Willow Tree"],
-        "keyword": ["willow", "tree"],
+        "description": ["RDSS Tree"],
+        "keyword": ["samvera", "tree"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
         "rights_statement": ["http://rightsstatements.org/vocab/NoC-NC/1.0/"],
-        "publisher": ["University of Willow"],
+        "publisher": ["University of RDSS Samvera"],
         "date_created": ["2017-01-01"],
-        "subject": ["willow image"],
+        "subject": ["rdss image"],
         "language": ["English"],
         "visibility": "open"
       },
@@ -221,22 +184,22 @@
           }
         }
       ],
-      "collections" : ["study_of_willows"],
+      "collections" : ["study_of_rdss_samvera"],
       "featured" : false
     },
     {
-      "id" : "willow4",
+      "id" : "rdss4",
       "metadata" : {
-        "title": ["Willow Tree 4"],
+        "title": ["RDSS Tree 4"],
         "resource_type": ["Article"],
         "creator": ["msmornington"],
-        "description": ["Willow Tree"],
-        "keyword": ["willow", "tree"],
+        "description": ["RDSS Tree"],
+        "keyword": ["samvera", "tree"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
         "rights_statement": ["http://rightsstatements.org/vocab/NoC-NC/1.0/"],
-        "publisher": ["University of Willow"],
+        "publisher": ["University of RDSS Samvera"],
         "date_created": ["2017-01-01"],
-        "subject": ["willow image"],
+        "subject": ["rdss image"],
         "language": ["English"],
         "visibility": "open"
       },
@@ -250,22 +213,22 @@
           }
         }
       ],
-      "collections" : ["study_of_willows"],
+      "collections" : ["study_of_rdss_samvera"],
       "featured" : false
     },
     {
-      "id" : "willow5",
+      "id" : "rdss5",
       "metadata" : {
-        "title": ["Willow Tree 5"],
+        "title": ["RDSS Tree 5"],
         "resource_type": ["Article"],
         "creator": ["Jennifer C"],
-        "description": ["Willow Tree"],
-        "keyword": ["willow", "tree"],
+        "description": ["RDSS Tree"],
+        "keyword": ["samvera", "tree"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
         "rights_statement": ["http://rightsstatements.org/vocab/NoC-NC/1.0/"],
-        "publisher": ["University of Willow"],
+        "publisher": ["University of RDSS Samvera"],
         "date_created": ["2017-01-01"],
-        "subject": ["willow image"],
+        "subject": ["rdss image"],
         "language": ["English"],
         "visibility": "open"
       },
@@ -279,7 +242,7 @@
           }
         }
       ],
-      "collections" : ["study_of_willows"],
+      "collections" : ["study_of_rdss_samvera"],
       "featured" : false
     },
     {
@@ -579,11 +542,11 @@
 
   "administrative_sets" : [
     {
-      "id" : "willow_admin_set",
+      "id" : "rdss_admin_set",
       "metadata" : {
-        "title": ["Willow administrative set"],
+        "title": ["RDSS Samvera administrative set"],
         "description": ["An administrative set using the one-step mediated workflow"],
-        "creator": ["admin@willow"],
+        "creator": ["admin@rdss"],
         "read_groups": ["public"],
         "edit_groups": ["admin"]
       },
@@ -599,7 +562,7 @@
   ],
 
   "workflow_responsibilities" : [
-    {"user_email": "user@willow", "workflow_name": "one_step_mediated_deposit", "role_name": "depositing"},
-    {"user_email": "workflow@willow", "workflow_name": "one_step_mediated_deposit", "role_name": "approving"}
+    {"user_email": "user@rdss", "workflow_name": "one_step_mediated_deposit", "role_name": "depositing"},
+    {"user_email": "workflow@rdss", "workflow_name": "one_step_mediated_deposit", "role_name": "approving"}
   ]
 }
