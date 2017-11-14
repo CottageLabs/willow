@@ -1,36 +1,37 @@
 <%= render '/shared/select_work_type_modal' if create_work_presenter.many? %>
-<div id="masthead-top" class="navbar navbar-default">
-  <div class="container">
-    <div class="navbar-header">
-      <a href="https://jisc.ac.uk">
-        <img src="/jisc-logo-small.png" class="jisc-logo">
-      </a>
-    </div>
-  </div>
-</div>
-<nav id="masthead" class="navbar navbar-inverse" role="navigation">
-  <%= render partial: '/logo' %>
-
-  <div id="navbar-col-2">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
+<div class="masthead-container">
+  <div id="masthead-top" class="navbar navbar-default">
+    <div class="container no-pad">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-collapse" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+        <span class="label label-warning">ALPHA</span>
       </div>
-
-      <div class="pull-right hidden-xs hidden-sm" id="cl-name">
-        <%= Hyrax::Institution.name %>
-      </div>
-
-    </div>
-
-    <div class="collapse navbar-collapse" id="top-navbar-collapse">
-      <%= render partial: '/user_util_links' %>
     </div>
   </div>
-</nav>
+  <nav id="rdss-masthead" class="navbar" role="navigation">
+    <div class="container">
+      <div class="col-md-6">
+        <%= render partial: '/logo' %>
+      </div>
+      <div class="col-md-6">
+        <div class="pull-right" id="cl-name">
+          <%= Hyrax::Institution.name %>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <nav id="masthead-nav" class="navbar navbar-inverse" role="navigation">
+    <div id="navbar-col-2">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
