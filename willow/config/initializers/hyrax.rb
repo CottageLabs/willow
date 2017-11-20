@@ -1,14 +1,25 @@
 Hyrax.config do |config|
-  # Injected via `rails g hyrax:work Image`
-  config.register_curation_concern :image
-  # Injected via `rails g hyrax:work Book`
-  config.register_curation_concern :book
-  # Injected via `rails g hyrax:work Dataset`
-  config.register_curation_concern :dataset
-  # Injected via `rails g hyrax:work Article`
-  config.register_curation_concern :article
+  # Allow environment variables to enable registration of concern types
+  # NB: RdssDataset is always enabled
+  if ENV['ENABLE_IMAGE_CONTENT_TYPE'] == 'true'
+    # Injected via `rails g hyrax:work Image`
+    config.register_curation_concern :image
+  end
+  if ENV['ENABLE_BOOK_CONTENT_TYPE'] == 'true'
+    # Injected via `rails g hyrax:work Book`
+    config.register_curation_concern :book
+  end
+  if ENV['ENABLE_DATASET_CONTENT_TYPE'] == 'true'
+    # Injected via `rails g hyrax:work Dataset`
+    config.register_curation_concern :dataset
+  end
+  if ENV['ENABLE_ARTICLE_CONTENT_TYPE'] == 'true'
+    # Injected via `rails g hyrax:work Article`
+    config.register_curation_concern :article
+  end
   # Injected via `rails g hyrax:work RdssDataset`
   config.register_curation_concern :rdss_dataset
+  
   # Register roles that are expected by your implementation.
   # @see Hyrax::RoleRegistry for additional details.
   # @note there are magical roles as defined in Hyrax::RoleRegistry::MAGIC_ROLES

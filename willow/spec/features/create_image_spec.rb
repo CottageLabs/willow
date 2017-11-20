@@ -12,18 +12,20 @@ RSpec.feature 'Create a Image', vcr: true do
     end
 
     scenario do
-      visit new_hyrax_image_path
+      if(Image.content_type_enabled?)
+        visit new_hyrax_image_path
 
-      fill_in 'Title', with: 'Test Image'
-      fill_in 'Creator', with: 'Alice Bob'
-      fill_in 'Keyword', with: 'Foo'
-      select('In Copyright', from: 'Rights statement')
-      choose('open')
-      check('agreement')
-      click_on('Files')
-      attach_file('files[]', "#{fixture_path}/files/hello_world.pdf")
+        fill_in 'Title', with: 'Test Image'
+        fill_in 'Creator', with: 'Alice Bob'
+        fill_in 'Keyword', with: 'Foo'
+        select('In Copyright', from: 'Rights statement')
+        choose('open')
+        check('agreement')
+        click_on('Files')
+        attach_file('files[]', "#{fixture_path}/files/hello_world.pdf")
 
-      # cannot save without invoking Fedora and thus a problem of unrepeatable tests results...
+        # cannot save without invoking Fedora and thus a problem of unrepeatable tests results...
+      end
     end
   end
 end
