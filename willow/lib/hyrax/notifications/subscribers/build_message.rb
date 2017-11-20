@@ -147,7 +147,7 @@ module Hyrax
                                } ]
                 }
               }
-            when [Dataset, Article].include?(@curation_concern_type) && @event != 'destroy_work.hyrax'
+            when [Dataset, Article].include?(@curation_concern_type) && !destroy?
               @object.license_nested.map{|r|
                 {
                     rightsStatement: r.definition.to_a,
