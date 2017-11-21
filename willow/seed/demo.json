@@ -24,10 +24,20 @@
   "site_text" : {
     "marketing" : [
       "<div style=\"font-size: 0.5em; padding: 1em; \"><p>RDSS Samvera is pleased to offer repository solutions using ",
-      "cutting-edge open source technology <a href=\"https://projecthydra.org/\">Hydra</a> and <a href=\"http://fedorarepository.org/\">Fedora</a>. "
+      "cutting-edge open source technology <a href=\"https://projecthydra.org/\">Hydra</a> and <a href=\"http://fedorarepository.org/\">Fedora</a>. ",
+      "We can help you from initial requirements, through customisation and integration with your systems, to long term support and maintenance.</p>",
+      "<p>Whether you are a small institution looking to get the essential features out-of-the-box, or a large, research-intensive ",
+      "organisation looking for customisations and integration with local systems, don't hesitate to&nbsp;",
+      "<a href=\"mailto:samvera-rdss@jisc.ac.uk\">contact us</a> to find out what we can do for you.</p>"
     ],
     "about" : [
-      "About placeholder page."
+      "<h1>About</h1>",
+      "<p>Aliquam facilisis scelerisque mauris non hendrerit. Vestibulum urna tellus, volutpat eu suscipit at, suscipit eu neque. Donec molestie fermentum lobortis. Vestibulum pellentesque nisl eget lacus malesuada, sed semper odio convallis. Sed laoreet vitae massa nec vestibulum. Sed vitae posuere purus, et mollis dui. Aenean vehicula tincidunt sollicitudin. Donec aliquet risus velit, quis feugiat dolor gravida commodo. Aliquam a dapibus ligula, in ornare diam. Integer pellentesque urna id risus auctor lacinia. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur sit amet odio eget nisi finibus rhoncus. Cras a sagittis nulla.</p>",
+      "<p>Duis nec sem varius, consequat purus id, iaculis metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at quam tellus. Maecenas eget vestibulum neque, at interdum ligula. Praesent mollis, ex vel varius cursus, risus lorem condimentum enim, in aliquam lorem lorem ac arcu. Cras ac pellentesque elit, non molestie libero. Curabitur eleifend orci sit amet elit accumsan tristique. Sed enim sapien, ornare eget metus eget, laoreet congue nulla. Nulla eleifend posuere lorem, sed sodales enim.</p>",
+      "<p>Curabitur venenatis vehicula dui a cursus. Suspendisse laoreet tellus eget volutpat iaculis. Pellentesque sollicitudin sit amet tellus aliquam rhoncus. Nulla facilisi. Aliquam sagittis gravida ante eget maximus. Cras eleifend aliquet elit. Nullam at arcu viverra, lacinia neque at, sollicitudin felis. Mauris vel justo lectus. In non blandit justo, et sagittis ex. Duis non purus et eros porttitor porttitor. Quisque quis eros faucibus, varius metus quis, hendrerit tortor. Sed cursus purus quis urna sagittis, non ullamcorper arcu vehicula. Integer gravida lorem non varius efficitur. Duis finibus a nibh quis auctor. Mauris vel ornare ex.</p>",
+      "<h1>Using the Repository</h1>",
+      "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nisl arcu, lacinia ut ex laoreet, convallis volutpat justo. Curabitur egestas cursus risus ac posuere. Maecenas nunc ipsum, mollis quis odio vel, gravida euismod justo. Phasellus elementum massa non malesuada sollicitudin. Cras sit amet suscipit neque. In molestie elit porta, blandit orci consectetur, ornare odio. Donec aliquet leo ac felis accumsan cursus. Sed ullamcorper hendrerit fringilla. Quisque placerat condimentum leo ut venenatis.</p>",
+      "<p>Mauris mattis elit vel dolor lacinia, id varius ante dignissim. In nec metus ut libero consequat pharetra. Aliquam blandit ex et eros posuere feugiat. Donec non commodo velit. Suspendisse feugiat, lacus at suscipit mollis, urna sapien ornare leo, non ornare augue est vel augue. Cras facilisis euismod quam, ac gravida lectus viverra et. Duis metus neque, hendrerit eu aliquet eget, dignissim quis ipsum. Donec sit amet finibus orci. Mauris venenatis vestibulum feugiat.</p>"
     ]
   },
 
@@ -43,7 +53,7 @@
         "license": ["http://www.europeana.eu/portal/rights/rr-r.html"],
         "publisher": ["University of RDSS Samvera"],
         "date_created": ["2012-04-22"],
-        "subject": ["RDSS journal"],
+        "subject": ["rdss journal"],
         "language": ["English"],
         "visibility": "open"
       }
@@ -82,17 +92,17 @@
       }
     },
     {
-      "id" : "study_of_rdss_samvera",
+      "id" : "study_of_willows",
       "metadata" : {
-        "title": ["A Study of RDSS Samvera"],
+        "title": ["A Study of Willows"],
         "resource_type": ["Journal"],
         "creator": [ "Josephine Bloggs" ],
-        "description": ["A study of a variety of different kinds of RDSS Samvera"],
-        "keyword": ["samvera"],
+        "description": ["A study of a variety of different kinds of Willow"],
+        "keyword": ["willow"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
         "publisher": ["University of RDSS Samvera"],
         "date_created": ["2015-01-20"],
-        "subject": ["samvera"],
+        "subject": ["willow"],
         "language": ["English"],
         "visibility": "open"
       }
@@ -103,16 +113,16 @@
     {
       "id" : "rdss1",
       "metadata" : {
-        "title": ["RDSS Tree 1"],
+        "title": ["Willow Tree 1"],
         "resource_type": ["Article"],
         "creator": ["mattharvey1"],
-        "description": ["The Silhouette of a RDSS"],
-        "keyword": ["samvera", "tree"],
+        "description": ["The Silhouette of a Willow"],
+        "keyword": ["willow", "tree"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
         "rights_statement": ["http://rightsstatements.org/vocab/NoC-NC/1.0/"],
-        "publisher": ["University of RDSS Samvera"],
+        "publisher": ["University of RDSS"],
         "date_created": ["2017-01-01"],
-        "subject": ["rdss image"],
+        "subject": ["willow image"],
         "language": ["English"],
         "visibility": "open"
       },
@@ -126,22 +136,22 @@
           }
         }
       ],
-      "collections" : ["study_of_rdss_samvera"],
+      "collections" : ["study_of_willows"],
       "featured" : true
     },
     {
       "id" : "rdss2",
       "metadata" : {
-        "title": ["RDSS Tree 2"],
+        "title": ["Willow Tree 2"],
         "resource_type": ["Article"],
         "creator": ["oatsy40"],
-        "description": ["A large rdss tree"],
-        "keyword": ["samvera", "tree"],
+        "description": ["A large willow tree"],
+        "keyword": ["willow", "tree"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
         "rights_statement": ["http://rightsstatements.org/vocab/NoC-NC/1.0/"],
-        "publisher": ["University of RDSS Samvera"],
+        "publisher": ["University of RDSS"],
         "date_created": ["2017-01-01"],
-        "subject": ["rdss image"],
+        "subject": ["willow image"],
         "language": ["English"],
         "visibility": "open"
       },
@@ -155,22 +165,22 @@
           }
         }
       ],
-      "collections" : ["study_of_rdss_samvera"],
+      "collections" : ["study_of_willows"],
       "featured" : false
     },
     {
-      "id" : "rdss",
+      "id" : "rdss3",
       "metadata" : {
-        "title": ["RDSS Tree 3"],
+        "title": ["Willow Tree 3"],
         "resource_type": ["Article"],
         "creator": ["Alan Myers"],
-        "description": ["RDSS Tree"],
-        "keyword": ["samvera", "tree"],
+        "description": ["Willow Tree"],
+        "keyword": ["willow", "tree"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
         "rights_statement": ["http://rightsstatements.org/vocab/NoC-NC/1.0/"],
-        "publisher": ["University of RDSS Samvera"],
+        "publisher": ["University of RDSS"],
         "date_created": ["2017-01-01"],
-        "subject": ["rdss image"],
+        "subject": ["willow image"],
         "language": ["English"],
         "visibility": "open"
       },
@@ -184,22 +194,22 @@
           }
         }
       ],
-      "collections" : ["study_of_rdss_samvera"],
+      "collections" : ["study_of_willows"],
       "featured" : false
     },
     {
       "id" : "rdss4",
       "metadata" : {
-        "title": ["RDSS Tree 4"],
+        "title": ["Willow Tree 4"],
         "resource_type": ["Article"],
         "creator": ["msmornington"],
-        "description": ["RDSS Tree"],
-        "keyword": ["samvera", "tree"],
+        "description": ["Willow Tree"],
+        "keyword": ["willow", "tree"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
         "rights_statement": ["http://rightsstatements.org/vocab/NoC-NC/1.0/"],
-        "publisher": ["University of RDSS Samvera"],
+        "publisher": ["University of RDSS"],
         "date_created": ["2017-01-01"],
-        "subject": ["rdss image"],
+        "subject": ["willow image"],
         "language": ["English"],
         "visibility": "open"
       },
@@ -213,22 +223,22 @@
           }
         }
       ],
-      "collections" : ["study_of_rdss_samvera"],
+      "collections" : ["study_of_willows"],
       "featured" : false
     },
     {
       "id" : "rdss5",
       "metadata" : {
-        "title": ["RDSS Tree 5"],
+        "title": ["Willow Tree 5"],
         "resource_type": ["Article"],
         "creator": ["Jennifer C"],
-        "description": ["RDSS Tree"],
-        "keyword": ["samvera", "tree"],
+        "description": ["Willow Tree"],
+        "keyword": ["willow", "tree"],
         "license": ["http://creativecommons.org/publicdomain/zero/1.0/"],
         "rights_statement": ["http://rightsstatements.org/vocab/NoC-NC/1.0/"],
-        "publisher": ["University of RDSS Samvera"],
+        "publisher": ["University of RDSS"],
         "date_created": ["2017-01-01"],
-        "subject": ["rdss image"],
+        "subject": ["willow image"],
         "language": ["English"],
         "visibility": "open"
       },
@@ -242,7 +252,7 @@
           }
         }
       ],
-      "collections" : ["study_of_rdss_samvera"],
+      "collections" : ["study_of_willows"],
       "featured" : false
     },
     {
@@ -544,7 +554,7 @@
     {
       "id" : "rdss_admin_set",
       "metadata" : {
-        "title": ["RDSS Samvera administrative set"],
+        "title": ["RDSS administrative set"],
         "description": ["An administrative set using the one-step mediated workflow"],
         "creator": ["admin@rdss"],
         "read_groups": ["public"],
