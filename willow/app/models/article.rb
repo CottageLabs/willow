@@ -4,6 +4,10 @@ require "./lib/vocabularies/rioxxterms"
 class Article < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
 
+  # include methods to check for enabled and disabled content types
+  include EnableContentTypesBehaviour
+
+
   self.indexer = ArticleIndexer
   # Change this to restrict which works can be added as a child.
   # self.valid_child_concerns = []
