@@ -8,7 +8,9 @@
 <body>
 <a href="#skip_to_content" class="sr-only">Skip to Content</a>
 <%= render '/masthead' %>
-<%= content_for(:navbar) %>
+<div class="image-masthead">
+  <%= render '/controls' %>
+</div>
 <%= content_for(:precontainer_content) %>
 
 <div class="container" id="main">
