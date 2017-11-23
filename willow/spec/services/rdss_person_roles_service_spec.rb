@@ -10,7 +10,7 @@ describe RdssPersonRolesService do
   describe "#select_all_options" do
     it "returns all terms" do
       expect(described_class.select_all_options).to include(
-        ["ProjectLeader", 'projectLeader'])
+        ["Project leader", 'projectLeader'])
     end
   end
 
