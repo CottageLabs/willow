@@ -27,7 +27,7 @@ module Hyrax
       :rights_holder, :license_nested]
 
     def orcid_required?
-      true
+      false
     end
 
     NESTED_ASSOCIATIONS = [:date, :creator_nested, :license_nested, :relation,
