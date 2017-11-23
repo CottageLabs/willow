@@ -1,15 +1,15 @@
 terms:
-    - id: http://creativecommons.org/licenses/by/4.0/
-      term: Attribution 4.0 International (CC BY 4.0)
+    - id: https://creativecommons.org/licenses/by/4.0/
+      term: Creative Commons Attribution License (cc-by)
       active: true
-    - id: http://creativecommons.org/licenses/by-sa/4.0/
+    - id: https://creativecommons.org/licenses/by-sa/4.0/
       term: Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
       active: true
-    - id: http://creativecommons.org/licenses/by-nc/4.0/
+    - id: https://creativecommons.org/licenses/by-nc/4.0/
       term: Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
       active: true
-    - id: http://creativecommons.org/licenses/by-nd/4.0/
-      term: Attribution-NoDerivs 4.0 International (CC BY-ND 4.0)
+    - id: https://creativecommons.org/licenses/by-nd/4.0/
+      term: Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)
       active: true
     - id: http://creativecommons.org/publicdomain/mark/1.0/
       term: Public Domain Mark 1.0
@@ -17,6 +17,21 @@ terms:
     - id: UNKNOWN
       term: UNKNOWN
       active: true
+    # Duplicate Licenses
+    # The licenses below also appear in the list above, but with the 'https' rather than 'http' protocol
+    # As the id has changed, these duplicates have been included, and set to 'active: false' to support existing data
+    - id: http://creativecommons.org/licenses/by/4.0/
+      term: Attribution 4.0 International (CC BY 4.0)
+      active: false
+    - id: http://creativecommons.org/licenses/by-sa/4.0/
+      term: Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+      active: false      
+    - id: http://creativecommons.org/licenses/by-nc/4.0/
+      term: Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
+      active: false
+    - id: http://creativecommons.org/licenses/by-nd/4.0/
+      term: Attribution-NoDerivs 4.0 International (CC BY-ND 4.0)
+      active: false
     # Deprecated Licenses
     - id: http://creativecommons.org/publicdomain/zero/1.0/
       term: CC0 1.0 Universal
