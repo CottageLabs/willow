@@ -461,7 +461,7 @@ RSpec.describe RdssDataset do
       expect(@obj.creator_nested.first.id).to include('#person')
     end
 
-    it 'rejects person if name, role and orcid are blank' do
+    it 'rejects person if name and role are blank' do
       @obj = build(:rdss_dataset, creator_nested_attributes: [
           {
             first_name: 'Foo',
@@ -485,7 +485,7 @@ RSpec.describe RdssDataset do
           }
         ]
       )
-      expect(@obj.creator_nested.size).to eq(1)
+      expect(@obj.creator_nested.size).to eq(2)
     end
 
     it 'destroys creator' do
