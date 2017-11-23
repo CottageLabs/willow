@@ -1,32 +1,62 @@
 terms:
-    - id: http://creativecommons.org/licenses/by/4.0/
-      term: Attribution 4.0 International (CC BY 4.0)
+    - id: http://opendefinition.org/licenses/cc-zero/
+      term: Creative Commons CC Zero License (cc-zero)
       active: true
-    - id: http://creativecommons.org/licenses/by-sa/4.0/
+    - id: https://creativecommons.org/publicdomain/zero/1.0/
+      term: Open Data Commons Public Domain Dedication and Licence (ODC PDDL)
+      active: true
+    - id: https://creativecommons.org/licenses/by/4.0/
+      term: Creative Commons Attribution License (cc-by)
+      active: true
+    - id: https://creativecommons.org/licenses/by-sa/4.0/
       term: Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
       active: true
-    - id: http://creativecommons.org/licenses/by-nc/4.0/
+    - id: https://creativecommons.org/licenses/by-nc/4.0/
       term: Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
       active: true
-    - id: http://creativecommons.org/licenses/by-nd/4.0/
-      term: Attribution-NoDerivs 4.0 International (CC BY-ND 4.0)
+    - id: https://creativecommons.org/licenses/by-nd/4.0/
+      term: Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)
       active: true
-    - id: http://creativecommons.org/licenses/by-nc-nd/4.0/
-      term: Attribution-NonCommercial-NoDerivs 4.0 International (CC BY-NC-ND 4.0)
+    - id: http://opendatacommons.org/licenses/odbl/1.0/
+      term: Open Database License (ODbL)
       active: true
-    - id: http://creativecommons.org/licenses/by-nc-sa/4.0/
-      term: Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
+    - id: http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+      term: Open Government Licence v3.0 (OGL 3.0)
+      active: true
+    - id: https://tldrlegal.com/license/gnu-general-public-license-v3-(gpl-3)
+      term: GNU General Public License v3 (GPL-3)
       active: true
     - id: http://creativecommons.org/publicdomain/mark/1.0/
       term: Public Domain Mark 1.0
       active: true
-    - id: http://creativecommons.org/publicdomain/zero/1.0/
-      term: CC0 1.0 Universal
-      active: true
     - id: UNKNOWN
       term: UNKNOWN
       active: true
-    # legacy licenses
+    # Duplicate Licenses
+    # The licenses below also appear in the list above, but with the 'https' rather than 'http' protocol
+    # As the id has changed, these duplicates have been included, and set to 'active: false' to support existing data
+    - id: http://creativecommons.org/licenses/by/4.0/
+      term: Attribution 4.0 International (CC BY 4.0)
+      active: false
+    - id: http://creativecommons.org/licenses/by-sa/4.0/
+      term: Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+      active: false      
+    - id: http://creativecommons.org/licenses/by-nc/4.0/
+      term: Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
+      active: false
+    - id: http://creativecommons.org/licenses/by-nd/4.0/
+      term: Attribution-NoDerivs 4.0 International (CC BY-ND 4.0)
+      active: false
+    # Deprecated Licenses
+    - id: http://creativecommons.org/publicdomain/zero/1.0/
+      term: CC0 1.0 Universal
+      active: false
+    - id: http://creativecommons.org/licenses/by-nc-nd/4.0/
+      term: Attribution-NonCommercial-NoDerivs 4.0 International (CC BY-NC-ND 4.0)
+      active: false
+    - id: http://creativecommons.org/licenses/by-nc-sa/4.0/
+      term: Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
+      active: false
     - id: http://creativecommons.org/licenses/by/3.0/
       term: Attribution 3.0 Unported (CC BY 3.0)
       active: false
