@@ -1,4 +1,10 @@
 terms:
+    - id: http://opendefinition.org/licenses/cc-zero/
+      term: Creative Commons CC Zero License (cc-zero)
+      active: true
+    - id: https://creativecommons.org/publicdomain/zero/1.0/
+      term: Open Data Commons Public Domain Dedication and Licence (ODC PDDL)
+      active: true
     - id: https://creativecommons.org/licenses/by/4.0/
       term: Creative Commons Attribution License (cc-by)
       active: true
@@ -10,6 +16,15 @@ terms:
       active: true
     - id: https://creativecommons.org/licenses/by-nd/4.0/
       term: Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)
+      active: true
+    - id: http://opendatacommons.org/licenses/odbl/1.0/
+      term: Open Database License (ODbL)
+      active: true
+    - id: http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+      term: Open Government Licence v3.0 (OGL 3.0)
+      active: true
+    - id: https://tldrlegal.com/license/gnu-general-public-license-v3-(gpl-3)
+      term: GNU General Public License v3 (GPL-3)
       active: true
     - id: http://creativecommons.org/publicdomain/mark/1.0/
       term: Public Domain Mark 1.0
