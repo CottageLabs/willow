@@ -50,8 +50,7 @@ module RdssDatasetNestedAttributes
     # creator_blank
     resource_class.send(:define_method, :creator_blank) do |attributes|
       Array(attributes[:name]).all?(&:blank?) ||
-      Array(attributes[:role]).all?(&:blank?) ||
-      Array(attributes[:orcid]).all?(&:blank?)
+      Array(attributes[:role]).all?(&:blank?)
     end
 
     # org_blank
