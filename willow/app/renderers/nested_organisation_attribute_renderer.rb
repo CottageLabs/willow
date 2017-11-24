@@ -4,14 +4,14 @@ class NestedOrganisationAttributeRenderer < Hyrax::Renderers::FacetedAttributeRe
     value = JSON.parse(value)
     html = []
     value.each do |v|
-      organsiation = []
+      organisation = []
       if v.include?('name') and not v['name'][0].blank?
-        organsiation << link_to(ERB::Util.h(v['name'][0]), search_path(v['name'][0]))
+        organisation << link_to(ERB::Util.h(v['name'][0]), search_path(v['name'][0]))
       end
       if v.include?('role') and not v['role'].blank? and not v['role'][0].blank?
-        organsiation << "Role: #{v['role'][0]}"
+        organisation << "Role: #{v['role'][0]}"
       end
-      html << organsiation.join('<br>')
+      html << organisation.join('<br>')
     end
     html = html.join('<br/><br/>')
     %(#{html})
