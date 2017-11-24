@@ -353,6 +353,18 @@ form .field-wrapper label[required="required"]::after {
   border-width: 0 1px 1px 0;
   border-bottom: 0;
   box-shadow: 0 1px 1px rgba(0,0,0,.05);
+
+  h3 {
+    margin: 0;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1em;
+  }
 }
 
 .container {
