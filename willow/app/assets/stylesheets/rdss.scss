@@ -1,3 +1,5 @@
+@import 'variables';
+
 body {
   font-family: "stagsans";
   padding-bottom: 0;
@@ -38,12 +40,12 @@ a:focus#logo.navbar-brand {
 }
 
 .navbar.navbar-inverse {
-  background-color: #e85e13;
+  background-color: $nav-bg;
   border: 0;
 }
 
 .navbar.navbar-default.navbar-static-top {
-  background-color: #e85e13;
+  background-color: $nav-bg;
   font-size: 18px;
   margin-bottom: 25px;
   padding-bottom: 97px;
@@ -90,7 +92,7 @@ footer.navbar.navbar-inverse a:hover {
 #rdss-masthead {
   min-height: 50px;
   padding-top: 10px;
-  background-color: #e85e13;
+  background-color: $masthead-bg;
 }
 
 #masthead-nav {
@@ -115,7 +117,7 @@ footer.navbar.navbar-inverse a:hover {
 }
 
 #tabtoolbar {
-  background-color: #e85e13;
+  background-color: $toolbar-bg;
   padding-bottom: 0;
   z-index: 1020;
 }
@@ -127,7 +129,7 @@ footer.navbar.navbar-inverse a:hover {
 #tabtoolbar a {
   color: white;
   height: 53px;
-  background: #c65010;
+  background: $toolbar-link;
   text-transform: none;
   font-weight: normal;
 }
@@ -261,6 +263,12 @@ form .field-wrapper label[required="required"]::after {
 #navbar-col-2 {
   width: 50%;
   float: right;
+}
+@media (max-width: 767px) {
+  .nav {
+    margin: 0;
+    padding-right: 0;
+  }
 }
 
 #main {
