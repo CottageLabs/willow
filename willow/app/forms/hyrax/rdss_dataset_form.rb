@@ -14,7 +14,7 @@ module Hyrax
 
     self.terms += [:title, :creator_nested, :rights_statement, :rights_holder,
       :license_nested, :description, :keyword, :date, :identifier_nested,
-      :resource_type, :category, :organisation_nested, :relation, :rating, :source]
+      :resource_type, :category, :organisation_nested, :relation, :rating]
 
     self.required_fields -= [
       # Fields not interested in
