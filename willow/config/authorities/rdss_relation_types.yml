@@ -1,75 +1,75 @@
 terms:
   - id: cites
-    term: cites
+    term: Cites
   - id: isCitedBy
-    term: isCitedBy
+    term: Is Cited By
   - id: isSupplementTo
-    term: isSupplementTo
+    term: Is Supplement To
   - id: isSupplementedBy
-    term: isSupplementedBy
+    term: Is Supplemented By
   - id: continues
-    term: continues
+    term: Continues
   - id: isContinuedBy
-    term: isContinuedBy
+    term: Is Continued By
   - id: hasMetadata
-    term: hasMetadata
+    term: Has Metadata
   - id: isMetadataFor
-    term: isMetadataFor
+    term: Is Metadata For
   - id: isNewVersionOf
-    term: isNewVersionOf
+    term: Is New Version Of
   - id: isPreviousVersionOf
-    term: isPreviousVersionOf
+    term: Is Previous Version Of
   - id: isPartOf
-    term: isPartOf
+    term: Is Part Of
   - id: hasPart
-    term: hasPart
+    term: Has Part
   - id: isReferencedBy
-    term: isReferencedBy
+    term: Is Referenced By
   - id: references
-    term: references
+    term: References
   - id: isDocumentedBy
-    term: isDocumentedBy
+    term: Is Documented By
   - id: documents
-    term: documents
+    term: Documents
   - id: isCompiledBy
-    term: isCompiledBy
+    term: Is Compiled By
   - id: compiles
-    term: compiles
+    term: Compiles
   - id: isVariantFormOf
-    term: isVariantFormOf
+    term: Is Variant Form Of
   - id: isOriginalFormOf
-    term: isOriginalFormOf
+    term: Is Original Form Of
   - id: isIdenticalTo
-    term: isIdenticalTo
+    term: Is Identical To
   - id: isReviewedBy
-    term: isReviewedBy
+    term: Is Reviewed By
   - id: reviews
-    term: reviews
+    term: Reviews
   - id: isDerivedFrom
-    term: isDerivedFrom
+    term: Is Derived From
   - id: isSourceOf
-    term: isSourceOf
+    term: Is Source Of
   - id: isCommentOn
-    term: isCommentOn
+    term: Is Comment On
   - id: hasComment
-    term: hasComment
+    term: Has Comment
   - id: isReplyTo
-    term: isReplyTo
+    term: Is Reply To
   - id: hasReply
-    term: hasReply
+    term: Has Reply
   - id: basedOnData
-    term: basedOnData
+    term: Based On Data
   - id: hasRelatedMaterial
-    term: hasRelatedMaterial
+    term: Has Related Material
   - id: isBasedOn
-    term: isBasedOn
+    term: Is Based On
   - id: isBasisFor
-    term: isBasisFor
+    term: Is Basis For
   - id: requires
-    term: requires
+    term: Requires
   - id: isRequiredBy
-    term: isRequiredBy
+    term: Is Required By
   - id: hasParent
-    term: hasParent
+    term: Has Parent
   - id: isParentOf
-    term: isParentOf
+    term: Is Parent Of
