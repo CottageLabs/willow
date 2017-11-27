@@ -15,8 +15,7 @@
     <div class="row center">
       <div class="col-sm-12 left footer-middle-left" id="footer-middle-left">
         <div id="footer-middle-wrapper" class="container center" role="main">
-          <div>Hyrax v<%= Hyrax::VERSION %>. <%= t('hyrax.footer.service_html') %></div>
-          <div><%= t('hyrax.footer.copyright_html') %></div>
+
         </div>
       </div>
     </div>
@@ -25,7 +24,11 @@
     <div class="row center">
       <div class="col-sm-12 left footer-cc-left" id="footer-cc-left">
         <div id="footer-cc-wrapper" class="container center" role="main">
-          © Jisc 2017, <a href="https://creativecommons.org/licenses/by/3.0/">CC-BY</a>
+          <ul>
+            <li>© Jisc 2017, <a href="https://creativecommons.org/licenses/by/3.0/">CC-BY</a></li>
+            <li>Hyrax v<%= Hyrax::VERSION %>. <%= t('hyrax.footer.service_html') %></li>
+            <li><%= t('hyrax.footer.copyright_html') %></li>
+          </ul>
         </div>
       </div>
     </div>
