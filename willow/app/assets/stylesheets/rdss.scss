@@ -114,6 +114,11 @@ footer.navbar.navbar-inverse a:hover {
 
 #user_utility_links {
   margin: 0;
+  ul > li > a {
+    background-color: #fff;
+    color: $toolbar-link;
+    font-family: stagsans-book;
+  }
 }
 
 #tabtoolbar {
@@ -268,6 +273,9 @@ form .field-wrapper label[required="required"]::after {
   .nav {
     margin: 0;
     padding-right: 0;
+    li > a {
+      padding-left: 2em;
+    }
   }
 }
 
