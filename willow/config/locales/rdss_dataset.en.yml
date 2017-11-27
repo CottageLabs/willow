@@ -10,7 +10,7 @@ en:
     labels:
       rdss_dataset:
         description:      "Abstract or Summary"
-        keyword:          "Keyword"
+        keyword:          "Keywords"
         files:            "Upload a new version of this file from your computer"
         collection_ids:   "Add as member of collection"
         admin_set_id:     "Add as member of administrative set"
@@ -33,8 +33,8 @@ en:
         description: "Free-text notes about the dataset. Examples include abstracts of a paper or citation information for a journal article."
         license_nested: "Licensing and distribution information governing access to the dataset."
         identifier_nested: "Identifiers for the dataset"
-        category: "Category for the dataset"
-        rating: "Rating for the dataset"
+        category: "Category for the dataset, e.g. subject area"
+        rating: "Rating for dataset in terms of value / importantance"
         rights_holder: "The person or organisation who holds the rights for the work"
         organisation_nested: "The organisation or group responsible for the dataset."
         preservation_nested: "Add a preservation event"
