@@ -112,7 +112,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("category", :stored_searchable), label: I18n.t('willow.fields.category')
     config.add_index_field solr_name("rating", :stored_searchable), label: I18n.t('willow.fields.rating')
     config.add_index_field solr_name("rights_holder", :stored_searchable), label: I18n.t('willow.fields.rights_holder')
-    config.add_index_field solr_name("organisation_nested", :stored_searchable), label: I18n.t('willow.fields.organsiation_nested'), itemprop: 'organsiation', link_to_search: solr_name("organisation_nested", :facetable)
+    config.add_index_field solr_name("organisation_nested", :stored_searchable), label: I18n.t('willow.fields.organisation_nested'), itemprop: 'organisation', link_to_search: solr_name("organisation_nested", :facetable)
     config.add_index_field solr_name("preservation_nested", :stored_searchable), label: I18n.t('willow.fields.preservation_nested'), itemprop: 'preservation'
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
