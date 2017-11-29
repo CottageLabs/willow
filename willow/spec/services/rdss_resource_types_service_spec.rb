@@ -10,13 +10,13 @@ describe RdssResourceTypesService do
   describe "#select_all_options" do
     it "returns all terms" do
       expect(described_class.select_all_options).to include(
-        ["learningObject", 'learningObject'])
+        ["Learning Object", 'learningObject'])
     end
   end
 
   describe "#label" do
     it "resolves for ids of all terms" do
-      expect(described_class.label('movingImage')).to eq("movingImage")
+      expect(described_class.label('movingImage')).to eq("Moving Image")
     end
   end
 end
