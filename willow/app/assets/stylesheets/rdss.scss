@@ -1,5 +1,7 @@
+@import 'variables';
+
 body {
-  font-family: "Raleway";
+  font-family: "stagsans";
   padding-bottom: 0;
   margin-bottom: 0;
   background: #e4e9ec;
@@ -38,12 +40,12 @@ a:focus#logo.navbar-brand {
 }
 
 .navbar.navbar-inverse {
-  background-color: #a92173;
+  background-color: $nav-bg;
   border: 0;
 }
 
 .navbar.navbar-default.navbar-static-top {
-  background-color: #a92173;
+  background-color: $nav-bg;
   font-size: 18px;
   margin-bottom: 25px;
   padding-bottom: 97px;
@@ -90,7 +92,7 @@ footer.navbar.navbar-inverse a:hover {
 #rdss-masthead {
   min-height: 50px;
   padding-top: 10px;
-  background-color: #a92173;
+  background-color: $masthead-bg;
 }
 
 #masthead-nav {
@@ -112,10 +114,15 @@ footer.navbar.navbar-inverse a:hover {
 
 #user_utility_links {
   margin: 0;
+  ul > li > a {
+    background-color: #fff;
+    color: $toolbar-link;
+    font-family: stagsans-book;
+  }
 }
 
 #tabtoolbar {
-  background-color: #a92173;
+  background-color: $toolbar-bg;
   padding-bottom: 0;
   z-index: 1020;
 }
@@ -127,7 +134,7 @@ footer.navbar.navbar-inverse a:hover {
 #tabtoolbar a {
   color: white;
   height: 53px;
-  background: #851b63;
+  background: $toolbar-link;
   text-transform: none;
   font-weight: normal;
 }
@@ -262,6 +269,15 @@ form .field-wrapper label[required="required"]::after {
   width: 50%;
   float: right;
 }
+@media (max-width: 767px) {
+  .nav {
+    margin: 0;
+    padding-right: 0;
+    li > a {
+      padding-left: 2em;
+    }
+  }
+}
 
 #main {
   background: #ffffff;
@@ -318,6 +334,11 @@ form .field-wrapper label[required="required"]::after {
   border-width: 0 1px 1px 0;
   border-bottom: 0;
   box-shadow: 0 1px 1px rgba(0,0,0,.05);
+  ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1em;
+  }
 }
 
 #footer-middle-left {
@@ -353,6 +374,18 @@ form .field-wrapper label[required="required"]::after {
   border-width: 0 1px 1px 0;
   border-bottom: 0;
   box-shadow: 0 1px 1px rgba(0,0,0,.05);
+
+  h3 {
+    margin: 0;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1em;
+  }
 }
 
 .container {

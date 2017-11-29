@@ -43,6 +43,8 @@ en:
           subject_tesim: Subject
           title_tesim: Title
   hyrax:
+    contact_form:
+      header: "Contact Us"
     product_name:           "RDSS Samvera"
     product_twitter_handle: "@SamveraRepo"
     institution_name:       "%{institution_name}"
