@@ -9,11 +9,11 @@ module Hyrax
       :based_near, :creator, :contributor, :date_created,
       :identifier, :language, :license, :related_url, :publisher, :subject,
       # Fields interested in, but removing to re-order
-      :title, :description, :keyword, :rights_statement, :source
+      :title, :description, :keyword, :rights_statement, :source, :rdss_version
     ]
 
     self.terms += [:title, :creator_nested, :rights_statement, :rights_holder,
-      :license_nested, :description, :keyword, :date, :identifier_nested,
+      :license_nested, :description, :rdss_version, :keyword, :date, :identifier_nested,
       :resource_type, :category, :organisation_nested, :relation, :rating]
 
     self.required_fields -= [

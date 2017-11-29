@@ -21,6 +21,7 @@ en:
         rights_holder:     "Rights holder"
         organisation_nested: "Organisation"
         preservation_nested: "Preservation event"
+        rdss_version:      "Version"
 
     hints:
       rdss_dataset:
