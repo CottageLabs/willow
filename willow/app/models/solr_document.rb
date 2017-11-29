@@ -98,4 +98,8 @@ class SolrDocument
     self[Solrizer.solr_name('preservation_nested', :displayable)]
   end
 
+  def rdss_version
+    self[Solrizer.solr_name('rdss_version', :stored_searchable)]
+  end
+
 end
