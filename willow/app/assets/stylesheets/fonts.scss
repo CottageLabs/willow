@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'stagsans-book';
-  src: url('/assets/stagsans-book.otf');
+  src: asset_url('stagsans-book.otf');
   font-weight: bold;
 }
 @font-face {
   font-family: 'stagsans';
-  src: url('/assets/stagsans-light.otf');
+  src: asset_url('stagsans-light.otf');
 }
