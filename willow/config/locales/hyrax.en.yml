@@ -49,7 +49,7 @@ en:
     product_twitter_handle: "@SamveraRepo"
     institution_name:       "%{institution_name}"
     institution_name_full:  "%{institution_name_full}"
-    account_name:           "My Willow Id"
+    account_name:           "Account Name"
     directory:
       suffix:               "@example.org"
     footer:
