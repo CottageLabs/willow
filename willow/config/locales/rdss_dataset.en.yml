@@ -10,7 +10,7 @@ en:
     labels:
       rdss_dataset:
         description:      "Abstract or Summary"
-        keyword:          "Keyword"
+        keyword:          "Keywords"
         files:            "Upload a new version of this file from your computer"
         collection_ids:   "Add as member of collection"
         admin_set_id:     "Add as member of administrative set"
@@ -21,20 +21,21 @@ en:
         rights_holder:     "Rights holder"
         organisation_nested: "Organisation"
         preservation_nested: "Preservation event"
+        rdss_version:      "Version"
 
     hints:
       rdss_dataset:
         resource: "Pre-defined categories to describe the type of content being uploaded, such as &quot;article&quot; or &quot;dataset.&quot;  More than one type may be selected."
         title: "A name to aid in identifying the dataset."
         keyword: "Words or phrases you select to describe what the dataset is about. These are used to search for content."
-        creator_nested: "The person or group responsible for the dataset. The first name, last name, orcid and role are required."
+        creator_nested: "The person or group responsible for the dataset. The first name, last name and role are required."
         relation: "Details of specific content (audio, video, PDF document) related to the dataset. An example is the URL of an artcle based on this dataset. If adding a related work, add information in all fields - title, identifier and relationship."
         date: "The different dates relevant to the dataset."
         description: "Free-text notes about the dataset. Examples include abstracts of a paper or citation information for a journal article."
         license_nested: "Licensing and distribution information governing access to the dataset."
         identifier_nested: "Identifiers for the dataset"
-        category: "Category for the dataset"
-        rating: "Rating for the dataset"
+        category: "Category for the dataset, e.g. subject area"
+        rating: "Rating for dataset in terms of value / importantance"
         rights_holder: "The person or organisation who holds the rights for the work"
         organisation_nested: "The organisation or group responsible for the dataset."
         preservation_nested: "Add a preservation event"

@@ -7,8 +7,8 @@
 <%= presenter.attribute_to_html(:category, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:relation, render_as: :relation, label: I18n.t('willow.fields.relation')) %>
 <%= presenter.attribute_to_html(:rights_statement) %>
+<%= presenter.attribute_to_html(:rdss_version, label: I18n.t('willow.fields.rdss_version')) %>
 <%= presenter.attribute_to_html(:rights_holder, render_as: :faceted, label: I18n.t('willow.fields.rights_holder')) %>
 <%= presenter.attribute_to_html(:license_nested, render_as: :nested_license, label: I18n.t('willow.fields.license_nested')) %>
 <%= presenter.attribute_to_html(:preservation_nested, render_as: :nested_preservation, label: I18n.t('willow.fields.preservation_nested')) %>
 <%= presenter.attribute_to_html(:rating, render_as: :faceted) %>
-<%= presenter.attribute_to_html(:source) %>

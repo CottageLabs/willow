@@ -1,12 +1,12 @@
 terms:
+  - id: DOI
+    term: DOI
   - id: ARK
     term: ARK
   - id: arXiv
     term: arXiv
   - id: bibcode
     term: bibcode
-  - id: DOI
-    term: DOI
   - id: EAN13
     term: EAN13
   - id: EISSN

@@ -15,7 +15,7 @@ RSpec.feature 'Create a RdssDataset', vcr: true, js: false do
     scenario do
       visit new_hyrax_rdss_dataset_path
 
-      expect(page).to have_content "Add New RDSS Dataset"
+      expect(page).to have_content "Add New Dataset"
     end
   end
 end

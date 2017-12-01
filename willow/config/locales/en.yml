@@ -52,4 +52,5 @@ en:
       subject_nested: 'Subject'
       tagged_version: 'Version'
       title: 'Title'
+      rdss_version: 'Version'
 

@@ -10,13 +10,13 @@ describe RdssRelationTypesService do
   describe "#select_all_options" do
     it "returns all terms" do
       expect(described_class.select_all_options).to include(
-        ["isPreviousVersionOf", 'isPreviousVersionOf'])
+        ["Is Previous Version Of", 'isPreviousVersionOf'])
     end
   end
 
   describe "#label" do
     it "resolves for ids of all terms" do
-      expect(described_class.label('isVariantFormOf')).to eq("isVariantFormOf")
+      expect(described_class.label('isVariantFormOf')).to eq("Is Variant Form Of")
     end
   end
 end

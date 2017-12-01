@@ -1,16 +1,20 @@
 terms:
   - id: administrator
     term: Administrator
+  - id: author
+    term: Author
   - id: contactPerson
-    term: ContactPerson
+    term: Contact person
   - id: dataAnalyser
-    term: DataAnalyser
+    term: Data analyser
   - id: dataCollector
-    term: DataCollector
+    term: Data collector
   - id: dataCreator
-    term: DataCreator
+    term: Data creator
   - id: dataManager
-    term: DataManager
+    term: Data manager
+  - id: depositingUser
+    term: Depositing user
   - id: editor
     term: Editor
   - id: investigator
@@ -18,26 +22,22 @@ terms:
   - id: producer
     term: Producer
   - id: projectLeader
-    term: ProjectLeader
+    term: Project leader
   - id: publisher
     term: Publisher
   - id: projectMember
-    term: ProjectMember
+    term: Project member
   - id: relatedPerson
-    term: RelatedPerson
+    term: Related person
   - id: researcher
     term: Researcher
   - id: researcherGroup
-    term: ResearcherGroup
+    term: Researcher group
   - id: rightsHolder
-    term: RightsHolder
+    term: Rights holder
   - id: sponsor
     term: Sponsor
   - id: supervisor
     term: Supervisor
   - id: other
     term: Other
-  - id: author
-    term: Author
-  - id: depositingUser
-    term: DepositingUser

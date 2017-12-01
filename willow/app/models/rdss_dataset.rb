@@ -11,7 +11,7 @@ class RdssDataset < ActiveFedora::Base
   # self.valid_child_concerns = []
   validates :title, presence: { message: 'Your dataset must have a title.' }
 
-  self.human_readable_type = 'RDSS Dataset'
+  self.human_readable_type = 'Dataset'
 
   # value
   property :rating, predicate: ::RDF::Vocab::VMD.rating do |index|
@@ -25,6 +25,13 @@ class RdssDataset < ActiveFedora::Base
   property :rights_holder, predicate: ::RDF::Vocab::DC.rightsHolder do |index|
     index.as :stored_searchable, :facetable
   end
+
+  # new 'version' property
+  # Had to use rdss_version as name, because app/forms/hyrax/forms/work_form.rb defines a method version
+  property :rdss_version, predicate: ::RDF::Vocab::DOAP.Version, multiple: false do |index|
+    index.as :stored_searchable
+  end
+
   property :date, predicate: ::RDF::Vocab::DC.date, class_name:"DateStatement"
   property :license_nested, predicate: ::RDF::Vocab::DC.license, class_name:"LicenseStatement"
   property :relation, predicate: ::RDF::Vocab::DC.relation, class_name:"RelationStatement"

@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe RdssDataset do
   it 'has human readable type rdss_dataset' do
     @obj = build(:rdss_dataset)
-    expect(@obj.human_readable_type).to eq('RDSS Dataset')
+    expect(@obj.human_readable_type).to eq('Dataset')
   end
 
   describe 'title' do
@@ -63,6 +63,20 @@ RSpec.describe RdssDataset do
       @doc = @obj.to_solr
       expect(@doc['rights_holder_sim']).to eq ['Willow']
       expect(@doc['rights_holder_tesim']).to eq ['Willow']
+    end
+  end
+
+  describe 'version' do
+    it 'has a version' do
+      @obj = build(:rdss_dataset, rdss_version: 'Willow')
+      expect(@obj.rdss_version).to be_kind_of String
+      expect(@obj.rdss_version).to eq 'Willow'
+    end
+
+    it 'indexes version' do
+      @obj = build(:rdss_dataset, rdss_version: 'Willow')
+      @doc = @obj.to_solr
+      expect(@doc['rdss_version_tesim']).to eq ['Willow']
     end
   end
 
@@ -461,7 +475,7 @@ RSpec.describe RdssDataset do
       expect(@obj.creator_nested.first.id).to include('#person')
     end
 
-    it 'rejects person if name, role and orcid are blank' do
+    it 'rejects person if name and role are blank' do
       @obj = build(:rdss_dataset, creator_nested_attributes: [
           {
             first_name: 'Foo',
@@ -485,7 +499,7 @@ RSpec.describe RdssDataset do
           }
         ]
       )
-      expect(@obj.creator_nested.size).to eq(1)
+      expect(@obj.creator_nested.size).to eq(2)
     end
 
     it 'destroys creator' do

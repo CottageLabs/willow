@@ -1,55 +1,55 @@
 terms:
   - id: artDesignItem
-    term: artDesignItem
+    term: Art Design Item
   - id: article
-    term: article
+    term: Article
   - id: audio
-    term: audio
+    term: Audio
   - id: book
-    term: book
+    term: Book
   - id: bookSection
-    term: bookSection
+    term: Book Section
   - id: conferenceWorkshopItem
-    term: conferenceWorkshopItem
+    term: Conference Workshop Item
   - id: dataset
-    term: dataset
+    term: Dataset
   - id: examPaper
-    term: examPaper
+    term: Exam Paper
   - id: image
-    term: image
+    term: Image
   - id: journal
-    term: journal
+    term: Journal
   - id: learningObject
-    term: learningObject
+    term: Learning Object
   - id: movingImage
-    term: movingImage
+    term: Moving Image
   - id: musicComposition
-    term: musicComposition
+    term: Music Composition
   - id: other
-    term: other
+    term: Other
   - id: patent
-    term: patent
+    term: Patent
   - id: performance
-    term: performance
+    term: Performance
   - id: preprint
-    term: preprint
+    term: Preprint
   - id: report
-    term: report
+    term: Report
   - id: review
-    term: review
+    term: Review
   - id: showExhibition
-    term: showExhibition
+    term: Show Exhibition
   - id: software
-    term: software
+    term: Software
   - id: text
-    term: text
+    term: Text
   - id: thesisDissertation
-    term: thesisDissertation
+    term: Thesis Dissertation
   - id: unkown
-    term: unkown
+    term: Unkown
   - id: website
-    term: website
+    term: Website
   - id: workflow
-    term: workflow
+    term: Workflow
   - id: equipment
-    term: equipment
+    term: Equipment

@@ -10,13 +10,13 @@ describe RdssOrganisationRolesService do
   describe "#select_all_options" do
     it "returns all terms" do
       expect(described_class.select_all_options).to include(
-        ["registrationAgency", 'registrationAgency'])
+        ["Registration Agency", 'registrationAgency'])
     end
   end
 
   describe "#label" do
     it "resolves for ids of all terms" do
-      expect(described_class.label('advocacy')).to eq("advocacy")
+      expect(described_class.label('advocacy')).to eq("Advocacy")
     end
   end
 end
