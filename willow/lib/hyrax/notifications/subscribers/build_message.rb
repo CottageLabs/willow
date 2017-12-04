@@ -268,7 +268,10 @@ module Hyrax
             @object.file_sets.each do |fs|
               files << {
                   fileUuid: fs.id,
-                  fileIdentifier: download_url(fs, host: Rails.application.routes.default_url_options[:host]),
+                  # NB: line below replaced temporarily to for https://jiscdev.atlassian.net/browse/RDSSSAM-118
+                  # override the default url host with the SAMVERA_INTERNAL_HOST environment variable if it is set
+                  # fileIdentifier: download_url(fs, host: Rails.application.routes.default_url_options[:host]),
+                  fileIdentifier: download_url(fs, host: (ENV['SAMVERA_INTERNAL_HOST'] || Rails.application.routes.default_url_options[:host])),
                   fileName: fs.first_title,
                   fileSize: fs.file_size.first.try(:to_i),
                   fileChecksum: fs.original_checksum.map{|c| {
