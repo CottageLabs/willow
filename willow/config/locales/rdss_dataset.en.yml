@@ -35,7 +35,7 @@ en:
         license_nested: "Licensing and distribution information governing access to the dataset."
         identifier_nested: "Identifiers for the dataset"
         category: "Category for the dataset, e.g. subject area"
-        rating: "Rating for dataset in terms of value / importantance"
+        rating: "Rating for dataset in terms of value / importance"
         rights_holder: "The person or organisation who holds the rights for the work"
         organisation_nested: "The organisation or group responsible for the dataset."
         preservation_nested: "Add a preservation event"
