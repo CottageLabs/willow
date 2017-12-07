@@ -1,0 +1,34 @@
+<h2><%=t('devise.registrations.new')%></h2>
+<div class="registrations-form col-sm-8">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form-horizontal' }) do |f| %>
+    <%= devise_error_messages! %>
+    <div class="form-group">
+      <%= f.label :email, t('devise.user.username'), class: "col-sm-2 control-label" %>
+      <div class="col-sm-6">
+        <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :password, t('devise.user.password'), class: "col-sm-2 control-label" %>
+      <div class="col-sm-6">
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :password, t('devise.user.password_confirmation'), class: "col-sm-2 control-label" %>
+      <div class="col-sm-6">
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-6 button-set">
+        <%= f.submit t('devise.registrations.new'), class: "btn btn-primary btn-lg btn-block"%>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10 aux-links">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,22 @@
+<h2><%=t('devise.passwords.forgot')%></h2>
+<div class="passwords-form col-sm-8">
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'form-horizontal' }) do |f| %>
+    <%= devise_error_messages! %>
+    <div class="form-group">
+      <%= f.label :email, t('devise.user.username'), class: "col-sm-2 control-label" %>
+      <div class="col-sm-6">
+        <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-6 button-set">
+        <%= f.submit t('devise.passwords.reset'), class: "btn btn-primary btn-lg btn-block"%>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10 aux-links">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  <% end %>
+</div>
