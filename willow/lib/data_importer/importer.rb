@@ -7,12 +7,13 @@ module DataImporter
     UNKNOWN = 'UNKNOWN'.freeze
     attr_reader :hash, :collection, :bucket, :import_dir, :filter
 
-    def initialize(bucket: , region:,
+    def initialize(bucket: , region:, prefix:,
                    import_folder: 'tmp/importer', import_filter: nil,
                    import_user: nil, import_collection_id: nil,
                    import_visibility: 'open')
       @s3 = Aws::S3::Client.new(region: region)
       @bucket = bucket
+      @prefix = prefix
       @import_folder = import_folder
       @import_filter = import_filter
       @import_user = import_user
@@ -40,7 +41,7 @@ module DataImporter
         FileUtils.mkdir_p(@import_folder)
       end
 
-      @s3.list_objects_v2(bucket: @bucket).each do |response|
+      @s3.list_objects_v2(bucket: @bucket, prefix: @prefix).each do |response|
         response.contents.each do |item|
 
           # we are only interested in files
