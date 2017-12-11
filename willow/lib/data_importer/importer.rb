@@ -152,11 +152,19 @@ module DataImporter
       work.rights_statement = [UNKNOWN] #['http://rightsstatements.org/vocab/CNE/1.0/'] # Copyright not evaluated
       work.depositor = @import_user if @import_user.present?
 
+      def get_person_name(person_obj)
+        person_obj["personIdentifier"].each do |id| 
+          if id["personIdentifierType"] == 5  
+            return id["personIdentifierValue"]
+          end 
+        end
+        return UNKNOWN
+      end
+
       if metadata["objectPersonRole"].present?
         work.creator_nested_attributes = metadata["objectPersonRole"].map { |i|
           {
-            name: i["person"]["personIdentifierValue"] || UNKNOWN,
-            orcid: UNKNOWN,
+            name: get_person_name(i["person"]),
             role: @vocabs.vocabularies["personRole"][i["role"]]
           }
         }
@@ -205,18 +213,29 @@ module DataImporter
         }
       end
 
+      def get_identifier_url(obj_id)
+        if obj_id['identifierType'] == 4
+          return "http://doi.org/" + obj_id['identifierValue']
+        elsif obj_id['identifierType'] == 17 
+          return obj_id['identifierValue']
+        else
+          return UNKNOWN
+        end
+      end
+
       if metadata["objectRelatedIdentifier"].present?
         work.relation_attributes = metadata["objectRelatedIdentifier"].map {|i|
           {
-              label: UNKNOWN,
-              url: UNKNOWN,
+              label: @vocabs.vocabularies["identifierType"][i["identifierType"]] || UNKNOWN,
+              url: get_identifier_url(i),
               identifier: i['identifierValue'],
               identifier_scheme: @vocabs.vocabularies["identifierType"][i["identifierType"]] || UNKNOWN,
-              relationship_name: UNKNOWN,
-              relationship_role: UNKNOWN
+              relationship_name: @vocabs.vocabularies["identifierType"][i["identifierType"]] || UNKNOWN,
+              relationship_role: UNKNOWN,
           }
         }
       end
+
 
 
       if metadata["objectOrganisationRole"].present?
