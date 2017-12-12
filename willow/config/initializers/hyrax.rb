@@ -19,6 +19,8 @@ Hyrax.config do |config|
   end
   # Injected via `rails g hyrax:work RdssDataset`
   config.register_curation_concern :rdss_dataset
+  # Injected via `rails g hyrax:work RdssCdm`
+  config.register_curation_concern :rdss_cdm
   
   # Register roles that are expected by your implementation.
   # @see Hyrax::RoleRegistry for additional details.
