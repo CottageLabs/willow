@@ -6,7 +6,6 @@ class SolrDocument
   # Adds Hyrax behaviors to the SolrDocument.
   include Hyrax::SolrDocumentBehavior
 
-
   # self.unique_key = 'id'
 
   # Email uses the semantic field mappings below to generate the body of an email.
@@ -25,6 +24,17 @@ class SolrDocument
   # Do content negotiation for AF models.
 
   use_extension( Hydra::ContentNegotiation )
+
+  # RDSS CDM additions:
+  def title
+    self[Solrizer.solr_name('title', :stored_searchable)]
+  end 
+
+  def object_description
+    self[Solrizer.solr_name('object_description', :stored_searchable)]
+  end
+  # End of RDSS CDM additions:
+  
 
   def doi
     self[Solrizer.solr_name('doi', :stored_searchable)]
