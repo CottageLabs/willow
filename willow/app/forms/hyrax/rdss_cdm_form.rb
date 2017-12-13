@@ -4,9 +4,9 @@ module Hyrax
   class RdssCdmForm < Hyrax::Forms::WorkForm
     self.model_class = ::RdssCdm
 
-    #
     self.terms -= [
-      # These fields are not present in the RDSS CDM model, but 
+      # These fields are not present in the RDSS CDM model,
+      # but are hard-coded in Hyrax::Forms::WorkForm
       :label, 
       :relative_path, 
       :import_url, 
@@ -26,6 +26,12 @@ module Hyrax
       :related_url, 
       :bibliographic_citation, 
       :source
+    ]
+    self.required_fields -= [
+      :creator, 
+      :keyword, 
+      :rights_statement, 
+      :title
     ]
 
     self.terms += [
