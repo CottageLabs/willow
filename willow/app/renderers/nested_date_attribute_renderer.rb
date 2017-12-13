@@ -13,7 +13,11 @@ class NestedDateAttributeRenderer < Hyrax::Renderers::DateAttributeRenderer
         label = DateTypesService.label(v['description'][0])
       end
       if v.include?('date') and not v['date'].blank? and not v['date'][0].blank?
-        val = Date.parse(v['date'][0]).to_formatted_s(:standard)
+        begin
+          val = Date.parse(v['date'][0]).to_formatted_s(:standard)
+        rescue
+          val = v['date'][0]
+        end
       end
       html += "<tr><th>#{label}</th><td>#{val}</td><tr>"
     end

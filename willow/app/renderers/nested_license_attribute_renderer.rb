@@ -23,7 +23,11 @@ class NestedLicenseAttributeRenderer < Hyrax::Renderers::AttributeRenderer
         row << license
       end
       if v.include?('start_date') and not v['start_date'].blank? and not v['start_date'][0].blank?
-        val = Date.parse(v['start_date'][0]).to_formatted_s(:standard)
+        begin
+          val = Date.parse(v['start_date'][0]).to_formatted_s(:standard)
+        rescue
+          val = v['start_date'][0]
+        end
         row << "Start date: #{val}"
       end
       if v.include?('definition') and not v['definition'].blank? and not v['definition'][0].blank?
