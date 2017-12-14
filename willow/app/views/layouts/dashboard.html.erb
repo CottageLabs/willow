@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="<%= t("hyrax.document_language", default: '') %>" prefix="og:http://ogp.me/ns#">
+  <head>
+    <%= render partial: 'layouts/head_tag_content' %>
+    <%= content_for(:head) %>
+  </head>
+
+  <body class="dashboard">
+    <a href="#skip_to_content" class="sr-only">Skip to Content</a>
+    <%= render '/masthead' %>
+    <%= render '/controls' %>
+    <div id="content-wrapper" role="main">
+      <a name="skip_to_content"></a>
+      <div class="sidebar maximized">
+        <%= render 'hyrax/dashboard/sidebar' %>
+      </div>
+      <div class="main-content maximized">
+        <%= render_breadcrumbs builder: Hyrax::BootstrapBreadcrumbsBuilder %>
+        <%= render '/flash_msg' %>
+        <% if content_for?(:page_header) %>
+          <div class="row">
+            <div class="col-xs-12 main-header">
+              <%= yield(:page_header) %>
+            </div>
+          </div>
+        <% end %>
+
+        <%= content_for?(:content) ? yield(:content) : yield %>
+      </div>
+
+    </div><!-- /#content-wrapper -->
+    <%= render 'shared/ajax_modal' %>
+  </body>
+</html>

@@ -196,7 +196,7 @@ module Hyrax
         end
 
         def objectResourceType
-          UNKNOWN_ID
+          7
         end
 
         def objectValue
