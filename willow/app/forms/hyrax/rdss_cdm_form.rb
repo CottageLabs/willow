@@ -28,6 +28,8 @@ module Hyrax
       :source
     ]
     self.required_fields -= [
+      # These fields are not present in the RDSS CDM model,
+      # but are hard-coded in Hyrax::Forms::WorkForm
       :creator, 
       :keyword, 
       :rights_statement, 
@@ -36,7 +38,10 @@ module Hyrax
 
     self.terms += [
       :title, 
-      :object_description  
+      :object_description,
+      :object_keywords,
+      :object_category,
+      :object_version
     ]
     self.required_fields += [
       :title
