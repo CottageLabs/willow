@@ -11,11 +11,12 @@
 <div class="image-masthead">
   <%= render '/controls' %>
 </div>
-<%= content_for(:precontainer_content) %>
+
 
 <div class="container" id="main">
   <div class="row center">
     <div class="col-sm-12 left" id="content-left">
+      <%= content_for(:precontainer_content) %>
       <div id="content-wrapper" class="container" role="main">
         <a name="skip_to_content"></a>
         <div class="searchbar-right navbar-right col-sm-12 col-md-12">
