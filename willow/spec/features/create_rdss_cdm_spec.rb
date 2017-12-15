@@ -4,30 +4,18 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 # NOTE: If you generated more than one work, you have to set "js: true"
-RSpec.feature 'Create a RdssCdm', js: false do
+RSpec.feature 'Create a RdssCdm', vcr: true, js: false do
   context 'a logged in user' do
-    let(:user_attributes) do
-      { email: 'test@example.com' }
-    end
-    let(:user) do
-      User.new(user_attributes) { |u| u.save(validate: false) }
-    end
+    let(:user) { create(:user) }
 
     before do
-      AdminSet.find_or_create_default_admin_set_id
       login_as user
     end
 
     scenario do
-      visit '/dashboard'
-      click_link "Works"
-      click_link "Add new work"
+      visit new_hyrax_rdss_cdm_path
 
-      # If you generate more than one work uncomment these lines
-      # choose "payload_concern", option: "RdssCdm"
-      # click_button "Create work"
-
-      expect(page).to have_content "Add New Rdss cdm"
+      expect(page).to have_content "Add New RDSS CDM"
     end
   end
 end
