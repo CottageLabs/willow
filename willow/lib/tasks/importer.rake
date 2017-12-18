@@ -1,9 +1,12 @@
 namespace :willow do
   desc 'Imports a JISC RDSS S3 bucket into Willow usage: willow:import["region","bucket"]'
-  task :"import", [:region,:bucket] => :environment do |task, args|
+  task :"import", [:region,:bucket,:prefix] => :environment do |task, args|
+    
+    args.with_defaults(:prefix => '/')
 
     bucket = args.bucket
     region = args.region
+    prefix = args.prefix
 
     import_folder = ENV['IMPORT_FOLDER'] || 'tmp/importer'
     import_filter = ENV['IMPORT_FILTER'] || nil
@@ -16,6 +19,7 @@ namespace :willow do
     puts " REQUIRED SETTINGS:"
     puts "   Region: #{region}"
     puts "   Bucket: #{bucket}"
+    puts "   Prefix: #{prefix}"
 
     puts " OPTIONAL SETTINGS (via ENV variables):"
     puts "   Temporary import folder (IMPORT_FOLDER): #{import_folder}"
@@ -25,7 +29,7 @@ namespace :willow do
     puts "   Visibility (IMPORT_VISIBILITY): #{import_visibility}"
 
 
-    importer = DataImporter::Importer.new(bucket: bucket, region: region,
+    importer = DataImporter::Importer.new(bucket: bucket, region: region, prefix: prefix,
                                           import_folder: import_folder, import_filter: import_filter,
                                           import_user: import_user, import_collection_id: import_collection_id,
                                           import_visibility: import_visibility)

@@ -1,19 +1,37 @@
-<nav class="navbar navbar-default navbar-static-top" role="navigation">
+<div class="main-nav">
   <div class="container">
-    <div class="row" id="tabtoolbar">
-      <ul class="nav navbar-nav col-md-6">
-        <li <%= 'class=active' if current_page?(hyrax.root_path) %>>
-          <%= link_to t(:'hyrax.controls.home'), hyrax.root_path %></li>
-        <li <%= 'class=active' if current_page?(hyrax.about_path) %>>
-          <%= link_to t(:'hyrax.controls.about'), hyrax.about_path %></li>
-        <li <%= 'class=active' if current_page?(hyrax.help_path) %>>
-          <%= link_to t(:'hyrax.controls.help'), hyrax.help_path %></li>
-        <li <%= 'class=active' if current_page?(hyrax.contact_path) %>>
-          <%= link_to t(:'hyrax.controls.contact'), hyrax.contact_path %></li>
-      </ul>
-      <div class="col-md-6 collapse navbar-collapse pull-right" id="top-navbar-collapse">
-        <%= render partial: '/user_util_links' %>
+    <div id="tabtoolbar" class="navbar-inverse">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="main-nav">
+        <ul class="nav navbar-nav">
+          <li <%= 'class=active' if current_page?(hyrax.root_path) %>>
+            <%= link_to t(:'hyrax.controls.home'), hyrax.root_path %></li>
+          <li <%= 'class=active' if current_page?(hyrax.about_path) %>>
+            <%= link_to t(:'hyrax.controls.about'), hyrax.about_path %></li>
+          <li <%= 'class=active' if current_page?(hyrax.help_path) %>>
+            <%= link_to t(:'hyrax.controls.help'), hyrax.help_path %></li>
+          <li <%= 'class=active' if current_page?(hyrax.contact_path) %>>
+            <%= link_to t(:'hyrax.controls.contact'), hyrax.contact_path %></li>
+        </ul>
+        <% if user_signed_in? %>
+        <ul class="nav navbar-nav navbar-right">
+          <li <%= 'class=active' if current_page?(hyrax.dashboard_path) %>>
+            <%= link_to t("hyrax.toolbar.dashboard.menu"), hyrax.dashboard_path %>
+          </li>
+        </ul>
+        <% end %>
+        <%# add the utility links in again, so that they show up in the mobile collapsed form %>
+        <div class="visible-xs">
+          <%= render partial: '/user_util_links' %>
+        </div>
       </div>
     </div>
   </div>
-</nav>
+</div>

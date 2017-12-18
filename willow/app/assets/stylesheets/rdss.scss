@@ -9,6 +9,13 @@ body {
 
 body.dashboard {
   padding-top: 0;
+  div.main-nav {
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  div.content-wrapper {
+    padding-top: 0px;
+  }
 }
 
 #logo {
@@ -40,15 +47,18 @@ a:focus#logo.navbar-brand {
 }
 
 .navbar.navbar-inverse {
-  background-color: $nav-bg;
+  background-color: transparent;
   border: 0;
 }
 
-.navbar.navbar-default.navbar-static-top {
+.main-nav {
   background-color: $nav-bg;
   font-size: 18px;
   margin-bottom: 25px;
   padding-bottom: 97px;
+  .navbar-collapse {
+    padding: 0px;
+  }
 }
 
 .navbar-static-top {
@@ -90,9 +100,12 @@ footer.navbar.navbar-inverse a:hover {
 }
 
 #rdss-masthead {
-  min-height: 50px;
-  padding-top: 10px;
   background-color: $masthead-bg;
+  z-index: 1030;
+  .branding-section {
+    padding-top: 10px;
+    min-height: 100px;
+  }
 }
 
 #masthead-nav {
@@ -110,25 +123,57 @@ footer.navbar.navbar-inverse a:hover {
   margin: 0;
   padding: 0;
   border: 0;
-}
 
-#user_utility_links {
-  margin: 0;
-  ul > li > a {
-    background-color: #fff;
-    color: $toolbar-link;
-    font-family: stagsans-book;
+  #user_utility_links {
+    margin: 0;
+    a {
+      color: white;
+      font-family: stagsans-book;
+      padding: 8px 15px;
+      &:hover, &:focus {
+        background-color: $user-link-highlight;
+      }
+    }
+    .open a, {
+      background-color: $user-link-highlight;
+    }
+
+    ul.dropdown-menu {
+      background-color: $user-link-highlight;
+      top: 98%;
+      z-index: 1030;
+      .dropdown-header {
+        color: white;
+      }      
+    }
   }
 }
+
+
+
+
 
 #tabtoolbar {
   background-color: $toolbar-bg;
   padding-bottom: 0;
   z-index: 1020;
-}
-
-#tabtoolbar li {
-  padding-right: 3px;
+  li {
+    padding-left: 3px;
+    &:first-child {
+      padding-left: 0;
+    }
+  }
+  .navbar-collapse.in {
+    li {
+      padding-left: 0px;
+    }
+    ul.dropdown-menu {
+      background-color: #851b63;
+      .dropdown-header {
+        color: white;
+      }
+    }
+  }
 }
 
 #tabtoolbar a {
@@ -139,7 +184,7 @@ footer.navbar.navbar-inverse a:hover {
   font-weight: normal;
 }
 
-#tabtoolbar > ul > li.active > a {
+#tabtoolbar  ul  li.active  a {
   background-color: #fff;
   color: #2c3841;
 }
@@ -147,16 +192,6 @@ footer.navbar.navbar-inverse a:hover {
 #tabtoolbar a:hover, a:focus {
   background-color: #fff;
   color: #2c3841;
-}
-
-#tabtoolbar > #user_utility_links > li.dropdown.open > a:active, #tabtoolbar > #user_utility_links > li.dropdown.open > a:visited, #tabtoolbar > #user_utility_links > li.dropdown.open > a:focus {
-  background-color: #6b6b6b;
-  color: white;
-  border-right: 2px;
-}
-
-#tabtoolbar > #user_utility_links > li.dropdown.open > ul.dropdown-menu.dropdown-menu-right > li > a {
-  color: black;
 }
 
 div.home_marketing_text {
@@ -194,7 +229,7 @@ div.home_share_work p.text-center a{
 }
 
 div#announcement {
-  background: rgba(217, 217, 217, 0.1);
+  background: #cedadd;
 
   p {
     color: black;
@@ -255,6 +290,10 @@ form .field-wrapper label[required="required"]::after {
 #logo_pic img {
   object-fit: contain;
   height: 100%;
+}
+
+#logo_pic a:focus {
+  background-color: transparent;
 }
 
 #logo {
