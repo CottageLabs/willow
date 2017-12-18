@@ -17,6 +17,18 @@ RSpec.feature 'Create a RdssCdm', vcr: true, js: false do
         visit new_hyrax_rdss_cdm_path
 
         expect(page).to have_content "Add New RDSS CDM"
+        fill_in 'Title', with: 'Test RdssCDM'
+        click_on('Additional fields')
+        fill_in 'Description', with: 'description'
+        fill_in 'Keywords', with: 'keywords'
+        fill_in 'Category', with: 'category'
+        fill_in 'Version', with: 'version'
+        choose('open')
+        check('agreement')
+        click_on('Files')
+        attach_file('files[]', "#{fixture_path}/files/hello_world.pdf")
+
+        # cannot save without invoking Fedora and thus a problem of unrepeatable tests results...
       end
     end
   end
