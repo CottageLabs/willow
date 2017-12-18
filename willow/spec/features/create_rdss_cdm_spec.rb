@@ -13,9 +13,11 @@ RSpec.feature 'Create a RdssCdm', vcr: true, js: false do
     end
 
     scenario do
-      visit new_hyrax_rdss_cdm_path
+      if(RdssCDM.content_type_enabled?)
+        visit new_hyrax_rdss_cdm_path
 
-      expect(page).to have_content "Add New RDSS CDM"
+        expect(page).to have_content "Add New RDSS CDM"
+      end
     end
   end
 end
