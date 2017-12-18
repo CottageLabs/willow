@@ -13,3 +13,8 @@
 @import "blacklight_gallery/slideshow";
 @import "blacklight_gallery/osd_viewer";
 @import 'hyrax/hyrax';
+
+.actions-controls-collections {
+  display: block;
+  margin: 1em -30% 0 1em;
+}
