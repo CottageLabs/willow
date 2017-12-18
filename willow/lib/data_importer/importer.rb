@@ -175,15 +175,15 @@ module DataImporter
       if metadata["objectRights"].present?
         work.license_nested_attributes = metadata["objectRights"].map {|i|
           {
-              label: i["licenceName"] || UNKNOWN,
-              webpage: i["licenceIdentifier"] || UNKNOWN
+              label: i["licenceName"] || "Creative Commons Attribution License (cc-by)",
+              webpage: i["licenceIdentifier"] || "https://creativecommons.org/licenses/by/4.0/"
           }
         }
       else
         work.license_nested_attributes = [
           {
-              label: UNKNOWN,
-              webpage: UNKNOWN
+              label: "Creative Commons Attribution License (cc-by)",
+              webpage: "https://creativecommons.org/licenses/by/4.0/"
           }
         ]
       end
