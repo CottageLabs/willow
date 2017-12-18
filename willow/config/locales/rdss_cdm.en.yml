@@ -6,3 +6,11 @@ en:
       rdss_cdm:
         name:               "Rdss Cdm"
         description:        "Rdss cdm works"
+  simple_form:
+    labels:
+      rdss_cdm:
+        object_description: 'Description'
+        object_keywords: 'Keywords'
+        object_category: 'Category'
+        object_version: 'Version'
+
