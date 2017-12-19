@@ -22,7 +22,7 @@ class RdssCdm < ActiveFedora::Base
   property :object_keywords, predicate: ::RDF::Vocab::DC11.relation
   property :object_category, predicate: ::RDF::Vocab::DC11.relation
   #property :object_resource_type
-  property :object_version, predicate: ::RDF::Vocab::DOAP.Version
+  property :object_version, predicate: ::RDF::Vocab::DOAP.Version, multiple: false
   #property :object_value
   #property :object_identifier
   #property :object_related_identifier
