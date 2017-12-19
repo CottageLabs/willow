@@ -11,15 +11,23 @@ module Hyrax
         # end
 
         def after_update_response
-          # only send METADATA_UPDATE message if the object is active
-          if curation_concern.state.id == 'http://fedora.info/definitions/1/0/access/ObjState#active'
-            ActiveSupport::Notifications.instrument(Events::METADATA_UPDATE, {curation_concern_type: self.class.curation_concern_type, object: curation_concern})
+          # We'll maintain the later behaviour for other Work types, but skip it for the new type until 
+          # the correct CRUD behaviour is implemented. 
+          unless curation_concern.instance_of? RdssCdm
+            # only send METADATA_UPDATE message if the object is active
+            if curation_concern.state.id == 'http://fedora.info/definitions/1/0/access/ObjState#active'
+              ActiveSupport::Notifications.instrument(Events::METADATA_UPDATE, {curation_concern_type: self.class.curation_concern_type, object: curation_concern})
+            end
           end
           super
         end
 
         def after_destroy_response(title)
-          ActiveSupport::Notifications.instrument(Events::METADATA_DELETE, {curation_concern_type: self.class.curation_concern_type, object: curation_concern})
+          # We'll maintain the later behaviour for other Work types, but skip it for the new type until 
+          # the correct CRUD behaviour is implemented. 
+          unless curation_concern.instance_of? RdssCdm
+            ActiveSupport::Notifications.instrument(Events::METADATA_DELETE, {curation_concern_type: self.class.curation_concern_type, object: curation_concern})
+          end
           super
         end
 

@@ -72,7 +72,16 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
+    # RDSS CDM additions:
     config.add_index_field solr_name("title", :stored_searchable), label: I18n.t('willow.fields.title'), itemprop: 'name', if: false
+    config.add_index_field solr_name("object_description", :stored_searchable), label: I18n.t('willow.fields.object_description'), itemprop: 'object_description', if: false
+    config.add_index_field solr_name("object_keywords", :stored_searchable), label: I18n.t('willow.fields.object_keywords'), itemprop: 'object_keywords' #link_to_search: solr_name("object_keywords", :facetable)
+    config.add_index_field solr_name("object_category", :stored_searchable), label: I18n.t('willow.fields.object_category'), itemprop: 'object_category' #link_to_search: solr_name("object_category", :facetable)
+    
+    # End of RDSS CDM additions
+
+    # solr fields to be displayed in the index (search results) view
+    #   The ordering of the field names is the order of the display
     config.add_index_field solr_name("description", :stored_searchable), label: I18n.t('willow.fields.description'), itemprop: 'description', helper_method: :iconify_auto_link
     config.add_index_field solr_name("keyword", :stored_searchable), label: I18n.t('willow.fields.keyword'), itemprop: 'keywords', link_to_search: solr_name("keyword", :facetable)
     config.add_index_field solr_name("subject", :stored_searchable), label: I18n.t('willow.fields.subject'), itemprop: 'about', link_to_search: solr_name("subject", :facetable)

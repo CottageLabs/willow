@@ -33,7 +33,16 @@ class SolrDocument
   def object_description
     self[Solrizer.solr_name('object_description', :stored_searchable)]
   end
-  # End of RDSS CDM additions:
+
+  def object_keywords
+    self[Solrizer.solr_name('object_keywords', :stored_searchable)]
+  end
+
+  def object_category
+    self[Solrizer.solr_name('object_category', :stored_searchable)]
+  end
+
+  # End of RDSS CDM additions
   
 
   def doi

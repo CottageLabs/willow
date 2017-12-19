@@ -1,6 +1,13 @@
 en:
   willow:
     fields:
+      # RDSS CDM additions:
+      title: 'Title'
+      object_description: 'Description'
+      object_keywords: 'Keywords'
+      object_category: 'Category'
+      object_version: 'Version'
+      # End of RDSS CDM additions
       admin_metadata: 'Information for administrative purposes'
       apc: 'Article processing charge'
       based_near: 'Location'
