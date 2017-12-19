@@ -3,7 +3,8 @@
 class RdssCdmIndexer < Hyrax::WorkIndexer
   # This indexes the default metadata. You can remove it if you want to
   # provide your own metadata and indexing.
-  include Hyrax::IndexesBasicMetadata
+  # Note: extend rather than include
+  extend Hyrax::IndexesBasicMetadata
   
   # Overwriting these properties from Hyrax::IndexesBasicMetadata
   self.stored_and_facetable_fields = %i[object_keywords object_category]
