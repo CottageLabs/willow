@@ -22,3 +22,4 @@
 
 # ignore compiled assets
 /public/assets/
+.byebug_history
