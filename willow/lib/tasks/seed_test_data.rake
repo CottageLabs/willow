@@ -55,6 +55,10 @@ namespace :willow do
         about_page = ContentBlock.where(name: "about_page").first_or_create!
         about_page.value=html
         about_page.save!
+      elsif key == "help"
+        help_page = ContentBlock.where(name: "help_page").first_or_create!
+        help_page.value=html
+        help_page.save!
       end
     end
 
