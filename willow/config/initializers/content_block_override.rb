@@ -10,8 +10,4 @@ ContentBlock.instance_eval do
         )
       ).result
   end
-
-  def bob
-    'hello'
-  end
 end
