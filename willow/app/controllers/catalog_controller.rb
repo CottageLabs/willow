@@ -125,7 +125,13 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("preservation_nested", :stored_searchable), label: I18n.t('willow.fields.preservation_nested'), itemprop: 'preservation'
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
+    # RDSS CDM additions:
     config.add_show_field solr_name("title", :stored_searchable), label: I18n.t('willow.fields.title')
+    config.add_show_field solr_name("object_description", :stored_searchable), label: I18n.t('willow.fields.object_description')
+    config.add_show_field solr_name("object_keywords", :stored_searchable), label: I18n.t('willow.fields.object_keywords')
+    config.add_show_field solr_name("object_category", :stored_searchable), label: I18n.t('willow.fields.object_category')    
+    # End of RDSS CDM additions
+
     config.add_show_field solr_name("description", :stored_searchable), label: I18n.t('willow.fields.description')
     config.add_show_field solr_name("keyword", :stored_searchable), label: I18n.t('willow.fields.keyword')
     config.add_show_field solr_name("subject", :stored_searchable), label: I18n.t('willow.fields.subject')
