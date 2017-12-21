@@ -6,6 +6,7 @@ class RdssCdm < ActiveFedora::Base
   # include methods to check for enabled and disabled content types
   include EnableContentTypesBehaviour  
 
+
   self.indexer = RdssCdmIndexer
   # Change this to restrict which works can be added as a child.
   # self.valid_child_concerns = []
@@ -29,6 +30,27 @@ class RdssCdm < ActiveFedora::Base
   #property :object_organisation_role
   #property :object_preservation_event
   #property :object_file
+  
+  def self.multiple?(field)
+    # Overriding to return false for `title` (as we can't set multiple: false) 
+    if [:title].include? field.to_sym
+      false
+    else
+      super
+    end
+  end
+
+  def self.model_attributes(_)
+    # Overriding to cast title back to multivalue when saving. 
+    attrs = super
+    attrs[:title] = Array(attrs[:title]) if attrs[:title]
+    attrs
+  end
+
+  def title
+    # Return a single value for form field population. 
+    super.first || ""
+  end
   
   # The following properties are also inherited from Hyrax::CoreMetadata 
   # along with :title and are required by Hyrax:
