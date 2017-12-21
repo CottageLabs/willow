@@ -31,7 +31,16 @@ class CatalogController < ApplicationController
     config.default_solr_params = {
       qt: "search",
       rows: 10,
-      qf: "title_tesim description_tesim creator_tesim keyword_tesim"
+      qf: [
+        solr_name("title", :stored_searchable), 
+        solr_name("object_description", :stored_searchable), 
+        solr_name("object_keywords", :stored_searchable), 
+        solr_name("object_category", :stored_searchable), 
+        #Preserving for legacy functionality
+        solr_name("description", :stored_searchable), 
+        solr_name("creator", :stored_searchable), 
+        solr_name("keyword", :stored_searchable), 
+      ].join(" ")
     }
 
     # solr field configuration for document/show views
