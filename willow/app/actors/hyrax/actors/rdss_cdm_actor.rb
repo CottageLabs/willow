@@ -9,6 +9,11 @@ module Hyrax
         super
       end
 
+      def update(env)
+        title_to_array(env)
+        super
+      end
+
       private
         def add_object_uuid(env)
           unless env.attributes.key?(:object_uuid)
