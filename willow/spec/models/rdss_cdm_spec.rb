@@ -20,6 +20,10 @@ RSpec.describe RdssCdm do
       expect(@obj.title).to eq 'test rdss_cdm' # but title is returned as a single string
     end
 
+    it 'indexes title' do
+      @obj = build(:rdss_cdm, title: ['title'])
+      @doc = @obj.to_solr
+      expect(@doc['title_tesim']).to eq ['title']
     end
   end
 
@@ -31,8 +35,7 @@ RSpec.describe RdssCdm do
     end
 
     it 'indexes version' do
-      skip # TODO: unskip when indexing implemented
-      @obj = build(:rdss_cdm, object_version: ['version'])
+      @obj = build(:rdss_cdm, object_version: 'version')
       @doc = @obj.to_solr
       expect(@doc['object_version_tesim']).to eq ['version']
     end
@@ -53,8 +56,7 @@ RSpec.describe RdssCdm do
     end
 
     it 'indexes description' do
-      skip # TODO: unskip when indexing implemented
-      @obj = build(:rdss_cdm, object_description: ['description'])
+      @obj = build(:rdss_cdm, object_description: 'description')
       @doc = @obj.to_solr
       expect(@doc['object_description_tesim']).to eq ['description']
     end
@@ -67,7 +69,6 @@ RSpec.describe RdssCdm do
     end
 
     it 'indexes keywords' do
-      skip # TODO: unskip when indexing implemented
       @obj = build(:rdss_cdm, object_keywords: ['keywords'])
       @doc = @obj.to_solr
       expect(@doc['object_keywords_tesim']).to eq ['keywords']
@@ -81,7 +82,6 @@ RSpec.describe RdssCdm do
     end
 
     it 'indexes category' do
-      skip # TODO: unskip when indexing implemented
       @obj = build(:rdss_cdm, object_category: ['category'])
       @doc = @obj.to_solr
       expect(@doc['object_category_tesim']).to eq ['category']
