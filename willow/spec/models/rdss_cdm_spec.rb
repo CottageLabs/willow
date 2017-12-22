@@ -15,17 +15,19 @@ RSpec.describe RdssCdm do
       expect{@obj.save!}.to raise_error(ActiveFedora::RecordInvalid, 'Validation failed: Title Your work must have a title.')
     end
 
-    it 'has a multi valued title field' do
-      @obj = build(:rdss_cdm, title: ['test rdss_cdm'])
-      expect(@obj.title).to eq ['test rdss_cdm']
+    it 'has a single valued title field' do
+      @obj = build(:rdss_cdm, title: ['test rdss_cdm']) # Note it's actually multivalue so we set it as an array
+      expect(@obj.title).to eq 'test rdss_cdm' # but title is returned as a single string
+    end
+
     end
   end
 
 
   describe 'version' do
     it 'has a version' do
-      @obj = build(:rdss_cdm, object_version: ['version'])
-      expect(@obj.object_version).to eq ['version']
+      @obj = build(:rdss_cdm, object_version: 'version')
+      expect(@obj.object_version).to eq 'version'
     end
 
     it 'indexes version' do
@@ -41,13 +43,6 @@ RSpec.describe RdssCdm do
     it 'has uuid' do
       @obj = build(:rdss_cdm, object_uuid: 'uuid')
       expect(@obj.object_uuid).to eq 'uuid'
-    end
-
-    it 'indexes uuid' do
-      skip # TODO: unskip when indexing implemented
-      @obj = build(:rdss_cdm, object_uuid: 'uuid')
-      @doc = @obj.to_solr
-      expect(@doc['object_uuid_tesim']).to eq ['uuid']
     end
   end
 
