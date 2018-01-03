@@ -11,7 +11,7 @@ VCR.configure do |config|
   config.hook_into :webmock
   config.default_cassette_options = { match_requests_on: [:method, :uri],
                                       record: ENV["VCR_RECORD_MODE"] ? ENV["VCR_RECORD_MODE"].to_sym : :once }
-  config.allow_http_connections_when_no_cassette = true
+
   config.configure_rspec_metadata!
 end
 

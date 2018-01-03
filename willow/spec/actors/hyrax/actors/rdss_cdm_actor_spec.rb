@@ -2,7 +2,7 @@
 #  `rails generate hyrax:work RdssCdm`
 require 'rails_helper'
 
-RSpec.describe Hyrax::Actors::RdssCdmActor do
+RSpec.describe Hyrax::Actors::RdssCdmActor, vcr: true do
   let(:ability) { ::Ability.new(depositor) }
   let(:env) { Hyrax::Actors::Environment.new(rdss_cdm, ability, attributes) }
   let(:terminator) { Hyrax::Actors::Terminator.new }
@@ -17,7 +17,7 @@ RSpec.describe Hyrax::Actors::RdssCdmActor do
     stack.build(terminator)
   end 
 
-  describe "create", vcr: false do
+  describe "create" do
     it 'adds an object_uuid' do 
       expect { middleware.create(env) }.to change { env.attributes[:object_uuid] }.to match(/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/)
     end
@@ -27,7 +27,7 @@ RSpec.describe Hyrax::Actors::RdssCdmActor do
     end
   end
 
-  describe "update", vcr: false do
+  describe "update" do
     it 'changes title property to an array' do
       expect { middleware.update(env) }.to change { env.attributes[:title].instance_of? Array }.to(true)
     end
