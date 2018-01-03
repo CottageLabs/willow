@@ -19,12 +19,10 @@ module Hyrax
           unless env.attributes.key?(:object_uuid)
             env.attributes[:object_uuid] = SecureRandom.uuid
           end
-          true
         end
 
         def title_to_array(env)
           env.attributes[:title] = Array(env.attributes[:title]) if env.attributes[:title]
-          true
         end
     end
   end
