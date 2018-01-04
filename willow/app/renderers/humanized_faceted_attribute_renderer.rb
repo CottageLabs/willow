@@ -10,7 +10,7 @@ class HumanizedFacetedAttributeRenderer < Hyrax::Renderers::FacetedAttributeRend
 
   def humanized(value)
     value = underscored(value)
-    I18n.t(value, default: value.humanize.titlecase)
+    I18n.t(value, default: value.titlecase)
   end
 
   def li_value(value)
