@@ -1,8 +1,9 @@
 # Generated via
 #  `rails generate hyrax:work RdssCdm`
 require 'rails_helper'
+require 'vcr'
 
-RSpec.describe Hyrax::Actors::RdssCdmActor, vcr: true do
+RSpec.describe Hyrax::Actors::RdssCdmActor do
   let(:ability) { ::Ability.new(depositor) }
   let(:env) { Hyrax::Actors::Environment.new(rdss_cdm, ability, attributes) }
   let(:terminator) { Hyrax::Actors::Terminator.new }
@@ -19,18 +20,23 @@ RSpec.describe Hyrax::Actors::RdssCdmActor, vcr: true do
 
   describe "create" do
     it 'adds an object_uuid' do 
-      expect { middleware.create(env) }.to change { env.attributes[:object_uuid] }.to match(/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/)
+      VCR.use_cassette('create_object_uuid', :match_requests_on => [:method, :host]) do
+        expect { middleware.create(env) }.to change { env.attributes[:object_uuid] }.to match(/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/)
+      end
     end
 
     it 'changes title property to an array' do
-      expect { middleware.create(env) }.to change { env.attributes[:title].instance_of? Array }.to(true)
+      VCR.use_cassette('create_title_array', :match_requests_on => [:method, :host]) do
+        expect { middleware.create(env) }.to change { env.attributes[:title].instance_of? Array }.to(true)
+      end
     end
   end
 
   describe "update" do
     it 'changes title property to an array' do
-      expect { middleware.update(env) }.to change { env.attributes[:title].instance_of? Array }.to(true)
+      VCR.use_cassette('update_title_array', :match_requests_on => [:method, :host]) do
+        expect { middleware.update(env) }.to change { env.attributes[:title].instance_of? Array }.to(true)
+      end
     end
   end
-  
 end

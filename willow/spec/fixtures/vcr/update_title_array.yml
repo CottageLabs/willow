@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: head
-    uri: http://fedora:8080/rest/willow_test
+    uri: http://fedora:8080/rest/willow_test/76/53/71/32/765371328
     body:
       encoding: US-ASCII
       string: ''
@@ -19,9 +19,9 @@ http_interactions:
       message: ''
     headers:
       Etag:
-      - W/"5d227cfa3eec4f31816f945d5e15ed1b9d04f7a2"
+      - W/"fd8bf340bf16ea2648c1de442dbc4e5986865b3c"
       Last-Modified:
-      - Wed, 03 Jan 2018 15:17:24 GMT
+      - Mon, 08 Jan 2018 17:06:42 GMT
       Link:
       - <http://www.w3.org/ns/ldp#BasicContainer>;rel="type"
       - <http://www.w3.org/ns/ldp#Container>;rel="type"
@@ -37,58 +37,15 @@ http_interactions:
       Transfer-Encoding:
       - chunked
       Date:
-      - Wed, 03 Jan 2018 15:17:26 GMT
+      - Mon, 08 Jan 2018 17:06:41 GMT
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Wed, 03 Jan 2018 15:17:26 GMT
-- request:
-    method: head
-    uri: http://fedora:8080/rest/willow_test/r7/81/wg/00/r781wg00k
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Authorization:
-      - Basic ZmVkb3JhQWRtaW46ZmVkb3JhQWRtaW4=
-      User-Agent:
-      - Faraday v0.12.2
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: ''
-    headers:
-      Etag:
-      - W/"4e0bc5953c7842c1f46e1290a5189ce06439935c"
-      Last-Modified:
-      - Wed, 03 Jan 2018 15:17:24 GMT
-      Link:
-      - <http://www.w3.org/ns/ldp#BasicContainer>;rel="type"
-      - <http://www.w3.org/ns/ldp#Container>;rel="type"
-      - <http://www.w3.org/ns/ldp#Resource>;rel="type"
-      Accept-Patch:
-      - application/sparql-update
-      Accept-Post:
-      - text/turtle,text/rdf+n3,text/n3,application/rdf+xml,application/n-triples,application/ld+json,multipart/form-data,application/sparql-update
-      Allow:
-      - MOVE,COPY,DELETE,POST,HEAD,GET,PUT,PATCH,OPTIONS
-      Content-Type:
-      - text/n3
-      Transfer-Encoding:
-      - chunked
-      Date:
-      - Wed, 03 Jan 2018 15:17:26 GMT
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Wed, 03 Jan 2018 15:17:26 GMT
+  recorded_at: Mon, 08 Jan 2018 17:06:42 GMT
 - request:
     method: get
-    uri: http://fedora:8080/rest/willow_test/r7/81/wg/00/r781wg00k
+    uri: http://fedora:8080/rest/willow_test/76/53/71/32/765371328
     body:
       encoding: US-ASCII
       string: ''
@@ -109,9 +66,9 @@ http_interactions:
       message: ''
     headers:
       Etag:
-      - W/"4e0bc5953c7842c1f46e1290a5189ce06439935c"
+      - W/"fd8bf340bf16ea2648c1de442dbc4e5986865b3c"
       Last-Modified:
-      - Wed, 03 Jan 2018 15:17:24 GMT
+      - Mon, 08 Jan 2018 17:06:42 GMT
       Link:
       - <http://www.w3.org/ns/ldp#BasicContainer>;rel="type"
       - <http://www.w3.org/ns/ldp#Container>;rel="type"
@@ -130,9 +87,9 @@ http_interactions:
       Content-Type:
       - text/turtle;charset=utf-8
       Content-Length:
-      - '4005'
+      - '4004'
       Date:
-      - Wed, 03 Jan 2018 15:17:26 GMT
+      - Mon, 08 Jan 2018 17:06:41 GMT
     body:
       encoding: UTF-8
       string: |
@@ -180,28 +137,28 @@ http_interactions:
         @prefix config:  <info:fedoraconfig/> .
         @prefix dc:  <http://purl.org/dc/elements/1.1/> .
 
-        <http://fedora:8080/rest/willow_test/r7/81/wg/00/r781wg00k>
+        <http://fedora:8080/rest/willow_test/76/53/71/32/765371328>
                 rdf:type               fedora:Container ;
                 rdf:type               ns004:Work ;
                 rdf:type               fedora:Resource ;
                 rdf:type               ns002:Object ;
                 fedora:lastModifiedBy  "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
                 ns001:hasModel         "RdssCdm"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                dcterms:dateSubmitted  "2018-01-03T15:17:24.691899342+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                dcterms:dateSubmitted  "2018-01-08T17:06:42.114691018+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                 fedora:createdBy       "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                ns003:dpt              "email-102864611839262099298966046816775269331@test.com"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                fedora:created         "2018-01-03T15:17:24.948Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                fedora:lastModified    "2018-01-03T15:17:24.948Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                dcterms:modified       "2018-01-03T15:17:24.693219508+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                acl:accessControl      <http://fedora:8080/rest/willow_test/37/12/ca/a9/3712caa9-5810-4157-9e29-2e3e6832f909> ;
+                ns003:dpt              "email-88858025776734753176229966876175940462@test.com"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                fedora:created         "2018-01-08T17:06:42.241Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                fedora:lastModified    "2018-01-08T17:06:42.241Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                dcterms:modified       "2018-01-08T17:06:42.116764205+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                acl:accessControl      <http://fedora:8080/rest/willow_test/d1/f3/d6/7a/d1f3d67a-8ddf-4b9f-97f0-afcd52272ab2> ;
                 dcterms:title          "a test title"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                dc:identifier          "bfcf3a1d-a4f7-4049-bda3-512381d136cd"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                dc:identifier          "f85af6d0-5666-4184-ad39-07c29663c5aa"^^<http://www.w3.org/2001/XMLSchema#string> ;
                 rdf:type               ldp:RDFSource ;
                 rdf:type               ldp:Container ;
                 fedora:writable        "true"^^<http://www.w3.org/2001/XMLSchema#boolean> ;
                 fedora:hasParent       <http://fedora:8080/rest/willow_test> .
     http_version: 
-  recorded_at: Wed, 03 Jan 2018 15:17:26 GMT
+  recorded_at: Mon, 08 Jan 2018 17:06:42 GMT
 - request:
     method: post
     uri: http://fedora:8080/rest/willow_test
@@ -227,25 +184,25 @@ http_interactions:
       message: ''
     headers:
       Etag:
-      - W/"d70743fe252d8fdc33b6c39b801b365892274213"
+      - W/"41e664c00c348f3c4cbc8742749ef7d878dc25f3"
       Last-Modified:
-      - Wed, 03 Jan 2018 15:17:26 GMT
+      - Mon, 08 Jan 2018 17:06:42 GMT
       Location:
-      - http://fedora:8080/rest/willow_test/6c/fd/ee/f2/6cfdeef2-34e6-48cb-9457-0e39afd49717
+      - http://fedora:8080/rest/willow_test/27/97/59/36/27975936-24a1-4c5c-9f11-5f18fb71035d
       Content-Type:
       - text/plain
       Content-Length:
       - '84'
       Date:
-      - Wed, 03 Jan 2018 15:17:26 GMT
+      - Mon, 08 Jan 2018 17:06:41 GMT
     body:
       encoding: UTF-8
-      string: http://fedora:8080/rest/willow_test/6c/fd/ee/f2/6cfdeef2-34e6-48cb-9457-0e39afd49717
+      string: http://fedora:8080/rest/willow_test/27/97/59/36/27975936-24a1-4c5c-9f11-5f18fb71035d
     http_version: 
-  recorded_at: Wed, 03 Jan 2018 15:17:26 GMT
+  recorded_at: Mon, 08 Jan 2018 17:06:42 GMT
 - request:
     method: get
-    uri: http://fedora:8080/rest/willow_test/6c/fd/ee/f2/6cfdeef2-34e6-48cb-9457-0e39afd49717
+    uri: http://fedora:8080/rest/willow_test/27/97/59/36/27975936-24a1-4c5c-9f11-5f18fb71035d
     body:
       encoding: US-ASCII
       string: ''
@@ -266,9 +223,9 @@ http_interactions:
       message: ''
     headers:
       Etag:
-      - W/"d70743fe252d8fdc33b6c39b801b365892274213"
+      - W/"41e664c00c348f3c4cbc8742749ef7d878dc25f3"
       Last-Modified:
-      - Wed, 03 Jan 2018 15:17:26 GMT
+      - Mon, 08 Jan 2018 17:06:42 GMT
       Link:
       - <http://www.w3.org/ns/ldp#BasicContainer>;rel="type"
       - <http://www.w3.org/ns/ldp#Container>;rel="type"
@@ -289,7 +246,7 @@ http_interactions:
       Content-Length:
       - '3264'
       Date:
-      - Wed, 03 Jan 2018 15:17:26 GMT
+      - Mon, 08 Jan 2018 17:06:41 GMT
     body:
       encoding: UTF-8
       string: |
@@ -337,26 +294,26 @@ http_interactions:
         @prefix config:  <info:fedoraconfig/> .
         @prefix dc:  <http://purl.org/dc/elements/1.1/> .
 
-        <http://fedora:8080/rest/willow_test/6c/fd/ee/f2/6cfdeef2-34e6-48cb-9457-0e39afd49717>
+        <http://fedora:8080/rest/willow_test/27/97/59/36/27975936-24a1-4c5c-9f11-5f18fb71035d>
                 rdf:type               fedora:Container ;
                 rdf:type               fedora:Resource ;
                 fedora:lastModifiedBy  "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
                 fedora:createdBy       "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                fedora:created         "2018-01-03T15:17:26.189Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                fedora:lastModified    "2018-01-03T15:17:26.189Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                fedora:created         "2018-01-08T17:06:42.433Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                fedora:lastModified    "2018-01-08T17:06:42.433Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                 ns001:hasModel         "Hydra::AccessControl"^^<http://www.w3.org/2001/XMLSchema#string> ;
                 rdf:type               ldp:RDFSource ;
                 rdf:type               ldp:Container ;
                 fedora:writable        "true"^^<http://www.w3.org/2001/XMLSchema#boolean> ;
                 fedora:hasParent       <http://fedora:8080/rest/willow_test> .
     http_version: 
-  recorded_at: Wed, 03 Jan 2018 15:17:26 GMT
+  recorded_at: Mon, 08 Jan 2018 17:06:42 GMT
 - request:
     method: post
     uri: http://solr:8983/solr/willow_test/update?softCommit=true&wt=json
     body:
       encoding: UTF-8
-      string: '[{"system_create_dtsi":"2018-01-03T15:17:26Z","system_modified_dtsi":"2018-01-03T15:17:26Z","has_model_ssim":"Hydra::AccessControl","id":"6cfdeef2-34e6-48cb-9457-0e39afd49717"}]'
+      string: '[{"system_create_dtsi":"2018-01-08T17:06:42Z","system_modified_dtsi":"2018-01-08T17:06:42Z","has_model_ssim":"Hydra::AccessControl","id":"27975936-24a1-4c5c-9f11-5f18fb71035d"}]'
     headers:
       User-Agent:
       - Faraday v0.12.2
@@ -377,14 +334,14 @@ http_interactions:
       - '42'
     body:
       encoding: UTF-8
-      string: '{"responseHeader":{"status":0,"QTime":6}}
+      string: '{"responseHeader":{"status":0,"QTime":4}}
 
 '
     http_version: 
-  recorded_at: Wed, 03 Jan 2018 15:17:26 GMT
+  recorded_at: Mon, 08 Jan 2018 17:06:42 GMT
 - request:
     method: head
-    uri: http://fedora:8080/rest/willow_test/5x/21/tf/40/5x21tf405
+    uri: http://fedora:8080/rest/willow_test/f7/62/3c/56/f7623c56g
     body:
       encoding: US-ASCII
       string: ''
@@ -407,15 +364,15 @@ http_interactions:
       Transfer-Encoding:
       - chunked
       Date:
-      - Wed, 03 Jan 2018 15:17:26 GMT
+      - Mon, 08 Jan 2018 17:06:41 GMT
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Wed, 03 Jan 2018 15:17:26 GMT
+  recorded_at: Mon, 08 Jan 2018 17:06:42 GMT
 - request:
     method: head
-    uri: http://fedora:8080/rest/willow_test/5x/21/tf/40/5x21tf405
+    uri: http://fedora:8080/rest/willow_test/f7/62/3c/56/f7623c56g
     body:
       encoding: US-ASCII
       string: ''
@@ -438,15 +395,15 @@ http_interactions:
       Transfer-Encoding:
       - chunked
       Date:
-      - Wed, 03 Jan 2018 15:17:26 GMT
+      - Mon, 08 Jan 2018 17:06:41 GMT
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Wed, 03 Jan 2018 15:17:26 GMT
+  recorded_at: Mon, 08 Jan 2018 17:06:42 GMT
 - request:
     method: head
-    uri: http://fedora:8080/rest/willow_test/5x/21/tf/40/5x21tf405
+    uri: http://fedora:8080/rest/willow_test/f7/62/3c/56/f7623c56g
     body:
       encoding: US-ASCII
       string: ''
@@ -469,27 +426,24 @@ http_interactions:
       Transfer-Encoding:
       - chunked
       Date:
-      - Wed, 03 Jan 2018 15:17:26 GMT
+      - Mon, 08 Jan 2018 17:06:41 GMT
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Wed, 03 Jan 2018 15:17:26 GMT
+  recorded_at: Mon, 08 Jan 2018 17:06:42 GMT
 - request:
     method: put
-    uri: http://fedora:8080/rest/willow_test/5x/21/tf/40/5x21tf405
+    uri: http://fedora:8080/rest/willow_test/f7/62/3c/56/f7623c56g
     body:
       encoding: UTF-8
       string: |2
 
-        <> a <http://pcdm.org/models#Object>,
-             <http://projecthydra.org/works/models#Work>;
+        <> a <http://projecthydra.org/works/models#Work>,
+             <http://pcdm.org/models#Object>;
            <http://purl.org/dc/terms/title> "a test title";
-           <http://id.loc.gov/vocabulary/relators/dpt> "email-168266441760274673324234807811796550458@test.com";
-           <http://purl.org/dc/elements/1.1/identifier> "0730e00e-60b6-4051-ad08-da2ba421a6e3";
-           <http://purl.org/dc/terms/dateSubmitted> "2018-01-03T15:17:26.157870918+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-           <http://purl.org/dc/terms/modified> "2018-01-03T15:17:26.160009097+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-           <http://www.w3.org/ns/auth/acl#accessControl> <http://fedora:8080/rest/willow_test/6c/fd/ee/f2/6cfdeef2-34e6-48cb-9457-0e39afd49717>;
+           <http://purl.org/dc/terms/modified> "2018-01-08T17:06:42.407659948+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+           <http://www.w3.org/ns/auth/acl#accessControl> <http://fedora:8080/rest/willow_test/27/97/59/36/27975936-24a1-4c5c-9f11-5f18fb71035d>;
            <info:fedora/fedora-system:def/model#hasModel> "RdssCdm" .
     headers:
       Authorization:
@@ -508,25 +462,25 @@ http_interactions:
       message: ''
     headers:
       Etag:
-      - W/"5cdb717d8b5f75ec224c88cbed04b4345feac324"
+      - W/"0b29e02747d3661611454898e38142f7bb46c2ba"
       Last-Modified:
-      - Wed, 03 Jan 2018 15:17:26 GMT
+      - Mon, 08 Jan 2018 17:06:42 GMT
       Location:
-      - http://fedora:8080/rest/willow_test/5x/21/tf/40/5x21tf405
+      - http://fedora:8080/rest/willow_test/f7/62/3c/56/f7623c56g
       Content-Type:
       - text/plain
       Content-Length:
       - '57'
       Date:
-      - Wed, 03 Jan 2018 15:17:26 GMT
+      - Mon, 08 Jan 2018 17:06:41 GMT
     body:
       encoding: UTF-8
-      string: http://fedora:8080/rest/willow_test/5x/21/tf/40/5x21tf405
+      string: http://fedora:8080/rest/willow_test/f7/62/3c/56/f7623c56g
     http_version: 
-  recorded_at: Wed, 03 Jan 2018 15:17:26 GMT
+  recorded_at: Mon, 08 Jan 2018 17:06:42 GMT
 - request:
     method: get
-    uri: http://fedora:8080/rest/willow_test/5x/21/tf/40/5x21tf405
+    uri: http://fedora:8080/rest/willow_test/f7/62/3c/56/f7623c56g
     body:
       encoding: US-ASCII
       string: ''
@@ -547,9 +501,9 @@ http_interactions:
       message: ''
     headers:
       Etag:
-      - W/"5cdb717d8b5f75ec224c88cbed04b4345feac324"
+      - W/"0b29e02747d3661611454898e38142f7bb46c2ba"
       Last-Modified:
-      - Wed, 03 Jan 2018 15:17:26 GMT
+      - Mon, 08 Jan 2018 17:06:42 GMT
       Link:
       - <http://www.w3.org/ns/ldp#BasicContainer>;rel="type"
       - <http://www.w3.org/ns/ldp#Container>;rel="type"
@@ -568,9 +522,9 @@ http_interactions:
       Content-Type:
       - text/turtle;charset=utf-8
       Content-Length:
-      - '4005'
+      - '3641'
       Date:
-      - Wed, 03 Jan 2018 15:17:26 GMT
+      - Mon, 08 Jan 2018 17:06:41 GMT
     body:
       encoding: UTF-8
       string: |
@@ -618,35 +572,32 @@ http_interactions:
         @prefix config:  <info:fedoraconfig/> .
         @prefix dc:  <http://purl.org/dc/elements/1.1/> .
 
-        <http://fedora:8080/rest/willow_test/5x/21/tf/40/5x21tf405>
+        <http://fedora:8080/rest/willow_test/f7/62/3c/56/f7623c56g>
                 rdf:type               fedora:Container ;
                 rdf:type               ns004:Work ;
                 rdf:type               fedora:Resource ;
                 rdf:type               ns002:Object ;
                 fedora:lastModifiedBy  "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
                 ns001:hasModel         "RdssCdm"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                dcterms:dateSubmitted  "2018-01-03T15:17:26.157870918+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                 fedora:createdBy       "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                ns003:dpt              "email-168266441760274673324234807811796550458@test.com"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                fedora:created         "2018-01-03T15:17:26.302Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                fedora:lastModified    "2018-01-03T15:17:26.302Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                dcterms:modified       "2018-01-03T15:17:26.160009097+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                acl:accessControl      <http://fedora:8080/rest/willow_test/6c/fd/ee/f2/6cfdeef2-34e6-48cb-9457-0e39afd49717> ;
+                fedora:created         "2018-01-08T17:06:42.518Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                fedora:lastModified    "2018-01-08T17:06:42.518Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                dcterms:modified       "2018-01-08T17:06:42.407659948+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                acl:accessControl      <http://fedora:8080/rest/willow_test/27/97/59/36/27975936-24a1-4c5c-9f11-5f18fb71035d> ;
                 dcterms:title          "a test title"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                dc:identifier          "0730e00e-60b6-4051-ad08-da2ba421a6e3"^^<http://www.w3.org/2001/XMLSchema#string> ;
                 rdf:type               ldp:RDFSource ;
                 rdf:type               ldp:Container ;
                 fedora:writable        "true"^^<http://www.w3.org/2001/XMLSchema#boolean> ;
                 fedora:hasParent       <http://fedora:8080/rest/willow_test> .
     http_version: 
-  recorded_at: Wed, 03 Jan 2018 15:17:26 GMT
+  recorded_at: Mon, 08 Jan 2018 17:06:42 GMT
 - request:
     method: post
     uri: http://solr:8983/solr/willow_test/update?softCommit=true&wt=json
     body:
       encoding: UTF-8
-      string: '[{"system_create_dtsi":"2018-01-03T15:17:26Z","system_modified_dtsi":"2018-01-03T15:17:26Z","has_model_ssim":"RdssCdm","id":"5x21tf405","accessControl_ssim":"6cfdeef2-34e6-48cb-9457-0e39afd49717","depositor_ssim":"email-168266441760274673324234807811796550458@test.com","depositor_tesim":"email-168266441760274673324234807811796550458@test.com","title_tesim":"a
-        test title","title_sim":"a test title","date_uploaded_dtsi":"2018-01-03T15:17:26Z","date_modified_dtsi":"2018-01-03T15:17:26Z","thumbnail_path_ss":"/assets/work-ff055336041c3f7d310ad69109eda4a887b16ec501f35afc0a547c4adb97ee72.png","suppressed_bsi":false,"generic_type_sim":"Work","visibility_ssi":"restricted","admin_set_sim":"","admin_set_tesim":"","human_readable_type_sim":"RDSS
+      string: '[{"system_create_dtsi":"2018-01-08T17:06:42Z","system_modified_dtsi":"2018-01-08T17:06:42Z","has_model_ssim":"RdssCdm","id":"f7623c56g","accessControl_ssim":"27975936-24a1-4c5c-9f11-5f18fb71035d","title_tesim":"a
+        test title","title_sim":"a test title","date_modified_dtsi":"2018-01-08T17:06:42Z","thumbnail_path_ss":"/assets/work-ff055336041c3f7d310ad69109eda4a887b16ec501f35afc0a547c4adb97ee72.png","suppressed_bsi":false,"generic_type_sim":"Work","visibility_ssi":"restricted","admin_set_sim":"","admin_set_tesim":"","human_readable_type_sim":"RDSS
         CDM","human_readable_type_tesim":"RDSS CDM"}]'
     headers:
       User-Agent:
@@ -668,14 +619,14 @@ http_interactions:
       - '42'
     body:
       encoding: UTF-8
-      string: '{"responseHeader":{"status":0,"QTime":9}}
+      string: '{"responseHeader":{"status":0,"QTime":5}}
 
 '
     http_version: 
-  recorded_at: Wed, 03 Jan 2018 15:17:26 GMT
+  recorded_at: Mon, 08 Jan 2018 17:06:42 GMT
 - request:
     method: get
-    uri: http://fedora:8080/rest/willow_test/6c/fd/ee/f2/6cfdeef2-34e6-48cb-9457-0e39afd49717
+    uri: http://fedora:8080/rest/willow_test/27/97/59/36/27975936-24a1-4c5c-9f11-5f18fb71035d
     body:
       encoding: US-ASCII
       string: ''
@@ -696,9 +647,9 @@ http_interactions:
       message: ''
     headers:
       Etag:
-      - W/"d70743fe252d8fdc33b6c39b801b365892274213"
+      - W/"41e664c00c348f3c4cbc8742749ef7d878dc25f3"
       Last-Modified:
-      - Wed, 03 Jan 2018 15:17:26 GMT
+      - Mon, 08 Jan 2018 17:06:42 GMT
       Link:
       - <http://www.w3.org/ns/ldp#BasicContainer>;rel="type"
       - <http://www.w3.org/ns/ldp#Container>;rel="type"
@@ -719,7 +670,7 @@ http_interactions:
       Content-Length:
       - '3264'
       Date:
-      - Wed, 03 Jan 2018 15:17:26 GMT
+      - Mon, 08 Jan 2018 17:06:41 GMT
     body:
       encoding: UTF-8
       string: |
@@ -767,26 +718,26 @@ http_interactions:
         @prefix config:  <info:fedoraconfig/> .
         @prefix dc:  <http://purl.org/dc/elements/1.1/> .
 
-        <http://fedora:8080/rest/willow_test/6c/fd/ee/f2/6cfdeef2-34e6-48cb-9457-0e39afd49717>
+        <http://fedora:8080/rest/willow_test/27/97/59/36/27975936-24a1-4c5c-9f11-5f18fb71035d>
                 rdf:type               fedora:Container ;
                 rdf:type               fedora:Resource ;
                 fedora:lastModifiedBy  "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
                 fedora:createdBy       "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                fedora:created         "2018-01-03T15:17:26.189Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                fedora:lastModified    "2018-01-03T15:17:26.189Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                fedora:created         "2018-01-08T17:06:42.433Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                fedora:lastModified    "2018-01-08T17:06:42.433Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                 ns001:hasModel         "Hydra::AccessControl"^^<http://www.w3.org/2001/XMLSchema#string> ;
                 rdf:type               ldp:RDFSource ;
                 rdf:type               ldp:Container ;
                 fedora:writable        "true"^^<http://www.w3.org/2001/XMLSchema#boolean> ;
                 fedora:hasParent       <http://fedora:8080/rest/willow_test> .
     http_version: 
-  recorded_at: Wed, 03 Jan 2018 15:17:26 GMT
+  recorded_at: Mon, 08 Jan 2018 17:06:42 GMT
 - request:
     method: post
     uri: http://solr:8983/solr/willow_test/update?softCommit=true&wt=json
     body:
       encoding: UTF-8
-      string: '[{"system_create_dtsi":"2018-01-03T15:17:26Z","system_modified_dtsi":"2018-01-03T15:17:26Z","has_model_ssim":"Hydra::AccessControl","id":"6cfdeef2-34e6-48cb-9457-0e39afd49717"}]'
+      string: '[{"system_create_dtsi":"2018-01-08T17:06:42Z","system_modified_dtsi":"2018-01-08T17:06:42Z","has_model_ssim":"Hydra::AccessControl","id":"27975936-24a1-4c5c-9f11-5f18fb71035d"}]'
     headers:
       User-Agent:
       - Faraday v0.12.2
@@ -807,14 +758,14 @@ http_interactions:
       - '42'
     body:
       encoding: UTF-8
-      string: '{"responseHeader":{"status":0,"QTime":8}}
+      string: '{"responseHeader":{"status":0,"QTime":4}}
 
 '
     http_version: 
-  recorded_at: Wed, 03 Jan 2018 15:17:26 GMT
+  recorded_at: Mon, 08 Jan 2018 17:06:42 GMT
 - request:
     method: get
-    uri: http://fedora:8080/rest/willow_test/5x/21/tf/40/5x21tf405/list_source
+    uri: http://fedora:8080/rest/willow_test/f7/62/3c/56/f7623c56g/list_source
     body:
       encoding: US-ASCII
       string: ''
@@ -841,7 +792,7 @@ http_interactions:
       Content-Length:
       - '1077'
       Date:
-      - Wed, 03 Jan 2018 15:17:26 GMT
+      - Mon, 08 Jan 2018 17:06:41 GMT
     body:
       encoding: ASCII-8BIT
       string: !binary |-
@@ -870,5 +821,5 @@ http_interactions:
         Y2xvc2UgdGhhdCBvbmUgZXhpc3RzLjwvcD48aHIgY2xhc3M9ImxpbmUiIC8+
         PGgzPkFwYWNoZSBUb21jYXQvOS4wLjE8L2gzPjwvYm9keT48L2h0bWw+
     http_version: 
-  recorded_at: Wed, 03 Jan 2018 15:17:26 GMT
+  recorded_at: Mon, 08 Jan 2018 17:06:42 GMT
 recorded_with: VCR 3.0.3
