@@ -29,17 +29,17 @@ class CatalogController < ApplicationController
 
     ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
     config.default_solr_params = {
-      qt: "search",
+      qt: 'search',
       rows: 10,
       qf: [
-        solr_name("title", :stored_searchable), 
-        solr_name("object_description", :stored_searchable), 
-        solr_name("object_keywords", :stored_searchable), 
-        solr_name("object_category", :stored_searchable), 
+        solr_name('title', :stored_searchable), 
+        solr_name('object_description', :stored_searchable), 
+        solr_name('object_keywords', :stored_searchable), 
+        solr_name('object_category', :stored_searchable), 
         #Preserving for legacy functionality
-        solr_name("description", :stored_searchable), 
-        solr_name("creator", :stored_searchable), 
-        solr_name("keyword", :stored_searchable), 
+        solr_name('description', :stored_searchable), 
+        solr_name('creator', :stored_searchable), 
+        solr_name('keyword', :stored_searchable), 
       ].join(" ")
     }
 
