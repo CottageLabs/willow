@@ -1,0 +1,12 @@
+AllCops:
+  TargetRubyVersion: 2.3.3
+  
+Metrics/BlockLength:
+  ExcludedMethods: ['included', 'configure_blacklight']
+  Exclude:
+    - 'spec/**/*.rb'
+Metrics/LineLength:
+  Max: 100
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
