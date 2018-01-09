@@ -20,13 +20,13 @@ RSpec.describe Hyrax::Actors::RdssCdmActor do
 
   describe "create" do
     it 'adds an object_uuid' do 
-      VCR.use_cassette('create_object_uuid', :match_requests_on => [:method, :host]) do
+      VCR.use_cassette('rdss_cdm_actor/create_object_uuid', :match_requests_on => [:method, :host]) do
         expect { middleware.create(env) }.to change { env.attributes[:object_uuid] }.to match(/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/)
       end
     end
 
     it 'changes title property to an array' do
-      VCR.use_cassette('create_title_array', :match_requests_on => [:method, :host]) do
+      VCR.use_cassette('rdss_cdm_actor/create_title_array', :match_requests_on => [:method, :host]) do
         expect { middleware.create(env) }.to change { env.attributes[:title].instance_of? Array }.to(true)
       end
     end
@@ -34,7 +34,7 @@ RSpec.describe Hyrax::Actors::RdssCdmActor do
 
   describe "update" do
     it 'changes title property to an array' do
-      VCR.use_cassette('update_title_array', :match_requests_on => [:method, :host]) do
+      VCR.use_cassette('rdss_cdm_actor/update_title_array', :match_requests_on => [:method, :host]) do
         expect { middleware.update(env) }.to change { env.attributes[:title].instance_of? Array }.to(true)
       end
     end
