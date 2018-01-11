@@ -3,7 +3,7 @@
 #
 # Usage:
 #
-#     $ ansible-playbook publish-images-playbook.yml --extra-vars="registry=aws_account_id.dkr.ecr.region.amazonaws.com/"
+#     $ ansible-playbook publish-images-playbook.yml --extra-vars="registry=aws_account_id.dkr.ecr.region.amazonaws.com/ version=master tag=latest"
 #
 
 - hosts: "localhost"
@@ -11,35 +11,35 @@
 
   vars:
     repos:
-      - name: "Willow repository"
+      - name: "Samvera repository"
         repo: "https://github.com/JiscRDSS/rdss-samvera"
-        version: "develop"
+        version: "{{ version }}"
         dest: "./src/willow"
     images:
       - name: "{{ registry }}willow-solr"
         path: "./src/willow/solr"
         dockerfile: "Dockerfile"
-        tag: "latest"
+        tag: "{{ tag }}"
       - name: "{{ registry }}willow-redis"
         path: "./src/willow/redis/"
         dockerfile: "Dockerfile"
-        tag: "latest"
+        tag: "{{ tag }}"
       - name: "{{ registry }}willow-fcrepo4"
         path: "./src/willow/fedora_commons/"
         dockerfile: "Dockerfile"
-        tag: "latest"
+        tag: "{{ tag }}"
       - name: "{{ registry }}willow"
         path: "./src/willow/willow/"
         dockerfile: "Dockerfile"
-        tag: "latest"
+        tag: "{{ tag }}"
       - name: "{{ registry }}willow-geoblacklight"
-        tag: "latest"
         path: "./src/willow/geoblacklight/"
         dockerfile: "Dockerfile"
+        tag: "{{ tag }}"
       - name: "{{ registry }}willow-db"
-        tag: "latest"
         path: "./src/willow/db/"
         dockerfile: "Dockerfile"
+        tag: "{{ tag }}"
 
   tasks:
 
@@ -47,6 +47,16 @@
       fail:
         msg: "Variable registry is undefined"
       when: "registry is not defined"
+
+    - name: "Ensure that the variable tag is defined"
+      fail:
+        msg: "Variable tag is undefined"
+      when: "tag is not defined"
+
+    - name: "Ensure that the variable version is defined"
+      fail:
+        msg: "Variable version is undefined"
+      when: "version is not defined"
 
     - name: "Install docker-py"
       pip:
