@@ -25,10 +25,7 @@ class RdssCdm < ActiveFedora::Base
     index.as :stored_searchable
   end
   #property :object_rights
-
-  # Object date nested property
-  # property :object_date, predicate: ::RDF::Vocab::DC.date, class_name: "Cdm::Date"
-
+  #property :object_date
   property :object_keywords, predicate: ::RDF::Vocab::DC11.relation do |index|
     index.as :stored_searchable, :facetable
   end
@@ -59,7 +56,7 @@ class RdssCdm < ActiveFedora::Base
   # Accepts nested attributes declarations need to go after the property declarations, as they close off the model
   accepts_nested_attributes_for :object_dates, reject_if: :object_dates_blank?, allow_destroy: true
 
-  
+
   def self.multiple?(field)
     # Overriding to return false for `title` (as we can't set multiple: false) 
     if [:title].include? field.to_sym
@@ -96,7 +93,7 @@ class RdssCdm < ActiveFedora::Base
   # methods for validation of nested properties
   # For properties with a class_name These need to go on the resource_class: RdssCdm::GeneratedResourceSchema
   # For associated models, these should be instance methods
-  
+
   # object_date_blank
   # Reject a nested object_date if the value for date_value is not set
   def object_dates_blank? attributes
