@@ -1,0 +1,10 @@
+es:
+  hyrax:
+    icons:
+      rdss_cdm:     'fa fa-file-text-o'
+    select_type:
+      rdss_cdm:
+        # TODO: translate `human_name` into Spanish
+        name:               "Rdss Cdm"
+        # TODO: translate `human_name` into Spanish
+        description:        "Rdss cdm trabajos"
