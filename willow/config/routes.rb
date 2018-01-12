@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # Add in routes for disabled content types to prevent rails errors in the featured content list
-  [Image, Article, Book, Dataset, RdssDataset].each do |content_type|
+  [Image, Article, Book, Dataset, RdssDataset, RdssCdm].each do |content_type|
     # If the content type is disabled, add in the url helper for hyrax_<type>_url
     # This is to prevent rails errors in the featured content list if there is existing content
     # The link to the content will render but lead to a 404 if followed
