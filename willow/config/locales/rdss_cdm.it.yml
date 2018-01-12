@@ -1,0 +1,8 @@
+it:
+  hyrax:
+    icons:
+      rdss_cdm:     'fa fa-file-text-o'
+    select_type:
+      rdss_cdm:
+        name:               "Rdss Cdm"
+        description:        "Rdss cdm opere"

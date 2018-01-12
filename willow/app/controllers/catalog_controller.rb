@@ -29,9 +29,18 @@ class CatalogController < ApplicationController
 
     ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
     config.default_solr_params = {
-      qt: "search",
+      qt: 'search',
       rows: 10,
-      qf: "title_tesim description_tesim creator_tesim keyword_tesim"
+      qf: [
+        solr_name('title', :stored_searchable), 
+        solr_name('object_description', :stored_searchable), 
+        solr_name('object_keywords', :stored_searchable), 
+        solr_name('object_category', :stored_searchable), 
+        #Preserving for legacy functionality
+        solr_name('description', :stored_searchable), 
+        solr_name('creator', :stored_searchable), 
+        solr_name('keyword', :stored_searchable), 
+      ].join(" ")
     }
 
     # solr field configuration for document/show views
@@ -72,7 +81,16 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
+    # RDSS CDM additions:
     config.add_index_field solr_name("title", :stored_searchable), label: I18n.t('willow.fields.title'), itemprop: 'name', if: false
+    config.add_index_field solr_name("object_description", :stored_searchable), label: I18n.t('willow.fields.object_description'), itemprop: 'object_description', if: false
+    config.add_index_field solr_name("object_keywords", :stored_searchable), label: I18n.t('willow.fields.object_keywords'), itemprop: 'object_keywords' #link_to_search: solr_name("object_keywords", :facetable)
+    config.add_index_field solr_name("object_category", :stored_searchable), label: I18n.t('willow.fields.object_category'), itemprop: 'object_category' #link_to_search: solr_name("object_category", :facetable)
+    
+    # End of RDSS CDM additions
+
+    # solr fields to be displayed in the index (search results) view
+    #   The ordering of the field names is the order of the display
     config.add_index_field solr_name("description", :stored_searchable), label: I18n.t('willow.fields.description'), itemprop: 'description', helper_method: :iconify_auto_link
     config.add_index_field solr_name("keyword", :stored_searchable), label: I18n.t('willow.fields.keyword'), itemprop: 'keywords', link_to_search: solr_name("keyword", :facetable)
     config.add_index_field solr_name("subject", :stored_searchable), label: I18n.t('willow.fields.subject'), itemprop: 'about', link_to_search: solr_name("subject", :facetable)
@@ -116,7 +134,13 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("preservation_nested", :stored_searchable), label: I18n.t('willow.fields.preservation_nested'), itemprop: 'preservation'
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
+    # RDSS CDM additions:
     config.add_show_field solr_name("title", :stored_searchable), label: I18n.t('willow.fields.title')
+    config.add_show_field solr_name("object_description", :stored_searchable), label: I18n.t('willow.fields.object_description')
+    config.add_show_field solr_name("object_keywords", :stored_searchable), label: I18n.t('willow.fields.object_keywords')
+    config.add_show_field solr_name("object_category", :stored_searchable), label: I18n.t('willow.fields.object_category')    
+    # End of RDSS CDM additions
+
     config.add_show_field solr_name("description", :stored_searchable), label: I18n.t('willow.fields.description')
     config.add_show_field solr_name("keyword", :stored_searchable), label: I18n.t('willow.fields.keyword')
     config.add_show_field solr_name("subject", :stored_searchable), label: I18n.t('willow.fields.subject')

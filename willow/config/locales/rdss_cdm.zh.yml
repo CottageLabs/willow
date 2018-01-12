@@ -1,0 +1,10 @@
+zh:
+  hyrax:
+    icons:
+      rdss_cdm:     'fa fa-file-text-o'
+    select_type:
+      rdss_cdm:
+        # TODO: translate `human_name` into Chinese
+        name:               "Rdss Cdm"
+        # TODO: translate `human_name` into Chinese
+        description:        "Rdss cdm 作品"

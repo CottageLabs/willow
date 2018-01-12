@@ -5,6 +5,12 @@ module Hyrax
       extend ActiveSupport::Concern
 
         def self.call(target:, **)
+          # We'll maintain the later behaviour for other Work types, but skip it for the new type until 
+          # the correct CRUD behaviour is implemented. 
+          if target.instance_of? RdssCdm
+            return true
+          end
+
           # When an item is approved, send the appropriate metadata message depending on whether it has been previously
           # deposited.
           if target.import_url.present?

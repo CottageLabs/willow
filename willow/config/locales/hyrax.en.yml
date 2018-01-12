@@ -27,6 +27,10 @@ en:
           rights_tesim: Rights
           subject_tesim: Subject
         show:
+          title: Title
+          object_description: Description
+          object_keywords: Keywords
+          object_category: Category
           based_near_tesim: Location
           contributor_tesim: Contributor
           creator_tesim: Creator
