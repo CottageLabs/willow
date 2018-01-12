@@ -103,6 +103,7 @@ class CatalogController < ApplicationController
                     {object_description: {options: {itemprop: :object_description, if: false}}},
                     {object_keywords: {options: {itemprop: :object_keywords}}},
                     {object_category: {options: {itemprop: :object_category}}},
+                    {object_dates: {options: {itemprop: :object_dates}}},
                     {description: {options: {helper_method: :iconify_auto_link}}},
                     :keyword,
                     :subject,
