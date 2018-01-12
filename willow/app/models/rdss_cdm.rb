@@ -40,7 +40,7 @@ class RdssCdm < ActiveFedora::Base
   #property :object_organisation_role
   #property :object_preservation_event
   #property :object_file
-  
+
   def self.multiple?(field)
     # Overriding to return false for `title` (as we can't set multiple: false) 
     if [:title].include? field.to_sym

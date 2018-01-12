@@ -9,7 +9,8 @@ module Hyrax
       :object_description,
       :object_keywords,
       :object_category,
-      :object_version
+      :object_version,
+      :object_person_role
     ]
     self.required_fields = [
       :title
