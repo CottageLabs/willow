@@ -3,6 +3,23 @@
 require 'rails_helper'
 
 RSpec.describe RdssCdm do
+  def build_field(field_name:, content:)
+    build(:rdss_cdm, field_name => content)
+  end
+
+  def build_and_index_field(field_name:, content:, index_name:)
+    build_field(field_name: field_name, content: content).to_solr[index_name.to_s]
+  end
+
+  def build_and_check_field(field_name:, content:)
+    expect(build_field(field_name: field_name, content: content).send(field_name)).to eq content
+  end
+
+  def build_and_check_index(field_name:, content:, index_name:)
+    expect(build_and_index_field(field_name: field_name, content: content, index_name: index_name)).to eq [content].flatten(1)
+  end
+
+
   it 'has human readable type rdss_cdm' do
     @obj = build(:rdss_cdm)
     expect(@obj.human_readable_type).to eq('RDSS CDM')
@@ -21,70 +38,65 @@ RSpec.describe RdssCdm do
     end
 
     it 'indexes title' do
-      @obj = build(:rdss_cdm, title: ['title'])
-      @doc = @obj.to_solr
-      expect(@doc['title_tesim']).to eq ['title']
+      build_and_check_index(field_name: :title, content: %w(title), index_name: :title_tesim)
     end
   end
 
 
   describe 'version' do
     it 'has a version' do
-      @obj = build(:rdss_cdm, object_version: 'version')
-      expect(@obj.object_version).to eq 'version'
+      build_and_check_field(field_name: :object_version, content: 'version')
     end
 
     it 'indexes version' do
-      @obj = build(:rdss_cdm, object_version: 'version')
-      @doc = @obj.to_solr
-      expect(@doc['object_version_tesim']).to eq ['version']
+      build_and_check_index(field_name: :object_version, content: 'version', index_name: :object_version_tesim)
     end
   end
 
   # single valued
   describe 'uuid' do
     it 'has uuid' do
-      @obj = build(:rdss_cdm, object_uuid: 'uuid')
-      expect(@obj.object_uuid).to eq 'uuid'
+      build_and_check_field(field_name: :object_uuid, content: 'uuid')
     end
   end
 
   describe 'description' do
     it 'has description' do
-      @obj = build(:rdss_cdm, object_description: 'description')
-      expect(@obj.object_description).to eq 'description'
+      build_and_check_field(field_name: :object_description, content: 'description')
     end
 
     it 'indexes description' do
-      @obj = build(:rdss_cdm, object_description: 'description')
-      @doc = @obj.to_solr
-      expect(@doc['object_description_tesim']).to eq ['description']
+      build_and_check_index(field_name: :object_description, content: 'description', index_name: :object_description_tesim)
     end
   end
 
   describe 'keywords' do
     it 'has keywords' do
-      @obj = build(:rdss_cdm, object_keywords: ['keywords'])
-      expect(@obj.object_keywords).to eq ['keywords']
+      build_and_check_field(field_name: :object_keywords, content: %w(keywords))
     end
 
     it 'indexes keywords' do
-      @obj = build(:rdss_cdm, object_keywords: ['keywords'])
-      @doc = @obj.to_solr
-      expect(@doc['object_keywords_tesim']).to eq ['keywords']
+      build_and_check_index(field_name: :object_keywords, content: %w(keywords), index_name: :object_keywords_tesim)
     end
   end
 
   describe 'category' do
     it 'has category' do
-      @obj = build(:rdss_cdm, object_category: ['category'])
-      expect(@obj.object_category).to eq ['category']
+      build_and_check_field(field_name: :object_category, content: %w(category))
     end
 
     it 'indexes category' do
-      @obj = build(:rdss_cdm, object_category: ['category'])
-      @doc = @obj.to_solr
-      expect(@doc['object_category_tesim']).to eq ['category']
+      build_and_check_index(field_name: :object_category, content: %w(category), index_name: :object_category_tesim)
+    end
+  end
+
+  describe 'person role' do
+    it 'has person role' do
+      build_and_check_field(field_name: :object_person_role, content: %w(author))
+    end
+
+    it 'indexes person role' do
+      build_and_check_index(field_name: :object_person_role, content: %w(author), index_name: :object_person_role_tesim)
     end
   end
 

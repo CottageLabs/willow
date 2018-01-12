@@ -61,7 +61,7 @@ protected
     field = :role
     field_name = name_for(attribute_name, index, field)
     field_id = id_for(attribute_name, index, field)
-    field_value = person_statement.send(field).first
+    field_value = person_statement.send(field)
 
     out << "  <div class='col-md-3'>"
     out << template.label_tag(field_name, field.to_s.humanize, required: required)
@@ -69,7 +69,7 @@ protected
 
     out << "  <div class='col-md-6'>"
     out << template.select_tag(field_name, template.options_for_select(role_options, field_value),
-        prompt: 'Select role played', label: '', class: 'select form-control', id: field_id, required: required)
+        prompt: 'Select roles played', label: '', class: 'select form-control', id: field_id, required: required, multiple: true)
     out << '  </div>'
 
     # --- delete checkbox
