@@ -16,7 +16,9 @@ class RdssCdm < ActiveFedora::Base
 
   property :object_uuid, predicate: ::RDF::Vocab::DC11.identifier, multiple: false 
   # object_title present as `title` inherited from Hyrax::CoreMetadata
-  #property :object_person_role
+  property :object_person_role, predicate: ::RDF::Vocab::PROV.Role do |index|
+    index.as :stored_searchable
+  end
   property :object_description, predicate: ::RDF::Vocab::DC11.description, multiple: false do |index|
     index.as :stored_searchable
   end
