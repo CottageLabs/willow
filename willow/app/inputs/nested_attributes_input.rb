@@ -1,5 +1,5 @@
 class NestedAttributesInput < MultiValueInput
-  include ::Inputs::RowLayouts
+  include ::RowLayouts
 
   def input(wrapper_options)
     super
