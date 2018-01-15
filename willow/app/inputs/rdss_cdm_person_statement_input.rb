@@ -1,4 +1,4 @@
-class RdssPersonStatementInput < NestedAttributesInput
+class RdssCdmPersonStatementInput < NestedAttributesInput
   def build_name(attribute_name, value, index, required, options)
     build_text_section(:name, attribute_name, value, index, required, options)
   end
@@ -22,7 +22,7 @@ class RdssPersonStatementInput < NestedAttributesInput
   protected
   def build_components(attribute_name, value, index, required, options)
     build_name(attribute_name, value, index, required, options) +
-      build_orcid(attribute_name, value, index, required && object.orcid_required?, options) +
-      build_role(attribute_name, value, index, required, options)
+    build_orcid(attribute_name, value, index, required && object.orcid_required?, options) +
+    build_role(attribute_name, value, index, required, options)
   end
 end
