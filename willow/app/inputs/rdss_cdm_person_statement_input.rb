@@ -1,14 +1,30 @@
 class RdssCdmPersonStatementInput < NestedAttributesInput
+  def label_prefix
+    'simple_form.labels.rdss_cdm'
+  end
+
   def build_name(attribute_name, value, index, required, options)
-    build_text_section(:name, attribute_name, value, index, required, options)
+    build_text_section( :name,
+                        attribute_name,
+                        value,
+                        index,
+                        required,
+                        options
+    )
   end
 
   def build_orcid(attribute_name, value, index, required, options)
-    build_text_section(:orcid, attribute_name, value, index, required, options)
+    build_text_section( :orcid,
+                        attribute_name,
+                        value,
+                        index,
+                        required,
+                        options
+    )
   end
 
   def build_role(attribute_name, value, index, required, options)
-    build_select_section( :role,
+    build_select_section( :object_person_role,
                           attribute_name,
                           value,
                           index,

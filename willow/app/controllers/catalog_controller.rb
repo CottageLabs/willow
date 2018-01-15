@@ -1,16 +1,19 @@
 class CatalogController < ApplicationController
   include Hydra::Catalog
   include Hydra::Controller::ControllerBehavior
+  include Blacklight::Concerns::Commands
 
   # This filter applies the hydra access controls
   before_action :enforce_show_permissions, only: :show
 
-  def self.uploaded_field
-    solr_name(:system_create, :stored_sortable, type: :date)
-  end
+  class << self
+    def uploaded_field
+      solr_name(:system_create, :stored_sortable, type: :date)
+    end
 
-  def self.modified_field
-    solr_name(:system_modified, :stored_sortable, type: :date)
+    def modified_field
+      solr_name(:system_modified, :stored_sortable, type: :date)
+    end
   end
 
   configure_blacklight do |config|
@@ -31,17 +34,15 @@ class CatalogController < ApplicationController
     config.default_solr_params = {
       qt: 'search',
       rows: 10,
-      qf: [
-        solr_name(:title, :stored_searchable),
-        solr_name(:object_description, :stored_searchable),
-        solr_name(:object_keywords, :stored_searchable),
-        solr_name(:object_category, :stored_searchable),
-        solr_name(:object_person_role, :stored_searchable),
-        #Preserving for legacy functionality
-        solr_name(:description, :stored_searchable),
-        solr_name(:creator, :stored_searchable),
-        solr_name(:keyword, :stored_searchable),
-      ].join(" ")
+      qf: to_searchable_names_field_list(:title,
+                                         :object_description,
+                                         :object_keywords,
+                                         :object_category,
+                                         :object_person_role,
+                                         #preserving for legacy functionality
+                                         :description,
+                                         :creator,
+                                         :keyword)
     }
 
     # solr field configuration for document/show views
