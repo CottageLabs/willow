@@ -20,7 +20,8 @@ class RdssCdmPersonStatementInput < NestedAttributesInput
   end
 
   protected
-  def build_components(attribute_name, value, index, required, options)
+  def build_components(attribute_name, value, index, options)
+    required = object.required?(:creator_nested) and index == 0
     build_name(attribute_name, value, index, required, options) +
     build_orcid(attribute_name, value, index, required && object.orcid_required?, options) +
     build_role(attribute_name, value, index, required, options)
