@@ -47,6 +47,9 @@ class RdssCdm < ActiveFedora::Base
   #property :object_organisation_role
   #property :object_preservation_event
   #property :object_file
+
+  # object_date nested relationship
+  has_many :object_dates, class_name: 'Cdm::Date'
   
   def self.multiple?(field)
     # Overriding to return false for `title` (as we can't set multiple: false) 
