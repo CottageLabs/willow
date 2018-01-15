@@ -8,17 +8,24 @@ module RowLayouts
     ]
   end
 
+  def label_prefix
+    'simple_form.labels'
+  end
+
+  def class_prefix
+    'col-md-'
+  end
+
   def build_label(field_name, field, options)
-    template.label_tag(field_name, I18n.t(field), options)
+    template.label_tag(field_name, I18n.t(label_prefix+'.'+field.to_s), options)
   end
 
   def build_text_field(field_name, options)
     @builder.text_field(field_name, options)
   end
 
-  def build_select_field(field_name, select_options, options)
-    template.select_tag(field_name, template.options_for_select(role_options, field_value),
-                        prompt: 'Select roles played', label: '', class: 'select form-control', id: field_id, required: required, multiple: true)
+  def build_select_field(field_name, options, html_options)
+    template.select_tag(field_name, options, html_options)
   end
 
   def build_text_section(field, attribute_name, value, index, required, options)
@@ -36,46 +43,44 @@ module RowLayouts
       build_select_field(field_name, template.options_for_select(select_options, field_value), html_options.merge(id: field_id, required: required)),
       build_delete_checkbox(attribute_name, index, I18n.t(widget_label))
     )
-
   end
 
   def html_row(&block)
-    content_for(:div, class: :row) do
-      block.call
-    end
+    %Q(<div class='row'>#{block.call}</div>)
   end
 
   def content_block(html_class, &block)
-    content_for(:div, class: html_class) do
-      block.call
-    end
+    %Q(<div class=\'#{html_class}\'>#{block.call}</div>)
   end
 
-  def label_cell(&block)
-    content_block(:'col-md-3', &block)
+  def one_third_cell(&block)
+    content_block(:"#{class_prefix}3", &block)
   end
 
-  def content_cell(&block)
-    content_block(:'col-md-9', &block)
+  def two_thirds_cell(&block)
+    content_block(:"#{class_prefix}6", &block)
   end
 
-  def select_cell(&block)
-    content_block(:'col-md-6', &block)
+  def full_cell(&block)
+    content_block(:"#{class_prefix}9", &block)
   end
 
-  alias_method :destroy_cell, :label_cell
+  alias_method :destroy_cell, :one_third_cell
+  alias_method :label_cell, :one_third_cell
+  alias_method :select_cell, :two_thirds_cell
+  alias_method :text_cell, :full_cell
 
   def generate_text_row_html(label, content)
     html_row do
-      label_cell { label }
-      content_cell { content }
+      label_cell { label } +
+      text_cell { content }
     end
   end
 
   def generate_select_row_html(label, content, widget)
     html_row do
-      label_cell { label }
-      select_cell { content }
+      label_cell { label } +
+      select_cell { content } +
       destroy_cell { widget }
     end
   end

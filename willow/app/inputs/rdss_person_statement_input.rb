@@ -15,7 +15,7 @@ class RdssPersonStatementInput < NestedAttributesInput
                           required,
                           :creator,
                           ::RdssPersonRolesService.select_all_options,
-                          options.merge({prompt: 'Select roles played', label: '', class: 'select form-control', multiple: true})
+                          options.merge({prompt: 'Select roles played', label: '', class: 'select form-control', multiple: false})
     )
   end
 
