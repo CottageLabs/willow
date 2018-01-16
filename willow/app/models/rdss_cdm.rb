@@ -50,6 +50,10 @@ class RdssCdm < ActiveFedora::Base
 
   # object_date nested relationship
   has_many :object_dates, class_name: 'Cdm::Date'
+
+  # Accepts nested attributes declarations need to go after the property declarations, as they close off the model
+  accepts_nested_attributes_for :object_dates
+
   
   def self.multiple?(field)
     # Overriding to return false for `title` (as we can't set multiple: false) 
