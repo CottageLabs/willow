@@ -13,4 +13,11 @@ en:
         object_keywords: 'Keywords'
         object_category: 'Category'
         object_version: 'Version'
-
+        object_dates: 'Date'
+    hints:
+      rdss_cdm:
+        object_dates: 'The different dates relevant to the dataset.'
+    prompts:
+      rdss_cdm:
+        object_dates: 
+          date_type: 'choose type'
