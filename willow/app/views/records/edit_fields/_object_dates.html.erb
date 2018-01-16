@@ -1,0 +1,22 @@
+<div class="multi-nested">
+  <%# only output the label and the hint text. wrapper defined in config/initializers/simple_form_rdss.rb %>
+  <%= f.input :object_dates, wrapper: :label_and_hint_only %>
+  <ul class="listing"><%# normally added by https://github.com/samvera/hydra-editor/blob/master/app/inputs/multi_value_input.rb %>
+  <%= f.fields_for :object_dates, @form.object_dates do |od| %>
+    <li class="field-wrapper"><%# normally added by https://github.com/samvera/hydra-editor/blob/master/app/inputs/multi_value_input.rb %>
+      <div class="row">
+        <div class="col-md-3">
+          <%= od.input :date_type, collection: RdssDateTypesService.select_all_options, prompt: :translate, label: false %>
+        </div>
+        <div class="col-md-6">
+          <%= od.input :date_value, label: false, input_html: {data: { provide: 'datepicker' }} %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>
+  <button type="button" class="btn btn-link add">
+    <span class="glyphicon glyphicon-plus"></span>
+    <span class="controls-add-text">Add another Date</span>
+  </button>
+</div>
