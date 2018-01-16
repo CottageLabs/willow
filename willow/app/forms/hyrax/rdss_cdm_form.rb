@@ -41,10 +41,11 @@ module Hyrax
     def self.permitted_object_date_params
       [:id,
        :_destroy,
-       {
-         date_value: [],
-         date_type: []
-       }]
+       [
+         :date_value,
+         :date_type
+        ]
+      ]
     end
 
     def self.build_permitted_params
