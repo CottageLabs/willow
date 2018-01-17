@@ -90,6 +90,63 @@ RSpec.describe RdssCdm do
     end
   end
 
+  # object_dates tests
+
+  describe 'nested attributes for object_dates' do
+    it 'accepts object_dates attributes' do
+      @obj = build(:rdss_cdm, object_dates_attributes: [{ date_value: '2017-01-01', date_type: 'copyrighted' }])
+      expect(@obj.object_dates.first).to be_kind_of ActiveFedora::Base
+      expect(@obj.object_dates.first.date_value).to eq '2017-01-01'
+      expect(@obj.object_dates.first.date_type).to eq 'copyrighted'
+    end
+
+#    it 'has the correct rdss_cdm_id' do
+#      @obj = build(:rdss_cdm, object_dates_attributes: [{ date_value: '2017-01-01', date_type: 'copyrighted' }])
+#      expect(@obj.object_dates.first.id).to include('#object_dates')
+#    end
+# TODO check rdss_cdm id
+
+    it 'rejects date attributes if date is blank' do
+      @obj = build(:rdss_cdm, object_dates_attributes: [
+                                                  {
+                                                    date_value: '2017-01-01',
+                                                    date_type: 'copyrighted'
+                                                  },
+                                                  {
+                                                    date_type: 'copyrighted'
+                                                  },
+                                                  {
+                                                    date_value: '2018-01-01'
+                                                  },
+                                                  {
+                                                    date_value: ''
+                                                  }
+                                                ])
+      expect(@obj.object_dates.size).to eq(2)
+    end
+
+    it 'destroys date' do
+      # TODO: work out how to test destroying a related date through attributes=
+      # The main issue is that since we can't save to fedora in the tests, we are unable
+      # to create a nested object_date with an id. therefore we can't test sending in parameters
+      # of the form {"id" => "XXX", "_destroy"=>"1"}
+    end
+
+    it 'indexes the date' do
+      @obj = build(:rdss_cdm, object_dates_attributes: [{
+                                                    date_value: '2017-01-01',
+                                                    date_type: 'copyrighted',
+                                                }, {
+                                                    date_value: '2018-01-01'
+                                                }])
+      @doc = @obj.to_solr
+      puts @doc.inspect
+      expect(@doc).to include('object_dates_ssm')
+      expect(@doc['object_dates_copyrighted_ssi']).to eq('2017-01-01')
+    end
+  end
+
+
   # describe 'person role' do
   #   it 'has person role' do
   #     build_and_check_field(field_name: :object_person_role, content: %w(author))
