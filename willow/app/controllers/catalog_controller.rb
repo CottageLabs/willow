@@ -1,4 +1,4 @@
-  class CatalogController < ApplicationController
+class CatalogController < ApplicationController
   include Hydra::Catalog
   include Hydra::Controller::ControllerBehavior
   include Blacklight::Concerns::Commands
@@ -102,6 +102,7 @@
                     {object_description: {options: {itemprop: :object_description, if: false}}},
                     {object_keywords: {options: {itemprop: :object_keywords}}},
                     {object_category: {options: {itemprop: :object_category}}},
+                    {object_dates: {options: {itemprop: :object_dates}}},
                     {description: {options: {helper_method: :iconify_auto_link}}},
                     :keyword,
                     :subject,
@@ -190,7 +191,10 @@
                    :rating,
                    :rights_holder,
                    {organisation_nested: {as: :displayable}},
-                   {preservation_nested: {as: :displayable}}
+                   {preservation_nested: {as: :displayable}},
+                   #RDSS CDM Additions
+                   {object_dates: {as: :displayable}},
+                   #End of RDSS CDM Additions
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
