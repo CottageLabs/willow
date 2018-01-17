@@ -43,7 +43,7 @@ class RdssCdm < ActiveFedora::Base
   has_many :object_dates, class_name: 'Cdm::Date'
 
   # Accepts nested attributes declarations need to go after the property declarations, as they close off the model
-  accepts_nested_attributes_for :object_dates, allow_destroy: true
+  accepts_nested_attributes_for :object_dates, reject_if: :object_dates_blank?, allow_destroy: true
 
   
   def self.multiple?(field)
@@ -78,5 +78,16 @@ class RdssCdm < ActiveFedora::Base
   #class_attribute :controlled_properties
   #self.controlled_properties = [:based_near]
   #accepts_nested_attributes_for :based_near, reject_if: id_blank, allow_destroy: true
+
+  # methods for validation of nested properties
+  # For properties with a class_name These need to go on the resource_class: RdssCdm::GeneratedResourceSchema
+  # For associated models, these should be instance methods
+  
+  # object_date_blank
+  # Reject a nested object_date if the value for date_value is not set
+  def object_dates_blank? attributes
+    attributes[:date_value].blank?
+  end
+
 
 end
