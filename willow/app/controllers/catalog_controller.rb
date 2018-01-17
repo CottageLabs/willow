@@ -86,7 +86,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("object_description", :stored_searchable), label: I18n.t('willow.fields.object_description'), itemprop: 'object_description', if: false
     config.add_index_field solr_name("object_keywords", :stored_searchable), label: I18n.t('willow.fields.object_keywords'), itemprop: 'object_keywords' #link_to_search: solr_name("object_keywords", :facetable)
     config.add_index_field solr_name("object_category", :stored_searchable), label: I18n.t('willow.fields.object_category'), itemprop: 'object_category' #link_to_search: solr_name("object_category", :facetable)
-    
+    config.add_index_field solr_name("object_dates", :stored_searchable), label: I18n.t('willow.fields.object_dates'), itemprop: 'object_dates'
     # End of RDSS CDM additions
 
     # solr fields to be displayed in the index (search results) view
@@ -176,6 +176,9 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name("rights_holder", :stored_searchable), label: I18n.t('willow.fields.rights_holder')
     config.add_show_field solr_name("organisation_nested", :displayable), label: I18n.t('willow.fields.organisation_nested')
     config.add_show_field solr_name("preservation_nested", :displayable), label: I18n.t('willow.fields.preservation_nested')
+    # RdssCdm Addtitions
+    config.add_show_field solr_name("object_dates", :displayable), label: I18n.t('willow.fields.object_dates')
+    # end of RdssCdm Addtitions
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
