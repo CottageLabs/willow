@@ -1,4 +1,4 @@
-  class CatalogController < ApplicationController
+class CatalogController < ApplicationController
   include Hydra::Catalog
   include Hydra::Controller::ControllerBehavior
   include Blacklight::Concerns::Commands
@@ -68,6 +68,7 @@
                     :funder,
                     :tagged_version,
                     :file_format,
+                    :member_of_collections,
                     :rating,
                     :category,
                     :rights_holder,
@@ -190,7 +191,8 @@
                    :rating,
                    :rights_holder,
                    {organisation_nested: {as: :displayable}},
-                   {preservation_nested: {as: :displayable}}
+                   {preservation_nested: {as: :displayable}},
+                   {object_dates: {as: :displayable}}
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
