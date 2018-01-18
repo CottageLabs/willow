@@ -29,7 +29,7 @@ module Hyrax
     # object_date data.
     delegate :object_dates_attributes=, to: :model
 
-    # We need to call '.to_a' on committee_members to force it
+    # We need to call '.to_a' on object_dates to force it
     # to resolve.  Otherwise in the form, the fields don't
     # display the object_dates's type and value
     # Instead they display something like:
