@@ -6,8 +6,12 @@ class RdssCdmIndexer < Hyrax::WorkIndexer
       # Enter any manual indexing code here
       # if possible, indexing should be specified within the model
 
-      # index a displayable version of the object date
-      solr_doc[Solrizer.solr_name('object_dates', :displayable)] = object.object_dates.to_json
+      # Index a displayable version of the object date
+      # Indexing appears to be occuring before the record is saved to the database
+      # so we need to filter the list and reject any that are marked_for_destruction?
+      # Otherwise we will be showing dates that have been deleted
+      object_dates = object.object_dates.reject(&:marked_for_destruction?)
+      solr_doc[Solrizer.solr_name('object_dates', :displayable)] = object_dates.to_json
       
       # for each object date, index a value for the specific date type to allow sorting by the date type
       # eg object_date_approved
