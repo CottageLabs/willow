@@ -1,0 +1,5 @@
+<%= f.input :object_resource_type, 
+  collection: RdssResourceTypesService.select_all_options,  # providing collection will make it a select box by default
+  prompt: :translate, # I18n will look up the prompt under 'en.simpleform.prompts.rdss_cdm.object_resource_type'
+  input_html: { class: 'form-control' } # bootstrap class for select box
+%>
