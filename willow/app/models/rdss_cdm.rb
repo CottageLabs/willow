@@ -28,7 +28,11 @@ class RdssCdm < ActiveFedora::Base
   property :object_category, predicate: ::RDF::Vocab::PROV.category do |index|
     index.as :stored_searchable, :facetable
   end 
-  #property :object_resource_type
+  
+  property :object_resource_type, predicate: ::RDF::Vocab::DC.type, multiple: false do |index|
+    index.as :stored_searchable, :facetable
+  end
+
   property :object_version, predicate: ::RDF::Vocab::DOAP.Version, multiple: false do |index|
     index.as :stored_searchable
   end
