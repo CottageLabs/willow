@@ -13,20 +13,35 @@ module Blacklight
           {itemprop: name, link_to_search: facetable_name(name)}
         end
 
-        def labelled_facet_field_adder(config, name, options={limit: 5})
+        def add_labelled_facet_field(config, name, options={limit: 5})
           config.add_facet_field(facetable_name(name), default_label_options(name).merge(options))
         end
 
-        def labelled_index_field_adder(config, name, options={})
+        def add_labelled_index_field(config, name, options={})
+          name, label_name, index_type, options = if name.is_a?(Hash)
+                                        decode_name_and_options(name, options)
+                                      else
+                                        [name, name, :stored_searchable, :options]
+                                      end
+
+          end
           config.add_facet_field(stored_searchable_name(name), default_label_options(name).merge(options))
         end
 
-        def default_labelled_index_field_adder(config, name, options={})
-          labelled_index_field_adder(config, name, default_index_options(name).merge(options))
+        def add_labelled_show_field(config, name, options={})
+          config.add_show_field(stored_searchable_name(name), default_label_options(name).merge(options))
         end
 
-        def default_facet_field_adder(config, *names)
-          names.each {|name| labelled_facet_field_adder(config, name)}
+        def add_facet_field(config, *names)
+          names.each {|name| add_labelled_facet_field(config, name)}
+        end
+
+        def add_index_field(config, *names)
+          names.each {|name| add_labelled_index_field(config, name, default_index_options(name))}
+        end
+
+        def add_show_field(config, *names)
+          names.each {|name| add_labelled_show_field(config, name)}
         end
 
         def to_searchable_names_field_list(*names)
