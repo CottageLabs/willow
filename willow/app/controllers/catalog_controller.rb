@@ -89,7 +89,7 @@
     # RDSS CDM additionss
     add_labelled_index_field config, :title, itemprop: name, if: false
     add_labelled_index_field config, :object_description, itemprop: :object_description, if: false
-    add_labelled_indeX_field config, :object_keywords, itemprop: :object_keywords
+    add_labelled_index_field config, :object_keywords, itemprop: :object_keywords
     add_labelled_index_field config, :object_category, itemprop: :object_category
     # End of RDSS CDM additions
 

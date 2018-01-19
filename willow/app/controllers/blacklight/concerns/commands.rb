@@ -5,6 +5,16 @@ module Blacklight
       include ::Solr::Concerns::IndexTypes
 
       class_methods do
+        private
+        def decode_name_and_options(name, options={})
+          actual_name=name.keys.first
+          values=name.values.first
+          labelled_name=values[:name] || actual_name
+          index_type=values[:as] || :stored_searchable
+          options.merge(values[:options] || {})
+          return [actual_name, labelled_name, index_type, options]
+        end
+
         def default_label_options(name)
           {label: I18n.t('willow.fields.'+name)}
         end
@@ -13,23 +23,35 @@ module Blacklight
           {itemprop: name, link_to_search: facetable_name(name)}
         end
 
+        def send_to_configuration(config, config_type, index_type, name, label_name, options)
+          config.send("add_#{config_type}", send("#{index_type}_name", name), default_label_options(label_name).merge(options))
+        end
+
         def add_labelled_facet_field(config, name, options={limit: 5})
-          config.add_facet_field(facetable_name(name), default_label_options(name).merge(options))
+          name, label_name, index_type, options = if name.is_a?(Hash)
+                                                    decode_name_and_options(name, options)
+                                                  else
+                                                    [name, name, :facetable, options]
+                                                  end
+          send_to_configuration(config, :facet_field, config_type, index_type, name, label_name, options)
         end
 
         def add_labelled_index_field(config, name, options={})
           name, label_name, index_type, options = if name.is_a?(Hash)
                                         decode_name_and_options(name, options)
                                       else
-                                        [name, name, :stored_searchable, :options]
+                                        [name, name, :stored_searchable, options]
                                       end
-
-          end
-          config.add_facet_field(stored_searchable_name(name), default_label_options(name).merge(options))
+          send_to_configuration(config, :index_field, config_type, index_type, name, label_name, options)
         end
 
         def add_labelled_show_field(config, name, options={})
-          config.add_show_field(stored_searchable_name(name), default_label_options(name).merge(options))
+          name, label_name, index_type, options = if name.is_a?(Hash)
+                                                    decode_name_and_options(name, options)
+                                                  else
+                                                    [name, name, :stored_searchable, options]
+                                                  end
+          send_to_configuration(config, :show_field, config_type, index_type, name, label_name, options)
         end
 
         def add_facet_field(config, *names)
