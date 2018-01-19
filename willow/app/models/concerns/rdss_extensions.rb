@@ -22,7 +22,7 @@ module Concerns
 
     included do
       #New RDSS CSM types
-      stored_searchable :title, :object_description, :object_keywords, :object_category, :object_person_role
+      stored_searchable :title, :object_description, :object_keywords, :object_category, :object_person_role, :object_resource_type
     end
 
     def solr_name(name, type)
