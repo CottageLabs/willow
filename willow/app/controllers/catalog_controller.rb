@@ -86,11 +86,12 @@
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
 
-    # RDSS CDM additionss
-    add_labelled_index_field config, :title, itemprop: name, if: false
-    add_labelled_index_field config, :object_description, itemprop: :object_description, if: false
-    add_labelled_index_field config, :object_keywords, itemprop: :object_keywords
-    add_labelled_index_field config, :object_category, itemprop: :object_category
+    # RDSS CDM additions expanded below. For the add_index_field shortcut, the hash is added as options to the name
+    # which is used as a key
+    # add_labelled_index_field config, :title, itemprop: name, if: false
+    # add_labelled_index_field config, :object_description, itemprop: :object_description, if: false
+    # add_labelled_index_field config, :object_keywords, itemprop: :object_keywords
+    # add_labelled_index_field config, :object_category, itemprop: :object_category
     # End of RDSS CDM additions
 
     # solr fields to be displayed in the index (search results) view
@@ -226,7 +227,7 @@
                      :contributor,
                      :creator,
                      :creator_nested,
-                     :identifier_nested,
+                     {identifier_nested: {as: :symbol}},
                      :title,
                      :description,
                      :publisher,
@@ -236,8 +237,8 @@
                      :language,
                      :resource_type,
                      :format,
-                     :identifier,
-                     {based_near: {name: :based_near}},
+                     {identifier: {name: :id}},
+                     {based_near: {name: :based_near_label}},
                      :keyword,
                      :depositor,
                      :rights,
@@ -249,213 +250,6 @@
                      :rights_holder,
                      :organisation_nested
 
-    config.add_search_field('contributor') do |field|
-      # solr_parameters hash are sent to Solr as ordinary url query params.
-
-      # :solr_local_parameters will be sent using Solr LocalParams
-      # syntax, as eg {! qf=$title_qf }. This is neccesary to use
-      # Solr parameter de-referencing like $title_qf.
-      # See: http://wiki.apache.org/solr/LocalParams
-      solr_name = solr_name(:contributor, :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('creator') do |field|
-      solr_name = solr_name(:creator, :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('creator_nested') do |field|
-      solr_name = solr_name(:creator_nested, :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('identifier_nested') do |field|
-      solr_name = solr_name(:identifier_nested, :symbol)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('title') do |field|
-      solr_name = solr_name(:title, :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('description') do |field|
-      field.label = "Abstract or Summary"
-      solr_name = solr_name(:description, :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('publisher') do |field|
-      solr_name = solr_name(:publisher, :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('date_created') do |field|
-      solr_name = solr_name(:created, :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('subject') do |field|
-      solr_name = solr_name(:subject, :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('subject_nested') do |field|
-      solr_name = solr_name(:subject_nested, :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('language') do |field|
-      solr_name = solr_name(:language, :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('resource_type') do |field|
-      solr_name = solr_name(:resource_type, :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('format') do |field|
-      solr_name = solr_name(:format, :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('identifier') do |field|
-      solr_name = solr_name(:id, :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('based_near') do |field|
-      field.label = "Location"
-      solr_name = solr_name(:based_near_label, :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('keyword') do |field|
-      solr_name = solr_name(:keyword, :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('depositor') do |field|
-      solr_name = solr_name(:depositor, :symbol)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('rights') do |field|
-      solr_name = solr_name(:rights, :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('license_nested') do |field|
-      solr_name = solr_name(:license_nested, :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('other_title') do |field|
-      solr_name = solr_name(:other_title, :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('doi') do |field|
-      solr_name = solr_name(:doi, :facetable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('category') do |field|
-      solr_name = solr_name(:category, :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('rating') do |field|
-      solr_name = solr_name(:rating, :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('rights_holder') do |field|
-      solr_name = solr_name(:rating, :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('organisation_nested') do |field|
-      solr_name = solr_name(:organisation_nested, :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
 
     # "sort results by" select (pulldown)
     # label in pulldown is followed by the name of the SOLR field to sort by and
