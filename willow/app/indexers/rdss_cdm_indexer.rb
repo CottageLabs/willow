@@ -15,13 +15,11 @@ class RdssCdmIndexer < Hyrax::WorkIndexer
       
       # for each object date, index a value for the specific date type to allow sorting by the date type
       # eg object_date_approved
-      # As above, we need to filter on marked_for_destruction?
-      object.object_dates.each do |d|
-        unless d.try(:marked_for_destruction?)
-          label = RdssDateTypesService.label(d.date_type) rescue nil
-          if label
-            solr_doc[Solrizer.solr_name("object_dates_#{label.downcase}", :stored_sortable)] = d.date_value
-          end
+      # As above, we are using the object_dates filtered to remove marked_for_destruction?
+      object_dates.each do |d|
+        label = RdssDateTypesService.label(d.date_type) rescue nil
+        if label
+          solr_doc[Solrizer.solr_name("object_dates_#{label.downcase}", :stored_sortable)] = d.date_value
         end
       end
     end

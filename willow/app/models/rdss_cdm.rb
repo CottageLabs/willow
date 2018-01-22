@@ -21,7 +21,10 @@ class RdssCdm < ActiveFedora::Base
     index.as :stored_searchable
   end
   #property :object_rights
-  #property :object_date
+
+  # Object date nested property
+  property :object_date, predicate: ::RDF::Vocab::DC.date, class_name: "Cdm::Date"
+
   property :object_keywords, predicate: ::RDF::Vocab::DC11.relation do |index|
     index.as :stored_searchable, :facetable
   end
@@ -40,7 +43,7 @@ class RdssCdm < ActiveFedora::Base
   #property :object_file
 
   # object_date nested relationship
-  has_many :object_dates, class_name: 'Cdm::Date'
+  # has_many :object_dates, class_name: 'Cdm::Date'
 
   # Accepts nested attributes declarations need to go after the property declarations, as they close off the model
   accepts_nested_attributes_for :object_dates, reject_if: :object_dates_blank?, allow_destroy: true
