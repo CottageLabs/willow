@@ -163,6 +163,17 @@ RSpec.describe RdssCdm do
       # The main issue is that since we can't save to fedora in the tests, we are unable
       # to create a nested object_date with an id. therefore we can't test sending in parameters
       # of the form {"id" => "XXX", "_destroy"=>"1"}
+      @obj = build(:rdss_cdm, object_date_attributes: [{ date_value: '2017-01-01', date_type: 'copyrighted' }])
+      expect(@obj.object_date.size).to eq(1)
+      @obj.attributes = {
+        object_date_attributes: [{
+                                   id: @obj.object_date.first.id,
+                                   date_value: '2017-01-01',
+                                   date_type: 'copyrighted',
+                                   _destroy: '1'
+                                 }]
+      }
+      expect(@obj.object_date.size).to eq(0)
     end
 
     it 'indexes the date' do
@@ -175,7 +186,7 @@ RSpec.describe RdssCdm do
       @doc = @obj.to_solr
       puts @doc.inspect
       expect(@doc).to include('object_dates_ssm')
-      expect(@doc['object_dates_copyrighted_ssi']).to eq('2017-01-01')
+      expect(@doc['object_dates_copyrighted_ssi']).to match_array(['2017-01-01'])
     end
   end
 
