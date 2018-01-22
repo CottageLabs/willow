@@ -14,9 +14,11 @@ en:
         object_category: 'Category'
         object_version: 'Version'
         object_resource_type: 'Resource Type'
+        object_value: 'Object Value'
     hints:
       rdss_cdm:
         object_resource_type: "Pre-defined categories to describe the type of content being uploaded, such as &quot;article&quot; or &quot;dataset.&quot;"
+        object_value: "Administrator conferred value which dictates storage type e.g. &quot;escrow&quot;"
     prompts:
       rdss_cdm:
         object_resource_type: 'Select resource type'
