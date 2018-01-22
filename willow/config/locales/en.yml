@@ -7,6 +7,9 @@ en:
       object_keywords: Keywords
       object_category: Category
       object_version: Version
+      previous: Previous
+      remove: 'Remove %{type}'
+      add_another: 'Add another %{type}'
       # End of RDSS CDM additions
       admin_metadata: 'Information for administrative purposes'
       apc: 'Article processing charge'
@@ -17,7 +20,7 @@ en:
       creator: 'Creator'
       creator_nested: 'Creator'
       contributor: 'Contributor'
-      date: 'Dates'
+      date: 'Date'
       date_accepted: 'Date accepted'
       date_available: 'Date available'
       date_collected: 'Date collected'
