@@ -90,6 +90,26 @@ RSpec.describe RdssCdm do
     end
   end
 
+  describe 'object_resource_type' do
+    it 'has object_resource_type' do
+      build_and_check_field(field_name: :object_resource_type, content: 'resource_type')
+    end
+    
+    it 'indexes object_resource_type' do
+      build_and_check_index(field_name: :object_resource_type, content: 'resource_type', index_name: :object_resource_type_tesim)
+    end
+  end
+
+  describe 'object_value' do
+    it 'has object_value' do
+      build_and_check_field(field_name: :object_value, content: 'normal')
+    end
+    
+    it 'indexes object_value' do
+      build_and_check_index(field_name: :object_value, content: 'normal', index_name: :object_value_tesim)
+    end
+  end
+
   # describe 'person role' do
   #   it 'has person role' do
   #     build_and_check_field(field_name: :object_person_role, content: %w(author))
