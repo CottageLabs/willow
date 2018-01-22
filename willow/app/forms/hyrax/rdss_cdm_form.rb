@@ -14,7 +14,9 @@ module Hyrax
       :object_value
     ]
     self.required_fields = [
-      :title
+      :title,
+      :object_resource_type,
+      :object_value
     ]
   end
 end

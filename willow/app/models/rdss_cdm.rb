@@ -11,6 +11,8 @@ class RdssCdm < ActiveFedora::Base
   # Change this to restrict which works can be added as a child.
   # self.valid_child_concerns = []
   validates :title, presence: { message: 'Your work must have a title.' }
+  validates :object_resource_type, presence: { message: 'Your work must have a resource type.' }
+  validates :object_value, presence: { message: 'Your work must have a value.' }
 
   self.human_readable_type = 'RDSS CDM'
 
