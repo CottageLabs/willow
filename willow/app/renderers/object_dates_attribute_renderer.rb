@@ -7,7 +7,7 @@ class ObjectDatesAttributeRenderer < Hyrax::Renderers::AttributeRenderer
     if not value.kind_of?(Array)
       value = [value]
     end
-    html = '<table class="table"><tbodby>'
+    html = '<table class="table"><tbody>'
     value.each do |v|
       label = ''
       val = ''
