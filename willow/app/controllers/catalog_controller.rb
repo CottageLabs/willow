@@ -134,7 +134,7 @@
                     {identifier: {options: {helper_method: :index_fieldlink, firle_name: :identifier}}},
                     {embargo_release_date: {options: {helper_method: :human_readable_date}}},
                     {lease_expiration_date: {options: {helper_method: :human_readable_date}}},
-    # dataset fields for search
+    # dataset fields for search - force empty options.
                     {doi: {options: {}}},
                     {other_title: {options: {}}},
                     {funder: {options: {}}},

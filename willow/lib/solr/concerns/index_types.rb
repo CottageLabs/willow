@@ -16,7 +16,7 @@ module Solr
 
           #Uses the class solr_name definition as defined in Hydra::Controller::ControllerBehaviour and possibly others
           define_singleton_method(index_type.to_s+'_name') do |name, *options|
-            options=[index_type] +  options
+            options=options.empty? ? index_type : [index_type] +  options
             solr_name(name, *options)
           end
         end

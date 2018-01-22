@@ -11,7 +11,7 @@ module Blacklight
           values=name.values.first
           labelled_name=values[:name] || actual_name
           index_type=values[:as] || :stored_searchable
-          solr_options=values[:type] || {}
+          solr_options=values[:type] && [{type: values[:type]}] || nil
           options.merge!(values[:options] || {})
           return [actual_name, labelled_name, index_type, solr_options, options]
         end
@@ -32,9 +32,14 @@ module Blacklight
           name, label_name, index_type, solr_options, options = if name.is_a?(Hash)
                                                                   decode_name_and_options(name, options)
                                                                 else
-                                                                  [name, name, default_index_type, {}, options]
+                                                                  [name, name, default_index_type, nil, options]
                                                                 end
-          config.send("add_#{config_type}", send("#{index_type}_name", name, solr_options), default_label_options(label_name).merge(options))
+          begin
+            config.send("add_#{config_type}", send("#{index_type}_name", name, *solr_options), default_label_options(label_name).merge(options))
+          rescue ArgumentError=>e
+            puts("solr_options are: #{solr_options.inspect}")
+            raise
+          end
         end
 
         def add_labelled_facet_field(config, name, options={limit: 5})
@@ -55,7 +60,7 @@ module Blacklight
                                                                 else
                                                                   [name, name, :stored_searchable, options]
                                                                 end
-          local_params_solr_name = send(index_type, name, solr_options)
+          local_params_solr_name = send(index_type, name, *solr_options)
           config.add_search_field(name.to_s) do |field|
             field.label=default_label(label_name)
             field.solr_local_parameters={ qf: local_params_solr_name, pf: local_params_solr_name }
@@ -82,7 +87,6 @@ module Blacklight
           names.map {|name| stored_searchable_name(name)}.join(' ')
         end
       end
-
     end
   end
 end
