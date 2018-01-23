@@ -68,6 +68,7 @@ class CatalogController < ApplicationController
                     :funder,
                     :tagged_version,
                     :file_format,
+                    :member_of_collections,
                     :rating,
                     :category,
                     :rights_holder,
