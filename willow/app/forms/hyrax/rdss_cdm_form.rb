@@ -12,9 +12,11 @@ module Hyrax
       :object_version,
       :object_resource_type,
       :object_value,
+      :object_person_role,
       :object_version,
       :object_dates
     ]
+
     self.required_fields = [
       :title,
       :object_resource_type,
