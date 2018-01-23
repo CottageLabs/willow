@@ -27,7 +27,7 @@ RSpec.describe RdssCdm do
 
   describe 'title' do
     it 'requires title' do
-      @obj = build(:rdss_cdm, title: nil)
+      @obj = build(:rdss_cdm, title: nil, object_resource_type: 'type', object_value: 'value') # title, resource_type and value are mandatory
       #@obj.save!
       expect{@obj.save!}.to raise_error(ActiveFedora::RecordInvalid, 'Validation failed: Title Your work must have a title.')
     end
@@ -87,6 +87,39 @@ RSpec.describe RdssCdm do
 
     it 'indexes category' do
       build_and_check_index(field_name: :object_category, content: %w(category), index_name: :object_category_tesim)
+    end
+  end
+
+  describe 'object_resource_type' do
+
+    it 'requires object_resource_type' do
+      @obj = build(:rdss_cdm, title: ['title'], object_resource_type: nil, object_value: 'value') # title, resource_type and value are mandatory
+      #@obj.save!
+      expect{@obj.save!}.to raise_error(ActiveFedora::RecordInvalid, 'Validation failed: Object resource type Your work must have a resource type.')
+    end
+
+    it 'has object_resource_type' do
+      build_and_check_field(field_name: :object_resource_type, content: 'resource_type')
+    end
+    
+    it 'indexes object_resource_type' do
+      build_and_check_index(field_name: :object_resource_type, content: 'resource_type', index_name: :object_resource_type_tesim)
+    end
+  end
+
+  describe 'object_value' do
+    it 'requires object_value' do
+      @obj = build(:rdss_cdm, title: ['title'], object_resource_type: 'resource_type', object_value: nil) # title, resource_type and value are mandatory
+      #@obj.save!
+      expect{@obj.save!}.to raise_error(ActiveFedora::RecordInvalid, 'Validation failed: Object value Your work must have a value.')
+    end
+
+    it 'has object_value' do
+      build_and_check_field(field_name: :object_value, content: 'normal')
+    end
+    
+    it 'indexes object_value' do
+      build_and_check_index(field_name: :object_value, content: 'normal', index_name: :object_value_tesim)
     end
   end
 

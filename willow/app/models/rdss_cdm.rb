@@ -11,6 +11,8 @@ class RdssCdm < ActiveFedora::Base
   # Change this to restrict which works can be added as a child.
   # self.valid_child_concerns = []
   validates :title, presence: { message: 'Your work must have a title.' }
+  validates :object_resource_type, presence: { message: 'Your work must have a resource type.' }
+  validates :object_value, presence: { message: 'Your work must have a value.' }
 
   self.human_readable_type = 'RDSS CDM'
 
@@ -28,11 +30,18 @@ class RdssCdm < ActiveFedora::Base
   property :object_category, predicate: ::RDF::Vocab::PROV.category do |index|
     index.as :stored_searchable, :facetable
   end 
-  #property :object_resource_type
+  
+  property :object_resource_type, predicate: ::RDF::Vocab::DC.type, multiple: false do |index|
+    index.as :stored_searchable, :facetable
+  end
+
   property :object_version, predicate: ::RDF::Vocab::DOAP.Version, multiple: false do |index|
     index.as :stored_searchable
   end
-  #property :object_value
+
+  property :object_value, predicate: ::RDF::Vocab::ICAL.priority, multiple: false do |index|
+    index.as :stored_searchable
+  end
   #property :object_identifier
   #property :object_related_identifier
   #property :object_organisation_role
