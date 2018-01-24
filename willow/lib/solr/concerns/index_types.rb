@@ -9,7 +9,8 @@ module Solr
             names.each do |name|
               #use the instance solr_name definition defined in this file unless overridden
               define_method name do |*options|
-                solr_name(name, index_type, options)
+                options=options.empty? ? index_type : [index_type] +  options
+                solr_name(name, *options)
               end
             end
           end
@@ -23,7 +24,7 @@ module Solr
       end
 
       def solr_name(name, *options)
-        self[Solrizer.solr_name(name, options)]
+        self[::Solrizer.solr_name(name, *options)]
       end
 
     end
