@@ -53,9 +53,14 @@ class RdssCdm < ActiveFedora::Base
   # object_date nested relationship
   has_many :object_dates, class_name: 'Cdm::Date'
 
+  # object_rights nested relationship.
+  # This is a has_many in the CDM but for presentation and form purposes it is presented as a has_one
+  has_many :object_rights, class_name: 'Cdm::Rights'
+
   # Accepts nested attributes declarations need to go after the property declarations, as they close off the model
   accepts_nested_attributes_for :object_dates, reject_if: :object_dates_blank?, allow_destroy: true
   accepts_nested_attributes_for :object_person_roles, allow_destroy: true, reject_if: :object_person_roles_blank?
+  accepts_nested_attributes_for :object_rights
 
   def self.multiple?(field)
     # Overriding to return false for `title` (as we can't set multiple: false) 
