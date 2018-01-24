@@ -123,16 +123,6 @@ RSpec.describe RdssCdm do
     end
   end
 
-  describe 'person role' do
-    it 'has person role' do
-      build_and_check_field(field_name: :object_person_role, content: %w(author))
-    end
-
-    it 'indexes person role' do
-      build_and_check_index(field_name: :object_person_role, content: %w(author), index_name: :object_person_role_tesim)
-    end
-  end
-
   # object_dates tests
 
   describe 'nested attributes for object_dates' do
@@ -190,13 +180,14 @@ RSpec.describe RdssCdm do
   end
 
 
-  # describe 'person role' do
-  #   it 'has person role' do
-  #     build_and_check_field(field_name: :object_person_role, content: %w(author))
-  #   end
-  #
-  #   it 'indexes person role' do
-  #     build_and_check_index(field_name: :object_person_role, content: %w(author), index_name: :object_person_role_tesim)
-  #   end
-  # end
+  describe 'person role' do
+    it 'has person role' do
+      build_and_check_field(field_name: :object_person_role, content: %w(author))
+    end
+
+    it 'indexes person role' do
+      build_and_check_index(field_name: :object_person_role, content: %w(author), index_name: :object_person_role_tesim)
+    end
+  end
+
 end

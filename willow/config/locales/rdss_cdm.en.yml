@@ -1,34 +1,34 @@
 en:
   hyrax:
     icons:
-      rdss_cdm:     'fa fa-file-text-o'
+      rdss_cdm:     fa fa-file-text-o
     select_type:
       rdss_cdm:
-        name:               "Rdss Cdm"
-        description:        "Rdss cdm works"
+        name:               Rdss Cdm
+        description:        Rdss cdm works
   simple_form:
     labels:
       name: Rdss Dataset Person Name (deprecated)
       orcid: Rdss Dataset Orcid (deprecated)
       role: Rdss Dataset Role (deprecated)
       rdss_cdm:
-        object_description: 'Description'
-        object_keywords: 'Keywords'
-        object_category: 'Category'
-        object_version: 'Version'
-        object_resource_type: 'Resource Type'
-        object_value: 'Object Value'
+        object_description: Description
+        object_keywords: Keywords
+        object_category: Category
+        object_version: Version
+        object_resource_type: Resource type
+        object_value: Object value
+        object_dates: Date
         object_person_role: Role
         name: Name
         orcid: Orcid
-        object_dates: 'Date'
     hints:
       rdss_cdm:
-        object_resource_type: "Pre-defined categories to describe the type of content being uploaded, such as &quot;article&quot; or &quot;dataset.&quot;"
-        object_value: "Administrator conferred value which dictates storage type e.g. &quot;escrow&quot;"
-        object_dates: 'The different dates relevant to the dataset.'
+        object_resource_type: Pre-defined categories to describe the type of content being uploaded, such as &quot;article&quot; or &quot;dataset.&quot;
+        object_value: Administrator conferred value which dictates storage type e.g. &quot;escrow&quot;
+        object_dates: The different dates relevant to the dataset
     prompts:
       rdss_cdm:
-        object_resource_type: 'Select resource type'
+        object_resource_type: Select resource type
         object_dates:
-          date_type: 'choose type'
+          date_type: Choose type

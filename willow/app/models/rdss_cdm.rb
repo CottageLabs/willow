@@ -25,7 +25,7 @@ class RdssCdm < ActiveFedora::Base
     index.as :stored_searchable
   end
   #property :object_rights
-  #property :object_date
+
   property :object_keywords, predicate: ::RDF::Vocab::DC11.relation do |index|
     index.as :stored_searchable, :facetable
   end

@@ -193,7 +193,9 @@ class CatalogController < ApplicationController
                    :rights_holder,
                    {organisation_nested: {as: :displayable}},
                    {preservation_nested: {as: :displayable}},
-                   {object_dates: {as: :displayable}}
+                   #RDSS CDM Additions
+                   {object_dates: {as: :displayable}},
+                   #End of RDSS CDM Additions
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
