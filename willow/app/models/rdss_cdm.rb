@@ -24,9 +24,6 @@ class RdssCdm < ActiveFedora::Base
   end
   #property :object_rights
 
-  # Object date nested property
-  # property :object_date, predicate: ::RDF::Vocab::DC.date, class_name: "Cdm::Date"
-
   property :object_keywords, predicate: ::RDF::Vocab::DC11.relation do |index|
     index.as :stored_searchable, :facetable
   end
