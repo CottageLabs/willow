@@ -17,4 +17,8 @@ class ObjectRightsFormBuilder < RdssFields
     input :rights_statement, as: :multi_value, required: true
   end
 
+  def accesses
+    object.accesses.build if object.accesses.blank?
+  end
+
 end

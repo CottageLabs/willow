@@ -1,3 +1,13 @@
 <%= object_rights_form.license %>
 <%= object_rights_form.rights_holder %>
 <%= object_rights_form.rights_statement %>
+<%# only output the label and the hint text. wrapper defined in config/initializers/simple_form_rdss.rb %>
+<%= object_rights_form.input :accesses, wrapper: :label_and_hint_only %>
+<div class="multi-nested">
+  <ul class="listing"><%# normally added by https://github.com/samvera/hydra-editor/blob/master/app/inputs/multi_value_input.rb %>
+    <%= object_rights_form.fields_for :accesses, object_rights_form.accesses, builder: ::AccessFormBuilder do |access| %>
+      <%= render partial: access %>
+    <% end %>
+  </ul>
+  <%= add_another_button :access %>
+</div>
