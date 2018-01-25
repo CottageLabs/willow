@@ -4,6 +4,21 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+/** add a replaceLastOccurrence method to String. Replaces the last occurrence of a 'searchValue' with 'newValue' in string **/
+/** note this cannot take regular expressions **/
+if (!String.prototype.replaceLastOccurrence) {
+    String.prototype.replaceLastOccurrence = function(searchValue, newValue) {
+        var index = this.lastIndexOf(searchValue);
+
+        if (index >= 0) {
+            return this.substring(0, index) + newValue + this.substring(index + searchValue.length);
+        }
+
+        return this.toString();
+    };
+}
+
+
 var NestedFieldManager = function () {
     function NestedFieldManager(element, options) {
         _classCallCheck(this, NestedFieldManager);
@@ -125,7 +140,7 @@ var NestedFieldManager = function () {
             var newLabelPart = 'attributes_' + $newId + '_';
             $newField.find('label').each(function () {
                 var currentLabel = $(this).attr('for');
-                var newLabel = currentLabel.replace(currentLabelPart, newLabelPart);
+                var newLabel = currentLabel.replaceLastOccurrence(currentLabelPart, newLabelPart);
                 $(this).attr('for', newLabel);
             });
             return $newField;
@@ -134,11 +149,11 @@ var NestedFieldManager = function () {
         key: 'updateIndexInId',
         value: function updateIndexInId($newChildren, $currentId, $newId) {
             // modify id and name in newChildren
-            var $currentIdPart = new RegExp('attributes_' + $currentId + '_');
+            var $currentIdPart = 'attributes_' + $currentId + '_';
             var $newIdPart = 'attributes_' + $newId + '_';
             $newChildren.each(function () {
                 var $currentId = $(this).attr('id');
-                var $newId = $currentId.replace($currentIdPart, $newIdPart);
+                var $newId = $currentId.replaceLastOccurrence($currentIdPart, $newIdPart);
                 $(this).attr('id', $newId);
             });
             return $newChildren;
@@ -147,11 +162,11 @@ var NestedFieldManager = function () {
         key: 'updateIndexInName',
         value: function updateIndexInName($newChildren, $currentId, $newId) {
             // modify id and name in newChildren
-            var $currentNamePart = new RegExp('[' + $currentId + ']');
+            var $currentNamePart = '[' + $currentId + ']';
             var $newnamePart = '[' + $newId + ']';
             $newChildren.each(function () {
                 var $currentName = $(this).attr('name');
-                var $newName = $currentName.replace($currentNamePart, $newnamePart);
+                var $newName = $currentName.replaceLastOccurrence($currentNamePart, $newnamePart);
                 $(this).attr('name', $newName);
             });
             return $newChildren;
