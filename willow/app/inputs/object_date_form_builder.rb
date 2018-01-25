@@ -6,8 +6,4 @@ class ObjectDateFormBuilder < RdssFields
   def date_value(required: false)
     input :date_value, label: false, required: required, input_html: {data: { provide: 'datepicker' }}
   end
-
-  def destroy
-    input :_destroy, as: :hidden, input_html:{ data: { destroy: true }, class: 'form-control remove-hidden', value: false}
-  end
 end
