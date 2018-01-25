@@ -83,7 +83,15 @@ module Hyrax
         [
           rights_statement: [],
           rights_holder: [],
-          license: []
+          license: [],
+          accesses_attributes: [
+            :id,
+            :_destroy,
+            [
+              :access_type,
+              :access_statement
+            ]
+          ]
         ]
       ]
     end
