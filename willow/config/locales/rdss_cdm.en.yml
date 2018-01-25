@@ -8,9 +8,6 @@ en:
         description:        Rdss cdm works
   simple_form:
     labels:
-      name: Rdss Dataset Person Name (deprecated)
-      orcid: Rdss Dataset Orcid (deprecated)
-      role: Rdss Dataset Role (deprecated)
       rdss_cdm:
         object_description: Description
         object_keywords: Keywords
@@ -19,6 +16,7 @@ en:
         object_resource_type: Resource type
         object_value: Object value
         object_dates: Date
+        object_people: People
         object_person_role: Role
         name: Name
         orcid: Orcid
@@ -32,3 +30,5 @@ en:
         object_resource_type: Select resource type
         object_dates:
           date_type: Choose type
+        object_person_role:
+          role_type: Choose role

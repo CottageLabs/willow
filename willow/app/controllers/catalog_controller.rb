@@ -38,6 +38,7 @@ class CatalogController < ApplicationController
                                          :object_description,
                                          :object_keywords,
                                          :object_category,
+                                         :object_person,
                                          :object_person_role,
                                          #preserving for legacy functionality
                                          :description,
@@ -104,6 +105,8 @@ class CatalogController < ApplicationController
                     {object_keywords: {options: {itemprop: :object_keywords}}},
                     {object_category: {options: {itemprop: :object_category}}},
                     {object_dates: {options: {itemprop: :object_dates}}},
+                    {object_person: {options: {itemprop: :object_person}}},
+                    {object_person_role: {options: {itemprop: :object_person_role}}},
                     {description: {options: {helper_method: :iconify_auto_link}}},
                     :keyword,
                     :subject,
@@ -195,6 +198,8 @@ class CatalogController < ApplicationController
                    {preservation_nested: {as: :displayable}},
                    #RDSS CDM Additions
                    {object_dates: {as: :displayable}},
+                   {object_person: {as: :displayable}},
+                   {object_person_role: {as: :displayable}}
                    #End of RDSS CDM Additions
 
     # "fielded" search configuration. Used by pulldown among other places.
