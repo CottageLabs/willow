@@ -11,5 +11,13 @@ module Cdm
     belongs_to :rdss_cdm, predicate: ActiveFedora::RDF::Fcrepo::RelsExt.isPartOf
 
     has_many :accesses, class_name: 'Cdm::Access'
+
+    accepts_nested_attributes_for :accesses, reject_if: :accesses_blank?, allow_destroy: true
+
+    # accesses_blank
+    # Reject a nested access if the value for access_type is not set
+    def accesses_blank? attributes
+      attributes[:access_type].blank?
+    end
   end
 end
