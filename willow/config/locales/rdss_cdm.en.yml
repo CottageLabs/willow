@@ -21,18 +21,23 @@ en:
         name: Name
         orcid: Orcid
         object_rights: Rights
-
+      # note we have to put the following translations under simple_form.labels.defaults
+      # rather than simple_form.labels.rdss_cdm.object_rights, as otherwise the translation
+      # for simple_form.labels.rdss_cdm.object_rights
+      # would return a hash
+      defaults:
+        accesses: Access
     hints:
       rdss_cdm:
         object_resource_type: Pre-defined categories to describe the type of content being uploaded, such as &quot;article&quot; or &quot;dataset.&quot;
         object_value: Administrator conferred value which dictates storage type e.g. &quot;escrow&quot;
         object_dates: The different dates relevant to the dataset
-        object_rights:
+        object_rights: Rights and access information about the dataset
       defaults:
         # note we have to put the following translations under simple_form.hints.defaults
-        # rather than simple_form.hints.rdss_cdm.object_rights, because of a bug in the way simpleform
-        # looks up translations for hints. If simple_form.hints.rdss_cdm.object_rights is a hash then
-        # the following error is thrown: undefined method `html_safe' for Hash
+        # rather than simple_form.hints.rdss_cdm.object_rights, as otherwise the translation
+        # for simple_form.hints.rdss_cdm.object_rights
+        # would return a hash
         license: Licensing and distribution information governing access to the dataset.  
         rights_holder: The person or organisation who holds the rights for the work
     prompts:
