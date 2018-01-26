@@ -455,10 +455,15 @@ form .field-wrapper label[required="required"]::after {
 
 .tr:nth-child(even) {
   background: #FFF;
-
+}
 
 /** rdss form styles **/
 
 .form-group-with-margin {
   margin-bottom: 2em;
+}
+
+.multi-nested .btn-link.remove {
+  color: #d9534f;
+  text-decoration: underline;  
 }
