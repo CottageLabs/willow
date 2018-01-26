@@ -175,7 +175,6 @@ RSpec.describe RdssCdm do
                                                     date_value: '2018-01-01'
                                                 }])
       @doc = @obj.to_solr
-      puts @doc.inspect
       expect(@doc).to include('object_dates_ssm')
       expect(@doc['object_dates_copyrighted_ssi']).to eq('2017-01-01')
     end
@@ -203,6 +202,42 @@ RSpec.describe RdssCdm do
     it 'succeeds build with all mandatory attributes' do
       obj = build(:rdss_cdm, title: ['title'], object_resource_type: 'object_resource_type', object_value: 'object_value', object_person_roles_attributes: [{role_type: 'author'}])
       expect(obj.valid?).to eq true
+    end
+  end
+
+  describe 'nested attributes for object_rights' do
+    it 'accepts object rights attributes' do
+      @obj = build(:rdss_cdm, object_rights_attributes: [
+            {
+              rights_statement: ['test rights statement'],
+              rights_holder: ['test rights holder'],
+              license: ['http://creativecommons.org/licenses/by/3.0/us/'],
+              accesses_attributes: [{ access_type: 'controlled', access_statement: 'Statement 1' }]
+            }
+          ])
+      expect(@obj.object_rights.first).to be_kind_of ActiveFedora::Base
+      expect(@obj.object_rights.first.rights_statement).to eq ['test rights statement']
+      expect(@obj.object_rights.first.rights_holder).to eq ['test rights holder']
+      expect(@obj.object_rights.first.license).to eq ['http://creativecommons.org/licenses/by/3.0/us/']
+      expect(@obj.object_rights.first.accesses.first.access_type).to eq 'controlled'
+      expect(@obj.object_rights.first.accesses.first.access_statement).to eq 'Statement 1'
+    end
+
+    it 'indexes the object rights' do
+      @obj = build(:rdss_cdm, object_rights_attributes: [
+            {
+              rights_statement: ['another rights statement'],
+              rights_holder: ['another rights holder'],
+              license: ['http://creativecommons.org/licenses/by/3.0/us/'],
+              accesses_attributes: [{ access_type: 'controlled', access_statement: 'Statement 2' }]
+            }
+          ])
+      @doc = @obj.to_solr
+      expect(@doc['object_rights_license_tesim']).to eq(['http://creativecommons.org/licenses/by/3.0/us/'])
+      expect(@doc['object_rights_rights_statement_tesim']).to eq(['another rights statement'])
+      expect(@doc['object_rights_rights_holder_tesim']).to eq(['another rights holder'])
+      expect(@doc['object_rights_access_type_tesim']).to eq(['controlled'])
+      expect(@doc).to include('object_rights_accesses_ssm')
     end
   end
 
