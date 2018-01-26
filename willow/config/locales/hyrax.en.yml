@@ -32,6 +32,10 @@ en:
           object_keywords: Keywords
           object_category: Category
           object_resource_type: Resource Type
+          object_rights_license: License
+          object_rights_rights_statement: Rights Statement
+          object_rights_rights_holder: Rights Holder
+          object_rights_accesses: Access
           based_near_tesim: Location
           contributor_tesim: Contributor
           creator_tesim: Creator
