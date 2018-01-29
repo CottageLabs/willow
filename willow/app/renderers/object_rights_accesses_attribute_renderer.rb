@@ -13,7 +13,7 @@ class ObjectRightsAccessesAttributeRenderer < Hyrax::Renderers::AttributeRendere
     html = '<ul class="list-unstyled">'
     value.each do |v|
       if v['access_type']
-        type = RdssAccessTypesService.label v['access_type']
+        type = (RdssAccessTypesService.label v['access_type'] rescue v['access_type'])
       end
       html += "<li><strong>#{type}:</strong> <span>#{v['access_statement']}</span></li>"
     end
