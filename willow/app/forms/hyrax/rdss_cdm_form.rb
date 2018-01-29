@@ -2,6 +2,7 @@
 #  `rails generate hyrax:work RdssCdm`
 module Hyrax
   class RdssCdmForm < Hyrax::Forms::WorkForm
+    include Concerns::RelationArrayMapper
     self.model_class = ::RdssCdm
 
     self.terms = [
@@ -12,8 +13,8 @@ module Hyrax
       :object_version,
       :object_resource_type,
       :object_value,
-      :object_person,
-      :object_person_role,
+      # :object_person,
+      :object_person_roles,
       :object_dates
     ]
 
@@ -21,9 +22,12 @@ module Hyrax
       :title,
       :object_resource_type,
       :object_value,
-      :object_person,
-      :object_person_role
+      # :object_person,
+      :object_person_roles
     ]
+
+    mapped_arrays :object_dates,
+                  :object_person_roles
 
     # utility methods to allow nested fields to work with the hyrax form
     # Taken from https://github.com/curationexperts/laevigata/
@@ -32,27 +36,9 @@ module Hyrax
     # This method is needed to make fields_for behave as an
     # association and populate the form with the correct
     # object_date data.
-    delegate :object_dates_attributes=, :object_role_attributes=, to: :model
-
-    # We need to call '.to_a' on object_dates to force it
-    # to resolve.  Otherwise in the form, the fields don't
-    # display the object_dates's type and value
-    # Instead they display something like:
-    # '#<ActiveTriples::Relation:0x007fb564969c88>'
-    def object_dates
-      model.object_dates.build if model.object_dates.blank?
-      model.object_dates.to_a
-    end
-
-    def object_person_role
-      model.object_person_role.build if model.object_person_role.blank?
-      model.object_person_role.to_a
-    end
-
-    def object_people
-      model.object_people.build if model.object_people.blank?
-      model.object_people.to_a
-    end
+    delegate :object_dates_attributes=,
+             :object_person_roles_attributes=,
+             to: :model
 
     # Permitted parameters for nested attributes
     # These need to define the incoming parameters for any nested form attributes so that
@@ -67,13 +53,12 @@ module Hyrax
       ]
     end
 
-    def self.permitted_object_role_params
+    def self.permitted_object_person_roles_params
       [
         :id,
         :_destroy,
         [
-          :object_person_given_name,
-          :object_person_family_name
+          :role_type
         ]
       ]
     end
@@ -82,7 +67,7 @@ module Hyrax
       permitted = super
       # add in object_date attributes
       permitted << { object_dates_attributes: permitted_object_date_params }
-      permitted << { object_role_attributes: permitted_object_role_params }
+      permitted << { object_person_roles_attributes: permitted_object_person_roles_params }
       permitted
     end
   end
