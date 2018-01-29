@@ -13,16 +13,14 @@ class RdssCdm < ActiveFedora::Base
   validates :title, presence: { message: 'Your work must have a title.' }
   validates :object_resource_type, presence: { message: 'Your work must have a resource type.' }
   validates :object_value, presence: { message: 'Your work must have a value.' }
+  validates :object_person_roles, presence: { message: I18n.t('willow.fields.presence', field: :object_person_role)}
 
   self.human_readable_type = 'RDSS CDM'
 
   property :object_uuid, predicate: ::RDF::Vocab::DC11.identifier, multiple: false
   # object_title present as `title` inherited from Hyrax::CoreMetadata
-  has_many :object_person_roles
-  has_many :object_people
-  # property :object_person_role, predicate: ::RDF::Vocab::PROV.Role do |index|
-  #   index.as :stored_searchable
-  # end
+  has_many :object_person_roles, class_name: 'Cdm::ObjectPersonRole'
+  # has_many :object_people, class_name: 'Cdm::ObjectPerson'
   property :object_description, predicate: ::RDF::Vocab::DC11.description, multiple: false do |index|
     index.as :stored_searchable
   end
@@ -57,7 +55,7 @@ class RdssCdm < ActiveFedora::Base
 
   # Accepts nested attributes declarations need to go after the property declarations, as they close off the model
   accepts_nested_attributes_for :object_dates, reject_if: :object_dates_blank?, allow_destroy: true
-
+  accepts_nested_attributes_for :object_person_roles
 
   def self.multiple?(field)
     # Overriding to return false for `title` (as we can't set multiple: false) 
