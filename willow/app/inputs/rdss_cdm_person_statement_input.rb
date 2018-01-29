@@ -24,7 +24,7 @@ class RdssCdmPersonStatementInput < NestedAttributesInput
   end
 
   def build_role(attribute_name, value, index, required, options)
-    build_select_section( :object_person_role,
+    build_select_section( :object_person_roles,
                           attribute_name,
                           value,
                           index,

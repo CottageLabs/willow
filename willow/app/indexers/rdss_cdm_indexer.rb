@@ -22,6 +22,13 @@ class RdssCdmIndexer < Hyrax::WorkIndexer
           solr_doc[Solrizer.solr_name("object_dates_#{label.downcase}", :stored_sortable)] = d.date_value
         end
       end
+
+      object_person_roles = object.object_person_roles.reject(&:marked_for_destruction?)
+      solr_doc[Solrizer.solr_name('object_person_roles', :displayable)] = object_person_roles.to_json
+      object_person_roles.each do |r|
+        solr_doc[Solrizer.solr_name("object_person_roles_#{r.role_type}", :stored_sortable)] = true
+      end
+
     end
   end
 end

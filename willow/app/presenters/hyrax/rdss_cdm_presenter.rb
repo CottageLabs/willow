@@ -9,8 +9,8 @@ module Hyrax
              :object_resource_type,
              :object_value,
              :object_dates,
-             :object_person,
-             :object_person_role,
+             # :object_person,
+             :object_person_roles,
              to: :solr_document
   end
 end
