@@ -1,0 +1,24 @@
+en:
+  rdss:
+    person_roles:
+      administrator: Administrator
+      author: Author
+      contact_person: Contact person
+      data_analyser: Data analyser
+      data_collector: Data collector
+      data_creator: Data creator
+      data_manager: Data manager
+      depositing_user: Depositing user
+      editor: Editor
+      investigator: Investigator
+      producer: Producer
+      project_leader: Project leader
+      publisher: Publisher
+      project_member: Project member
+      related_person: Related person
+      researcher: Researcher
+      researcher_group: Researcher group
+      rights_holder: Rights holder
+      sponsor: Sponsor
+      supervisor: Supervisor
+      other: Other
