@@ -179,14 +179,17 @@ RSpec.describe RdssCdm do
     end
   end
 
-
-  describe 'object person role' do
-    it 'has object person role' do
-      build_and_check_field(field_name: :object_person_role, content: %w(author))
+  describe 'nested attributes for object_person_roles' do
+    it 'accepts object_person_roles attributes' do
+      @obj = build(:rdss_cdm, object_person_roles_attributes: [{ role_type: 'author'}])
+      expect(@obj.object_person_roles.first).to be_kind_of ActiveFedora::Base
+      expect(@obj.object_person_roles.first.role_type).to eq 'author'
     end
 
-    it 'indexes object person role' do
-      build_and_check_index(field_name: :object_person_role, content: %w(author), index_name: :object_person_role_tesim)
+    it 'indexes object_person_roles_attributes' do
+      obj = build(:rdss_cdm, object_person_roles_attributes: [{ role_type: 'author'}])
+      doc = obj.to_solr
+      expect(doc).to include('object_person_roles_ssm')
     end
   end
 
