@@ -13,7 +13,7 @@ class RdssCdm < ActiveFedora::Base
   validates :title, presence: { message: 'Your work must have a title.' }
   validates :object_resource_type, presence: { message: 'Your work must have a resource type.' }
   validates :object_value, presence: { message: 'Your work must have a value.' }
-  validates :object_person_roles, presence: { message: I18n.t('willow.fields.presence', field: :object_person_role)}
+  validates :object_person_roles, presence: { message: I18n.t('willow.fields.presence', type: I18n.t('willow.fields.object_person_role').downcase)}
 
   self.human_readable_type = 'RDSS CDM'
 

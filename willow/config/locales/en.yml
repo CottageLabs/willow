@@ -66,4 +66,4 @@ en:
       object_dates: Dates
       object_person: Person
       object_person_role: Role
-
+      presence: 'Your work must have a %{type}.'

@@ -29,7 +29,7 @@ RSpec.describe RdssCdm do
     it 'requires title' do
       @obj = build(:rdss_cdm, title: nil, object_resource_type: 'type', object_value: 'value') # title, resource_type and value are mandatory
       #@obj.save!
-      expect{@obj.save!}.to raise_error(ActiveFedora::RecordInvalid, 'Validation failed: Title Your work must have a title.')
+      expect{@obj.save!}.to raise_error(ActiveFedora::RecordInvalid, /Title Your work must have a title./)
     end
 
     it 'has a single valued title field' do
@@ -95,7 +95,7 @@ RSpec.describe RdssCdm do
     it 'requires object_resource_type' do
       @obj = build(:rdss_cdm, title: ['title'], object_resource_type: nil, object_value: 'value') # title, resource_type and value are mandatory
       #@obj.save!
-      expect{@obj.save!}.to raise_error(ActiveFedora::RecordInvalid, 'Validation failed: Object resource type Your work must have a resource type.')
+      expect{@obj.save!}.to raise_error(ActiveFedora::RecordInvalid, /Object resource type Your work must have a resource type./)
     end
 
     it 'has object_resource_type' do
@@ -111,7 +111,7 @@ RSpec.describe RdssCdm do
     it 'requires object_value' do
       @obj = build(:rdss_cdm, title: ['title'], object_resource_type: 'resource_type', object_value: nil) # title, resource_type and value are mandatory
       #@obj.save!
-      expect{@obj.save!}.to raise_error(ActiveFedora::RecordInvalid, 'Validation failed: Object value Your work must have a value.')
+      expect{@obj.save!}.to raise_error(ActiveFedora::RecordInvalid, /Object value Your work must have a value./)
     end
 
     it 'has object_value' do
@@ -184,6 +184,12 @@ RSpec.describe RdssCdm do
       @obj = build(:rdss_cdm, object_person_roles_attributes: [{ role_type: 'author'}])
       expect(@obj.object_person_roles.first).to be_kind_of ActiveFedora::Base
       expect(@obj.object_person_roles.first.role_type).to eq 'author'
+    end
+
+    it 'requires an object person role' do
+      @obj = build(:rdss_cdm, title: nil, object_resource_type: 'type', object_value: 'value') # title, resource_type and value are mandatory
+      #@obj.save!
+      expect{@obj.save!}.to raise_error(ActiveFedora::RecordInvalid, /Object person roles Your work must have a role./)
     end
 
     it 'indexes object_person_roles_attributes' do
