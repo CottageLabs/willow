@@ -1,6 +1,6 @@
 class ObjectPersonRoleFormBuilder < RdssFields
   def role_type
-    input :role_type, collection: ::RdssPersonRolesService.select_all_options, prompt: :translate, label: false
+    input :role_type, collection: ::Cdm::ObjectPersonRolesService.select_all_options, prompt: :translate, label: false
   end
 
   def destroy

@@ -55,7 +55,7 @@ class RdssCdm < ActiveFedora::Base
 
   # Accepts nested attributes declarations need to go after the property declarations, as they close off the model
   accepts_nested_attributes_for :object_dates, reject_if: :object_dates_blank?, allow_destroy: true
-  accepts_nested_attributes_for :object_person_roles
+  accepts_nested_attributes_for :object_person_roles, allow_destroy: true
 
   def self.multiple?(field)
     # Overriding to return false for `title` (as we can't set multiple: false) 

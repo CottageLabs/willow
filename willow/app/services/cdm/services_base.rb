@@ -1,7 +1,5 @@
 module Cdm
   class ServicesBase
-    include Concerns::SelectBuilder
-
     class << self
       private
       def authority_name
@@ -17,14 +15,13 @@ module Cdm
       end
 
       def symbols_for
-        authority.map{|x| x[:id].underscore.downcase.intern}
+        authority.all.map{|x| x[:id].underscore.downcase.intern}
       end
 
       public
       def select_all_options
-        symbols_for.map {|x| [I18n.t(internationalisation_root + x.underscore.downcase), x.underscore.downcase.intern]}
+        symbols_for.map {|x| [I18n.t(internationalisation_root + x.to_s.underscore.downcase), x.to_s.underscore.downcase.intern]}
       end
     end
-
   end
 end
