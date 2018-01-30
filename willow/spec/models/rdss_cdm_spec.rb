@@ -189,7 +189,7 @@ RSpec.describe RdssCdm do
     it 'requires an object person role' do
       @obj = build(:rdss_cdm, title: nil, object_resource_type: 'type', object_value: 'value') # title, resource_type and value are mandatory
       #@obj.save!
-      expect{@obj.save!}.to raise_error(ActiveFedora::RecordInvalid, /Object person roles Your work must have a role./)
+      expect{@obj.save!}.to raise_error(ActiveFedora::RecordInvalid) {/Object person roles Your work must have a role./}
     end
 
     it 'indexes object_person_roles_attributes' do
