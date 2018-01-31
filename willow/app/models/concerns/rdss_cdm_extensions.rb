@@ -7,9 +7,9 @@ module Concerns
                       :object_keywords,
                       :object_category,
                       :object_resource_type,
-                      :object_value,
+                      :object_value
 
     displayable :object_dates,
-                :object_person_roles,
+                :object_person_roles
   end
 end

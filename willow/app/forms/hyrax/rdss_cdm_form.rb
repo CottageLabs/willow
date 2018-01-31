@@ -27,7 +27,7 @@ module Hyrax
     ]
 
     mapped_arrays :object_dates,
-                  :object_person_roles,
+                  :object_person_roles
 
     # utility methods to allow nested fields to work with the hyrax form
     # Taken from https://github.com/curationexperts/laevigata/
