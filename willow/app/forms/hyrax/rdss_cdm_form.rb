@@ -15,7 +15,7 @@ module Hyrax
       :object_value,
       # :object_person,
       :object_person_roles,
-      :object_dates
+      :object_dates,
     ]
 
     self.required_fields = [
@@ -23,11 +23,11 @@ module Hyrax
       :object_resource_type,
       :object_value,
       # :object_person,
-      :object_person_roles
+      :object_person_roles,
     ]
 
     mapped_arrays :object_dates,
-                  :object_person_roles
+                  :object_person_roles,
 
     # utility methods to allow nested fields to work with the hyrax form
     # Taken from https://github.com/curationexperts/laevigata/
