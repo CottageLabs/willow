@@ -1,0 +1,37 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://solr:8983/solr/willow_test/select?q=_query_:%22%7B!raw%20f=has_model_ssim%7DCdm::ObjectPersonRole%22%20AND%20(-isPartOf_ssim:%5B*%20TO%20*%5D)&qt=standard&rows=0&wt=json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.12.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Last-Modified:
+      - Wed, 31 Jan 2018 10:43:26 GMT
+      Etag:
+      - '"MjYwMDAwMDAwMDAwMDAwMFNvbHI="'
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '231'
+    body:
+      encoding: UTF-8
+      string: '{"responseHeader":{"status":0,"QTime":0,"params":{"q":"_query_:\"{!raw
+        f=has_model_ssim}Cdm::ObjectPersonRole\" AND (-isPartOf_ssim:[* TO *])","qt":"standard","rows":"0","wt":"json"}},"response":{"numFound":0,"start":0,"docs":[]}}
+
+'
+    http_version: 
+  recorded_at: Wed, 31 Jan 2018 10:45:27 GMT
+recorded_with: VCR 3.0.3
