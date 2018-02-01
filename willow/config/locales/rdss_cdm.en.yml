@@ -16,6 +16,10 @@ en:
         object_resource_type: Resource type
         object_value: Object value
         object_dates: Date
+        object_people: People
+        object_person_role: Role
+        name: Name
+        orcid: Orcid
     hints:
       rdss_cdm:
         object_resource_type: Pre-defined categories to describe the type of content being uploaded, such as &quot;article&quot; or &quot;dataset.&quot;
@@ -26,3 +30,5 @@ en:
         object_resource_type: Select resource type
         object_dates:
           date_type: Choose type
+        object_person_role:
+          role_type: Choose role

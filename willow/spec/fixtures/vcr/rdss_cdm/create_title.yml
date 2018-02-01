@@ -19,9 +19,9 @@ http_interactions:
       message: OK
     headers:
       Last-Modified:
-      - Wed, 31 Jan 2018 10:45:29 GMT
+      - Wed, 31 Jan 2018 11:36:46 GMT
       Etag:
-      - '"MTYwMDAwMDAwMDAwMDAwMFNvbHI="'
+      - '"MzYwMDAwMDAwMDAwMDAwMFNvbHI="'
       Content-Type:
       - application/json; charset=UTF-8
       Content-Length:
@@ -33,5 +33,5 @@ http_interactions:
 
 '
     http_version: 
-  recorded_at: Wed, 31 Jan 2018 11:36:45 GMT
+  recorded_at: Wed, 31 Jan 2018 11:44:33 GMT
 recorded_with: VCR 3.0.3

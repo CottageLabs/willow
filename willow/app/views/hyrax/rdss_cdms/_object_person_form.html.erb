@@ -1,0 +1,18 @@
+<li class="field-wrapper">
+  <div class="row">
+    <div class="col-md-3">
+      <%= object_person_form.given_name %>
+    </div>
+    <div class="col-md-3">
+      <%= object_person_form.family_name %>
+    </div>
+    <div class='col-md-3'>
+      <%= object_person_form.destroy %>
+      <%= remove_button :object_person %>
+    </div>
+    <%- fields_for :object_person_roles do |opr| %>
+      <%= render partial: opr %>
+    <%- end %>
+    %>
+  </div>
+</li>

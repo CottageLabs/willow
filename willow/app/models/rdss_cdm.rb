@@ -13,12 +13,14 @@ class RdssCdm < ActiveFedora::Base
   validates :title, presence: { message: 'Your work must have a title.' }
   validates :object_resource_type, presence: { message: 'Your work must have a resource type.' }
   validates :object_value, presence: { message: 'Your work must have a value.' }
+  validates :object_person_roles, presence: { message: I18n.t('willow.fields.presence', type: I18n.t('willow.fields.object_person_role').downcase)}
 
   self.human_readable_type = 'RDSS CDM'
 
-  property :object_uuid, predicate: ::RDF::Vocab::DC11.identifier, multiple: false 
+  property :object_uuid, predicate: ::RDF::Vocab::DC11.identifier, multiple: false
   # object_title present as `title` inherited from Hyrax::CoreMetadata
-  #property :object_person_role
+  has_many :object_person_roles, class_name: 'Cdm::ObjectPersonRole'
+  # has_many :object_people, class_name: 'Cdm::ObjectPerson'
   property :object_description, predicate: ::RDF::Vocab::DC11.description, multiple: false do |index|
     index.as :stored_searchable
   end
@@ -53,8 +55,8 @@ class RdssCdm < ActiveFedora::Base
 
   # Accepts nested attributes declarations need to go after the property declarations, as they close off the model
   accepts_nested_attributes_for :object_dates, reject_if: :object_dates_blank?, allow_destroy: true
+  accepts_nested_attributes_for :object_person_roles, allow_destroy: true
 
-  
   def self.multiple?(field)
     # Overriding to return false for `title` (as we can't set multiple: false) 
     if [:title].include? field.to_sym
@@ -91,7 +93,7 @@ class RdssCdm < ActiveFedora::Base
   # methods for validation of nested properties
   # For properties with a class_name These need to go on the resource_class: RdssCdm::GeneratedResourceSchema
   # For associated models, these should be instance methods
-  
+
   # object_date_blank
   # Reject a nested object_date if the value for date_value is not set
   def object_dates_blank? attributes

@@ -134,7 +134,7 @@ footer.navbar.navbar-inverse a:hover {
         background-color: $user-link-highlight;
       }
     }
-    .open a, {
+    .open a {
       background-color: $user-link-highlight;
     }
 
@@ -429,4 +429,30 @@ form .field-wrapper label[required="required"]::after {
 
 .container {
   padding-left: 0;
+}
+
+.table {
+  display: table;
+}
+
+.tbody {
+  display: table-row-group;
+}
+
+.tr {
+  display: table-row;
+  border-top: #ccc 1px solid;
+  border-bottom: #ccc 1px solid
+}
+
+.th, .td {
+  display: table-cell;
+}
+
+.tr:nth-child(odd) {
+  background: #f3f3f3;
+}
+
+.tr:nth-child(even) {
+  background: #FFF;
 }

@@ -23,8 +23,8 @@ RSpec.feature 'Create a RdssCdm', vcr: true, js: false do
         fill_in 'Keywords', with: 'keywords'
         fill_in 'Category', with: 'category'
         fill_in 'Version', with: 'version'
-        select 'Article', from: 'Resource Type'
-        select 'Normal', from: 'Object Value'
+        select 'Article', from: 'Resource type'
+        select 'Normal', from: 'Object value'
         choose('open')
         check('agreement')
         click_on('Files')

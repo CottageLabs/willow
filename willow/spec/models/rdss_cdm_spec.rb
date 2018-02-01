@@ -1,6 +1,7 @@
 # Generated via
 #  `rails generate hyrax:work RdssCdm`
 require 'rails_helper'
+require 'vcr'
 
 RSpec.describe RdssCdm do
   def build_field(field_name:, content:)
@@ -19,6 +20,14 @@ RSpec.describe RdssCdm do
     expect(build_and_index_field(field_name: field_name, content: content, index_name: index_name)).to eq [content].flatten(1)
   end
 
+  def check_mandatory_validation(field_name:, display_name: nil, association: false)
+    display_name||=field_name
+    VCR.use_cassette('rdss_cdm/create_' + field_name.to_s, match_requests_on: [:method, :host]) do
+      obj = build(:rdss_cdm, (association ? {field_name.to_s + '_attributes' => []} : {field_name => nil}))
+      expect(obj.valid?).to eq false
+      expect(obj.errors.messages[field_name]).to include("Your work must have a #{display_name}.")
+    end
+  end
 
   it 'has human readable type rdss_cdm' do
     @obj = build(:rdss_cdm)
@@ -27,9 +36,7 @@ RSpec.describe RdssCdm do
 
   describe 'title' do
     it 'requires title' do
-      @obj = build(:rdss_cdm, title: nil, object_resource_type: 'type', object_value: 'value') # title, resource_type and value are mandatory
-      #@obj.save!
-      expect{@obj.save!}.to raise_error(ActiveFedora::RecordInvalid, 'Validation failed: Title Your work must have a title.')
+      check_mandatory_validation(field_name: :title)
     end
 
     it 'has a single valued title field' do
@@ -41,7 +48,6 @@ RSpec.describe RdssCdm do
       build_and_check_index(field_name: :title, content: %w(title), index_name: :title_tesim)
     end
   end
-
 
   describe 'version' do
     it 'has a version' do
@@ -93,9 +99,7 @@ RSpec.describe RdssCdm do
   describe 'object_resource_type' do
 
     it 'requires object_resource_type' do
-      @obj = build(:rdss_cdm, title: ['title'], object_resource_type: nil, object_value: 'value') # title, resource_type and value are mandatory
-      #@obj.save!
-      expect{@obj.save!}.to raise_error(ActiveFedora::RecordInvalid, 'Validation failed: Object resource type Your work must have a resource type.')
+      check_mandatory_validation(field_name: :object_resource_type, display_name: 'resource type')
     end
 
     it 'has object_resource_type' do
@@ -109,9 +113,7 @@ RSpec.describe RdssCdm do
 
   describe 'object_value' do
     it 'requires object_value' do
-      @obj = build(:rdss_cdm, title: ['title'], object_resource_type: 'resource_type', object_value: nil) # title, resource_type and value are mandatory
-      #@obj.save!
-      expect{@obj.save!}.to raise_error(ActiveFedora::RecordInvalid, 'Validation failed: Object value Your work must have a value.')
+      check_mandatory_validation(field_name: :object_value, display_name: 'value')
     end
 
     it 'has object_value' do
@@ -179,14 +181,29 @@ RSpec.describe RdssCdm do
     end
   end
 
+  describe 'nested attributes for object_person_roles' do
+    it 'accepts object_person_roles attributes' do
+      @obj = build(:rdss_cdm, object_person_roles_attributes: [{ role_type: 'author'}])
+      expect(@obj.object_person_roles.first).to be_kind_of ActiveFedora::Base
+      expect(@obj.object_person_roles.first.role_type).to eq 'author'
+    end
 
-  # describe 'person role' do
-  #   it 'has person role' do
-  #     build_and_check_field(field_name: :object_person_role, content: %w(author))
-  #   end
-  #
-  #   it 'indexes person role' do
-  #     build_and_check_index(field_name: :object_person_role, content: %w(author), index_name: :object_person_role_tesim)
-  #   end
-  # end
+    it 'requires an object person role' do
+      check_mandatory_validation(field_name: :object_person_roles, display_name: 'role', association: true)
+    end
+
+    it 'indexes object_person_roles_attributes' do
+      obj = build(:rdss_cdm, object_person_roles_attributes: [{ role_type: 'author'}])
+      doc = obj.to_solr
+      expect(doc).to include('object_person_roles_ssm')
+    end
+  end
+
+  describe 'full valid build' do
+    it 'succeeds build with all mandatory attributes' do
+      obj = build(:rdss_cdm, title: ['title'], object_resource_type: 'object_resource_type', object_value: 'object_value', object_person_roles_attributes: [{role_type: 'author'}])
+      expect(obj.valid?).to eq true
+    end
+  end
+
 end

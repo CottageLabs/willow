@@ -1,0 +1,9 @@
+<div class="multi-nested">
+  <%# only output the label and the hint text. wrapper defined in config/initializers/simple_form_rdss.rb %>
+  <ul class="listing"><%# normally added by https://github.com/samvera/hydra-editor/blob/master/app/inputs/multi_value_input.rb %>
+    <%= f.fields_for :object_person_roles, @form.object_person_roles, builder: ::ObjectPersonRoleFormBuilder do |form| %>
+      <%= render partial: form %>
+    <% end %>
+  </ul>
+  <%= add_another_button :object_person_role %>
+</div>
