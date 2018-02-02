@@ -16,7 +16,7 @@ module Cdm
 
     # accesses_blank
     # Reject a nested access if the value for access_type is not set
-    def accesses_blank? attributes
+    def accesses_blank?(attributes)
       attributes[:access_type].blank?
     end
   end
