@@ -48,8 +48,7 @@ module Hyrax
     # for object_rights, we present the has_many relationship as a has_one
     # by only returning the first model
     def object_rights
-      model.object_rights.build if model.object_rights.blank?
-      model.object_rights.to_a.slice(0, 1) # return an array containing only the first object_rights or an empty array
+      convert_value_to_array(model.object_rights).slice(0,1).to_a.slice(0, 1) # return an array containing only the first object_rights or an empty array
     end
 
     # Permitted parameters for nested attributes
