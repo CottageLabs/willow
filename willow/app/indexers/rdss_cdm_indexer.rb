@@ -29,6 +29,9 @@ class RdssCdmIndexer < Hyrax::WorkIndexer
         solr_doc[Solrizer.solr_name("object_person_roles_#{r.role_type}", :stored_sortable)] = true
       end
 
+      object_people = object.object_people.reject(&:marked_for_destruction?)
+      solr_doc[Solrizer.solr_name("object_people", :displayable)] = object_people.to_json
+
     end
   end
 end

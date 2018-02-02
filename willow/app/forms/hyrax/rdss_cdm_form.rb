@@ -13,8 +13,7 @@ module Hyrax
       :object_version,
       :object_resource_type,
       :object_value,
-      # :object_person,
-      :object_person_roles,
+      :object_people,
       :object_dates,
     ]
 
@@ -22,12 +21,14 @@ module Hyrax
       :title,
       :object_resource_type,
       :object_value,
-      # :object_person,
-      :object_person_roles,
+      :object_people,
     ]
 
-    mapped_arrays :object_dates,
-                  :object_person_roles
+    mapped_arrays :object_dates
+
+    def object_people
+      convert_value_to_array(model.object_people)
+    end
 
     # utility methods to allow nested fields to work with the hyrax form
     # Taken from https://github.com/curationexperts/laevigata/
@@ -37,7 +38,7 @@ module Hyrax
     # association and populate the form with the correct
     # object_date data.
     delegate :object_dates_attributes=,
-             :object_person_roles_attributes=,
+             :object_people_attributes=,
              to: :model
 
     # Permitted parameters for nested attributes
@@ -53,6 +54,28 @@ module Hyrax
       ]
     end
 
+    # def self.permitted_object_person_roles_nested
+    #   [
+    #     :id,
+    #     :_destroy,
+    #     [
+    #       :role_type,
+    #       people: permitted_object_person_params
+    #     ]
+    #   ]
+    # end
+    #
+    def self.permitted_object_person_nested
+      [
+        :id,
+        :honorific_prefix,
+        :given_name,
+        :family_name,
+        :_destroy,
+        roles: permitted_object_person_roles_params
+      ]
+    end
+
     def self.permitted_object_person_roles_params
       [
         :id,
@@ -63,11 +86,21 @@ module Hyrax
       ]
     end
 
+    # def self.permitted_object_person_params
+    #   [
+    #     :id,
+    #     :honorific_prefix,
+    #     :given_name,
+    #     :family_name,
+    #     :_destroy
+    #   ]
+    # end
+
     def self.build_permitted_params
       permitted = super
       # add in object_date attributes
       permitted << { object_dates_attributes: permitted_object_date_params }
-      permitted << { object_person_roles_attributes: permitted_object_person_roles_params }
+      permitted << { object_person_attributes: permitted_object_person_nested }
       permitted
     end
   end

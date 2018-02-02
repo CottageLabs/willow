@@ -18,9 +18,14 @@ module Concerns
     end
 
     included do
+      public # expose these to allow for them to be chained externally if required.
+
+      def build_if_blank(value)
+        value.presence || value.build
+      end
+
       def convert_value_to_array(value)
-        value.build if value.blank?
-        value.to_a
+        build_if_blank(value).to_a
       end
     end
   end

@@ -449,6 +449,18 @@ form .field-wrapper label[required="required"]::after {
   display: table-cell;
 }
 
+.td.empty {
+  border: none;
+  width: 100%;
+}
+
+.td.rowspanned {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+}
+
 .tr:nth-child(odd) {
   background: #f3f3f3;
 }

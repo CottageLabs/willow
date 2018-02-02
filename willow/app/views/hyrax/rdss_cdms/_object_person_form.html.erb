@@ -1,18 +1,25 @@
-<li class="field-wrapper">
-  <div class="row">
-    <div class="col-md-3">
-      <%= object_person_form.given_name %>
+<div class="table">
+  <div class="tbody">
+    <div class="tr">
+      <div class="td" width="50%">
+        <%= object_person_form.given_name %>
+      </div>
+      <div class="td rowspanned">
+        <%- object_person_form.fields_for :object_person_roles, builder: ObjectPersonRoleFormBuilder do |opr| %>
+          <%= render partial: opr %>
+        <%- end %>
+      </div>
     </div>
-    <div class="col-md-3">
-      <%= object_person_form.family_name %>
+    <div class="tr">
+      <div class="td">
+        <%= object_person_form.family_name %>
+      </div>
     </div>
-    <div class='col-md-3'>
-      <%= object_person_form.destroy %>
-      <%= remove_button :object_person %>
+    <div class="tr">
+      <div class="td">
+        <%= object_person_form.destroy %>
+        <%= remove_button :object_person %>
+      </div>
     </div>
-    <%- fields_for :object_person_roles do |opr| %>
-      <%= render partial: opr %>
-    <%- end %>
-    %>
   </div>
-</li>
+</div>
