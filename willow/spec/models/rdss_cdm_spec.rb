@@ -157,7 +157,7 @@ RSpec.describe RdssCdm do
                                                     date_value: ''
                                                   }
                                                 ])
-      expect(@obj.object_dates.size).to eq(2)
+      expect(@obj.object_dates.size).to eq(1)
     end
 
     it 'destroys date' do

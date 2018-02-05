@@ -96,8 +96,9 @@ class RdssCdm < ActiveFedora::Base
 
   # object_date_blank
   # Reject a nested object_date if the value for date_value is not set
+  #
   def object_values_blank?(attributes, *list)
-    attributes.slice(*list).values.any?(&:blank?)
+    attributes.values_at(*list).any?(&:blank?)
   end
 
   def object_dates_blank?(attributes)
