@@ -1,5 +1,6 @@
-<div class="multi-nested">
+<div class="form-group multi-nested rdss_csm_object_person_role">
   <%# only output the label and the hint text. wrapper defined in config/initializers/simple_form_rdss.rb %>
+  <%= f.input :object_person_roles, wrapper: :label_and_hint_only, required: f.object.required?(:object_person_roles) %>
   <ul class="listing"><%# normally added by https://github.com/samvera/hydra-editor/blob/master/app/inputs/multi_value_input.rb %>
     <%= f.fields_for :object_person_roles, @form.object_person_roles, builder: ::ObjectPersonRoleFormBuilder do |form| %>
       <%= render partial: form %>

@@ -4,7 +4,7 @@ RSpec.describe Cdm::ObjectPerson do
   describe 'given name' do
     let(object_person_roles_attributes) { %w(author reviewer) }
     let(given_name) { 'Paul' }
-    let(honorific_pre) {'Lord'}
+    let(honorific_prefix) {'Lord'}
     let(family_name) { 'MaK' }
 
     it 'has a single given name' do
@@ -20,9 +20,9 @@ RSpec.describe Cdm::ObjectPerson do
     end
 
     it 'has a single honorific prefix' do
-      obj = build(:cdm_object_person, honorific_pre: honorific_pre, roles: roles)
-      expect(obj.honorific_pre).to be_kind_of String
-      expect(obj.honorific_pre).to eq honorific_pre
+      obj = build(:cdm_object_person, honorific_prefix: honorific_prefix, roles: roles)
+      expect(obj.honorific_prefix).to be_kind_of String
+      expect(obj.honorific_prefix).to eq honorific_prefix
     end
 
     it 'has multiple roles' do
