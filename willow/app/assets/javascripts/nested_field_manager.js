@@ -94,6 +94,10 @@ var NestedFieldManager = function () {
             } else {
                 this.clearEmptyWarning();
                 $listing.append(this._newField($activeField, $currentId, $newId));
+                // instantiate any mutli-nested fields or multi-value fields
+                $listing.find('.multi-nested').manage_nested_fields();
+                $listing.find('.multi_value').manage_fields();
+
             }
             this._manageFocus();
         }
