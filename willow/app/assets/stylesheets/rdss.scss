@@ -435,9 +435,10 @@ form .field-wrapper label[required="required"]::after {
   display: table;
 }
 
-.tbody {
+.tbody, .thead {
   display: table-row-group;
 }
+
 
 .tr {
   display: table-row;
@@ -447,6 +448,7 @@ form .field-wrapper label[required="required"]::after {
 
 .th, .td {
   display: table-cell;
+  padding: 5px;
 }
 
 .tr:nth-child(odd) {
@@ -455,4 +457,15 @@ form .field-wrapper label[required="required"]::after {
 
 .tr:nth-child(even) {
   background: #FFF;
+}
+
+/** rdss form styles **/
+
+.form-group-with-margin {
+  margin-bottom: 2em;
+}
+
+.multi-nested .btn-link.remove {
+  color: #d9534f;
+  text-decoration: underline;  
 }

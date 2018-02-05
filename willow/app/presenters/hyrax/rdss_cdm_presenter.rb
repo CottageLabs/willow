@@ -9,8 +9,13 @@ module Hyrax
              :object_resource_type,
              :object_value,
              :object_dates,
+
              # :object_person,
              :object_person_roles,
+             :object_rights_license,
+             :object_rights_rights_statement,
+             :object_rights_rights_holder,
+             :object_rights_accesses,
              to: :solr_document
   end
 end

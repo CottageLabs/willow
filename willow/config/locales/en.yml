@@ -67,3 +67,5 @@ en:
       object_person: Person
       object_person_role: Role
       presence: 'Your work must have a %{type}.'
+      access: Access
+      object_rights_license: License

@@ -1,0 +1,11 @@
+terms:
+  - id: safeguarded
+    term: Safeguarded
+  - id: restricted
+    term: Restricted
+  - id: controlled
+    term: Controlled
+  - id: closed
+    term: Closed
+  - id: retired
+    term: Retired
