@@ -20,7 +20,7 @@ module Concerns
     included do
       public # expose these to allow for them to be chained externally if required.
       def built_value(value)
-        value.build && value
+        value.build && value # Return object rather than newly return value, since could be singular return when built
       end
 
       def build_if_blank(value)
