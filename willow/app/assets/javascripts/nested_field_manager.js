@@ -160,6 +160,7 @@ var NestedFieldManager = function () {
         key: 'removeFromList',
         value: function removeFromList(event) {
             event.preventDefault();
+            event.stopPropagation();
             var $activeField = $(event.target).parents(this.fieldWrapperClass);
             $activeField.find(this.removeInputClass).val('1');
             $activeField.hide();
