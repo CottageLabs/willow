@@ -4,16 +4,25 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-/** add a replaceLastOccurrence method to String. Replaces the last occurrence of a 'searchValue' with 'newValue' in string **/
+/** add a replaceNthOccurrence method to String. 
+    Replaces the Nth occurrence of a 'searchValue' with 'newValue' in string
+    Where N is 0 indexed.
+    E.G 
+    "hello bob, how are you bob, are you doing well bob".replaceNthOccurrence('bob', 'jane', 1);
+    => "hello bob, how are you jane, are you doing well bob"
+**/
 /** note this cannot take regular expressions **/
-if (!String.prototype.replaceLastOccurrence) {
-    String.prototype.replaceLastOccurrence = function(searchValue, newValue) {
-        var index = this.lastIndexOf(searchValue);
-
-        if (index >= 0) {
-            return this.substring(0, index) + newValue + this.substring(index + searchValue.length);
+if (!String.prototype.replaceNthOccurrence) {
+    String.prototype.replaceNthOccurrence = function(searchValue, newValue, n) {
+        var index = 0;
+        for(var i = 0; i <= n; i++){ // do it n times
+            // get the index of the search value, starting from the character after the previous index
+            index = this.indexOf(searchValue, index+1); 
         }
-
+        if (index >= 0) {
+            var str = this.substring(0, index) + newValue + this.substring(index + searchValue.length);
+            return str;
+        }
         return this.toString();
     };
 }
@@ -29,7 +38,7 @@ var NestedFieldManager = function () {
         this.listClass = options.listClass;
         this.fieldWrapperClass = options.fieldWrapperClass;
         this.removeInputClass = options.removeInputClass;
-
+        this.nestedLevel = this.element.parents('.multi-nested').length;
         this.init();
     }
 
@@ -128,50 +137,50 @@ var NestedFieldManager = function () {
         value: function createNewField($activeField, $currentId, $newId) {
             var $newField = $activeField.clone();
             $newField;
-            this.updateIndexInLabel($newField, $currentId, $newId);
+            this.updateIndexInLabel($newField, $currentId, $newId, this.nestedLevel);
             var $newChildren = $newField.find('.form-control');
             $newChildren.val('').removeProp('required').removeAttr('style');
-            this.updateIndexInId($newChildren, $currentId, $newId);
-            this.updateIndexInName($newChildren, $currentId, $newId);
+            this.updateIndexInId($newChildren, $currentId, $newId, this.nestedLevel);
+            this.updateIndexInName($newChildren, $currentId, $newId, this.nestedLevel);
             $newChildren.first().focus();
             this.element.trigger("manage_nested_fields:add", $newChildren.first());
             return $newField;
         }
     }, {
         key: 'updateIndexInLabel',
-        value: function updateIndexInLabel($newField, $currentId, $newId) {
+        value: function updateIndexInLabel($newField, $currentId, $newId, nestedLevel) {
             // Modify name in label
             var currentLabelPart = 'attributes_' + $currentId + '_';
             var newLabelPart = 'attributes_' + $newId + '_';
             $newField.find('label').each(function () {
                 var currentLabel = $(this).attr('for');
-                var newLabel = currentLabel.replaceLastOccurrence(currentLabelPart, newLabelPart);
+                var newLabel = currentLabel.replaceNthOccurrence(currentLabelPart, newLabelPart, nestedLevel);
                 $(this).attr('for', newLabel);
             });
             return $newField;
         }
     }, {
         key: 'updateIndexInId',
-        value: function updateIndexInId($newChildren, $currentId, $newId) {
+        value: function updateIndexInId($newChildren, $currentId, $newId, nestedLevel) {
             // modify id and name in newChildren
             var $currentIdPart = 'attributes_' + $currentId + '_';
             var $newIdPart = 'attributes_' + $newId + '_';
             $newChildren.each(function () {
                 var $currentId = $(this).attr('id');
-                var $newId = $currentId.replaceLastOccurrence($currentIdPart, $newIdPart);
+                var $newId = $currentId.replaceNthOccurrence($currentIdPart, $newIdPart, nestedLevel);
                 $(this).attr('id', $newId);
             });
             return $newChildren;
         }
     }, {
         key: 'updateIndexInName',
-        value: function updateIndexInName($newChildren, $currentId, $newId) {
+        value: function updateIndexInName($newChildren, $currentId, $newId, nestedLevel) {
             // modify id and name in newChildren
             var $currentNamePart = '[' + $currentId + ']';
             var $newnamePart = '[' + $newId + ']';
             $newChildren.each(function () {
                 var $currentName = $(this).attr('name');
-                var $newName = $currentName.replaceLastOccurrence($currentNamePart, $newnamePart);
+                var $newName = $currentName.replaceNthOccurrence($currentNamePart, $newnamePart, nestedLevel);
                 $(this).attr('name', $newName);
             });
             return $newChildren;
