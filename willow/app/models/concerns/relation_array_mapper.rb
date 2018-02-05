@@ -19,9 +19,12 @@ module Concerns
 
     included do
       public # expose these to allow for them to be chained externally if required.
+      def built_value(value)
+        value.build && value
+      end
 
       def build_if_blank(value)
-        value.presence || value.build
+        value.presence || built_value(value)
       end
 
       def convert_value_to_array(value)
