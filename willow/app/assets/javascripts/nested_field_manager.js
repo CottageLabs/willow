@@ -5,8 +5,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
   /**
-    For an input string, find the nth occurence of a regex, and then replace the old id within that occurrence
-    with the new id.
+    For an input string, find the Nth occurence of a regex (which defines a surrounding context for an ID), 
+    and then replace the old id within that occurrence with a new id.
     Parameters:
     string: the original string to be manipulated
     contextRegex: A regular expression that expresses the context surrounding the id.
@@ -24,14 +24,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     Expected result => "bob[0]james[1]fred[2]"
   **/
 function replaceIdInContext(string, contextRegex, originalId, newId, nOccurrence){
+    // variable to keep the current match within the regex
     var match = null;
+    // the resultin string to return. Default to the original string
     var result = string;
+    // find the Nth match in the string
+    // to do that we call exec on the regex N times
     for(var i = 0; i <= nOccurrence; i++){
-        match = contextRegex.exec(string); // find the nth match in the string
+        match = contextRegex.exec(string); 
     }
-    if(match && match[1] && match[1] == originalId){ // if we have a match, and their is a captured group, and that equals the id
-        var newString = match[0].replace(originalId, newId) // I.E [0] => [1]
-        // Replace the new id and it's context into the original string
+    // if we have a match, and there is a captured group, and that equals the id
+    // go ahead with the replacement
+    if(match && match[1] && match[1] == originalId){ 
+        // replace the old id with the new in the matching string
+        // E.G [0] => [1]
+        var newString = match[0].replace(originalId, newId) 
+        
+        // insert the new id and it's context (newString) into the original string
+        // at the index indicated by the match
         result = string.substring(0, match.index) + newString + string.substring(match.index + newString.length); 
     }
     return result;
