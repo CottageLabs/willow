@@ -171,8 +171,8 @@ var NestedFieldManager = function () {
             var $newIdPart = 'attributes_' + $newId + '_';
             $newChildren.each(function () {
                 var $currentId = $(this).attr('id');
-                var $newId = $currentId.replaceNthOccurrence($currentIdPart, $newIdPart, nestedLevel);
-                $(this).attr('id', $newId);
+                var $newHtmlId = $currentId.replaceNthOccurrence($currentIdPart, $newIdPart, nestedLevel);
+                $(this).attr('id', $newHtmlId);
             });
             return $newChildren;
         }
