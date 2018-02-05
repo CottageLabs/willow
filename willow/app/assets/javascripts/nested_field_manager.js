@@ -175,11 +175,8 @@ var NestedFieldManager = function () {
         key: 'updateIndexInLabel',
         value: function updateIndexInLabel($newField, currentId, newId, nestedLevel) {
             // Modify name in label
-            //var currentLabelPart = 'attributes_' + $currentId + '_';
-            //var newLabelPart = 'attributes_' + $newId + '_';
             $newField.find('label').each(function () {
                 var currentLabel = $(this).attr('for');
-                //var newLabel = currentLabel.replaceNthOccurrence(currentLabelPart, newLabelPart, nestedLevel);
                 var newLabel = replaceAttributesId(currentLabel, currentId, newId, nestedLevel);
                 $(this).attr('for', newLabel);
             });
@@ -189,11 +186,8 @@ var NestedFieldManager = function () {
         key: 'updateIndexInId',
         value: function updateIndexInId($newChildren, currentId, newId, nestedLevel) {
             // modify id and name in newChildren
-            //var $currentIdPart = 'attributes_' + $currentId + '_';
-            //var $newIdPart = 'attributes_' + $newId + '_';
             $newChildren.each(function () {
                 var currentHtmlId = $(this).attr('id');
-                //var $newHtmlId = $currentId.replaceNthOccurrence($currentIdPart, $newIdPart, nestedLevel);
                 var newHtmlId = replaceAttributesId(currentHtmlId, currentId, newId, nestedLevel);
                 $(this).attr('id', newHtmlId);
             });
@@ -203,11 +197,8 @@ var NestedFieldManager = function () {
         key: 'updateIndexInName',
         value: function updateIndexInName($newChildren, currentId, newId, nestedLevel) {
             // modify id and name in newChildren
-            //var $currentNamePart = '[' + $currentId + ']';
-            //var $newnamePart = '[' + $newId + ']';
             $newChildren.each(function () {
                 var currentName = $(this).attr('name');
-                //var $newName = $currentName.replaceNthOccurrence($currentNamePart, $newnamePart, nestedLevel);
                 var newName = replaceSquareBracketsId(currentName, currentId, newId, nestedLevel)
                 $(this).attr('name', newName);
             });
