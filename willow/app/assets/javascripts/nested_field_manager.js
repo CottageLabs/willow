@@ -72,7 +72,8 @@ var NestedFieldManager = function () {
             // inside a multi nested input, allow the hyrax javascript code to run instead.
             if($target.is('.multi_value *')) return; 
             event.preventDefault();
-            var $listing = $(event.target).closest('.multi-nested').find(this.listClass);
+            event.stopPropagation();
+            var $listing = $target.closest('.multi-nested').children(this.listClass);
             var $listElements = $listing.children('li');
             var $activeField = $listElements.last();
             var $newId = $listElements.length;
