@@ -4,29 +4,50 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-/** add a replaceNthOccurrence method to String. 
-    Replaces the Nth occurrence of a 'searchValue' with 'newValue' in string
-    Where N is 0 indexed.
-    E.G 
-    "hello bob, how are you bob, are you doing well bob".replaceNthOccurrence('bob', 'jane', 1);
-    => "hello bob, how are you jane, are you doing well bob"
-**/
-/** note this cannot take regular expressions **/
-if (!String.prototype.replaceNthOccurrence) {
-    String.prototype.replaceNthOccurrence = function(searchValue, newValue, n) {
-        var index = 0;
-        for(var i = 0; i <= n; i++){ // do it n times
-            // get the index of the search value, starting from the character after the previous index
-            index = this.indexOf(searchValue, index+1); 
-        }
-        if (index >= 0) {
-            var str = this.substring(0, index) + newValue + this.substring(index + searchValue.length);
-            return str;
-        }
-        return this.toString();
-    };
+  /**
+    For an input string, find the nth occurence of a regex, and then replace the old id within that occurrence
+    with the new id.
+    Parameters:
+    string: the original string to be manipulated
+    contextRegex: A regular expression that expresses the context surrounding the id.
+      This must capture the id and also have the g flag on it so that it checks the whole string
+    originalId: The ID expected to be found in the context
+    newId: The ID to replace the old id
+    nOccurrence: The index of that occurrence in the string, 0 indexed
+    E.G
+    for:
+    string = "bob[0]james[1]fred[0]"
+    contextRegex = "\[(\d)\]"
+    originalId = 0
+    newId = 2
+    nOccurrence = 2
+    Expected result => "bob[0]james[1]fred[2]"
+  **/
+function replaceIdInContext(string, contextRegex, originalId, newId, nOccurrence){
+    var match = null;
+    var result = string;
+    for(var i = 0; i <= nOccurrence; i++){
+        match = contextRegex.exec(string); // find the nth match in the string
+    }
+    if(match && match[1] && match[1] == originalId){ // if we have a match, and their is a captured group, and that equals the id
+        var newString = match[0].replace(originalId, newId) // I.E [0] => [1]
+        // Replace the new id and it's context into the original string
+        result = string.substring(0, match.index) + newString + string.substring(match.index + newString.length); 
+    }
+    return result;
 }
 
+/** replace old id with new id in the nth instance of "attributes_<id>_" **/
+function replaceAttributesId(string, originalId, newId, nOccurrence){
+    var regex = /attributes_(\d)+_/g;
+    return replaceIdInContext(string, regex, originalId, newId, nOccurrence);
+}
+
+/** replace old id with new id in the nth instance of "[<id>]" **/
+function replaceSquareBracketsId(string, originalId, newId, nOccurrence){
+    var regex = /\[(\d)+\]/g;
+    return replaceIdInContext(string, regex, originalId, newId, nOccurrence);
+}
 
 var NestedFieldManager = function () {
     function NestedFieldManager(element, options) {
@@ -152,40 +173,43 @@ var NestedFieldManager = function () {
         }
     }, {
         key: 'updateIndexInLabel',
-        value: function updateIndexInLabel($newField, $currentId, $newId, nestedLevel) {
+        value: function updateIndexInLabel($newField, currentId, newId, nestedLevel) {
             // Modify name in label
-            var currentLabelPart = 'attributes_' + $currentId + '_';
-            var newLabelPart = 'attributes_' + $newId + '_';
+            //var currentLabelPart = 'attributes_' + $currentId + '_';
+            //var newLabelPart = 'attributes_' + $newId + '_';
             $newField.find('label').each(function () {
                 var currentLabel = $(this).attr('for');
-                var newLabel = currentLabel.replaceNthOccurrence(currentLabelPart, newLabelPart, nestedLevel);
+                //var newLabel = currentLabel.replaceNthOccurrence(currentLabelPart, newLabelPart, nestedLevel);
+                var newLabel = replaceAttributesId(currentLabel, currentId, newId, nestedLevel);
                 $(this).attr('for', newLabel);
             });
             return $newField;
         }
     }, {
         key: 'updateIndexInId',
-        value: function updateIndexInId($newChildren, $currentId, $newId, nestedLevel) {
+        value: function updateIndexInId($newChildren, currentId, newId, nestedLevel) {
             // modify id and name in newChildren
-            var $currentIdPart = 'attributes_' + $currentId + '_';
-            var $newIdPart = 'attributes_' + $newId + '_';
+            //var $currentIdPart = 'attributes_' + $currentId + '_';
+            //var $newIdPart = 'attributes_' + $newId + '_';
             $newChildren.each(function () {
-                var $currentId = $(this).attr('id');
-                var $newHtmlId = $currentId.replaceNthOccurrence($currentIdPart, $newIdPart, nestedLevel);
-                $(this).attr('id', $newHtmlId);
+                var currentHtmlId = $(this).attr('id');
+                //var $newHtmlId = $currentId.replaceNthOccurrence($currentIdPart, $newIdPart, nestedLevel);
+                var newHtmlId = replaceAttributesId(currentHtmlId, currentId, newId, nestedLevel);
+                $(this).attr('id', newHtmlId);
             });
             return $newChildren;
         }
     }, {
         key: 'updateIndexInName',
-        value: function updateIndexInName($newChildren, $currentId, $newId, nestedLevel) {
+        value: function updateIndexInName($newChildren, currentId, newId, nestedLevel) {
             // modify id and name in newChildren
-            var $currentNamePart = '[' + $currentId + ']';
-            var $newnamePart = '[' + $newId + ']';
+            //var $currentNamePart = '[' + $currentId + ']';
+            //var $newnamePart = '[' + $newId + ']';
             $newChildren.each(function () {
-                var $currentName = $(this).attr('name');
-                var $newName = $currentName.replaceNthOccurrence($currentNamePart, $newnamePart, nestedLevel);
-                $(this).attr('name', $newName);
+                var currentName = $(this).attr('name');
+                //var $newName = $currentName.replaceNthOccurrence($currentNamePart, $newnamePart, nestedLevel);
+                var newName = replaceSquareBracketsId(currentName, currentId, newId, nestedLevel)
+                $(this).attr('name', newName);
             });
             return $newChildren;
         }
