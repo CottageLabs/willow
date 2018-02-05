@@ -67,6 +67,10 @@ var NestedFieldManager = function () {
     }, {
         key: 'addToList',
         value: function addToList(event) {
+            var $target = $(event.target);
+            // If the 'add another' button has been clicked for a standard multivalue input
+            // inside a multi nested input, allow the hyrax javascript code to run instead.
+            if($target.is('.multi_value *')) return; 
             event.preventDefault();
             var $listing = $(event.target).closest('.multi-nested').find(this.listClass);
             var $listElements = $listing.children('li');
