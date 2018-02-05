@@ -55,7 +55,7 @@ class RdssCdm < ActiveFedora::Base
 
   # Accepts nested attributes declarations need to go after the property declarations, as they close off the model
   accepts_nested_attributes_for :object_dates, reject_if: :object_dates_blank?, allow_destroy: true
-  accepts_nested_attributes_for :object_person_roles, allow_destroy: true
+  accepts_nested_attributes_for :object_person_roles, allow_destroy: true, reject_if: :object_person_roles_blank?
 
   def self.multiple?(field)
     # Overriding to return false for `title` (as we can't set multiple: false) 
@@ -96,7 +96,16 @@ class RdssCdm < ActiveFedora::Base
 
   # object_date_blank
   # Reject a nested object_date if the value for date_value is not set
-  def object_dates_blank? attributes
-    attributes[:date_value].blank?
+  #
+  def object_values_blank?(attributes, *list)
+    attributes.values_at(*list).any?(&:blank?)
+  end
+
+  def object_dates_blank?(attributes)
+    object_values_blank?(attributes, :date_value, :date_type)
+  end
+
+  def object_person_roles_blank?(attributes)
+    object_values_blank?(attributes, :role_type)
   end
 end

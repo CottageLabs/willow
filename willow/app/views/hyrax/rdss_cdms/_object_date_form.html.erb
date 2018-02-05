@@ -1,10 +1,10 @@
 <li class="field-wrapper">
   <div class="row">
     <div class="col-md-3">
-      <%= object_date_form.date_type %>
+      <%= object_date_form.date_type(required: required) %>
     </div>
     <div class="col-md-6">
-      <%= object_date_form.date_value %>
+      <%= object_date_form.date_value(required: required) %>
     </div>
     <div class='col-md-3'>
       <%= object_date_form.destroy %>
