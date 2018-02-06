@@ -171,7 +171,10 @@ var NestedFieldManager = function () {
         key: 'createNewField',
         value: function createNewField($activeField, $currentId, $newId) {
             var $newField = $activeField.clone();
-            $newField;
+            // only keep the first of any multiple fields
+            // look for li immediately after li tags which are direct parents of ul.listing
+            // and then remove them
+            $newField.find('ul.listing > li + li').remove();
             this.updateIndexInLabel($newField, $currentId, $newId);
             var $newChildren = $newField.find('.form-control');
             $newChildren.val('').removeProp('required').removeAttr('style');
