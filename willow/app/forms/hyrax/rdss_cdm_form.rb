@@ -56,33 +56,28 @@ module Hyrax
 
     # def self.permitted_object_person_roles_nested
     #   [
-    #     :id,
+    #     :role_type,
     #     :_destroy,
     #     [
-    #       :role_type,
-    #       people: permitted_object_person_params
+    #       object_people_attributes: permitted_object_person_params
     #     ]
     #   ]
     # end
     #
     def self.permitted_object_person_nested
       [
-        :id,
         :honorific_prefix,
         :given_name,
         :family_name,
         :_destroy,
-        roles: permitted_object_person_roles_params
+        object_person_roles_attributes: permitted_object_person_roles_params
       ]
     end
 
     def self.permitted_object_person_roles_params
       [
-        :id,
-        :_destroy,
-        [
-          :role_type
-        ]
+        :role_type,
+        :_destroy
       ]
     end
 
@@ -100,7 +95,7 @@ module Hyrax
       permitted = super
       # add in object_date attributes
       permitted << { object_dates_attributes: permitted_object_date_params }
-      permitted << { object_person_attributes: permitted_object_person_nested }
+      permitted << { object_people_attributes: permitted_object_person_nested }
       permitted
     end
   end
