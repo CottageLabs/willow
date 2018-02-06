@@ -13,7 +13,6 @@ class RdssCdm < ActiveFedora::Base
   validates :title, presence: { message: 'Your work must have a title.' }
   validates :object_resource_type, presence: { message: 'Your work must have a resource type.' }
   validates :object_value, presence: { message: 'Your work must have a value.' }
-  validates :object_person_roles, presence: { message: I18n.t('willow.fields.presence', type: I18n.t('willow.fields.object_person_role').downcase)}
   validates :object_people, presence: { message: I18n.t('willow.fields.presence', type: I18n.t('willow.fields.object_person').downcase)}
 
   self.human_readable_type = 'RDSS CDM'
@@ -56,7 +55,6 @@ class RdssCdm < ActiveFedora::Base
 
   # Accepts nested attributes declarations need to go after the property declarations, as they close off the model
   accepts_nested_attributes_for :object_dates, reject_if: :object_dates_blank?, allow_destroy: true
-  accepts_nested_attributes_for :object_person_roles, allow_destroy: true
   accepts_nested_attributes_for :object_people, allow_destroy: true, reject_if: :object_person_blank?
 
   def self.multiple?(field)

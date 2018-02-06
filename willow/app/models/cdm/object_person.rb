@@ -4,13 +4,13 @@ module Cdm
     property :given_name, predicate: ::RDF::Vocab::FOAF.givenName, multiple: false
     property :family_name, predicate: ::RDF::Vocab::FOAF.familyName, multiple: false
     has_and_belongs_to_many :object_person_roles, class_name: 'Cdm::ObjectPersonRole', predicate: ::RDF::Vocab::VMD.affiliation
-    accepts_nested_attributes_for :object_person_roles
+    accepts_nested_attributes_for :object_person_roles, allow_destroy: true
     include Cdm::Concerns::ModelExtensions
-    validates :object_person_roles, presence: true
+    validates :object_person_roles, presence: { message: I18n.t('willow.fields.presence', type: I18n.t('willow.fields.object_person_role').downcase)}
     validate :has_given_name_or_family_name
 
     def has_given_name_or_family_name
-      all_blank?(self.attributes, :given_name, :family_name) && errors.add(given_name: 'a minumum of family or given name')
+      attributes.values_at(:given_name, :family_name).all?(&:blank?) && errors.add(:given_name, 'a minumum of family or given name')
     end
   end
 end

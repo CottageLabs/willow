@@ -6,7 +6,7 @@
   <div class="multi-nested">
     <ul class="listing">
       <%= object_person_form.fields_for :object_person_roles, object_person_form.object_person_roles, builder: ObjectPersonRoleFormBuilder do |opr| %>
-        <%= render partial: opr %>
+        <%= render partial: opr, locals: {required: true} %>
       <%- end %>
     </ul>
     <%= add_another_button :object_person_role %>

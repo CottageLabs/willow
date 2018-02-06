@@ -4,9 +4,9 @@ RSpec.describe Cdm::ObjectPerson do
   describe 'given name' do
     let(:roles) { %w(author reviewer) }
     let(:roles_attributes) {[{role_type: 'author'}, {role_type: 'reviewer'}]}
-    let(:given_name) { 'Paul' }
-    let(:honorific_prefix) {'Lord'}
-    let(:family_name) { 'MaK' }
+    let(:honorific_prefix) {'Mr.'}
+    let(:given_name) { 'Raymond' }
+    let(:family_name) { 'Luxury - Ya Ch t' }
     let(:build_attributes) { {honorific_prefix: honorific_prefix, given_name: given_name, family_name: family_name, object_person_roles_attributes: roles_attributes}}
     let(:built_object) { build(:cdm_object_person, build_attributes) }
 
