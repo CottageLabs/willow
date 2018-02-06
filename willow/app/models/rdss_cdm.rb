@@ -49,6 +49,8 @@ class RdssCdm < ActiveFedora::Base
     index.as :stored_searchable
   end
   #property :object_identifier
+  has_many :object_identifiers, class_name: 'Cdm::Identifier'
+
   #property :object_related_identifier
   #property :object_organisation_role
   #property :object_preservation_event
