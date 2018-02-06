@@ -219,7 +219,7 @@ var NestedFieldManager = function () {
         value: function removeFromList(event) {
             event.preventDefault();
             event.stopPropagation();
-            var $activeField = $(event.target).parents(this.fieldWrapperClass);
+            var $activeField = $(event.target).closest(this.fieldWrapperClass); // only apply to nearest parent
             $activeField.find(this.removeInputClass).val('1');
             $activeField.hide();
             this._manageFocus();
