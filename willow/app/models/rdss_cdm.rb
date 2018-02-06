@@ -70,6 +70,7 @@ class RdssCdm < ActiveFedora::Base
   accepts_nested_attributes_for :object_organisation_roles, allow_destroy: true, reject_if: :object_organisation_roles_blank?
   accepts_nested_attributes_for :object_people, allow_destroy: true, reject_if: :object_person_blank?
   accepts_nested_attributes_for :object_rights
+  accepts_nested_attributes_for :object_identifiers, allow_destroy: true, reject_if: :object_identifiers_blank?
 
   def self.multiple?(field)
     # Overriding to return false for `title` (as we can't set multiple: false) 
@@ -122,6 +123,10 @@ class RdssCdm < ActiveFedora::Base
 
   def object_dates_blank?(attributes)
     any_blank?(attributes, :date_value, :date_type)
+  end
+
+  def object_identifiers_blank?(attributes)
+    object_values_blank?(attributes, :identifier_type, :identifier_value)
   end
 
   def object_person_roles_blank?(attributes)
