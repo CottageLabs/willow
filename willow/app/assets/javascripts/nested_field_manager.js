@@ -172,19 +172,20 @@ var NestedFieldManager = function () {
         value: function createNewField($activeField, $currentId, $newId) {
             var $newField = $activeField.clone();
             $newField;
-            this.updateIndexInLabel($newField, $currentId, $newId, this.nestedLevel);
+            this.updateIndexInLabel($newField, $currentId, $newId);
             var $newChildren = $newField.find('.form-control');
             $newChildren.val('').removeProp('required').removeAttr('style');
-            this.updateIndexInId($newChildren, $currentId, $newId, this.nestedLevel);
-            this.updateIndexInName($newChildren, $currentId, $newId, this.nestedLevel);
+            this.updateIndexInId($newChildren, $currentId, $newId);
+            this.updateIndexInName($newChildren, $currentId, $newId);
             $newChildren.first().focus();
             this.element.trigger("manage_nested_fields:add", $newChildren.first());
             return $newField;
         }
     }, {
         key: 'updateIndexInLabel',
-        value: function updateIndexInLabel($newField, currentId, newId, nestedLevel) {
+        value: function updateIndexInLabel($newField, currentId, newId) {
             // Modify name in label
+            var nestedLevel = this.nestedLevel;
             $newField.find('label').each(function () {
                 var currentLabel = $(this).attr('for');
                 var newLabel = replaceAttributesId(currentLabel, currentId, newId, nestedLevel);
@@ -194,8 +195,9 @@ var NestedFieldManager = function () {
         }
     }, {
         key: 'updateIndexInId',
-        value: function updateIndexInId($newChildren, currentId, newId, nestedLevel) {
+        value: function updateIndexInId($newChildren, currentId, newId) {
             // modify id and name in newChildren
+            var nestedLevel = this.nestedLevel;
             $newChildren.each(function () {
                 var currentHtmlId = $(this).attr('id');
                 var newHtmlId = replaceAttributesId(currentHtmlId, currentId, newId, nestedLevel);
@@ -205,8 +207,9 @@ var NestedFieldManager = function () {
         }
     }, {
         key: 'updateIndexInName',
-        value: function updateIndexInName($newChildren, currentId, newId, nestedLevel) {
+        value: function updateIndexInName($newChildren, currentId, newId) {
             // modify id and name in newChildren
+            var nestedLevel = this.nestedLevel;
             $newChildren.each(function () {
                 var currentName = $(this).attr('name');
                 var newName = replaceSquareBracketsId(currentName, currentId, newId, nestedLevel)
