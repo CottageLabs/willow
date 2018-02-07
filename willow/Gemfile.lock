@@ -206,6 +206,9 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     daemons (1.2.4)
+    debase (0.2.1)
+      debase-ruby_core_source
+    debase-ruby_core_source (0.10.2)
     declarative (0.0.10)
     declarative-option (0.1.0)
     deprecation (1.0.0)
@@ -780,6 +783,7 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  debase
   devise
   devise-guests (~> 0.6)
   factory_girl_rails (~> 4.8.0)
@@ -809,4 +813,4 @@ DEPENDENCIES
   webmock (~> 3.0.1)
 
 BUNDLED WITH
-   1.15.3
+   1.16.0

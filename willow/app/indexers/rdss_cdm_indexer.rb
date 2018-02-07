@@ -23,18 +23,10 @@ class RdssCdmIndexer < Hyrax::WorkIndexer
         end
       end
 
-      object_person_roles = object.object_person_roles.reject(&:marked_for_destruction?)
-      solr_doc[Solrizer.solr_name("object_person_roles", :displayable)] = object_person_roles.to_json
-      object_person_roles.each do |opr|
-        solr_doc[Solrizer.solr_name("object_person_role_#{opr.role_type}", :displayable)] = I18n.t('rdss.person_roles.' + opr.role_type.to_s)
-      end
-
-
       object_people = object.object_people.reject(&:marked_for_destruction?)
       solr_doc[Solrizer.solr_name("object_people", :displayable)] = object_people.to_json
       object_people.each do |object_person|
-        object_person_roles = object_person.object_person_roles.reject(&:marked_for_destruction?)
-        solr_doc[Solrizer.solr_name('object_person_roles', :displayable)] = object_person_roles.to_json
+        solr_doc[Solrizer.solr_name('object_person', :displayable)] = object_person.to_json(include: [:object_person_roles])
       end
 
     end
