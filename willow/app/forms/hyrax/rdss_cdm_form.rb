@@ -18,6 +18,7 @@ module Hyrax
       :object_rights,
       :object_organisation_roles,
       :object_identifiers,
+      :object_related_identifiers,
     ]
 
     self.required_fields = [
@@ -33,7 +34,9 @@ module Hyrax
     mapped_arrays :object_dates,
                   :object_person_roles,
                   :object_organisation_roles,
-                  :object_identifiers
+                  :object_identifiers,
+                  :object_related_identifiers
+
 
     def object_people
       convert_value_to_array(model.object_people)
@@ -52,6 +55,7 @@ module Hyrax
              :object_rights_attributes=,
              :object_organisation_roles_attributes=,
              :object_identifiers_attributes=,
+             :object_related_identifiers_attributes=,             
              to: :model
 
     # for object_rights, we present the has_many relationship as a has_one
@@ -147,6 +151,22 @@ module Hyrax
        [
          :identifier_value,
          :identifier_type
+        ]
+      ]
+    end
+
+    def self.permitted_object_related_identifier_params
+      [:id,
+       :_destroy,
+       [
+         :relation_type,
+         identifier_attributes: [
+          :id,
+           [
+             :identifier_value,
+             :identifier_type
+            ]
+          ]
         ]
       ]
     end

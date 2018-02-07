@@ -23,6 +23,7 @@ en:
         orcid: Orcid
         object_rights: Rights
         object_identifiers: Idenitifiers
+        object_related_identifiers: Related idenitifiers
       # note we have to put the following translations under simple_form.labels.defaults
       # rather than simple_form.labels.rdss_cdm.object_rights, as otherwise the translation
       # for simple_form.labels.rdss_cdm.object_rights
@@ -37,6 +38,7 @@ en:
         object_rights: Rights and access information about the dataset
         object_organisation_role: Role the organisation played in the dataset
         object_identifiers: Identifiers for the dataset
+        object_related_identifiers: Identifier for specific content (audio, video, PDF document) related to the dataset. An example is the URL of an article based on this dataset. If adding a related work identifier please also choose the type of relationship.
       defaults:
         # note we have to put the following translations under simple_form.hints.defaults
         # rather than simple_form.hints.rdss_cdm.object_rights, as otherwise the translation
@@ -55,3 +57,5 @@ en:
           license: Select license
         object_identifiers:
           identifier_type: Select type
+        object_related_identifiers:
+          relation_type: Select relation type
