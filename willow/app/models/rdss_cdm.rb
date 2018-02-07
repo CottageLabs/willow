@@ -52,6 +52,8 @@ class RdssCdm < ActiveFedora::Base
   has_many :object_identifiers, class_name: 'Cdm::Identifier'
 
   #property :object_related_identifier
+  has_many :object_related_identifiers, class_name: 'Cdm::IdentifierRelationship'
+  
   #property :object_organisation_role
   #property :object_preservation_event
   #property :object_file
