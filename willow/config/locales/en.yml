@@ -67,3 +67,4 @@ en:
       object_person: Person
       object_person_role: Role
       presence: 'Your work must have a %{type}.'
+      object_people: People

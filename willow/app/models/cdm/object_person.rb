@@ -10,7 +10,7 @@ module Cdm
     validate :has_given_name_or_family_name
 
     def has_given_name_or_family_name
-      attributes.values_at(:given_name, :family_name).all?(&:blank?) && errors.add(:given_name, 'a minumum of family or given name')
+      attributes.values_at('given_name', 'family_name').all?(&:blank?) && errors.add(:given_name, 'a minumum of family or given name')
     end
   end
 end

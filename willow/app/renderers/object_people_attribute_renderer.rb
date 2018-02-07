@@ -3,11 +3,11 @@ class ObjectPeopleAttributeRenderer < Hyrax::Renderers::AttributeRenderer
   include Concerns::CssTableRenderer
 
   def i18n_prefix
-    'rdss.people.'
+    'rdss.'
   end
 
-  def role_types(value, converter=::Cdm::Json::ObjectPeople)
-    converter.new(value).map(&:people)
+  def people(value, converter=::Cdm::Json::ObjectPeople)
+    converter.new(value)
   end
 
   def attribute_value_to_html(value)
@@ -15,7 +15,24 @@ class ObjectPeopleAttributeRenderer < Hyrax::Renderers::AttributeRenderer
       thead {
         people(value).map do |v|
           row {
-            header { I18n.t(i18n_prefix + v.to_s) }
+            header { v.name } + cell {
+              table {
+                thead {
+                  row {
+                    header {
+                      I18n.t(i18n_prefix + 'person_roles')
+                    }
+                  }
+                } +
+                tbody {
+                  v.roles.map do |r|
+                    row {
+                      cell { r.name }
+                    }
+                  end
+                }
+              }
+            }
           }
         end.join
       }
