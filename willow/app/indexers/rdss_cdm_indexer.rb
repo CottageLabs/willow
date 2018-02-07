@@ -48,6 +48,14 @@ class RdssCdmIndexer < Hyrax::WorkIndexer
       object_organisation_roles.each do |object_organisation_role|
         solr_doc[::Solrizer.solr_name("object_organisation_role_#{object_organisation_role.role}", :stored_sortable)] = true
       end
+
+      # Index a displayable version of the identifier
+      object_identifiers = object.object_identifiers.reject(&:marked_for_destruction?)
+      solr_doc[Solrizer.solr_name('object_identifiers', :displayable)] = object_identifiers.to_json
+      # Incase we need it, solarize each identifier type
+      object_identifiers.each do |i|
+        solr_doc[Solrizer.solr_name("object_identifier_#{i.identifier_type}", :stored_sortable)] = i.identifier_value
+      end
     end
   end
 end
