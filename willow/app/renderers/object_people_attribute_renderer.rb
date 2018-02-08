@@ -29,7 +29,7 @@ class ObjectPeopleAttributeRenderer < Hyrax::Renderers::AttributeRenderer
                     row {
                       cell { r.name }
                     }
-                  end
+                  end.join
                 }
               }
             }
