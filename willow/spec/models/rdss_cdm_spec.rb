@@ -20,10 +20,24 @@ RSpec.describe RdssCdm do
     expect(build_and_index_field(field_name: field_name, content: content, index_name: index_name)).to eq [content].flatten(1)
   end
 
-  def check_mandatory_validation(field_name:, display_name: nil, association: false)
+  def valid_attributes
+    {title: ['title'],
+      object_resource_type: 'object_resource_type',
+      object_value: 'object_value',
+      object_people_attributes: [{ given_name: 'Peggy',
+                                   family_name: 'Sue',
+                                   object_person_roles_attributes: [{ role_type: 'author' }, { role_type: 'editor'}]
+                                 },{
+                                   given_name: 'Brian',
+                                   object_person_roles_attributes: [{ role_type: 'messiah' }, { role_type: 'very naughty boy' }]
+                                 }]
+    }
+  end
+
+  def check_mandatory_validation(field_name:, display_name: nil, association: false, association_content: [])
     display_name||=field_name
     VCR.use_cassette('rdss_cdm/create_' + field_name.to_s, match_requests_on: [:method, :host]) do
-      obj = build(:rdss_cdm, (association ? {field_name.to_s + '_attributes' => []} : {field_name => nil}))
+      obj = build(:rdss_cdm, (association ? {field_name.to_s + '_attributes' => association_content} : {field_name => nil}))
       expect(obj.valid?).to eq false
       expect(obj.errors.messages[field_name]).to include("Your work must have a #{display_name}.")
     end
@@ -157,7 +171,7 @@ RSpec.describe RdssCdm do
                                                     date_value: ''
                                                   }
                                                 ])
-      expect(@obj.object_dates.size).to eq(2)
+      expect(@obj.object_dates.size).to eq(1)
     end
 
     it 'destroys date' do
@@ -181,28 +195,41 @@ RSpec.describe RdssCdm do
     end
   end
 
-  describe 'nested attributes for object_person_roles' do
-    it 'accepts object_person_roles attributes' do
-      @obj = build(:rdss_cdm, object_person_roles_attributes: [{ role_type: 'author'}])
-      expect(@obj.object_person_roles.first).to be_kind_of ActiveFedora::Base
-      expect(@obj.object_person_roles.first.role_type).to eq 'author'
+  describe 'nested attributes for object_people and object_person_roles' do
+    it 'accepts object_people attributes' do
+      obj = build(:rdss_cdm, object_people_attributes: [{ given_name: 'Myfanwy'}])
+      expect(obj.object_people.first).to be_kind_of ActiveFedora::Base
+      expect(obj.object_people.first.given_name).to eq 'Myfanwy'
     end
 
-    it 'requires an object person role' do
-      check_mandatory_validation(field_name: :object_person_roles, display_name: 'role', association: true)
+    it 'accepts nested object_person_roles in object_people attributes' do
+      obj = build(:rdss_cdm, object_people_attributes: [{ given_name: 'Myfanwy', object_person_roles_attributes: [{role_type: 'author'}, {role_type: 'editor'}]}])
+      obj_person = obj.object_people.first
+      expect(obj_person.object_person_roles.first).to be_kind_of ActiveFedora::Base
+      expect(obj_person.object_person_roles.map(&:role_type)).to eq ['author','editor']
     end
 
-    it 'indexes object_person_roles_attributes' do
-      obj = build(:rdss_cdm, object_person_roles_attributes: [{ role_type: 'author'}])
+    it 'requires an object person' do
+      check_mandatory_validation(field_name: :object_people, display_name: 'person', association: true)
+    end
+
+    it 'indexes object_people_attributes' do
+      obj = build(:rdss_cdm, object_people_attributes: [{ given_name: 'Brian'}])
       doc = obj.to_solr
-      expect(doc).to include('object_person_roles_ssm')
+      expect(doc).to include('object_people_ssm')
     end
+
+    # it 'indexes object_person_roles_attributes' do
+    #   obj = build(:rdss_cdm, object_people_attributes: [{ given_name: 'Brian', object_person_roles_attributes: [{role_type: 'messiah'}, {role_type: 'very naughty boy'}]}])
+    #   doc = obj.to_solr
+    #   expect(doc).to include('object_person_roles_ssm')
+    # end
   end
 
   describe 'full valid build' do
     it 'succeeds build with all mandatory attributes' do
-      obj = build(:rdss_cdm, title: ['title'], object_resource_type: 'object_resource_type', object_value: 'object_value', object_person_roles_attributes: [{role_type: 'author'}])
-      expect(obj.valid?).to eq true
+      obj = build(:rdss_cdm, valid_attributes)
+      expect(obj.valid?).to be_truthy, "expected valid object, got #{obj.errors.full_messages}"
     end
   end
 

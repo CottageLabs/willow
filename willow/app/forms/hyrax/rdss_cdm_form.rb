@@ -66,6 +66,7 @@ module Hyrax
     #
     def self.permitted_object_person_nested
       [
+        :id,
         :honorific_prefix,
         :given_name,
         :family_name,
@@ -76,6 +77,7 @@ module Hyrax
 
     def self.permitted_object_person_roles_params
       [
+        :id,
         :role_type,
         :_destroy
       ]
