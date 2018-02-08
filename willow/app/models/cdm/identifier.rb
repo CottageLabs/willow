@@ -5,5 +5,7 @@ module Cdm
     #property :date_value, predicate: ::RDF::Vocab::DC.date, multiple: false
     property :identifier_value, predicate: ::RDF::Vocab::DataCite.hasIdentifier, multiple: false
     property :identifier_type, predicate: ::RDF::Vocab::DataCite.usesIdentifierScheme, multiple: false
+
+    has_many :identifier_relationships, class_name: 'Cdm::IdentifierRelationship'
   end
 end

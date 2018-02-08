@@ -156,17 +156,15 @@ module Hyrax
     end
 
     def self.permitted_object_related_identifier_params
-      [:id,
-       :_destroy,
-       [
-         :relation_type,
-         identifier_attributes: [
+      [
+        :id,
+        :_destroy,
+        :relation_type,
+        identifier_attributes: [
           :id,
-           [
-             :identifier_value,
-             :identifier_type
-            ]
-          ]
+          :_destroy,
+          :identifier_value,
+          :identifier_type
         ]
       ]
     end
@@ -179,6 +177,7 @@ module Hyrax
       permitted << { object_rights_attributes: permitted_object_rights_params }
       permitted << { object_organisation_roles_attributes: permitted_object_organisation_roles_params }
       permitted << { object_identifiers_attributes: permitted_object_identifier_params }
+      permitted << { object_related_identifiers_attributes: permitted_object_related_identifier_params }
       permitted
     end
   end
