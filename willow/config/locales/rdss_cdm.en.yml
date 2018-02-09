@@ -18,6 +18,7 @@ en:
         object_dates: Date
         object_people: People
         object_person_role: Role
+        object_organisation_role: Role
         name: Name
         orcid: Orcid
         object_rights: Rights
@@ -33,6 +34,7 @@ en:
         object_value: Administrator conferred value which dictates storage type e.g. &quot;escrow&quot;
         object_dates: The different dates relevant to the dataset
         object_rights: Rights and access information about the dataset
+        object_organisation_role: Role the organisation played in the dataset
       defaults:
         # note we have to put the following translations under simple_form.hints.defaults
         # rather than simple_form.hints.rdss_cdm.object_rights, as otherwise the translation

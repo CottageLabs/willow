@@ -24,7 +24,7 @@ module Solr
       end
 
       def solr_value(name, *options)
-        self[solr_name(name, *options)]
+        self[solr_name(name.to_s, *options)]
       end
 
     end

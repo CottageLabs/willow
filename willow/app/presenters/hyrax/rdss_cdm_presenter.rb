@@ -16,6 +16,7 @@ module Hyrax
              :object_rights_rights_statement,
              :object_rights_rights_holder,
              :object_rights_accesses,
+             :object_organisation_roles,
              to: :solr_document
   end
 end
