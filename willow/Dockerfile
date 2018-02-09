@@ -1,4 +1,4 @@
-FROM ruby:2.4.2
+FROM ruby:2.4
 
 # Setup build variables
 ARG RAILS_ENV=production

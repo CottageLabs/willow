@@ -240,5 +240,4 @@ RSpec.describe RdssCdm do
       expect(doc).to include('object_rights_accesses_ssm')
     end
   end
-
 end
