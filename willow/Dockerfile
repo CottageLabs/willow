@@ -39,7 +39,7 @@ RUN echo 'deb http://deb.debian.org/debian jessie-backports main' > /etc/apt/sou
     && /var/lib/dpkg/info/ca-certificates-java.postinst configure
 
 RUN mkdir -p /fits/ \
-    && wget -q https://github.com/harvard-lts/fits/archive/1.0.2.zip -O /fits/fits-1.0.2.zip \
+    && wget -q https://s3.eu-west-2.amazonaws.com/rdss-institutional-ecs-clusters-objects-public/rdss-samvera-dependencies/fits-1.0.2.zip -O /fits/fits-1.0.2.zip \
     && unzip -q /fits/fits-1.0.2.zip -d /fits \
     && chmod a+x /fits/fits-1.0.2/fits.sh \
     && rm /fits/fits-1.0.2.zip
