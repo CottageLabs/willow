@@ -13,17 +13,15 @@ class ObjectPeopleAttributeRenderer < Hyrax::Renderers::AttributeRenderer
   def attribute_value_to_html(value)
     table {
       thead {
+        row {
+          header { I18n.t(i18n_prefix + 'people') } +
+          header { I18n.t(i18n_prefix + 'person_roles') }
+        }
         people(value).map do |v|
           row {
-            header { v.name } + cell {
+            cell { v.name } +
+            cell {
               table {
-                thead {
-                  row {
-                    header {
-                      I18n.t(i18n_prefix + 'person_roles')
-                    }
-                  }
-                } +
                 tbody {
                   v.roles.map do |r|
                     row {

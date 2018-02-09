@@ -15,7 +15,7 @@ module Cdm
     accepts_nested_attributes_for :object_person_roles, allow_destroy: true, reject_if: :object_person_roles_blank?
 
     def has_given_name_or_family_name
-      attributes.values_at('given_name', 'family_name').all?(&:blank?) && errors.add(:given_name, 'a minumum of family or given name')
+      attributes.values_at('given_name', 'family_name').all?(&:blank?) && errors.add(:given_name, I18n.t('willow.fields.given_and_family_name_presence'))
     end
 
     def any_blank?(attributes, *list)

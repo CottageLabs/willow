@@ -36,7 +36,7 @@ module Hyrax
     # Taken from https://github.com/curationexperts/laevigata/
 
     # In the view we have "fields_for nested models.
-    # For each nested_model we need to delegate the _atrributes= method
+    # For each nested_model we need to delegate the _attributes= method
     # to the model, to make fields_for behave as an
     # association and populate the form with the correct
     # object_date data.
