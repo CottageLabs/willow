@@ -18,6 +18,7 @@ en:
         object_dates: Date
         object_people: People
         object_person_role: Role
+
         name: Name
         orcid: Orcid
         object_rights: Rights
