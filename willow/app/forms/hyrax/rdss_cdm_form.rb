@@ -76,21 +76,21 @@ module Hyrax
           :id,
           :_destroy,
           :role,
-          organisation_attributes: permitted_organisation_params
+          # organisation_attributes: permitted_organisation_params
         ]
       ]
     end
 
-    def self.permitted_organisation_params
-      [
-        :id,
-        :_destroy,
-        :jisc_id,
-        :name,
-        :organisation_type,
-        :address
-      ]
-    end
+    # def self.permitted_organisation_params
+    #   [
+    #     :id,
+    #     :_destroy,
+    #     :jisc_id,
+    #     :name,
+    #     :organisation_type,
+    #     :address
+    #   ]
+    # end
 
     def self.permitted_object_person_roles_params
       [
