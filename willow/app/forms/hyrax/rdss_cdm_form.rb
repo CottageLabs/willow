@@ -127,6 +127,14 @@ module Hyrax
       ]
     end
 
+    def self.permitted_object_organisation_roles_params
+      [
+        :id,
+        :role,
+        :_destroy
+      ]
+    end
+
     def self.build_permitted_params
       permitted = super
       # add in object_date attributes
