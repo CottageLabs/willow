@@ -14,6 +14,7 @@ module Concerns
 
     displayable :object_dates,
                 :object_person_roles,
+                :object_people,
                 :object_rights_accesses
   end
 end

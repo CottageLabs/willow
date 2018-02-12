@@ -18,6 +18,7 @@ en:
         object_dates: Date
         object_people: People
         object_person_role: Role
+
         name: Name
         orcid: Orcid
         object_rights: Rights
@@ -38,7 +39,7 @@ en:
         # rather than simple_form.hints.rdss_cdm.object_rights, as otherwise the translation
         # for simple_form.hints.rdss_cdm.object_rights
         # would return a hash
-        license: Licensing and distribution information governing access to the dataset.  
+        license: Licensing and distribution information governing access to the dataset.
         rights_holder: The person or organisation who holds the rights for the work
     prompts:
       rdss_cdm:

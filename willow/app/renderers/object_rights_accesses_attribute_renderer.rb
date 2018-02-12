@@ -7,6 +7,7 @@ class ObjectRightsAccessesAttributeRenderer < Hyrax::Renderers::AttributeRendere
     json.map{|x| ::Cdm::Json::Access.new(x) unless x.empty?}.compact # reject any rows that are empty
   end
 
+  public
   def attribute_value_to_html(value)
     table {
       thead {

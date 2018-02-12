@@ -9,8 +9,7 @@ module Hyrax
              :object_resource_type,
              :object_value,
              :object_dates,
-
-             # :object_person,
+             :object_people,
              :object_person_roles,
              :object_rights_license,
              :object_rights_rights_statement,

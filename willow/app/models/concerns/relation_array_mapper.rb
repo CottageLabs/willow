@@ -18,9 +18,17 @@ module Concerns
     end
 
     included do
+      public # expose these to allow for them to be chained externally if required.
+      def built_value(value)
+        value.build && value # Return object rather than newly return value, since could be singular return when built
+      end
+
+      def build_if_blank(value)
+        value.presence || built_value(value)
+      end
+
       def convert_value_to_array(value)
-        value.build if value.blank?
-        value.to_a
+        build_if_blank(value).to_a
       end
     end
   end

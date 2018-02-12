@@ -103,7 +103,7 @@ class CatalogController < ApplicationController
                     {object_keywords: {options: {itemprop: :object_keywords}}},
                     {object_category: {options: {itemprop: :object_category}}},
                     {object_dates: {options: {itemprop: :object_dates}}},
-                    # {object_person: {options: {itemprop: :object_person}}},
+                    {object_people: {options: {itemprop: :object_people}}},
                     {object_person_roles: {options: {itemprop: :object_person_roles}}},
                     {description: {options: {helper_method: :iconify_auto_link}}},
                     :keyword,
@@ -196,7 +196,7 @@ class CatalogController < ApplicationController
                    {preservation_nested: {as: :displayable}},
                    #RDSS CDM Additions
                    {object_dates: {as: :displayable}},
-                   # {object_person: {as: :displayable}},
+                   {object_people: {as: :displayable}},
                    {object_person_roles: {as: :displayable}}
                    #End of RDSS CDM Additions
 

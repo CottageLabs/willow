@@ -67,5 +67,7 @@ en:
       object_person: Person
       object_person_role: Role
       presence: 'Your work must have a %{type}.'
+      object_people: People
       access: Access
       object_rights_license: License
+      given_and_family_name_presence: a minimum of given or family name
