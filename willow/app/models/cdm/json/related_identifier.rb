@@ -4,7 +4,8 @@ module Cdm
       attr_reader :relation_type, :identifier_type, :identifier_value
       def initialize(values={})
         @relation_type = values['relation_type']
-        if(identifier = values['identifier'])
+        identifier = values['identifier']
+        if(identifier)
           @identifier_type = identifier['identifier_type']
           @identifier_value = identifier['identifier_value']
         end

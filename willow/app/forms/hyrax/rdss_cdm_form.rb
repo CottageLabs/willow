@@ -146,12 +146,11 @@ module Hyrax
 
 
     def self.permitted_object_identifier_params
-      [:id,
-       :_destroy,
-       [
-         :identifier_value,
-         :identifier_type
-        ]
+      [
+        :id,
+        :_destroy,
+        :identifier_value,
+        :identifier_type
       ]
     end
 
@@ -160,12 +159,7 @@ module Hyrax
         :id,
         :_destroy,
         :relation_type,
-        identifier_attributes: [
-          :id,
-          :_destroy,
-          :identifier_value,
-          :identifier_type
-        ]
+        identifier_attributes: permitted_object_identifier_params
       ]
     end
 
