@@ -30,7 +30,8 @@ RSpec.describe RdssCdm do
                                  },{
                                    given_name: 'Brian',
                                    object_person_roles_attributes: [{ role_type: 'messiah' }, { role_type: 'very naughty boy' }]
-                                 }]
+                                 }],
+     object_organisation_roles_attributes: [{ role: 'funder' }]
     }
   end
 
@@ -299,13 +300,7 @@ RSpec.describe RdssCdm do
 
   describe 'full valid build' do
     it 'succeeds build with all mandatory attributes' do
-      obj = build(:rdss_cdm,
-                  title: ['title'],
-                  object_resource_type: 'object_resource_type',
-                  object_value: 'object_value',
-                  object_person_roles_attributes: [{role_type: 'author'}],
-                  object_organisation_roles_attributes: [{role: 'funder'}]
-      )
+      obj = build(:rdss_cdm, valid_attributes)
       expect(obj.valid?).to eq true
     end
   end
