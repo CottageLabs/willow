@@ -46,6 +46,11 @@ class RdssCdmIndexer < Hyrax::WorkIndexer
         solr_doc[Solrizer.solr_name('object_rights_accesses', :displayable)] = accesses.to_json
       end
 
+      object_organisation_roles = object.object_organisation_roles.reject(&:marked_for_destruction?)
+      solr_doc[::Solrizer.solr_name(:object_organisation_roles, :displayable)] = object_organisation_roles.to_json
+      object_organisation_roles.each do |object_organisation_role|
+        solr_doc[::Solrizer.solr_name("object_organisation_role_#{object_organisation_role.role}", :stored_sortable)] = true
+      end
     end
   end
 end

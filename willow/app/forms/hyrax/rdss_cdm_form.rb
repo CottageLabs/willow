@@ -17,8 +17,7 @@ module Hyrax
       :object_person_roles,
       :object_dates,
       :object_rights,
-      :organisation_roles,
-      :organisations
+      :object_organisation_roles,
     ]
 
     self.required_fields = [
@@ -28,12 +27,12 @@ module Hyrax
       # :object_person,
       :object_person_roles,
       :object_rights,
-      :organisation_roles,
+      :object_organisation_roles,
     ]
 
     mapped_arrays :object_dates,
                   :object_person_roles,
-                  :organisation_roles
+                  :object_organisation_roles
 
     # utility methods to allow nested fields to work with the hyrax form
     # Taken from https://github.com/curationexperts/laevigata/
@@ -47,7 +46,7 @@ module Hyrax
     delegate :object_dates_attributes=,
              :object_person_roles_attributes=,
              :object_rights_attributes=,
-             :organisation_roles_attributes=,
+             :object_organisation_roles_attributes=,
              to: :model
 
     # for object_rights, we present the has_many relationship as a has_one
@@ -69,7 +68,7 @@ module Hyrax
       ]
     end
 
-    def self.permitted_organisation_roles_params
+    def self.permitted_object_organisation_roles_params
       [
         :id,
         :_destroy,
@@ -129,7 +128,7 @@ module Hyrax
       permitted << { object_dates_attributes: permitted_object_date_params }
       permitted << { object_person_roles_attributes: permitted_object_person_roles_params }
       permitted << { object_rights_attributes: permitted_object_rights_params }
-      permitted << { organisation_roles_attributes: permitted_organisation_roles_params }
+      permitted << { object_organisation_roles_attributes: permitted_object_organisation_roles_params }
       permitted
     end
   end

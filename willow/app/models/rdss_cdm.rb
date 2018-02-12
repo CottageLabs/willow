@@ -58,9 +58,12 @@ class RdssCdm < ActiveFedora::Base
   # This is a has_many in the CDM but for presentation and form purposes it is presented as a has_one
   has_many :object_rights, class_name: 'Cdm::Rights'
 
+  has_many :object_organisation_roles, class_name: 'Cdm::ObjectOrganisationRole'
+
   # Accepts nested attributes declarations need to go after the property declarations, as they close off the model
   accepts_nested_attributes_for :object_dates, reject_if: :object_dates_blank?, allow_destroy: true
   accepts_nested_attributes_for :object_person_roles, allow_destroy: true, reject_if: :object_person_roles_blank?
+  accepts_nested_attributes_for :object_organisation_roles, allow_destroy: true, reject_if: :object_organisation_roles_blank?
   accepts_nested_attributes_for :object_rights
 
   def self.multiple?(field)
@@ -113,5 +116,9 @@ class RdssCdm < ActiveFedora::Base
 
   def object_person_roles_blank?(attributes)
     object_values_blank?(attributes, :role_type)
+  end
+
+  def object_organisation_roles_blank?(attributes)
+    object_values_blank?(attributes, :role)
   end
 end

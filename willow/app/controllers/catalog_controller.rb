@@ -105,7 +105,7 @@ class CatalogController < ApplicationController
                     {object_dates: {options: {itemprop: :object_dates}}},
                     # {object_person: {options: {itemprop: :object_person}}},
                     {object_person_roles: {options: {itemprop: :object_person_roles}}},
-                    {organisation_roles: {options: {itemprop: :organisation_roles}}},
+                    {object_organisation_roles: {options: {itemprop: :object_organisation_roles}}},
                     {organisation: {options: {itemprop: :organisation}}},
                     {description: {options: {helper_method: :iconify_auto_link}}},
                     :keyword,

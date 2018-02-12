@@ -69,4 +69,4 @@ en:
       presence: 'Your work must have a %{type}.'
       access: Access
       object_rights_license: License
-      object_organisation_role: Role
+      object_organisation_role: Organisation Role
