@@ -131,6 +131,6 @@ class RdssCdm < ActiveFedora::Base
   end
 
   def object_organisation_roles_blank?(attributes)
-    object_values_blank?(attributes, :role)
+    any_blank?(attributes, :role)
   end
 end
