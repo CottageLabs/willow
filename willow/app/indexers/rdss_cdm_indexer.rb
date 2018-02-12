@@ -23,14 +23,11 @@ class RdssCdmIndexer < Hyrax::WorkIndexer
         end
       end
 
-      object_person_roles = object.object_person_roles.reject(&:marked_for_destruction?)
-      solr_doc[Solrizer.solr_name('object_person_roles', :displayable)] = object_person_roles.to_json
-      object_person_roles.each do |r|
-        solr_doc[Solrizer.solr_name("object_person_roles_#{r.role_type}", :stored_sortable)] = true
-      end
+      object_people = object.object_people.reject(&:marked_for_destruction?)
+      solr_doc[Solrizer.solr_name("object_people", :displayable)] = object_people.to_json(include: :object_person_roles)
 
       # object rights
-      # At the moment we have a has_one relationship between Object and Object rights. As such it makes more sense to 
+      # At the moment we have a has_one relationship between Object and Object rights. As such it makes more sense to
       # index the object_rights fields as direct fields on the solr document
       rights = object.object_rights.first
       if rights

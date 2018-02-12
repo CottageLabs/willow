@@ -1,18 +1,16 @@
 <li class="field-wrapper">
-  <div class="row">
-    <div class="col-md-3">
-      <%= object_person_form.given_name %>
-    </div>
-    <div class="col-md-3">
-      <%= object_person_form.family_name %>
-    </div>
-    <div class='col-md-3'>
-      <%= object_person_form.destroy %>
-      <%= remove_button :object_person %>
-    </div>
-    <%- fields_for :object_person_roles do |opr| %>
-      <%= render partial: opr %>
-    <%- end %>
-    %>
+  <%= object_person_form.honorific_prefix %>
+  <%= object_person_form.given_name %>
+  <%= object_person_form.family_name %>
+  <%= object_person_form.input :object_person_roles, wrapper: :label_and_hint_only %>
+  <div class="multi-nested">
+    <ul class="listing">
+      <%= object_person_form.fields_for :object_person_roles, object_person_form.object_person_roles, builder: ObjectPersonRoleFormBuilder do |opr| %>
+        <%= render partial: opr, locals: {required: true} %>
+      <%- end %>
+    </ul>
+    <%= add_another_button :object_person_role %>
   </div>
+  <%= object_person_form.destroy %>
+  <%= remove_button :object_person %>
 </li>

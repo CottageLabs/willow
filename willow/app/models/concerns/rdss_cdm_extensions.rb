@@ -13,8 +13,8 @@ module Concerns
                       :object_rights_rights_holder
 
     displayable :object_dates,
-                :object_person_roles,
-                :object_rights_accesses,
-                :object_organisation_roles
+                :object_organisation_roles,
+                :object_people,
+                :object_rights_accesses
   end
 end

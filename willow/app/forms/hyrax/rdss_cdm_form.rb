@@ -13,8 +13,7 @@ module Hyrax
       :object_version,
       :object_resource_type,
       :object_value,
-      # :object_person,
-      :object_person_roles,
+      :object_people,
       :object_dates,
       :object_rights,
       :object_organisation_roles,
@@ -24,8 +23,7 @@ module Hyrax
       :title,
       :object_resource_type,
       :object_value,
-      # :object_person,
-      :object_person_roles,
+      :object_people,
       :object_rights,
       :object_organisation_roles,
     ]
@@ -34,17 +32,20 @@ module Hyrax
                   :object_person_roles,
                   :object_organisation_roles
 
+    def object_people
+      convert_value_to_array(model.object_people)
+    end
+
     # utility methods to allow nested fields to work with the hyrax form
     # Taken from https://github.com/curationexperts/laevigata/
 
     # In the view we have "fields_for nested models.
-    # For each nested_model we need to delegate the _atrributes= method 
+    # For each nested_model we need to delegate the _attributes= method
     # to the model, to make fields_for behave as an
     # association and populate the form with the correct
-
     # object_date data.
     delegate :object_dates_attributes=,
-             :object_person_roles_attributes=,
+             :object_people_attributes=,
              :object_rights_attributes=,
              :object_organisation_roles_attributes=,
              to: :model
@@ -68,40 +69,44 @@ module Hyrax
       ]
     end
 
-    def self.permitted_object_organisation_roles_params
-      [
-        :id,
-        :_destroy,
-        [
-          :id,
-          :_destroy,
-          :role,
-          # organisation_attributes: permitted_organisation_params
-        ]
-      ]
-    end
-
-    # def self.permitted_organisation_params
+    # def self.permitted_object_person_roles_nested
     #   [
-    #     :id,
+    #     :role_type,
     #     :_destroy,
-    #     :jisc_id,
-    #     :name,
-    #     :organisation_type,
-    #     :address
+    #     [
+    #       object_people_attributes: permitted_object_person_params
+    #     ]
     #   ]
     # end
+    #
+    def self.permitted_object_person_nested
+      [
+        :id,
+        :honorific_prefix,
+        :given_name,
+        :family_name,
+        :_destroy,
+        object_person_roles_attributes: permitted_object_person_roles_params
+      ]
+    end
 
     def self.permitted_object_person_roles_params
       [
         :id,
-        :_destroy,
-        [
-          :role_type
-        ]
+        :role_type,
+        :_destroy
       ]
     end
 
+    # def self.permitted_object_person_params
+    #   [
+    #     :id,
+    #     :honorific_prefix,
+    #     :given_name,
+    #     :family_name,
+    #     :_destroy
+    #   ]
+    # end
 
     def self.permitted_object_rights_params
       [
@@ -126,7 +131,7 @@ module Hyrax
       permitted = super
       # add in object_date attributes
       permitted << { object_dates_attributes: permitted_object_date_params }
-      permitted << { object_person_roles_attributes: permitted_object_person_roles_params }
+      permitted << { object_people_attributes: permitted_object_person_nested }
       permitted << { object_rights_attributes: permitted_object_rights_params }
       permitted << { object_organisation_roles_attributes: permitted_object_organisation_roles_params }
       permitted
