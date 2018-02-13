@@ -19,7 +19,7 @@ class RdssCdm < ActiveFedora::Base
   # validates :object_organisation_roles, presence: true
   # validates :object_people, presence: { message: I18n.t('willow.fields.presence', type: I18n.t('willow.fields.object_person').downcase)}
 
-  self.human_readable_type = 'RDSS CDM'
+  self.human_readable_type = 'Dataset'
 
   property :object_uuid, predicate: ::RDF::Vocab::DC11.identifier, multiple: false
   # object_title present as `title` inherited from Hyrax::CoreMetadata
