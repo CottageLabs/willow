@@ -17,6 +17,8 @@ module Hyrax
       :object_dates,
       :object_rights,
       :object_organisation_roles,
+      :object_identifiers,
+      :object_related_identifiers,
     ]
 
     self.required_fields = [
@@ -26,11 +28,14 @@ module Hyrax
       :object_people,
       :object_rights,
       :object_organisation_roles,
+      :object_identifiers,
     ]
 
     mapped_arrays :object_dates,
-                  :object_person_roles,
-                  :object_organisation_roles
+                  :object_organisation_roles,
+                  :object_identifiers,
+                  :object_related_identifiers
+
 
     def object_people
       convert_value_to_array(model.object_people)
@@ -48,6 +53,8 @@ module Hyrax
              :object_people_attributes=,
              :object_rights_attributes=,
              :object_organisation_roles_attributes=,
+             :object_identifiers_attributes=,
+             :object_related_identifiers_attributes=,             
              to: :model
 
     # for object_rights, we present the has_many relationship as a has_one
@@ -127,11 +134,31 @@ module Hyrax
       ]
     end
 
+
     def self.permitted_object_organisation_roles_params
       [
         :id,
         :role,
         :_destroy
+      ]
+    end
+
+
+    def self.permitted_object_identifier_params
+      [
+        :id,
+        :_destroy,
+        :identifier_value,
+        :identifier_type
+      ]
+    end
+
+    def self.permitted_object_related_identifier_params
+      [
+        :id,
+        :_destroy,
+        :relation_type,
+        identifier_attributes: permitted_object_identifier_params
       ]
     end
 
@@ -142,6 +169,8 @@ module Hyrax
       permitted << { object_people_attributes: permitted_object_person_nested }
       permitted << { object_rights_attributes: permitted_object_rights_params }
       permitted << { object_organisation_roles_attributes: permitted_object_organisation_roles_params }
+      permitted << { object_identifiers_attributes: permitted_object_identifier_params }
+      permitted << { object_related_identifiers_attributes: permitted_object_related_identifier_params }
       permitted
     end
   end
