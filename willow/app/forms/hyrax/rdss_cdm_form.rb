@@ -32,7 +32,6 @@ module Hyrax
     ]
 
     mapped_arrays :object_dates,
-                  :object_person_roles,
                   :object_organisation_roles,
                   :object_identifiers,
                   :object_related_identifiers
