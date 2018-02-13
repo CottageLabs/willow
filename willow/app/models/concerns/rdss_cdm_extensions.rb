@@ -16,6 +16,8 @@ module Concerns
                 :object_rights_accesses,
                 :object_organisation_roles,
                 :object_people,
-                :object_rights_accesses
+                :object_rights_accesses,
+                :object_identifiers,
+                :object_related_identifiers
   end
 end
