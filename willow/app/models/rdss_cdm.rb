@@ -129,11 +129,11 @@ class RdssCdm < ActiveFedora::Base
   end
 
   def object_identifiers_blank?(attributes)
-    object_values_blank?(attributes, :identifier_type, :identifier_value)
+    any_blank?(attributes, :identifier_type, :identifier_value)
   end
 
   def object_related_identifiers_blank?(attributes)
-    object_values_blank?(attributes, :relation_type)
+    any_blank?(attributes, :relation_type)
   end
 
   def object_person_roles_blank?(attributes)
