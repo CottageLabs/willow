@@ -17,12 +17,12 @@ Hyrax.config do |config|
     # Injected via `rails g hyrax:work Article`
     config.register_curation_concern :article
   end
-  if ENV['ENABLE_RDSS_CDM_CONTENT_TYPE'] == 'true'
-    # Injected via `rails g hyrax:work RdssCdm`
-    config.register_curation_concern :rdss_cdm
+  if ENV['ENABLE_RDSS_DATASET_CONTENT_TYPE'] == 'true'
+    # Injected via `rails g hyrax:work RdssDataset`
+    config.register_curation_concern :rdss_dataset
   end
-  # Injected via `rails g hyrax:work RdssDataset`
-  config.register_curation_concern :rdss_dataset
+  # Injected via `rails g hyrax:work RdssCdm`
+  config.register_curation_concern :rdss_cdm
 
   
   # Register roles that are expected by your implementation.

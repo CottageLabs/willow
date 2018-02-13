@@ -46,7 +46,7 @@ RSpec.describe RdssCdm do
 
   it 'has human readable type rdss_cdm' do
     obj = build(:rdss_cdm)
-    expect(obj.human_readable_type).to eq('RDSS CDM')
+    expect(obj.human_readable_type).to eq('Dataset')
   end
 
   describe 'title' do
