@@ -1,4 +1,4 @@
-FROM tomcat:9
+FROM tomcat:9.0.1
 
 # There are different ENV vars to consider when running Fedora Commons.
 # An explanation of running Tomcat from https://stackoverflow.com/a/29398713/1154882
