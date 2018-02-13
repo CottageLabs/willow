@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe RdssDataset do
   it 'has human readable type rdss_dataset' do
     @obj = build(:rdss_dataset)
-    expect(@obj.human_readable_type).to eq('Dataset')
+    expect(@obj.human_readable_type).to eq('RDSS Dataset')
   end
 
   describe 'title' do
