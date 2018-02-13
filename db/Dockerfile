@@ -1,4 +1,4 @@
-FROM postgres:9.5
+FROM postgres:9.5.9
 
 COPY docker-healthcheck.sh /usr/local/bin/
 
