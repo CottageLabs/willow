@@ -1,0 +1,10 @@
+<div class="multi-nested">
+  <%# only output the label and the hint text. wrapper defined in config/initializers/simple_form_rdss.rb %>
+  <%= f.input :object_identifiers, wrapper: :label_and_hint_only %>
+  <ul class="listing"><%# normally added by https://github.com/samvera/hydra-editor/blob/master/app/inputs/multi_value_input.rb %>
+    <%= f.fields_for :object_identifiers, @form.object_identifiers, builder: ::ObjectIdentifierFormBuilder do |oi| %>
+      <%= render partial: oi, locals: { required: f.object.required?(:object_identifiers) } %>
+    <% end %>
+  </ul>
+  <%= add_another_button :object_identifier %>
+</div>

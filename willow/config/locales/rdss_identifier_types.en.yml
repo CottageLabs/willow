@@ -1,0 +1,21 @@
+en:
+  rdss:
+    identifier_types:
+      doi: DOI
+      ark: ARK
+      ar_xiv: arXiv
+      bibcode: bibcode
+      ean13: EAN13
+      eissn: EISSN
+      handle: Handle
+      isbn: ISBN
+      issn: ISSN
+      istc: ISTC
+      lissn: LISSN
+      lsid: LSID
+      pmid: PMID
+      puid: PUID
+      purl: PURL
+      upc: UPC
+      url: URL
+      urn: URN

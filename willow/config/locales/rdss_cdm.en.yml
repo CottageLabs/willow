@@ -22,6 +22,7 @@ en:
         name: Name
         orcid: Orcid
         object_rights: Rights
+        object_identifiers: Idenitifiers
       # note we have to put the following translations under simple_form.labels.defaults
       # rather than simple_form.labels.rdss_cdm.object_rights, as otherwise the translation
       # for simple_form.labels.rdss_cdm.object_rights
@@ -35,6 +36,7 @@ en:
         object_dates: The different dates relevant to the dataset
         object_rights: Rights and access information about the dataset
         object_organisation_role: Role the organisation played in the dataset
+        object_identifiers: Identifiers for the dataset
       defaults:
         # note we have to put the following translations under simple_form.hints.defaults
         # rather than simple_form.hints.rdss_cdm.object_rights, as otherwise the translation
@@ -51,3 +53,5 @@ en:
           role_type: Choose role
         object_rights:
           license: Select license
+        object_identifiers:
+          identifier_type: Select type

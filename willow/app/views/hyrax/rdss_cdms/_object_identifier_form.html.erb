@@ -1,0 +1,14 @@
+<li class="field-wrapper">
+  <div class="row">
+    <div class="col-md-3">
+      <%= object_identifier_form.identifier_type(required: required) %>
+    </div>
+    <div class="col-md-6">
+      <%= object_identifier_form.identifier_value(required: required) %>
+    </div>
+    <div class='col-md-3'>
+      <%= object_identifier_form.destroy %>
+      <%= remove_button :identifier %>
+    </div>
+  </div>
+</li>
