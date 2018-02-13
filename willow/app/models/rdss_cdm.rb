@@ -13,7 +13,11 @@ class RdssCdm < ActiveFedora::Base
   validates :title, presence: { message: 'Your work must have a title.' }
   validates :object_resource_type, presence: { message: 'Your work must have a resource type.' }
   validates :object_value, presence: { message: 'Your work must have a value.' }
-  validates :object_people, presence: { message: I18n.t('willow.fields.presence', type: I18n.t('willow.fields.object_person').downcase)}
+  # You can't validate associations with ActiveFedora/Solr since it tries to do an http connection to Solr to reconcile
+  # how many documents there are. There's a note
+  # validates :object_person_roles, presence: { message: I18n.t('willow.fields.presence', type: I18n.t('willow.fields.object_person_role').downcase)}
+  # validates :object_organisation_roles, presence: true
+  # validates :object_people, presence: { message: I18n.t('willow.fields.presence', type: I18n.t('willow.fields.object_person').downcase)}
 
   self.human_readable_type = 'RDSS CDM'
 
@@ -57,8 +61,11 @@ class RdssCdm < ActiveFedora::Base
   # This is a has_many in the CDM but for presentation and form purposes it is presented as a has_one
   has_many :object_rights, class_name: 'Cdm::Rights'
 
+  has_many :object_organisation_roles, class_name: 'Cdm::ObjectOrganisationRole'
+
   # Accepts nested attributes declarations need to go after the property declarations, as they close off the model
   accepts_nested_attributes_for :object_dates, reject_if: :object_dates_blank?, allow_destroy: true
+  accepts_nested_attributes_for :object_organisation_roles, allow_destroy: true, reject_if: :object_organisation_roles_blank?
   accepts_nested_attributes_for :object_people, allow_destroy: true, reject_if: :object_person_blank?
   accepts_nested_attributes_for :object_rights
 
@@ -121,5 +128,9 @@ class RdssCdm < ActiveFedora::Base
 
   def object_person_blank?(attributes)
     all_blank?(attributes, :given_name, :family_name)
+  end
+
+  def object_organisation_roles_blank?(attributes)
+    any_blank?(attributes, :role)
   end
 end

@@ -105,6 +105,8 @@ class CatalogController < ApplicationController
                     {object_dates: {options: {itemprop: :object_dates}}},
                     {object_people: {options: {itemprop: :object_people}}},
                     {object_person_roles: {options: {itemprop: :object_person_roles}}},
+                    {object_organisation_roles: {options: {itemprop: :object_organisation_roles}}},
+                    # {organisation: {options: {itemprop: :organisation}}},
                     {description: {options: {helper_method: :iconify_auto_link}}},
                     :keyword,
                     :subject,
@@ -198,6 +200,7 @@ class CatalogController < ApplicationController
                    {object_dates: {as: :displayable}},
                    {object_people: {as: :displayable}},
                    {object_person_roles: {as: :displayable}}
+                   # {organisation: {as: :displayable}}
                    #End of RDSS CDM Additions
 
     # "fielded" search configuration. Used by pulldown among other places.

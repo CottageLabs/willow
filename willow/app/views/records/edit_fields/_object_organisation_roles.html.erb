@@ -1,0 +1,10 @@
+<div class="multi-nested">
+  <%# only output the label and the hint text. wrapper defined in config/initializers/simple_form_rdss.rb %>
+  <%= f.input :object_organisation_roles, wrapper: :label_and_hint_only %>
+  <ul class="listing">
+    <%= f.fields_for :object_organisation_roles, @form.object_organisation_roles, builder: ::ObjectOrganisationRoleFormBuilder do |form| %>
+      <%= render partial: form, locals: {required: f.object.required?(:object_organisation_roles)} %>
+    <% end %>
+  </ul>
+  <%= add_another_button :object_organisation_role %>
+</div>

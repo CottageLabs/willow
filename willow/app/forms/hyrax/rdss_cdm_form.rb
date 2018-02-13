@@ -16,6 +16,7 @@ module Hyrax
       :object_people,
       :object_dates,
       :object_rights,
+      :object_organisation_roles,
     ]
 
     self.required_fields = [
@@ -24,9 +25,12 @@ module Hyrax
       :object_value,
       :object_people,
       :object_rights,
+      :object_organisation_roles,
     ]
 
-    mapped_arrays :object_dates
+    mapped_arrays :object_dates,
+                  :object_person_roles,
+                  :object_organisation_roles
 
     def object_people
       convert_value_to_array(model.object_people)
@@ -43,6 +47,7 @@ module Hyrax
     delegate :object_dates_attributes=,
              :object_people_attributes=,
              :object_rights_attributes=,
+             :object_organisation_roles_attributes=,
              to: :model
 
     # for object_rights, we present the has_many relationship as a has_one
@@ -122,12 +127,21 @@ module Hyrax
       ]
     end
 
+    def self.permitted_object_organisation_roles_params
+      [
+        :id,
+        :role,
+        :_destroy
+      ]
+    end
+
     def self.build_permitted_params
       permitted = super
       # add in object_date attributes
       permitted << { object_dates_attributes: permitted_object_date_params }
       permitted << { object_people_attributes: permitted_object_person_nested }
       permitted << { object_rights_attributes: permitted_object_rights_params }
+      permitted << { object_organisation_roles_attributes: permitted_object_organisation_roles_params }
       permitted
     end
   end

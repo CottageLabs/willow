@@ -1,0 +1,13 @@
+en:
+  rdss:
+    organisation_roles:
+      funder: Funder
+      hosting_institution: Hosting institution
+      rights_holder: Rights holder
+      sponsor: Sponsor
+      publisher: Publisher
+      registration_agency: Registration agency
+      registration_authority: Registration authority
+      distributor: Distributor
+      advocacy: Advocacy
+      author: Author

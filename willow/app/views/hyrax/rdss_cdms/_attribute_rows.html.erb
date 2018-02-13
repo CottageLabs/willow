@@ -4,6 +4,7 @@
 <%= presenter.attribute_to_html(:object_category) %>
 <%= presenter.attribute_to_html(:object_resource_type, render_as: :humanized_faceted) %>
 <%= presenter.attribute_to_html(:object_value, render_as: :humanized) %>
+<%= presenter.attribute_to_html(:object_organisation_roles, render_as: :object_organisation_roles, label: I18n.t('willow.fields.object_organisation_role')) %>
 <%= presenter.attribute_to_html(:object_people, render_as: :object_people, label:I18n.t('willow.fields.object_people')) %>
 <%= presenter.attribute_to_html(:object_dates, render_as: :object_dates, label: I18n.t('willow.fields.object_dates')) %><%# the `:render_as` parameter tells the presenter to use the object_dates_attribute_renderer %>
 <%# rights information %>

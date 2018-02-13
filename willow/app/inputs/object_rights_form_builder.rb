@@ -20,5 +20,4 @@ class ObjectRightsFormBuilder < RdssFields
   def accesses
     object.accesses.build if object.accesses.blank?
   end
-
 end
