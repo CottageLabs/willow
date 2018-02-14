@@ -561,7 +561,7 @@
 
   "administrative_sets" : [
     {
-      "id" : "rdss_admin_set",
+      "id" : "admin_set/default",
       "metadata" : {
         "title": ["RDSS administrative set"],
         "description": ["An administrative set using the one-step mediated workflow"],
