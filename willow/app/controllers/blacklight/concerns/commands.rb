@@ -35,7 +35,7 @@ module Blacklight
                                                                   [name, name, default_index_type, nil, options]
                                                                 end
           begin
-            config.send("add_#{config_type}", send("#{index_type}_name", name.to_s, *solr_options), default_label_options(label_name).merge(options))
+            config.send("add_#{config_type}", send("#{index_type}_name", name, *solr_options), default_label_options(label_name).merge(options))
           rescue ArgumentError=>e
             puts("solr_options are: #{solr_options.inspect}")
             raise
