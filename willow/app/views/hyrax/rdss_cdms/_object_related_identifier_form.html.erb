@@ -1,0 +1,19 @@
+<li class="field-wrapper">
+  <div class="row">
+    <div class="col-md-2">
+      <%= object_related_identifier_form.relation_type(required: required) %>
+    </div>
+    <%= object_related_identifier_form.fields_for :identifier, object_related_identifier_form.identifier, builder: ::ObjectIdentifierFormBuilder do |identifier| %>
+      <div class="col-md-2">
+        <%= identifier.identifier_type(required: required) %>
+      </div>
+      <div class="col-md-5">
+        <%= identifier.identifier_value(required: required) %>
+      </div>
+    <% end %>
+    <div class='col-md-3'>
+      <%= object_related_identifier_form.destroy %>
+      <%= remove_button :object_related_identifier %>
+    </div>
+  </div>
+</li>

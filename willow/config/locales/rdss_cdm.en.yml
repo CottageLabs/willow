@@ -4,8 +4,8 @@ en:
       rdss_cdm:     fa fa-file-text-o
     select_type:
       rdss_cdm:
-        name:               Rdss Cdm
-        description:        Rdss cdm works
+        name:               Dataset
+        description:        Dataset with JISC RDSS metadata schema properties
   simple_form:
     labels:
       rdss_cdm:
@@ -22,6 +22,8 @@ en:
         name: Name
         orcid: Orcid
         object_rights: Rights
+        object_identifiers: Identifiers
+        object_related_identifiers: Related identifiers
       # note we have to put the following translations under simple_form.labels.defaults
       # rather than simple_form.labels.rdss_cdm.object_rights, as otherwise the translation
       # for simple_form.labels.rdss_cdm.object_rights
@@ -35,6 +37,8 @@ en:
         object_dates: The different dates relevant to the dataset
         object_rights: Rights and access information about the dataset
         object_organisation_role: Role the organisation played in the dataset
+        object_identifiers: Identifiers for the dataset
+        object_related_identifiers: Identifier for specific content (audio, video, PDF document) related to the dataset. An example is the URL of an article based on this dataset. If adding a related work identifier please also choose the type of relationship.
       defaults:
         # note we have to put the following translations under simple_form.hints.defaults
         # rather than simple_form.hints.rdss_cdm.object_rights, as otherwise the translation
@@ -51,3 +55,7 @@ en:
           role_type: Choose role
         object_rights:
           license: Select license
+        object_identifiers:
+          identifier_type: Select type
+        object_related_identifiers:
+          relation_type: Select relation type

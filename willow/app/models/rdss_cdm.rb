@@ -19,7 +19,7 @@ class RdssCdm < ActiveFedora::Base
   # validates :object_organisation_roles, presence: true
   # validates :object_people, presence: { message: I18n.t('willow.fields.presence', type: I18n.t('willow.fields.object_person').downcase)}
 
-  self.human_readable_type = 'RDSS CDM'
+  self.human_readable_type = 'Dataset'
 
   property :object_uuid, predicate: ::RDF::Vocab::DC11.identifier, multiple: false
   # object_title present as `title` inherited from Hyrax::CoreMetadata
@@ -49,7 +49,11 @@ class RdssCdm < ActiveFedora::Base
     index.as :stored_searchable
   end
   #property :object_identifier
+  has_many :object_identifiers, class_name: 'Cdm::Identifier'
+
   #property :object_related_identifier
+  has_many :object_related_identifiers, class_name: 'Cdm::IdentifierRelationship'
+  
   #property :object_organisation_role
   #property :object_preservation_event
   #property :object_file
@@ -68,6 +72,8 @@ class RdssCdm < ActiveFedora::Base
   accepts_nested_attributes_for :object_organisation_roles, allow_destroy: true, reject_if: :object_organisation_roles_blank?
   accepts_nested_attributes_for :object_people, allow_destroy: true, reject_if: :object_person_blank?
   accepts_nested_attributes_for :object_rights
+  accepts_nested_attributes_for :object_identifiers, allow_destroy: true, reject_if: :object_identifiers_blank?
+  accepts_nested_attributes_for :object_related_identifiers, allow_destroy: true, reject_if: :object_related_identifiers_blank?
 
   def self.multiple?(field)
     # Overriding to return false for `title` (as we can't set multiple: false) 
@@ -120,6 +126,14 @@ class RdssCdm < ActiveFedora::Base
 
   def object_dates_blank?(attributes)
     any_blank?(attributes, :date_value, :date_type)
+  end
+
+  def object_identifiers_blank?(attributes)
+    any_blank?(attributes, :identifier_type, :identifier_value)
+  end
+
+  def object_related_identifiers_blank?(attributes)
+    any_blank?(attributes, :relation_type)
   end
 
   def object_person_roles_blank?(attributes)

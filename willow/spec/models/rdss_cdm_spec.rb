@@ -46,7 +46,7 @@ RSpec.describe RdssCdm do
 
   it 'has human readable type rdss_cdm' do
     obj = build(:rdss_cdm)
-    expect(obj.human_readable_type).to eq('RDSS CDM')
+    expect(obj.human_readable_type).to eq('Dataset')
   end
 
   describe 'title' do
@@ -304,4 +304,75 @@ RSpec.describe RdssCdm do
       expect(obj.valid?).to eq true
     end
   end
+
+  describe 'nested attributes for object identifiers' do
+    it 'accepts object identifiers attributes' do
+      obj = build(:rdss_cdm, object_identifiers_attributes: [
+        {
+          identifier_type: 'URL',
+          identifier_value: 'http://example.com'
+        }
+      ])
+      expect(obj.object_identifiers.first).to be_kind_of ActiveFedora::Base
+      expect(obj.object_identifiers.first.identifier_type).to eq 'URL'
+      expect(obj.object_identifiers.first.identifier_value).to eq 'http://example.com'
+    end
+
+    it 'indexes the object identifiers' do
+      obj = build(:rdss_cdm, object_identifiers_attributes: [
+        {
+          identifier_type: 'isbn',
+          identifier_value: '12345'
+        }
+      ])
+      doc = obj.to_solr
+      expect(doc['object_identifier_isbn_ssi']).to eq('12345')
+      expect(doc).to include('object_identifiers_ssm')
+      identifiers_json = JSON.parse(doc['object_identifiers_ssm'])
+      expect(identifiers_json[0]['identifier_type']).to eq('isbn')
+      expect(identifiers_json[0]['identifier_value']).to eq('12345')
+    end
+  end
+
+  describe 'nested attributes for object related identifiers' do
+    it 'accepts object related identifiers attributes' do
+      obj = build(:rdss_cdm, object_related_identifiers_attributes: [
+        {
+          relation_type: 'cites',
+          identifier_attributes: {
+            identifier_type: 'URL',
+            identifier_value: 'http://example.com'
+          }
+        }
+      ])
+      related_identifier = obj.object_related_identifiers.first
+      expect(related_identifier).to be_kind_of ActiveFedora::Base
+      expect(related_identifier.relation_type).to eq 'cites'
+      
+      identifier = related_identifier.identifier
+      expect(identifier).to be_kind_of ActiveFedora::Base
+      expect(identifier.identifier_type).to eq 'URL'
+      expect(identifier.identifier_value).to eq 'http://example.com'
+    end
+
+    it 'indexes the object related identifiers' do
+      obj = build(:rdss_cdm, object_related_identifiers_attributes: [
+        {
+          relation_type: 'isPartOf',
+          identifier_attributes: {
+            identifier_type: 'isbn',
+            identifier_value: '12345'
+          }
+        }
+      ])
+      doc = obj.to_solr
+      expect(doc).to include('object_related_identifiers_ssm')
+      related_identifiers_json = JSON.parse(doc['object_related_identifiers_ssm'])
+      expect(related_identifiers_json[0]['relation_type']).to eq('isPartOf')
+      expect(related_identifiers_json[0]['identifier']['identifier_type']).to eq('isbn')
+      expect(related_identifiers_json[0]['identifier']['identifier_value']).to eq('12345')
+    end
+  end
+
+
 end

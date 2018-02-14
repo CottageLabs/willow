@@ -51,6 +51,8 @@ en:
           rights_tesim: Rights
           subject_tesim: Subject
           title_tesim: Title
+          object_identifiers: Identifiers
+          object_related_identifiers: Related identifiers
   hyrax:
     contact_form:
       header: "Contact Us"

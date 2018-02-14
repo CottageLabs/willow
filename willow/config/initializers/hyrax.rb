@@ -17,12 +17,12 @@ Hyrax.config do |config|
     # Injected via `rails g hyrax:work Article`
     config.register_curation_concern :article
   end
-  if ENV['ENABLE_RDSS_CDM_CONTENT_TYPE'] == 'true'
-    # Injected via `rails g hyrax:work RdssCdm`
-    config.register_curation_concern :rdss_cdm
+  if ENV['ENABLE_RDSS_DATASET_CONTENT_TYPE'] == 'true'
+    # Injected via `rails g hyrax:work RdssDataset`
+    config.register_curation_concern :rdss_dataset
   end
-  # Injected via `rails g hyrax:work RdssDataset`
-  config.register_curation_concern :rdss_dataset
+  # Injected via `rails g hyrax:work RdssCdm`
+  config.register_curation_concern :rdss_cdm
 
   
   # Register roles that are expected by your implementation.
@@ -133,7 +133,7 @@ Hyrax.config do |config|
   # config.work_requires_files = true
 
   # Should a button with "Share my work" show on the front page to all users (even those not logged in)?
-  # config.display_share_button_when_not_logged_in = true
+  config.display_share_button_when_not_logged_in = false
 
   # The user who runs batch jobs. Update this if you aren't using emails
   config.batch_user_key = ENV['BATCH_USER'] || 'batchuser@example.com'
