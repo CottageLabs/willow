@@ -50,10 +50,15 @@ RSpec.describe RdssCdm do
 
   def check_mandatory_validation(field_name:, display_name: nil, association: false, association_content: [])
     display_name ||= field_name
-    VCR.use_cassette('rdss_cdm/create_' + field_name.to_s, match_requests_on: [:method, :host]) do
-      obj = build(:rdss_cdm, (association ? {field_name.to_s + '_attributes' => association_content} : {field_name => nil}))
-      expect(obj.valid?).to eq false
-      expect(obj.errors.messages[field_name]).to include("Your work must have a #{display_name}.")
+
+    VCR.use_cassette("rdss_cdm/create_#{field_name}", match_requests_on: %i[method host]) do
+      build(
+        :rdss_cdm,
+        (association ? { "#{field_name}_attributes" => association_content } : { field_name => nil })
+      ).tap do |obj|
+        expect(obj.valid?).to eq false
+        expect(obj.errors.messages[field_name]).to include("Your work must have a #{display_name}.")
+      end
     end
   end
 
@@ -217,8 +222,11 @@ RSpec.describe RdssCdm do
     end
 
     xit 'requires an object person role' do
-      # check_mandatory_validation(
-      # field_name: :object_person_roles, display_name: 'role', association: true)
+      check_mandatory_validation(
+        field_name: :object_person_roles,
+        display_name: 'role',
+        association: true
+      )
     end
 
     it 'accepts nested object_person_roles in object_people attributes' do
@@ -249,17 +257,26 @@ RSpec.describe RdssCdm do
     # when the associated object is not being instantiated.
 
     it 'indexes object_people_attributes' do
-      obj = build(:rdss_cdm, object_people_attributes: [{ given_name: 'Brian'}])
+      obj = build(:rdss_cdm, object_people_attributes: [{ given_name: 'Brian' }])
       doc = obj.to_solr
       expect(doc).to include('object_people_ssm')
     end
 
     xit 'indexes object_person_roles_attributes' do
-      # obj = build(:rdss_cdm, object_people_attributes:
-      # [{ given_name: 'Brian',
-      # object_person_roles_attributes: [{role_type: 'messiah'}, {role_type: 'very naughty boy'}]}])
-      # doc = obj.to_solr
-      # expect(doc).to include('object_person_roles_ssm')
+      obj = build(
+              :rdss_cdm,
+              object_people_attributes: [
+                {
+                  given_name: 'Brian',
+                  object_person_roles_attributes: [
+                    { role_type: 'messiah' },
+                    { role_type: 'very naughty boy' }
+                  ]
+                }
+              ]
+            )
+      doc = obj.to_solr
+      expect(doc).to include('object_person_roles_ssm')
     end
   end
 
@@ -355,7 +372,7 @@ RSpec.describe RdssCdm do
       expect(expected.organisation.organisation_type).to eq(organisation_type)
     end
 
-    xit 'requires an object organisation role' do
+    it 'requires an object organisation role' do
       check_mandatory_validation(
         field_name: :object_organisation_roles,
         display_name: 'role',
