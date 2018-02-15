@@ -6,7 +6,7 @@ module Solr
       included do
         delegate :solr_name, to: ::Solrizer
 
-        [:stored_searchable, :displayable, :facetable, :symbol].each do |index_type|
+        [:stored_searchable, :stored_sortable, :displayable, :facetable, :symbol].each do |index_type|
           define_singleton_method(index_type) do |*names|
             names.each do |name|
               #use the instance solr_name definition defined in this file unless overridden

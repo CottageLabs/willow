@@ -123,8 +123,8 @@ class CatalogController < ApplicationController
                     :publisher,
                     :based_near_label,
                     :language,
-                    {date_uploaded: {type: :date, options: {itemprop: :date_published, helper_method: :human_readable_date}}},
-                    {date_modified: {type: :date, options: {itemprop: :date_modified, helper_method: :human_readable_date}}},
+                    {date_uploaded: {type: :date, as: :stored_sortable, options: {itemprop: :date_published, helper_method: :human_readable_date}}},
+                    {date_modified: {type: :date, as: :stored_sortable, options: {itemprop: :date_modified, helper_method: :human_readable_date}}},
                     #TODO: Check the date_created. The original didn't have type: date as an option to the solr_name
                     {date_created: {type: :date, options: {itemprop: :date_created}}},
     # dataset date fields for search
