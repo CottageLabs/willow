@@ -1,4 +1,16 @@
 <li class="field-wrapper">
+  <div class="form-group-with-margin">
+    <%= object_organisation_role_form.role(required: required) %>
+  </div>
+  <%=
+    object_organisation_role_form.fields_for :organisation,
+    object_organisation_role_form.organisation,
+    builder: ::ObjectOrganisationFormBuilder do |form| %>
+      <%= render partial: form, locals: { required: object_organisation_role_form.object.required?(:object_organisation) } %>
+  <% end %>
+  <div class="form-group-with-margin">
+    <%= object_organisation_role_form.destroy %>
+  <div class="text-right"><%= remove_button :object_organisation_role %></div>
   <div class="row">
     <div class="col-md-3">
       <%= object_organisation_role_form.role(required: required) %>
