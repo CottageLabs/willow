@@ -70,8 +70,8 @@ en:
       object_people: People
       access: Access
       object_rights_license: License
-      object_organisation_role: Organisation Role
+      object_organisation_role: Organisation role
       given_and_family_name_presence: a minimum of given or family name
       object_identifier: Identifier
       object_related_identifier: Related identifier
-      object_dates_published: Date Published
+      object_dates_published: Date published
