@@ -19,7 +19,11 @@ class RdssCdmIndexer < Hyrax::WorkIndexer
       object_dates.each do |d|
         
         if d.date_value
-          date = ::Date.parse(d.date_value) rescue nil
+          date = begin
+            ::Date.parse(d.date_value.to_s)
+          rescue ArgumentException
+            nil
+          end
           if date
             solr_doc[Solrizer.solr_name("object_dates_#{d.date_type}", :stored_sortable, type: :date)] = date.strftime('%FT%TZ')
           end
