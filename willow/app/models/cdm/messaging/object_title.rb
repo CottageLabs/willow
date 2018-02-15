@@ -1,9 +1,9 @@
 module Cdm
   module Messaging
-    class ObjectUuid
+    class ObjectTitle
       class << self
         def call(object)
-          { objectUuid: object.id }
+          { objectTitle: object.title.join('; ') }
         end
       end
     end
