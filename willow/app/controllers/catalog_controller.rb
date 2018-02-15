@@ -14,6 +14,10 @@ class CatalogController < ApplicationController
     def modified_field
       solr_name(:system_modified, :stored_sortable, type: :date)
     end
+
+    def published_field
+      solr_name(:object_dates_published, :stored_sortable, type: :date)
+    end
   end
 
   configure_blacklight do |config|
@@ -269,6 +273,8 @@ class CatalogController < ApplicationController
     # except in the relevancy case).
     # label is key, solr field is value
     config.add_sort_field "score desc, #{uploaded_field} desc", label: "relevance"
+    config.add_sort_field "#{published_field} desc", label: "date published \u25BC"
+    config.add_sort_field "#{published_field} asc", label: "date published \u25B2"
     config.add_sort_field "#{uploaded_field} desc", label: "date uploaded \u25BC"
     config.add_sort_field "#{uploaded_field} asc", label: "date uploaded \u25B2"
     config.add_sort_field "#{modified_field} desc", label: "date modified \u25BC"
