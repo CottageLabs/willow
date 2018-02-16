@@ -16,6 +16,7 @@ en:
       pmid: PMID
       puid: PUID
       purl: PURL
+      source_id: SourceID
       upc: UPC
       url: URL
       urn: URN
