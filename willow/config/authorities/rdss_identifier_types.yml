@@ -27,6 +27,8 @@ terms:
     term: PMID
   - id: PUID
     term: PUID
+  - id: SourceID
+    term: SourceID    
   - id: PURL
     term: PURL
   - id: UPC
