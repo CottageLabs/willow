@@ -190,7 +190,7 @@ RSpec.describe RdssCdm do
                                                 }])
       doc = obj.to_solr
       expect(doc).to include('object_dates_ssm')
-      expect(doc['object_dates_copyrighted_ssi']).to eq('2017-01-01')
+      expect(doc['object_dates_copyrighted_dtsi']).to eq('2017-01-01T00:00:00Z')
     end
   end
 

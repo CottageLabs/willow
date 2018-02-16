@@ -17,9 +17,16 @@ class RdssCdmIndexer < Hyrax::WorkIndexer
       # eg object_date_approved
       # As above, we are using the object_dates filtered to remove marked_for_destruction?
       object_dates.each do |d|
-        label = RdssDateTypesService.label(d.date_type) rescue nil
-        if label
-          solr_doc[Solrizer.solr_name("object_dates_#{label.downcase}", :stored_sortable)] = d.date_value
+        
+        if d.date_value
+          date = begin
+            ::Date.parse(d.date_value.to_s)
+          rescue ArgumentException
+            nil
+          end
+          if date
+            solr_doc[Solrizer.solr_name("object_dates_#{d.date_type}", :stored_sortable, type: :date)] = date.strftime('%FT%TZ')
+          end
         end
       end
 
