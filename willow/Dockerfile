@@ -22,7 +22,7 @@ ENV RAILS_ENV="$RAILS_ENV" \
 RUN echo 'deb http://deb.debian.org/debian jessie-backports main' > /etc/apt/sources.list.d/jessie-backports.list \
     && apt-get update -qq \
     && apt-get install -y --no-install-recommends \
-    libpq-dev \
+    libpq-dev libmediainfo \
     libxml2-dev libxslt1-dev \
     libqt4-webkit libqt4-dev xvfb \
     nodejs \
