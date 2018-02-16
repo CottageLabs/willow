@@ -23,6 +23,7 @@ module Hyrax
 
     self.required_fields = [
       :title,
+      :object_description,
       :object_resource_type,
       :object_value,
       :object_people,
