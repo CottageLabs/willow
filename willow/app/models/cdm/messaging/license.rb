@@ -1,9 +1,11 @@
 module Cdm
   module Messaging
-    class ObjectTitle
+    class License
       class << self
         def call(object)
-          { objectTitle: object.title }
+          {
+
+          }
         end
       end
     end

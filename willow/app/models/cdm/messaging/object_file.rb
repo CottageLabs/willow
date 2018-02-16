@@ -1,9 +1,9 @@
 module Cdm
   module Messaging
-    class ObjectTitle
+    class ObjectFile
       class << self
         def call(object)
-          { objectTitle: object.title }
+          { objectFile: '' }
         end
       end
     end

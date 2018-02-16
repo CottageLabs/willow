@@ -1,9 +1,9 @@
 module Cdm
   module Messaging
-    class ObjectTitle
+    class ObjectPreservationEvent
       class << self
         def call(object)
-          { objectTitle: object.title }
+          { objectPreservationEvent: '' }
         end
       end
     end

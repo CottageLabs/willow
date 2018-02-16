@@ -1,9 +1,9 @@
 module Cdm
   module Messaging
-    class ObjectTitle
+    class PersonEntitlement
       class << self
         def call(object)
-          { objectTitle: object.title }
+          1
         end
       end
     end

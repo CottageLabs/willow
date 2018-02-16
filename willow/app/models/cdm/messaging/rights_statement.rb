@@ -1,9 +1,9 @@
 module Cdm
   module Messaging
-    class ObjectTitle
+    class RightsStatement
       class << self
         def call(object)
-          { objectTitle: object.title }
+          { rightsStatement: object.rights_statements }
         end
       end
     end

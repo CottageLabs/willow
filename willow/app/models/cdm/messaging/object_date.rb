@@ -1,9 +1,9 @@
 module Cdm
   module Messaging
-    class ObjectTitle
+    class ObjectDate
       class << self
         def call(object)
-          { objectTitle: object.title }
+          { objectDate: '' }
         end
       end
     end

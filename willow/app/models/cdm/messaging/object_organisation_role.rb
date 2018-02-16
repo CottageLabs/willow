@@ -1,9 +1,9 @@
 module Cdm
   module Messaging
-    class ObjectTitle
+    class ObjectOrganisationRole
       class << self
         def call(object)
-          { objectTitle: object.title }
+          { objectOrganisationRole: '' }
         end
       end
     end
