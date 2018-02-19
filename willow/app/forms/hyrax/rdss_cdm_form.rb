@@ -122,7 +122,7 @@ module Hyrax
         [
           rights_statement: [],
           rights_holder: [],
-          license: [],
+          licence: [],
           accesses_attributes: [
             :id,
             :_destroy,

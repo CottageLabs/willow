@@ -3,7 +3,7 @@ module Cdm
   class Rights < ActiveFedora::Base
     property :rights_statement, predicate: ::RDF::Vocab::DC.RightsStatement
     property :rights_holder, predicate: ::RDF::Vocab::DC.rightsHolder
-    property :license, predicate: ::RDF::Vocab::DC.license
+    property :licence, predicate: ::RDF::Vocab::DC.license
     # TODO deep nested association for access object
 
     # Define relationship with rdss_cdm model
