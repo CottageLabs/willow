@@ -8,7 +8,7 @@ module Concerns
                       :object_category,
                       :object_resource_type,
                       :object_value,
-                      :object_rights_license,
+                      :object_rights_licence,
                       :object_rights_rights_statement,
                       :object_rights_rights_holder
 

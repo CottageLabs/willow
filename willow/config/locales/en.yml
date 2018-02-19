@@ -69,7 +69,7 @@ en:
       presence: 'Your work must have a %{type}.'
       object_people: People
       access: Access
-      object_rights_license: License
+      object_rights_licence: Licence
       object_organisation_role: Organisation role
       given_and_family_name_presence: a minimum of given or family name
       object_identifier: Identifier

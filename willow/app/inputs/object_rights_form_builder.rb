@@ -1,10 +1,10 @@
 class ObjectRightsFormBuilder < RdssFields
-  def license
-    input :license, 
+  def licence
+    input :licence, 
       as: :multi_value_select, 
       collection: Hyrax::LicenseService.new.select_active_options, 
       input_html: {
-        prompt: I18n.t('simple_form.prompts.rdss_cdm.object_rights.license')
+        prompt: I18n.t('simple_form.prompts.rdss_cdm.object_rights.licence')
       },
       required: true
   end

@@ -38,7 +38,7 @@ class RdssCdmIndexer < Hyrax::WorkIndexer
       # index the object_rights fields as direct fields on the solr document
       rights = object.object_rights.first
       if rights
-        solr_doc[Solrizer.solr_name('object_rights_license', :stored_searchable)] = rights.license
+        solr_doc[Solrizer.solr_name('object_rights_licence', :stored_searchable)] = rights.licence
         solr_doc[Solrizer.solr_name('object_rights_rights_statement', :stored_searchable)] = rights.rights_statement
         solr_doc[Solrizer.solr_name('object_rights_rights_holder', :stored_searchable)] = rights.rights_holder
         # nested accesses
