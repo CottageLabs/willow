@@ -1,4 +1,4 @@
-class ObejectOrganisationFormBuilder < RdssFields
+class ObjectOrganisationFormBuilder < RdssFields
   def jisc_id
     input :jisc_id
   end
@@ -8,13 +8,12 @@ class ObejectOrganisationFormBuilder < RdssFields
   end
 
   def address
-    input :address
+    input :address, as: :text
   end
 
   def organisation_type
     input :organisation_type,
           collection: ::Cdm::ObjectOrganisationTypesService.select_all_options,
-          prompt: :translate,
-          required: required
+          prompt: :translate
   end
 end
