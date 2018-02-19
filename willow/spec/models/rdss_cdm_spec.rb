@@ -249,14 +249,14 @@ RSpec.describe RdssCdm do
             {
               rights_statement: ['test rights statement'],
               rights_holder: ['test rights holder'],
-              license: ['http://creativecommons.org/licenses/by/3.0/us/'],
+              licence: ['http://creativecommons.org/licenses/by/3.0/us/'],
               accesses_attributes: [{ access_type: 'controlled', access_statement: 'Statement 1' }]
             }
           ])
       expect(obj.object_rights.first).to be_kind_of ActiveFedora::Base
       expect(obj.object_rights.first.rights_statement).to eq ['test rights statement']
       expect(obj.object_rights.first.rights_holder).to eq ['test rights holder']
-      expect(obj.object_rights.first.license).to eq ['http://creativecommons.org/licenses/by/3.0/us/']
+      expect(obj.object_rights.first.licence).to eq ['http://creativecommons.org/licenses/by/3.0/us/']
       expect(obj.object_rights.first.accesses.first.access_type).to eq 'controlled'
       expect(obj.object_rights.first.accesses.first.access_statement).to eq 'Statement 1'
     end
@@ -266,12 +266,12 @@ RSpec.describe RdssCdm do
             {
               rights_statement: ['another rights statement'],
               rights_holder: ['another rights holder'],
-              license: ['http://creativecommons.org/licenses/by/3.0/us/'],
+              licence: ['http://creativecommons.org/licenses/by/3.0/us/'],
               accesses_attributes: [{ access_type: 'controlled', access_statement: 'Statement 2' }]
             }
           ])
       doc = obj.to_solr
-      expect(doc['object_rights_license_tesim']).to eq(['http://creativecommons.org/licenses/by/3.0/us/'])
+      expect(doc['object_rights_licence_tesim']).to eq(['http://creativecommons.org/licenses/by/3.0/us/'])
       expect(doc['object_rights_rights_statement_tesim']).to eq(['another rights statement'])
       expect(doc['object_rights_rights_holder_tesim']).to eq(['another rights holder'])
       expect(doc['object_rights_access_type_tesim']).to eq(['controlled'])

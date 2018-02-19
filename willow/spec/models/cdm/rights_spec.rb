@@ -19,11 +19,11 @@ RSpec.describe Cdm::Rights do
     end
   end
     
-  describe 'license' do
-    it 'has a license' do
-      obj = build(:cdm_rights, license: ['http://creativecommons.org/licenses/by/3.0/us/'])
-      expect(obj.license).to be_kind_of ActiveTriples::Relation
-      expect(obj.license).to eq ['http://creativecommons.org/licenses/by/3.0/us/']
+  describe 'licence' do
+    it 'has a licence' do
+      obj = build(:cdm_rights, licence: ['http://creativecommons.org/licenses/by/3.0/us/'])
+      expect(obj.licence).to be_kind_of ActiveTriples::Relation
+      expect(obj.licence).to eq ['http://creativecommons.org/licenses/by/3.0/us/']
     end
   end
 
