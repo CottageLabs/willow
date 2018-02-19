@@ -30,6 +30,7 @@ en:
       # would return a hash
       defaults:
         accesses: Access
+        jisc_id: Jisc ID
     hints:
       rdss_cdm:
         object_resource_type: Pre-defined categories to describe the type of content being uploaded, such as &quot;article&quot; or &quot;dataset.&quot;
