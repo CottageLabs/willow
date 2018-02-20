@@ -6,10 +6,6 @@ module Cdm
     property :licence, predicate: ::RDF::Vocab::DC.license
     # TODO deep nested association for access object
 
-    # Grr. It's not a license, it's a licence. This breaks the messaging when it's wrong.
-    # TODO Fix it properly
-    alias_attribute :licence, :license
-
     # Define relationship with rdss_cdm model
     # predicate taken from https://github.com/samvera/hydra/wiki/Lesson---Define-Relationships-Between-Objects
     belongs_to :rdss_cdm, predicate: ActiveFedora::RDF::Fcrepo::RelsExt.isPartOf
