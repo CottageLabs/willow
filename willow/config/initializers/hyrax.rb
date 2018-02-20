@@ -24,7 +24,7 @@ Hyrax.config do |config|
   # Injected via `rails g hyrax:work RdssCdm`
   config.register_curation_concern :rdss_cdm
 
-  
+
   # Register roles that are expected by your implementation.
   # @see Hyrax::RoleRegistry for additional details.
   # @note there are magical roles as defined in Hyrax::RoleRegistry::MAGIC_ROLES
@@ -47,7 +47,7 @@ Hyrax.config do |config|
   # config.max_notifications_for_dashboard = 5
 
   # How often clients should poll for notifications
-  # config.notifications_update_poll_interval = 30.seconds
+  config.notifications_update_poll_interval = 30.minutes if Rails.env.development?
 
   # How frequently should a file be fixity checked
   # config.max_days_between_fixity_checks = 7
