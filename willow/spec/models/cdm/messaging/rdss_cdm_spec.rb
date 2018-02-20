@@ -245,9 +245,9 @@ RSpec.describe ::Cdm::Messaging::RdssCdm do
     }
     let(:cdm_object) { ::RdssCdm.new(attributes) }
 
-    # it 'should generate a message body hash' do
-    #   puts(described_class.(cdm_object))
-    #   expect(described_class.(cdm_object)).to eq(final_body)
-    # end
+    it 'should generate a message body hash' do
+      puts(described_class.(cdm_object))
+      expect(described_class.(cdm_object)).to eq(final_body)
+    end
   end
 end
