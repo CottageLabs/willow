@@ -1,11 +1,7 @@
 module Cdm
   module Messaging
-    class ObjectTitle
-      class << self
-        def call(object)
-          { objectTitle: object.title }
-        end
-      end
+    class ObjectTitle < MessageMapper
+      attribute_name :title
     end
   end
 end

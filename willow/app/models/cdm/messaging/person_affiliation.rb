@@ -1,10 +1,8 @@
 module Cdm
   module Messaging
-    class PersonAffiliation
-      class << self
-        def call(object)
-          1
-        end
+    class PersonAffiliation < MessageMapper
+      def array_value(*)
+        [1]
       end
     end
   end

@@ -20,7 +20,9 @@ module Cdm
         storageStatus
         storageType
         uploadStatus
-      ).each { |enum_section| ::Cdm::Messaging::Enumerations::const_set(enum_section.classify, Decoder.(enum_section)) }
+      ).each do |enum_section|
+        ::Cdm::Messaging::Enumerations::const_set(enum_section.classify, Decoder.(enum_section))
+      end
     end
   end
 end

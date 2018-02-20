@@ -1,11 +1,7 @@
 module Cdm
   module Messaging
-    class ObjectDate
-      class << self
-        def call(object)
-          { objectDate: '' }
-        end
-      end
+    class ObjectDate < MessageMapper
+      attribute_name :object_dates
     end
   end
 end

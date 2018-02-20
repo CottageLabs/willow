@@ -1,10 +1,11 @@
 module Cdm
   module Messaging
-    class PersonIdentifier
-      class << self
-        def call(object)
-          []
-        end
+    class PersonIdentifier < MessageMapper
+      def call(mapping, object)
+        {
+          personIdentifierValue: 'blackratprime',
+          personIdentifierType: 3
+        }
       end
     end
   end

@@ -1,16 +1,17 @@
 module Cdm
   module Messaging
-    class ObjectPersonRole
+    class ObjectPersonRole < MessageMapper
       class << self
-        def call(object)
-          object.people.map do |person|
+        def switch_person_and_role(mapping, object)
+          object.object_people.map do |person|
             person.object_person_roles.map do |role|
-              {
-                person: Person.(person),
-                role: Enumerations::PersonRole.(role)
-              }
+              ::Cdm::Messaging::Person.(:person, mapping.first['person'], person).merge({ role: Enumerations::PersonRole.send(role.role_type) })
             end
           end.flatten
+        end
+
+        def call(name, mapping, object)
+          { name=>switch_person_and_role(mapping, object) }
         end
       end
     end

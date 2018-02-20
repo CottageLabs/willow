@@ -1,9 +1,10 @@
 module Cdm
   module Messaging
-    class ObjectFile
+    class ObjectFile < MessageMapper
       class << self
-        def call(object)
-          { objectFile: '' }
+        def call(name, mapping, object)
+          # TODO We're throwing this away for now. Fix once file is completed.
+          {}
         end
       end
     end

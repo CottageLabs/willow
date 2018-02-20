@@ -1,6 +1,6 @@
 module Cdm
   module Messaging
-    class ObjectUuid < MessageMapper
+    class PersonUuid < MessageMapper
       attribute_name :id
     end
   end

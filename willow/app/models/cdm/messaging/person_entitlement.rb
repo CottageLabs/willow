@@ -1,10 +1,8 @@
 module Cdm
   module Messaging
-    class PersonEntitlement
-      class << self
-        def call(object)
-          1
-        end
+    class PersonEntitlement < MessageMapper
+      def array_value(*)
+        [1]
       end
     end
   end

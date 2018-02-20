@@ -1,10 +1,8 @@
 module Cdm
   module Messaging
-    class RightsStatement
-      class << self
-        def call(object)
-          { rightsStatement: object.rights_statements }
-        end
+    class RightsStatement < MessageMapper
+      def value(object)
+        object.rights_statement.to_a
       end
     end
   end

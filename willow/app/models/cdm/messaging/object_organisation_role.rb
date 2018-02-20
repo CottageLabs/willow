@@ -1,10 +1,10 @@
 module Cdm
   module Messaging
-    class ObjectOrganisationRole
-      class << self
-        def call(object)
-          { objectOrganisationRole: '' }
-        end
+    class ObjectOrganisationRole < MessageMapper
+      attribute_name :object_organisation_roles
+
+      def value(object)
+        ''
       end
     end
   end

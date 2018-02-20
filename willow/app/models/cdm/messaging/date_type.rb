@@ -1,6 +1,6 @@
 module Cdm
   module Messaging
-    class ObjectRights < MessageMapper
+    class DateType < EnumerationMapper
     end
   end
 end

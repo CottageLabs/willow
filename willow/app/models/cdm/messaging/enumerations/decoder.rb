@@ -20,15 +20,15 @@
 #       class SectionName
 #         class << self
 #           def value1
-#             '1'
+#             1
 #           end
 #
 #           def value2
-#             '2'
+#             2
 #           end
 #
 #           def value3
-#             '3'
+#             3
 #           end
 #         end
 #       end
@@ -36,7 +36,7 @@
 #   end
 # end
 #
-# Since we don't actually care about the strings returned, only their symbolic representation and indexes, no
+# Since we don't actually care about the case of the string names, only their symbolic representation and indexes, no
 # translation checks other than conversion to symbols needs to be done. The JSON.parser also contains a symboliser
 # which may be more efficient than calling underscore.downcase.intern, but I'd prefer to be more explicit until properly
 # testing the Json parser version.
@@ -57,7 +57,7 @@ module Cdm
           def define_class_for(section, decoder)
             Class.new do
               decoder.(section).each_with_index do | object, index |
-                define_singleton_method(object.underscore.downcase.intern) { (index+1).to_s }
+                define_singleton_method(object.underscore.downcase.intern) { (index+1) }
               end
             end
           end

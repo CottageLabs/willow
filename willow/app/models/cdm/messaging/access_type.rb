@@ -1,6 +1,6 @@
 module Cdm
   module Messaging
-    class ObjectRights < MessageMapper
+    class AccessType < EnumerationMapper
     end
   end
 end

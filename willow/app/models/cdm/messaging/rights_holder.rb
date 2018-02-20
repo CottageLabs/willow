@@ -1,10 +1,8 @@
 module Cdm
   module Messaging
-    class RightsHolder
-      class << self
-        def call(object)
-          { rightsHolder: object.rights_holders }
-        end
+    class RightsHolder < MessageMapper
+      def value(object)
+        object.rights_holder.to_a
       end
     end
   end

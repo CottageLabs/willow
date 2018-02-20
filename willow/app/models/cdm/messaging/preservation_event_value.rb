@@ -1,8 +1,8 @@
 module Cdm
   module Messaging
-    class PersonOrganisationUnit < MessageMapper
+    class PreservationEventValue < MessageMapper
       def value(object)
-        {}
+        ''
       end
     end
   end
