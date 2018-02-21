@@ -1,9 +1,4 @@
 require 'rails_helper'
-require 'vcr'
-#
-VCR.configure do |c|
-  c.allow_http_connections_when_no_cassette = true
-end
 
 RSpec.describe ::Cdm::Messaging::RdssCdm do
   describe 'generates a message body with a passed CDM object' do
@@ -125,8 +120,9 @@ RSpec.describe ::Cdm::Messaging::RdssCdm do
     let(:cdm_object) { ::RdssCdm.new(attributes) }
 
     it 'should generate a message body hash' do
-      puts(described_class.(cdm_object))
-      expect(described_class.(cdm_object)).to eq(final_body)
+      VCR.use_cassette('rdss_cdm_messaging', match_requests_on: [:method, :host]) do
+        expect(described_class.(cdm_object)).to eq(final_body)
+      end
     end
   end
 end
