@@ -4,13 +4,14 @@
 module Cdm
   module Messaging
     class ObjectRelatedIdentifier < MessageMapper
+      include AttributeMapper
       attribute_name :object_related_identifiers
 
       def hash_value(message_map, object)
         {
-          relation_type: Enumerations::RelationType.send(object.relation_type),
-          identifier_type: Enumerations::IdentifierType.send(object.identifier.identifier_type),
-          identifier_value: object.identifier.identifier_value
+          relationType: Enumerations::RelationType.send(object.relation_type),
+          identifierType: Enumerations::IdentifierType.send(object.identifier.identifier_type),
+          identifierValue: object.identifier.identifier_value
         }
       end
 

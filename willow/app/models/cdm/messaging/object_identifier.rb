@@ -4,6 +4,7 @@
 module Cdm
   module Messaging
     class ObjectIdentifier < MessageMapper
+      include AttributeMapper
       attribute_name :object_identifiers
 
       def hash_value(message_map, object)

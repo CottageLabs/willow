@@ -3,8 +3,6 @@ module Cdm
     class MessageMapper
       attr_reader :name
       class << self
-        attr_accessor :attribute_name_in_model
-
         def call(name, message_map, object)
           new(name).(message_map, object)
         end
@@ -16,15 +14,14 @@ module Cdm
             ::Cdm::Messaging::MessageMapper
           end
         end
-
-        def attribute_name(name)
-          @attribute_name_in_model=name
-        end
       end
 
       def initialize(name)
         @name=name
-        self.class.attribute_name_in_model||=name.to_s.underscore.downcase
+      end
+
+      def attribute_name
+        name.to_s.underscore.downcase
       end
 
       def decode_message_map(message_map, object)
@@ -34,7 +31,7 @@ module Cdm
           when Array
             array_value(message_map, object)
           when NilClass
-            value(object, self.class.attribute_name_in_model)
+            value(object, attribute_name)
           else
             value(object, message_map.to_s.underscore.downcase)
         end
@@ -52,14 +49,14 @@ module Cdm
 
       def array_value(message_map, object)
         message_map.map do |decoder|
-          object.send(self.class.attribute_name_in_model).map do |item|
+          object.send(attribute_name).map do |item|
             decoder.nil? ? value(object) : decode_message_map(decoder, item)
           end
         end.flatten
       end
 
-      def value(object, attribute_name=nil)
-        attribute_name && object.send(attribute_name) || object.send(self.class.attribute_name_in_model)
+      def value(object, override_name=nil)
+        override_name && object.send(override_name) || object.send(attribute_name)
       end
     end
   end

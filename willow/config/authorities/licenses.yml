@@ -1,5 +1,5 @@
 terms:
-    - id: http://opendefinition.org/licenses/cc-zero/
+    - id: http/opendefinition.org/licenses/cc-zero/
       term: Creative Commons CC Zero License (cc-zero)
       active: true
     - id: https://creativecommons.org/publicdomain/zero/1.0/

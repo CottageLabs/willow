@@ -1,8 +1,8 @@
 module Cdm
   module Messaging
-    class PersonUuid < MessageMapper
+    class OrganisationName < MessageMapper
       include AttributeMapper
-      attribute_name :id
+      attribute_name :name
     end
   end
 end

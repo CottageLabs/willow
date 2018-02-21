@@ -140,7 +140,8 @@ module Hyrax
       [
         :id,
         :role,
-        :_destroy
+        :_destroy,
+        organisation_attributes: %i[jisc_id name address organisation_type]
       ]
     end
 
