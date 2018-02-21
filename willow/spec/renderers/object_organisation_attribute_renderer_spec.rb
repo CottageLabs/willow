@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 RSpec.describe ObjectOrganisationAttributeRenderer do
-  Organisation = Struct.new(:jisc_id, :name, :organisation_type, :address)
+  MockOrganisation = Struct.new(:jisc_id, :name, :organisation_type, :address)
   let(:organisation) do
-    Organisation.new(
+    MockOrganisation.new(
       123,
       'Some Organisation',
       'charity',
