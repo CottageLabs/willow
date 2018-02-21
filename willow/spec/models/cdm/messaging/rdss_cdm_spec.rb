@@ -49,8 +49,8 @@ RSpec.describe ::Cdm::Messaging::RdssCdm do
         ],
         object_rights_attributes: [
           {
-            rights_statement: ['string'],
-            rights_holder: ['string'],
+            rights_statement: ['Rights statement'],
+            rights_holder: ['Rights holder'],
             licence: ['https://creativecommons.org/publicdomain/zero/1.0/'],
             accesses_attributes: [{ access_type: 'controlled', access_statement: 'Statement 1' }]
           },
@@ -65,7 +65,7 @@ RSpec.describe ::Cdm::Messaging::RdssCdm do
         "objectCategory": ["category"],
         "objectDate": [{ "dateValue": "2002-10-02T10:00:00-05:00", "dateType": 1 }],
         "objectDescription": "description",
-        "objectIdentifier": [{ "identifierValue": "http://example.com", "identifierType": 18, "relationType": 1 }],
+        "objectIdentifier": [{ "identifierValue": "http://example.com", "identifierType": 18 }],
         "objectKeywords": ["keyword"],
         "objectValue": 1,
         "objectPersonRole": [
@@ -82,10 +82,10 @@ RSpec.describe ::Cdm::Messaging::RdssCdm do
         "objectRights": [
           {
             "rightsStatement": [
-              "string"
+              "Rights statement"
             ],
             "rightsHolder": [
-              "string"
+              "Rights holder"
             ],
             "licence": [
               {

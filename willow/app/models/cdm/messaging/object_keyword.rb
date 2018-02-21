@@ -2,8 +2,11 @@
 module Cdm
   module Messaging
     class ObjectKeyword < MessageMapper
-      def value(object)
-        object.object_keywords.to_a
+      include AttributeMapper
+      attribute_name :object_keywords
+
+      def value(object, attribute)
+        super.to_a
       end
     end
   end

@@ -1,3 +1,4 @@
+# Endpoint for objectUuid message element. This is called :id in the model.
 module Cdm
   module Messaging
     class ObjectUuid < MessageMapper

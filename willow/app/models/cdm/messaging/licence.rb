@@ -1,4 +1,8 @@
-# Note: In the messaging for some unknown reason, this is objectKeywords rather than objectKeyword.
+# The form only specifies the drop down for the licenceIdentifier, so there is a translation table in the locales
+# section that keys of a normalised version of the url. That is a version with all non-alphanumeric characters replaced
+# by underscores. There is an edge case where two of those could collide, but this is very unlikely, since none of the
+# licences use '_' as a separator between characters.
+#
 module Cdm
   module Messaging
     class Licence < MessageMapper

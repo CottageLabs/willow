@@ -1,3 +1,4 @@
+# Endpoint for organisationName message element. This is called :name in the model.
 module Cdm
   module Messaging
     class OrganisationName < MessageMapper

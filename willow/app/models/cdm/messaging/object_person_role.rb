@@ -1,3 +1,11 @@
+# In the message map, both organisation and person have roles, which have the same 'role' attribute name.
+# Since the person and object_person_role are inverted to make it easier to display and render for the application,
+# the translation from the message map requires that they are flattened and mapped as
+# object_person_role: [{
+#   person: { <person attributes> }
+#   role: <integer>
+# }]
+
 module Cdm
   module Messaging
     class ObjectPersonRole < MessageMapper

@@ -1,3 +1,11 @@
+# In the message map, both organisation and person have roles, which have the same 'role' attribute name.
+# Since the organisation role is also mapped as a 'belongs_to' relationship, the linking of the attributes is
+# slightly different, so the object_organisation_role map is overridden as an array of the form
+# object_organisation_role: [{
+#   organisation: { <organisation attributes> }
+#   role: <integer>
+# }]
+
 module Cdm
   module Messaging
     class ObjectOrganisationRole < MessageMapper

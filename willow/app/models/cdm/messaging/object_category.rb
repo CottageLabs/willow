@@ -1,9 +1,9 @@
-# Note: In the messaging for some unknown reason, this is objectKeywords rather than objectKeyword.
+# Endpoint for objectCategory attribute which is :object_category in the rdss_cdm object
 module Cdm
   module Messaging
     class ObjectCategory < MessageMapper
-      def value(object)
-        object.object_category.to_a
+      def value(object, attribute)
+        super.to_a
       end
     end
   end
