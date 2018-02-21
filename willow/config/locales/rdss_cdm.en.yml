@@ -60,3 +60,9 @@ en:
           identifier_type: Select type
         object_related_identifiers:
           relation_type: Select relation type
+  headers:
+    rdss_cdm:
+      jisc_id: Jisc ID
+      organisation_name:  Name
+      address: Address
+      organisation_type: Organisation Type

@@ -2,17 +2,28 @@ class ObjectOrganisationRolesAttributeRenderer < Hyrax::Renderers::AttributeRend
   private
 
   include Concerns::CssTableRenderer
-  include Concerns::CssListRenderer
+
+  def converter
+    @converter ||= ::Cdm::Json::ObjectOrganisationRoles
+  end
 
   def i18n_prefix
     'rdss.organisation_roles.'
   end
 
-  def render_organisation(organisation)
-    organisation_renderer.attribute_value_to_html(organisation)
+  def organisation(value)
+    converter.new(value).roles[0].organisation
   end
 
-  def roles(value, converter = ::Cdm::Json::ObjectOrganisationRoles)
+  def organisation_renderer
+    ObjectOrganisationAttributeRenderer.new
+  end
+
+  def render_organisation(value)
+    organisation_renderer.render(organisation(value))
+  end
+
+  def roles(value)
     converter.new(value)
   end
 
@@ -23,7 +34,7 @@ class ObjectOrganisationRolesAttributeRenderer < Hyrax::Renderers::AttributeRend
           row do
             header { I18n.t("#{i18n_prefix}#{v.role}") }
           end
-        end.join
+        end.join + render_organisation(value)
       end
     end
   end

@@ -12,11 +12,11 @@ class ObjectRightsAccessesAttributeRenderer < Hyrax::Renderers::AttributeRendere
     table {
       thead {
         row { header { "Access type" } + header { "Access Statement" } }
-      } + 
+      } +
       tbody {
         accesses(value).map do |access|
           row {
-            cell { I18n.t("rdss.access_types.#{access.type}", default: access.type)} + 
+            cell { I18n.t("rdss.access_types.#{access.type}", default: access.type)} +
             cell { access.statement }
           }
         end.join
