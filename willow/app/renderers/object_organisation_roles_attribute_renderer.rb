@@ -7,7 +7,7 @@ class ObjectOrganisationRolesAttributeRenderer < Hyrax::Renderers::AttributeRend
     'rdss.organisation_roles.'
   end
 
-  def organisation(value = ::Cdm::Json::ObjectOrganisationRoles)
+  def organisation(value, converter = ::Cdm::Json::ObjectOrganisationRoles)
     converter.new(value).roles[0].organisation
   end
 

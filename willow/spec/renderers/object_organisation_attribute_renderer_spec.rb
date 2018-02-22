@@ -48,6 +48,7 @@ RSpec.describe ObjectOrganisationAttributeRenderer do
       it 'has the correct value for Organisation type' do
         expect(cells[2].text).to eq('Charity')
       end
+      
       it 'has the correct value for Address' do
         expect(cells[3].text).to eq('123 Some street, Some town')
       end
