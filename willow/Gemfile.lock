@@ -163,6 +163,7 @@ GEM
     blacklight_advanced_search (6.3.1)
       blacklight (~> 6.0, >= 6.0.1)
       parslet
+    blackrat_yaml_config (0.0.3)
     bootstrap-datepicker-rails (1.6.4.1)
       railties (>= 3.0)
     bootstrap-sass (3.3.7)
@@ -797,6 +798,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   blacklight_advanced_search (~> 6.0)
+  blackrat_yaml_config
   bootstrap-datepicker-rails
   capybara (~> 2.13)
   coffee-rails (~> 4.2)

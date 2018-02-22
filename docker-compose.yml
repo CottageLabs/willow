@@ -92,26 +92,26 @@ services:
           memory: 500M
 
 
-  geoblacklight:
-    image: cottagelabs/willow-geoblacklight
-    build:
-      context: geoblacklight/
-      args:
-        - RAILS_ENV=production
-    env_file:
-      - .env
-      - .env.production
-    ports:
-      - "${GEOBLACKLIGHT_EXPOSED_PORT:-3010}:3010"
-    links:
-      - solr
-      - db
-    restart: on-failure
-    deploy:
-      resources:
-        reservations:
-          memory: 250M
-
+#  geoblacklight:
+#    image: cottagelabs/willow-geoblacklight
+#    build:
+#      context: geoblacklight/
+#      args:
+#        - RAILS_ENV=production
+#    env_file:
+#      - .env
+#      - .env.production
+#    ports:
+#      - "${GEOBLACKLIGHT_EXPOSED_PORT:-3010}:3010"
+#    links:
+#      - solr
+#      - db
+#    restart: on-failure
+#    deploy:
+#      resources:
+#        reservations:
+#          memory: 250M
+#
 
   kinesalite:
     image: instructure/kinesalite

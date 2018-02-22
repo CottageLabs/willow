@@ -1,0 +1,286 @@
+{
+  "id": "https://www.jisc.ac.uk/rdss/schema/enumeration.json/#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "accessType": {
+      "enum": [
+        "open",
+        "safeguarded",
+        "controlled",
+        "restricted",
+        "closed"
+      ]
+    },
+    "checksumType": {
+      "enum": [
+        "md5",
+        "sha256"
+      ]
+    },
+    "dateType": {
+      "enum": [
+        "accepted",
+        "approved",
+        "available",
+        "copyrighted",
+        "collected",
+        "created",
+        "issued",
+        "modified",
+        "posted",
+        "published"
+      ]
+    },
+    "eduPersonScopedAffiliation": {
+      "enum": [
+        "student",
+        "staff",
+        "faculty",
+        "employee",
+        "member",
+        "affiliate",
+        "alum",
+        "libraryWalkIn"
+      ]
+    },
+    "fileUse": {
+      "enum": [
+        "originalFile",
+        "thumbnailImage",
+        "extractedText",
+        "preservationMasterFile",
+        "intermediateFile",
+        "serviceFile",
+        "transcript"
+      ]
+    },
+    "identifierType": {
+      "enum": [
+        "ARK",
+        "arXiv",
+        "bibcode",
+        "DOI",
+        "EAN13",
+        "EISSN",
+        "Handle",
+        "ISBN",
+        "ISSN",
+        "ISTC",
+        "LISSN",
+        "LSID",
+        "PMID",
+        "PUID",
+        "PURL",
+        "SourceID",
+        "UPC",
+        "URL",
+        "URN"
+      ]
+    },
+    "messageClass": {
+      "enum": [
+        "Command",
+        "Event",
+        "Document"
+      ]
+    },
+    "messageType": {
+      "enum": [
+        "MetadataCreate",
+        "MetadataUpdate",
+        "MetadataDelete",
+        "MetadataRead",
+        "VocabularyRead",
+        "VocabularyPatch"
+      ]
+    },
+    "objectValue": {
+      "enum": [
+        "normal",
+        "high",
+        "veryHigh"
+      ]
+    },
+    "organisationRole": {
+      "enum": [
+        "funder",
+        "hostingInstitution",
+        "rightsHolder",
+        "sponsor",
+        "publisher",
+        "registrationAgency",
+        "registrationAuthority",
+        "distributor",
+        "advocacy",
+        "author"
+      ]
+    },
+    "organisationType": {
+      "enum": [
+        "charity",
+        "commercial",
+        "funder",
+        "furtherEducation",
+        "government",
+        "health",
+        "heritage",
+        "higherEducation",
+        "other",
+        "professionalBody",
+        "research",
+        "school",
+        "skills",
+        "billing",
+        "display"
+      ]
+    },
+    "personIdentifierType": {
+      "enum": [
+        "ORCID",
+        "FOAF",
+        "Twitter",
+        "eduPersonTargetedID",
+        "eduPersonPrincipleName"
+      ]
+    },
+    "personRole": {
+      "enum": [
+        "administrator",
+        "contactPerson",
+        "dataAnalyser",
+        "dataCollector",
+        "dataCreator",
+        "dataManager",
+        "editor",
+        "investigator",
+        "producer",
+        "projectLeader",
+        "publisher",
+        "projectMember",
+        "relatedPerson",
+        "researcher",
+        "researcherGroup",
+        "rightsHolder",
+        "sponsor",
+        "supervisor",
+        "other",
+        "author",
+        "depositingUser"
+      ]
+    },
+    "preservationEventType": {
+      "enum": [
+        "capture",
+        "compression",
+        "creation",
+        "deaccession",
+        "decompression",
+        "decryption",
+        "deletion",
+        "digitalSignatureValidation",
+        "download",
+        "fixityCheck",
+        "ingestion",
+        "messageDigestCalculation",
+        "migration",
+        "normalisation",
+        "replication",
+        "update",
+        "validation",
+        "virusCheck"
+      ]
+    },
+    "relationType": {
+      "enum": [
+        "cites",
+        "isCitedBy",
+        "isSupplementTo",
+        "isSupplementedBy",
+        "continues",
+        "isContinuedBy",
+        "hasMetadata",
+        "isMetadataFor",
+        "isNewVersionOf",
+        "isPreviousVersionOf",
+        "isPartOf",
+        "hasPart",
+        "isReferencedBy",
+        "references",
+        "isDocumentedBy",
+        "documents",
+        "isCompiledBy",
+        "compiles",
+        "isVariantFormOf",
+        "isOriginalFormOf",
+        "isIdenticalTo",
+        "isReviewedBy",
+        "reviews",
+        "isDerivedFrom",
+        "isSourceOf",
+        "isCommentOn",
+        "hasComment",
+        "isReplyTo",
+        "hasReply",
+        "basedOnData",
+        "hasRelatedMaterial",
+        "isBasedOn",
+        "isBasisFor",
+        "requires",
+        "isRequiredBy",
+        "hasParent",
+        "isParentOf"
+      ]
+    },
+    "resourceType": {
+      "enum": [
+        "artDesignItem",
+        "article",
+        "audio",
+        "book",
+        "bookSection",
+        "conferenceWorkshopItem",
+        "dataset",
+        "examPaper",
+        "image",
+        "journal",
+        "learningObject",
+        "movingImage",
+        "musicComposition",
+        "other",
+        "patent",
+        "performance",
+        "preprint",
+        "report",
+        "review",
+        "showExhibition",
+        "software",
+        "text",
+        "thesisDissertation",
+        "unknown",
+        "website",
+        "workflow",
+        "equipment"
+      ]
+    },
+    "storageStatus": {
+      "enum": [
+        "online",
+        "nearline",
+        "offline"
+      ]
+    },
+    "storageType": {
+      "enum": [
+        "S3",
+        "HTTP"
+      ]
+    },
+    "uploadStatus": {
+      "enum": [
+        "uploadStarted",
+        "uploadComplete",
+        "uploadAborted"
+      ]
+    }
+  }
+}

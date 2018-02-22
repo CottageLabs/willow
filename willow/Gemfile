@@ -26,6 +26,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'hyrax', github: 'cottagelabs/hyrax'
 
 gem 'blacklight_advanced_search', '~> 6.0'
+gem 'blackrat_yaml_config'
+gem 'json-schema', '~> 2.8.0'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
@@ -44,7 +46,6 @@ group :test do
   gem 'capybara', '~> 2.13'
   gem 'factory_girl_rails', '~> 4.8.0'
   gem 'fcrepo_wrapper'
-  gem 'json-schema', '~> 2.8.0'
   gem 'pry-byebug', platforms: %i[mri mingw x64_mingw]
   gem 'rails-controller-testing', '~> 1.0.2'
   gem 'rspec-rails'
