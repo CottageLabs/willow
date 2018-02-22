@@ -1,6 +1,6 @@
 # Overrides the default `li_value` behaviour and creates a faceted attribute
 # link with a humanized value.
-class ObjectRightsLicenseAttributeRenderer < Hyrax::Renderers::AttributeRenderer
+class ObjectRightsLicenceAttributeRenderer < Hyrax::Renderers::AttributeRenderer
   include Utils
 
   private

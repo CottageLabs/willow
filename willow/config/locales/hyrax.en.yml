@@ -15,11 +15,11 @@ en:
           based_near_tesim: Location
           contributor_tesim: Contributor
           creator_tesim: Creator
-          date_created_tesim: Date Created
-          date_modified_dtsi: Date Modified
-          date_uploaded_dtsi: Date Uploaded
+          date_created_tesim: Date created
+          date_modified_dtsi: Date modified
+          date_uploaded_dtsi: Date uploaded
           description_tesim: Description
-          file_format_tesim: File Format
+          file_format_tesim: File format
           identifier_tesim: Identifier
           keyword_tesim: Keyword
           language_tesim: Language
@@ -31,19 +31,19 @@ en:
           object_description: Description
           object_keywords: Keywords
           object_category: Category
-          object_resource_type: Resource Type
-          object_rights_license: License
-          object_rights_rights_statement: Rights Statement
-          object_rights_rights_holder: Rights Holder
+          object_resource_type: Resource type
+          object_rights_licence: Licence
+          object_rights_rights_statement: Rights statement
+          object_rights_rights_holder: Rights holder
           object_rights_accesses: Access
           based_near_tesim: Location
           contributor_tesim: Contributor
           creator_tesim: Creator
-          date_created_tesim: Date Created
-          date_modified_dtsi: Date Modified
-          date_uploaded_dtsi: Date Uploaded
+          date_created_tesim: Date created
+          date_modified_dtsi: Date modified
+          date_uploaded_dtsi: Date uploaded
           description_tesim: Description
-          file_format_tesim: File Format
+          file_format_tesim: File format
           identifier_tesim: Identifier
           keyword_tesim: Keyword
           language_tesim: Language

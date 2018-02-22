@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe ObjectRelatedIdentifiersAttributeRenderer do
 
   describe 'Object Identifiers Attribute Renderer' do
-    
+
     def render_identifier value
       Nokogiri::HTML(described_class.new(:object_identifiers, value).render)
     end

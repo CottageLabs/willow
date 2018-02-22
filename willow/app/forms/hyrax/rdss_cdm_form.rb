@@ -23,6 +23,7 @@ module Hyrax
 
     self.required_fields = [
       :title,
+      :object_description,
       :object_resource_type,
       :object_value,
       :object_people,
@@ -54,7 +55,7 @@ module Hyrax
              :object_rights_attributes=,
              :object_organisation_roles_attributes=,
              :object_identifiers_attributes=,
-             :object_related_identifiers_attributes=,             
+             :object_related_identifiers_attributes=,
              to: :model
 
     # for object_rights, we present the has_many relationship as a has_one
@@ -121,7 +122,7 @@ module Hyrax
         [
           rights_statement: [],
           rights_holder: [],
-          license: [],
+          licence: [],
           accesses_attributes: [
             :id,
             :_destroy,
@@ -139,7 +140,8 @@ module Hyrax
       [
         :id,
         :role,
-        :_destroy
+        :_destroy,
+        organisation_attributes: %i[jisc_id name address organisation_type]
       ]
     end
 
