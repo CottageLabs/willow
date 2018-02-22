@@ -17,7 +17,7 @@ RSpec.describe ::Cdm::Messaging::RdssCdm do
               jisc_id: 1,
               name: "string",
               organisation_type: 'further_education',
-              address: [ "string" ]
+              address: "string"
             },
             role: 'funder'
           }
