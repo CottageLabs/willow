@@ -12,7 +12,7 @@ class RdssCdmIndexer < Hyrax::WorkIndexer
       # Otherwise we will be showing dates that have been deleted
       object_dates = object.object_dates.reject(&:marked_for_destruction?)
       solr_doc[Solrizer.solr_name('object_dates', :displayable)] = object_dates.to_json
-      
+
       # for each object date, index a value for the specific date type to allow sorting by the date type
       # eg object_date_approved
       # As above, we are using the object_dates filtered to remove marked_for_destruction?

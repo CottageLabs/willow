@@ -21,26 +21,44 @@ RSpec.describe RdssCdm do
   end
 
   def valid_attributes
-    {title: ['title'],
+    {
+      title: ['title'],
       object_resource_type: 'object_resource_type',
       object_value: 'object_value',
-      object_people_attributes: [{ given_name: 'Peggy',
-                                   family_name: 'Sue',
-                                   object_person_roles_attributes: [{ role_type: 'author' }, { role_type: 'editor'}]
-                                 },{
-                                   given_name: 'Brian',
-                                   object_person_roles_attributes: [{ role_type: 'messiah' }, { role_type: 'very naughty boy' }]
-                                 }],
-     object_organisation_roles_attributes: [{ role: 'funder' }]
+      object_people_attributes: [
+        {
+          given_name: 'Peggy',
+          family_name: 'Sue',
+          object_person_roles_attributes: [
+            { role_type: 'author' },
+            { role_type: 'editor' }
+          ]
+        },
+        {
+          given_name: 'Brian',
+          object_person_roles_attributes: [
+            { role_type: 'messiah' },
+            { role_type: 'very naughty boy' }
+          ]
+        }
+      ],
+      object_organisation_roles_attributes: [
+        { role: 'funder' }
+      ]
     }
   end
 
   def check_mandatory_validation(field_name:, display_name: nil, association: false, association_content: [])
-    display_name||=field_name
-    VCR.use_cassette('rdss_cdm/create_' + field_name.to_s, match_requests_on: [:method, :host]) do
-      obj = build(:rdss_cdm, (association ? {field_name.to_s + '_attributes' => association_content} : {field_name => nil}))
-      expect(obj.valid?).to eq false
-      expect(obj.errors.messages[field_name]).to include("Your work must have a #{display_name}.")
+    display_name ||= field_name
+
+    VCR.use_cassette("rdss_cdm/create_#{field_name}", match_requests_on: %i[method host]) do
+      build(
+        :rdss_cdm,
+        (association ? { "#{field_name}_attributes" => association_content } : { field_name => nil })
+      ).tap do |obj|
+        expect(obj.valid?).to eq false
+        expect(obj.errors.messages[field_name]).to include("Your work must have a #{display_name}.")
+      end
     end
   end
 
@@ -126,10 +144,6 @@ RSpec.describe RdssCdm do
   end
 
   describe 'object_value' do
-    it 'requires object_value' do
-      check_mandatory_validation(field_name: :object_value, display_name: 'value')
-    end
-
     it 'has object_value' do
       build_and_check_field(field_name: :object_value, content: 'normal')
     end
@@ -149,32 +163,34 @@ RSpec.describe RdssCdm do
       expect(obj.object_dates.first.date_type).to eq 'copyrighted'
     end
 
-#    it 'has the correct rdss_cdm_id' do
-#      obj = build(:rdss_cdm, object_dates_attributes: [{ date_value: '2017-01-01', date_type: 'copyrighted' }])
-#      expect(@obj.object_dates.first.id).to include('#object_dates')
-#    end
-# TODO check rdss_cdm id
+    # TODO check rdss_cdm id
+    xit 'has the correct rdss_cdm_id' do
+      # obj = build(:rdss_cdm, object_dates_attributes: [{ date_value: '2017-01-01', date_type: 'copyrighted' }])
+      # expect(@obj.object_dates.first.id).to include('#object_dates')
+     end
+
 
     it 'rejects date attributes if date is blank' do
-      obj = build(:rdss_cdm, object_dates_attributes: [
-                                                  {
-                                                    date_value: '2017-01-01',
-                                                    date_type: 'copyrighted'
-                                                  },
-                                                  {
-                                                    date_type: 'copyrighted'
-                                                  },
-                                                  {
-                                                    date_value: '2018-01-01'
-                                                  },
-                                                  {
-                                                    date_value: ''
-                                                  }
-                                                ])
+      obj = build(:rdss_cdm, object_dates_attributes:
+                   [
+                     {
+                       date_value: '2017-01-01',
+                       date_type: 'copyrighted'
+                     },
+                     {
+                       date_type: 'copyrighted'
+                     },
+                     {
+                       date_value: '2018-01-01'
+                     },
+                     {
+                       date_value: ''
+                     }
+                   ])
       expect(obj.object_dates.size).to eq(1)
     end
 
-    it 'destroys date' do
+    xit 'destroys date' do
       # TODO: work out how to test destroying a related date through attributes=
       # The main issue is that since we can't save to fedora in the tests, we are unable
       # to create a nested object_date with an id. therefore we can't test sending in parameters
@@ -201,9 +217,13 @@ RSpec.describe RdssCdm do
       expect(obj.object_people.first.given_name).to eq 'Myfanwy'
     end
 
-    # it 'requires an object person role' do
-    #   check_mandatory_validation(field_name: :object_person_roles, display_name: 'role', association: true)
-    # end
+    xit 'requires an object person role' do
+      check_mandatory_validation(
+        field_name: :object_person_roles,
+        display_name: 'role',
+        association: true
+      )
+    end
 
     it 'accepts nested object_person_roles in object_people attributes' do
       obj = build(:rdss_cdm, object_people_attributes: [{ given_name: 'Myfanwy', object_person_roles_attributes: [{role_type: 'author'}, {role_type: 'editor'}]}])
@@ -228,22 +248,59 @@ RSpec.describe RdssCdm do
          expect(obj.valid?).to be_falsey
        end
     end
-    #TODO Find out why validations seem to be always using solr when the associated object is not being instantiated.
+
+    # TODO: Find out why validations seem to be always using solr
+    # when the associated object is not being instantiated.
 
     it 'indexes object_people_attributes' do
-      obj = build(:rdss_cdm, object_people_attributes: [{ given_name: 'Brian'}])
+      obj = build(:rdss_cdm, object_people_attributes: [{ given_name: 'Brian' }])
       doc = obj.to_solr
       expect(doc).to include('object_people_ssm')
     end
 
-    # it 'indexes object_person_roles_attributes' do
-    #   obj = build(:rdss_cdm, object_people_attributes: [{ given_name: 'Brian', object_person_roles_attributes: [{role_type: 'messiah'}, {role_type: 'very naughty boy'}]}])
-    #   doc = obj.to_solr
-    #   expect(doc).to include('object_person_roles_ssm')
-    # end
+    xit 'indexes object_person_roles_attributes' do
+      obj = build(
+              :rdss_cdm,
+              object_people_attributes: [
+                {
+                  given_name: 'Brian',
+                  object_person_roles_attributes: [
+                    { role_type: 'messiah' },
+                    { role_type: 'very naughty boy' }
+                  ]
+                }
+              ]
+            )
+      doc = obj.to_solr
+      expect(doc).to include('object_person_roles_ssm')
+    end
   end
 
   describe 'nested attributes for object_rights' do
+    let(:license) { 'http://creativecommons.org/licenses/by/3.0/us/' }
+    let(:rights_statement) { 'test rights statement' }
+    let(:rights_holder) { 'test rights holder' }
+    let(:access_type) { 'controlled' }
+    let(:access_statement) { 'Statement 1' }
+    let(:obj) do
+      build(
+        :rdss_cdm,
+        object_rights_attributes: [
+          {
+            rights_statement: [rights_statement],
+            rights_holder: [rights_holder],
+            license: [license],
+            accesses_attributes: [
+              {
+                access_type: access_type,
+                access_statement: access_statement
+              }
+            ]
+          }
+        ]
+      )
+    end
+
     it 'accepts object rights attributes' do
       obj = build(:rdss_cdm, object_rights_attributes: [
             {
@@ -280,18 +337,38 @@ RSpec.describe RdssCdm do
   end
 
   describe 'nested attributes for organisation roles' do
-    it 'accepts object_organisation_roles attributes' do
-      obj = build(:rdss_cdm, object_organisation_roles_attributes: [{ role: 'funder'}])
-      expect(obj.object_organisation_roles.first).to be_kind_of ActiveFedora::Base
-      expect(obj.object_organisation_roles.first.role).to eq 'funder'
+    let(:role) { 'funder' }
+    let(:name) { 'Jisc Incorporated' }
+    let(:address) { ['1 The Street'] }
+    let(:organisation_type) { 'commercial' }
+    let(:obj) do
+      build(
+        :rdss_cdm,
+        object_organisation_roles_attributes: [
+          {
+            role: role,
+            organisation_attributes: {
+              jisc_id: 2,
+              name: name,
+              address: address,
+              organisation_type: organisation_type
+            }
+          }
+        ]
+      )
     end
 
-    # it 'requires an object organisation role' do
-    #   check_mandatory_validation(field_name: :object_organisation_roles, display_name: 'role', association: true)
-    # end
+    it 'accepts object_organisation_roles attributes' do
+      expected = obj.object_organisation_roles.first
+      expect(expected).to be_kind_of ActiveFedora::Base
+      expect(expected.role).to eq(role)
+      expect(expected.organisation.jisc_id).to eq(2)
+      expect(expected.organisation.name).to eq(name)
+      expect(expected.organisation.address).to eq(address)
+      expect(expected.organisation.organisation_type).to eq(organisation_type)
+    end
 
     it 'indexes object_organisation_roles_attributes' do
-      obj = build(:rdss_cdm, object_organisation_roles_attributes: [{ role: 'funder'}])
       doc = obj.to_solr
       expect(doc).to include('object_organisation_roles_ssm')
       expect(doc).to include('object_organisation_role_funder_ssi')
@@ -348,7 +425,7 @@ RSpec.describe RdssCdm do
       related_identifier = obj.object_related_identifiers.first
       expect(related_identifier).to be_kind_of ActiveFedora::Base
       expect(related_identifier.relation_type).to eq 'cites'
-      
+
       identifier = related_identifier.identifier
       expect(identifier).to be_kind_of ActiveFedora::Base
       expect(identifier.identifier_type).to eq 'URL'
@@ -373,6 +450,4 @@ RSpec.describe RdssCdm do
       expect(related_identifiers_json[0]['identifier']['identifier_value']).to eq('12345')
     end
   end
-
-
 end

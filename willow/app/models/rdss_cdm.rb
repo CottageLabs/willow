@@ -13,7 +13,7 @@ class RdssCdm < ActiveFedora::Base
   # TODO should really i18n the error messages
   validates :title, presence: { message: 'Your work must have a title.' }
   validates :object_resource_type, presence: { message: 'Your work must have a resource type.' }
-  validates :object_value, presence: { message: 'Your work must have a value.' }
+  # validates :object_organisation_roles, presence: { message: 'Your work must have a role.' }
   # You can't validate associations with ActiveFedora/Solr since it tries to do an http connection to Solr to reconcile
   # how many documents there are. There's a note
   # validates :object_person_roles, presence: { message: I18n.t('willow.fields.presence', type: I18n.t('willow.fields.object_person_role').downcase)}
@@ -96,8 +96,8 @@ class RdssCdm < ActiveFedora::Base
     # Return a single value for form field population.
     super.first || ""
   end
-  
-  # The following properties are also inherited from Hyrax::CoreMetadata 
+
+  # The following properties are also inherited from Hyrax::CoreMetadata
   # along with :title and are required by Hyrax:
   # :depositor
   # :date_uploaded
