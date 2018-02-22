@@ -372,14 +372,6 @@ RSpec.describe RdssCdm do
       expect(expected.organisation.organisation_type).to eq(organisation_type)
     end
 
-    it 'requires an object organisation role' do
-      check_mandatory_validation(
-        field_name: :object_organisation_roles,
-        display_name: 'role',
-        association: true
-      )
-    end
-
     it 'indexes object_organisation_roles_attributes' do
       doc = obj.to_solr
       expect(doc).to include('object_organisation_roles_ssm')
