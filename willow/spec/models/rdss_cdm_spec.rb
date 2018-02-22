@@ -144,10 +144,6 @@ RSpec.describe RdssCdm do
   end
 
   describe 'object_value' do
-    it 'requires object_value' do
-      check_mandatory_validation(field_name: :object_value, display_name: 'value')
-    end
-
     it 'has object_value' do
       build_and_check_field(field_name: :object_value, content: 'normal')
     end
