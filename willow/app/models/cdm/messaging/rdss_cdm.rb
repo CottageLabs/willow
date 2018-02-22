@@ -12,7 +12,7 @@ module Cdm
       class << self
         public
         def call(object)
-          super(self.name.demodulize, metadata_request, object).values.first
+          super(:payload, metadata_request, object)
         end
       end
     end

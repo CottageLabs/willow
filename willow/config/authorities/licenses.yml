@@ -6,7 +6,7 @@ terms:
       term: Open Data Commons Public Domain Dedication and Licence (ODC PDDL)
       active: true
     - id: https://creativecommons.org/licenses/by/4.0/
-      term: Creative Commons Attribution License (cc-by)
+      term: Creative Commons Attribution License (CC BY 4.0)
       active: true
     - id: https://creativecommons.org/licenses/by-sa/4.0/
       term: Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)

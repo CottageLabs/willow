@@ -119,9 +119,9 @@ RSpec.describe ::Cdm::Messaging::RdssCdm do
     }
     let(:cdm_object) { ::RdssCdm.new(attributes) }
 
-    it 'should generate a message body hash' do
+    it 'should generate a message body hash as the payload' do
       VCR.use_cassette('rdss_cdm_messaging', match_requests_on: [:method, :host]) do
-        expect(described_class.(cdm_object)).to eq(final_body)
+        expect(described_class.(cdm_object)[:payload]).to eq(final_body)
       end
     end
   end

@@ -5,7 +5,6 @@ module Cdm
 
     belongs_to :organisation, predicate: ActiveFedora::RDF::Fcrepo::RelsExt.isPartOf, class_name: 'Cdm::Organisation'
     accepts_nested_attributes_for :organisation
-    delegate :jisc_id, :name, :address, :organisation_type, to: :organisation
 
     # Override organisation_attributes
     # There is a wierd bug in active fedora where for a belongs_to association,
