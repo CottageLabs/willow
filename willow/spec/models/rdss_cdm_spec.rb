@@ -144,10 +144,6 @@ RSpec.describe RdssCdm do
   end
 
   describe 'object_value' do
-    it 'requires object_value' do
-      check_mandatory_validation(field_name: :object_value, display_name: 'value')
-    end
-
     it 'has object_value' do
       build_and_check_field(field_name: :object_value, content: 'normal')
     end
@@ -370,14 +366,6 @@ RSpec.describe RdssCdm do
       expect(expected.organisation.name).to eq(name)
       expect(expected.organisation.address).to eq(address)
       expect(expected.organisation.organisation_type).to eq(organisation_type)
-    end
-
-    it 'requires an object organisation role' do
-      check_mandatory_validation(
-        field_name: :object_organisation_roles,
-        display_name: 'role',
-        association: true
-      )
     end
 
     it 'indexes object_organisation_roles_attributes' do

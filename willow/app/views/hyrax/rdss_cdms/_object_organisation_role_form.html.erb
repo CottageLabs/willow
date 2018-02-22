@@ -10,14 +10,15 @@
   <% end %>
   <div class="form-group-with-margin">
     <%= object_organisation_role_form.destroy %>
-  <div class="text-right"><%= remove_button :object_organisation_role %></div>
-  <div class="row">
-    <div class="col-md-3">
+    <div class="text-right"><%= remove_button :object_organisation_role %></div>
+    <div class="row">
+      <div class="col-md-3">
       <%= object_organisation_role_form.role(required: required) %>
-    </div>
-    <div class='col-md-3'>
+      </div>
+      <div class='col-md-3'>
       <%= object_organisation_role_form.destroy %>
       <%= remove_button :object_organisation_role %>
+      </div>
     </div>
   </div>
 </li>
