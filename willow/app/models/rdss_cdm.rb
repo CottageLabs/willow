@@ -4,15 +4,17 @@ class RdssCdm < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
 
   # include methods to check for enabled and disabled content types
-  include EnableContentTypesBehaviour  
+  include EnableContentTypesBehaviour
 
 
   self.indexer = RdssCdmIndexer
   # Change this to restrict which works can be added as a child.
   # self.valid_child_concerns = []
+  # TODO should really i18n the error messages
   validates :title, presence: { message: 'Your work must have a title.' }
   validates :object_resource_type, presence: { message: 'Your work must have a resource type.' }
   validates :object_value, presence: { message: 'Your work must have a value.' }
+  validates :object_organisation_roles, presence: { message: 'Your work must have a role.' }
   # You can't validate associations with ActiveFedora/Solr since it tries to do an http connection to Solr to reconcile
   # how many documents there are. There's a note
   # validates :object_person_roles, presence: { message: I18n.t('willow.fields.presence', type: I18n.t('willow.fields.object_person_role').downcase)}
@@ -35,8 +37,8 @@ class RdssCdm < ActiveFedora::Base
   end
   property :object_category, predicate: ::RDF::Vocab::PROV.category do |index|
     index.as :stored_searchable, :facetable
-  end 
-  
+  end
+
   property :object_resource_type, predicate: ::RDF::Vocab::DC.type, multiple: false do |index|
     index.as :stored_searchable, :facetable
   end
@@ -53,7 +55,7 @@ class RdssCdm < ActiveFedora::Base
 
   #property :object_related_identifier
   has_many :object_related_identifiers, class_name: 'Cdm::IdentifierRelationship'
-  
+
   #property :object_organisation_role
   #property :object_preservation_event
   #property :object_file
@@ -76,7 +78,7 @@ class RdssCdm < ActiveFedora::Base
   accepts_nested_attributes_for :object_related_identifiers, allow_destroy: true, reject_if: :object_related_identifiers_blank?
 
   def self.multiple?(field)
-    # Overriding to return false for `title` (as we can't set multiple: false) 
+    # Overriding to return false for `title` (as we can't set multiple: false)
     if [:title].include? field.to_sym
       false
     else
@@ -85,18 +87,18 @@ class RdssCdm < ActiveFedora::Base
   end
 
   def self.model_attributes(_)
-    # Overriding to cast title back to multivalue when saving. 
+    # Overriding to cast title back to multivalue when saving.
     attrs = super
     attrs[:title] = Array(attrs[:title]) if attrs[:title]
     attrs
   end
 
   def title
-    # Return a single value for form field population. 
+    # Return a single value for form field population.
     super.first || ""
   end
-  
-  # The following properties are also inherited from Hyrax::CoreMetadata 
+
+  # The following properties are also inherited from Hyrax::CoreMetadata
   # along with :title and are required by Hyrax:
   # :depositor
   # :date_uploaded
