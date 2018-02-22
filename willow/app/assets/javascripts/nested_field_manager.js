@@ -80,6 +80,7 @@ var NestedFieldManager = function () {
       this._addAriaLiveRegions();
       this._attachEvents();
       this._addCallbacks();
+      this._manageRemoveButtons();
     }
   }, {
     key: '_addAriaLiveRegions',
@@ -131,6 +132,7 @@ var NestedFieldManager = function () {
 
       }
       this._manageFocus();
+      this._manageRemoveButtons();
     }
   }, {
     key: 'inputIsEmpty',
@@ -229,6 +231,23 @@ var NestedFieldManager = function () {
       $activeField.find(this.removeInputClass).val('1');
       $activeField.hide();
       this._manageFocus();
+      this._manageRemoveButtons();
+    }
+  }, {
+    // Make sure, for a multi-nested form element, that if there is only one entry
+    // the remove button is hidden.
+    key: '_manageRemoveButtons',
+    value: function _manageRemoveButtons() {
+      var $element = $(this.element)
+      // Get the first level of lis for this multi-nested div
+      var $lis = $(this.element).children(this.listClass).children(this.fieldWrapperClass + ':visible');
+      // Get all the remove buttons
+      var $buttons = $element.find('button.remove')
+                            // which are not within a nested multi-nested div with
+                            // respect to this element
+                            .not($element.find('div.multi-nested button.remove'));
+      // hide the button if there is one li, otherwise show it
+      $buttons.toggle($lis.length != 1);
     }
   }]);
 
