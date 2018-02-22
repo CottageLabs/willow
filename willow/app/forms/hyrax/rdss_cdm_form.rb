@@ -27,6 +27,7 @@ module Hyrax
       :object_resource_type,
       :object_value,
       :object_people,
+      :object_dates,      
       :object_rights,
       :object_organisation_roles,
       :object_identifiers,
