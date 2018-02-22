@@ -1,0 +1,18 @@
+en:
+  rdss:
+    organisation_types:
+      charity: Charity
+      commercial: Commercial
+      funder: Funder
+      further_education: Further education
+      government: Government
+      health: Health
+      heritage: Heritage
+      higher_education: Higher education
+      other: Other
+      professional_body: Professional body
+      research: Research
+      school: School
+      skills: Skills
+      billing: Billing
+      display: Display
