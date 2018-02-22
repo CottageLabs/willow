@@ -339,7 +339,7 @@ RSpec.describe RdssCdm do
   describe 'nested attributes for organisation roles' do
     let(:role) { 'funder' }
     let(:name) { 'Jisc Incorporated' }
-    let(:address) { ['1 The Street'] }
+    let(:address) { '1 The Street' }
     let(:organisation_type) { 'commercial' }
     let(:obj) do
       build(
