@@ -7,11 +7,11 @@ module Rdss
       end
 
       def work_update_minor(rdss_cdm)
-        work_logger.info("Updated: #{rdss_cdm.id}")
+        work_logger.info("Minor Updated: #{rdss_cdm.id}")
       end
 
       def work_update_major(rdss_cdm)
-        work_logger.info("Updated: #{rdss_cdm.id}")
+        work_logger.info("Major Updated: #{rdss_cdm.id}")
       end
 
       def work_destroy(rdss_cdm)

@@ -6,21 +6,26 @@ module Rdss
         
         def update(env)
           next_actor.update(env)
-          if work_approved?(env)
-            broadcast(:work_update_minor, env.curation_concern)
+          if curation_concern_approved?(env.curation_concern)
+            if env.object_version_changed?
+              broadcast(:work_update_major, env.curation_concern)
+            else
+              broadcast(:work_update_minor, env.curation_concern)
+            end
           end
         end
 
         def destroy(env)
-          if work_approved?(env)
+          if curation_concern_approved?(env.curation_concern)
             broadcast(:work_destroy, env.curation_concern)
           end
           next_actor.destroy(env)
         end
 
         private 
-          def work_approved?(env)
-            env.curation_concern.state == Vocab::FedoraResourceStatus.active
+
+          def curation_concern_approved?(curation_concern)
+            curation_concern.state == Vocab::FedoraResourceStatus.active
           end
 
       end
