@@ -2,8 +2,20 @@ module Rdss
   module Messaging
     class MessageGenerationSubscriber
 
-      def rdss_cdm_approved(rdss_cdm)
+      def work_approval(rdss_cdm)
         work_logger.info("Approved: #{rdss_cdm.id}")
+      end
+
+      def work_update_minor(rdss_cdm)
+        work_logger.info("Updated: #{rdss_cdm.id}")
+      end
+
+      def work_update_major(rdss_cdm)
+        work_logger.info("Updated: #{rdss_cdm.id}")
+      end
+
+      def work_destroy(rdss_cdm)
+        work_logger.info("Destroyed: #{rdss_cdm.id}")
       end
 
       private

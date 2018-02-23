@@ -2,7 +2,6 @@
 #  `rails generate hyrax:work RdssCdm`
 class RdssCdm < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
-  include Rdss::Messaging::WorkPublisherBehaviour
 
   # include methods to check for enabled and disabled content types
   include EnableContentTypesBehaviour
