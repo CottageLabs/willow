@@ -5,12 +5,6 @@ module Hyrax
     class RdssCdmActor < Hyrax::Actors::BaseActor
       def create(env)
         add_object_uuid(env)
-
-        Rails.logger.info "RdssCdmActor CREATE:
-                            {
-                              object_uuid: '#{ env.attributes[:object_uuid] }'
-                            }"
-
         title_to_array(env)
         super
       end
