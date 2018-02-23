@@ -12,10 +12,10 @@ module Rdss
         end
 
         def destroy(env)
-          next_actor.destroy(env)
           if work_approved?(env)
             broadcast(:work_destroy, env.curation_concern)
           end
+          next_actor.destroy(env)
         end
 
         private 
