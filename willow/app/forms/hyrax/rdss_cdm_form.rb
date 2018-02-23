@@ -10,7 +10,7 @@ module Hyrax
       :object_description,
       :object_keywords,
       :object_category,
-      :object_version,
+      #:object_version,
       :object_resource_type,
       :object_value,
       :object_people,
