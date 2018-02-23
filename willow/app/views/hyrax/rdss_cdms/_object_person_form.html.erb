@@ -1,7 +1,13 @@
 <li class="field-wrapper">
-  <%= object_person_form.honorific_prefix %>
-  <%= object_person_form.given_name %>
-  <%= object_person_form.family_name %>
+  <div class="form-group-with-margin">
+    <%= object_person_form.honorific_prefix %>
+  </div>
+  <div class="form-group-with-margin">  
+    <%= object_person_form.given_name %>
+  </div>
+  <div class="form-group-with-margin">
+    <%= object_person_form.family_name %>
+  </div>
   <%= object_person_form.input :object_person_roles, wrapper: :label_and_hint_only %>
   <div class="multi-nested">
     <ul class="listing">
