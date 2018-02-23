@@ -33,16 +33,15 @@ services:
       - ./willow/seed:/seed:ro       # mount the seed directory so it can be used to load local seed data
     restart: "no"
 
-  geoblacklight:
-    build:
-      args:
-        - RAILS_ENV=development
-    env_file:
-      - .env.development
-    volumes:
-      - ./geoblacklight:/geoblacklight.development
-    restart: "no"
-
+#  geoblacklight:
+#    build:
+#      args:
+#        - RAILS_ENV=development
+#    env_file:
+#      - .env.development
+#    volumes:
+#      - ./geoblacklight:/geoblacklight.development
+#    restart: "no"
 
   #kinesalite:
     #ports:
