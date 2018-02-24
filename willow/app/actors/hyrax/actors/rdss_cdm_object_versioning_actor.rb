@@ -7,7 +7,7 @@ module Hyrax
       end
 
       def update(env)
-        env.attributes[:object_version].next! if CreationConcernApproved.(env) && SignificantFieldsChanged.(env) unless ObjectVersionChanged.(env)
+        env.attributes[:object_version].next! if CurationConcernApproved.(env) && SignificantFieldsChanged.(env) unless ObjectVersionChanged.(env)
         #Not just a refactor, so check if the unless clause is actually necessary, but it felt correct when I was writing it.
         next_actor.update(env)
       end
