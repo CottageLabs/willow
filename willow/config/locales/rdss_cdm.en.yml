@@ -48,7 +48,7 @@ en:
         # would return a hash
         licence: Licensing and distribution information governing access to the dataset.
         rights_holder: The person or organisation who holds the rights for the work
-        jisc_id: Enter an Organisation Identifier if applicable
+        jisc_id: Enter an Organisation identifier if applicable
     prompts:
       rdss_cdm:
         object_resource_type: Select resource type
