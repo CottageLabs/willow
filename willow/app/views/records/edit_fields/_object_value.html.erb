@@ -1,5 +1,7 @@
-<%= f.input :object_value, 
+<% if current_user.admin? %>
+  <%= f.input :object_value, 
   collection: RdssObjectValuesService.select_all_options,  # providing collection will make it a select box by default
   include_blank: false,
   input_html: { class: 'form-control' } # bootstrap class for select box
-%>
+  %>
+<% end %>

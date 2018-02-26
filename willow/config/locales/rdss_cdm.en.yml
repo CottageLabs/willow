@@ -19,6 +19,7 @@ en:
         object_people: People
         object_person_role: Role
         object_organisation_role: Role
+        object_organisation_roles: Organisations
         name: Name
         orcid: Orcid
         object_rights: Rights
@@ -30,7 +31,7 @@ en:
       # would return a hash
       defaults:
         accesses: Access
-        jisc_id: Jisc ID
+        jisc_id: Identifier
     hints:
       rdss_cdm:
         object_resource_type: Pre-defined categories to describe the type of content being uploaded, such as &quot;article&quot; or &quot;dataset.&quot;
@@ -47,6 +48,7 @@ en:
         # would return a hash
         licence: Licensing and distribution information governing access to the dataset.
         rights_holder: The person or organisation who holds the rights for the work
+        jisc_id: Enter an Organisation identifier if applicable
     prompts:
       rdss_cdm:
         object_resource_type: Select resource type
