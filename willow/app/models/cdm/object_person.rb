@@ -22,6 +22,14 @@ module Cdm
       attributes.values_at(*list).any?(&:blank?)
     end
 
+    def display_name
+      [
+        honorific_prefix,
+        given_name,
+        family_name
+      ].join(' ').squish
+    end
+
     def object_person_roles_blank?(attributes)
       any_blank?(attributes, :role_type)
     end

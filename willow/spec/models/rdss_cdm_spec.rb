@@ -371,7 +371,7 @@ RSpec.describe RdssCdm do
     it 'indexes object_organisation_roles_attributes' do
       doc = obj.to_solr
       expect(doc).to include('object_organisation_roles_ssm')
-      expect(doc).to include('object_organisation_role_funder_ssi')
+      expect(doc).to include('object_organisation_role_funder_tesim')
     end
   end
 
