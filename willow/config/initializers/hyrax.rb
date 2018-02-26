@@ -228,6 +228,15 @@ Hyrax.config do |config|
   rescue Errno::ENOENT
     config.browse_everything = nil
   end
+
+
+  Rdss::Messaging::Actors::MessagePublisherActor.subscribe(Rdss::Messaging::MessageGenerationSubscriber.new)
+  Rdss::Messaging::Workflow::WorkApprovalPublisher.subscribe(Rdss::Messaging::MessageGenerationSubscriber.new)
+  
+  Hyrax::CurationConcern.actor_factory.insert_after Hyrax::Actors::TransactionalRequest, Hyrax::Actors::RdssCdmObjectVersioningActor
+
+  Hyrax::CurationConcern.actor_factory.insert_before Hyrax::Actors::CreateWithFilesActor, Rdss::Messaging::Actors::MessagePublisherActor
+
 end
 
 DEFAULT_DATE_FORMAT = ENV['DEFAULT_DATE_FORMAT'] || '%d/%m/%Y'
@@ -238,5 +247,3 @@ Date::DATE_FORMATS[:default] = DEFAULT_DATE_FORMAT
 Qa::Authorities::Local.register_subauthority('subjects', 'Qa::Authorities::Local::TableBasedAuthority')
 Qa::Authorities::Local.register_subauthority('languages', 'Qa::Authorities::Local::TableBasedAuthority')
 Qa::Authorities::Local.register_subauthority('genres', 'Qa::Authorities::Local::TableBasedAuthority')
-
-Hyrax::CurationConcern.actor_factory.insert_after Hyrax::Actors::TransactionalRequest, Hyrax::Actors::RdssCdmObjectVersioningActor
