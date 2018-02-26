@@ -5,29 +5,16 @@ module Rdss
         include Wisper::Publisher
         
         def update(env)
+          #Do this while the old creation_concern is still in scope before calling the next_actor which will persist it.
+          update_type = ObjectVersionChanged.(env) ? :work_update_major : :work_update_minor
           next_actor.update(env)
-          if curation_concern_approved?(env.curation_concern)
-            if env.object_version_changed?
-              broadcast(:work_update_major, env.curation_concern)
-            else
-              broadcast(:work_update_minor, env.curation_concern)
-            end
-          end
+          broadcast(update_type, env.curation_concern) if CurationConcernApproved.(env)
         end
 
         def destroy(env)
-          if curation_concern_approved?(env.curation_concern)
-            broadcast(:work_destroy, env.curation_concern)
-          end
+          broadcast(:work_destroy, env.curation_concern) if CurationConcernApproved.(env)
           next_actor.destroy(env)
         end
-
-        private 
-
-          def curation_concern_approved?(curation_concern)
-            curation_concern.state == Vocab::FedoraResourceStatus.active
-          end
-
       end
     end
   end
