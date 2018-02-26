@@ -20,8 +20,8 @@ module Hyrax
         public
         def to_message
           {
-              messageHeader: ::Rdss::Messaging::Header.(),
-              messageBody: ::Cdm::Messaging::RdssCdm.(@object, event_shortname)
+            messageHeader: ::Rdss::Messaging::Header.(),
+            messageBody: ::Cdm::Messaging::RdssCdm.(@object, event_shortname)
           }
         end
       end
