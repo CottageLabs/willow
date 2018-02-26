@@ -11,8 +11,8 @@ module Cdm
 
       class << self
         public
-        def call(object)
-          super(:payload, metadata_request, object)
+        def call(object, event=:create)
+          super(:payload, metadata_request.send(event), object)
         end
       end
     end
