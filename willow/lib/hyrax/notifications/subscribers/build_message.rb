@@ -17,11 +17,20 @@ module Hyrax
           $1.underscore.downcase.intern
         end
 
+        def header()
+          errors=JSON::Validator.validate()
+          ::Rdss::Messaging::Header.()
+        end
+
+        def body
+          ::Cdm::Messaging::RdssCdm.(@object, event_shortname)
+        end
+
         public
         def to_message
           {
-            messageHeader: ::Rdss::Messaging::Header.(),
-            messageBody: ::Cdm::Messaging::RdssCdm.(@object, event_shortname)
+            messageHeader: header,
+            messageBody: body
           }
         end
       end
