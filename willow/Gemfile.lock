@@ -787,6 +787,7 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
     wisper (2.0.0)
+    wisper-rspec (1.0.1)
     xml-simple (1.1.5)
     xpath (2.1.0)
       nokogiri (~> 1.3)
@@ -833,6 +834,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   webmock (~> 3.0.1)
   wisper (= 2.0.0)
+  wisper-rspec
 
 BUNDLED WITH
    1.16.1
