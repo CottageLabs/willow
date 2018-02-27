@@ -31,7 +31,7 @@ module Cdm
           end
 
           private
-          def initialize(filename="#{Rails.root.to_s}/config/schemas/enumeration.json")
+          def initialize(filename="#{Rails.root.to_s}/config/schema/enumeration.json")
             @__cache__ = JSON.parse(::File.read(filename))['definitions']
           end
         end

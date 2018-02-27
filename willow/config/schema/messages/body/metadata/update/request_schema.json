@@ -1,0 +1,5 @@
+{
+  "id": "https://www.jisc.ac.uk/rdss/schema/messages/body/metadata/update/request_schema.json",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$ref": "https://www.jisc.ac.uk/rdss/schema/research_object.json/#/definitions/object"
+}
