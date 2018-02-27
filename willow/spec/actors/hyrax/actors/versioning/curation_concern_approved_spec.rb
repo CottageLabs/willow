@@ -10,7 +10,7 @@ RSpec.describe CurationConcernApproved do
   let(:inactive_state) {Vocab::FedoraResourceStatus.inactive}
 
   describe "work is approved" do
-    let(:rdss_cdm) { create(:rdss_cdm, state: :active_state ) }
+    let(:rdss_cdm) { create(:rdss_cdm, state: active_state) }
     let(:env) { Hyrax::Actors::Environment.new(rdss_cdm, ability, attributes) }
     it 'CurationConcernApproved returns true.' do
       expect(CurationConcernApproved.(env)).to be true
@@ -18,7 +18,7 @@ RSpec.describe CurationConcernApproved do
   end
 
   describe "work is not approved" do
-    let(:rdss_cdm) { create(:rdss_cdm, state: :inactive_state ) }
+    let(:rdss_cdm) { create(:rdss_cdm, state: inactive_state ) }
     let(:env) { Hyrax::Actors::Environment.new(rdss_cdm, ability, attributes) }
     it 'CurationConcernApproved returns false.' do
       expect(CurationConcernApproved.(env)).to be false
