@@ -257,7 +257,7 @@ class CatalogController < ApplicationController
                      {identifier: {name: :id}},
                      {based_near: {name: :based_near_label}},
                      :keyword,
-                     :depositor,
+                     {depositor: {as: :symbol}},
                      :rights,
                      :license_nested,
                      :other_title,
