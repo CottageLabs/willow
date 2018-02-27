@@ -1,5 +1,7 @@
 require 'rails_helper'
 require 'active_fedora/noid/rspec'
+require 'wisper/rspec/matchers'
+
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
@@ -17,4 +19,6 @@ RSpec.configure do |config|
 
   config.before(:suite) { disable_production_minter! }
   config.after(:suite)  { enable_production_minter! }
+
+  config.include(Wisper::RSpec::BroadcastMatcher)
 end
