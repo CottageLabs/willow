@@ -53,6 +53,7 @@ group :test do
   gem 'vcr', '~> 3.0.3'
   gem 'webmock', '~> 3.0.1'
   gem 'selenium-webdriver'
+  gem 'wisper-rspec'
 end
 
 gem 'rsolr', '>= 1.0'

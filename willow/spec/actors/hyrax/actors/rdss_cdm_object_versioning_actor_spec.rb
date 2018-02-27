@@ -26,7 +26,7 @@ RSpec.describe Hyrax::Actors::RdssCdmObjectVersioningActor do
 
   describe "minor update" do
     let(:attributes) { {:object_version => "1", :title => "test title"} }
-    let(:rdss_cdm) { create(:rdss_cdm, :title => ["test title"], :object_version => "1", state: active_state) }
+    let(:rdss_cdm) { create(:rdss_cdm, title: ["test title"], object_version: "1", state: active_state) }
     let(:env) { Hyrax::Actors::Environment.new(rdss_cdm, ability, attributes) }
     it 'object version remains 1' do
       expect { middleware.update(env) }.not_to change { env.attributes[:object_version] }
