@@ -15,7 +15,7 @@ RSpec.describe Rdss::Messaging::Actors::MessagePublisherActor do
     stack.build(terminator)
   end
 
-  describe "update" do
+  describe "Approved update with minor changes" do
     let(:attributes) { {:object_version => "1"} }
     let(:rdss_cdm) { create(:rdss_cdm, state: active_state, object_version: "1") }
     let(:env) { Hyrax::Actors::Environment.new(rdss_cdm, ability, attributes) }
@@ -24,7 +24,7 @@ RSpec.describe Rdss::Messaging::Actors::MessagePublisherActor do
     end
   end
 
-  describe "update" do
+  describe "Approved update with major changes" do
     let(:attributes) { {:object_version => "1"} }
     let(:rdss_cdm) { create(:rdss_cdm, state: active_state, object_version: "2") }
     let(:env) { Hyrax::Actors::Environment.new(rdss_cdm, ability, attributes) }
@@ -33,7 +33,7 @@ RSpec.describe Rdss::Messaging::Actors::MessagePublisherActor do
     end
   end
 
-  describe "update" do
+  describe "Unapproved update with minor changes" do
     let(:attributes) { {:object_version => "1"} }
     let(:rdss_cdm) { create(:rdss_cdm, state: inactive_state, object_version: "1") }
     let(:env) { Hyrax::Actors::Environment.new(rdss_cdm, ability, attributes) }
@@ -42,7 +42,7 @@ RSpec.describe Rdss::Messaging::Actors::MessagePublisherActor do
     end
   end
 
-  describe "update" do
+  describe "Unapproved update with major changes" do
     let(:attributes) { {:object_version => "1"} }
     let(:rdss_cdm) { create(:rdss_cdm, state: inactive_state, object_version: "2") }
     let(:env) { Hyrax::Actors::Environment.new(rdss_cdm, ability, attributes) }
@@ -51,7 +51,7 @@ RSpec.describe Rdss::Messaging::Actors::MessagePublisherActor do
     end
   end
 
-  describe "destroy" do
+  describe "A destroy" do
     let(:attributes) {}
     let(:rdss_cdm) { create(:rdss_cdm) }
     let(:env) { Hyrax::Actors::Environment.new(rdss_cdm, ability, attributes) }
