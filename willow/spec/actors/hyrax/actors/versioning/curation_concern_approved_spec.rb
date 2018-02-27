@@ -6,7 +6,7 @@ RSpec.describe CurationConcernApproved do
   let(:depositor) { create(:user) }
   let(:attributes) {}
 
-  let(:active_state) {Vocab::FedoraResourceStatus.active}
+  let(:active_state) { Vocab::FedoraResourceStatus.active }
   let(:inactive_state) {Vocab::FedoraResourceStatus.inactive}
 
   describe "work is approved" do
