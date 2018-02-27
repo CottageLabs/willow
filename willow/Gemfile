@@ -53,6 +53,7 @@ group :test do
   gem 'vcr', '~> 3.0.3'
   gem 'webmock', '~> 3.0.1'
   gem 'selenium-webdriver'
+  gem 'wisper-rspec'
 end
 
 gem 'rsolr', '>= 1.0'
@@ -63,3 +64,4 @@ gem 'bootstrap-datepicker-rails'
 gem 'aws-sdk', '>= 2.9.15'
 gem 'tinymce-rails-imageupload', '4.0.17.beta.2' # we need this specific version to fix an asset compilation problem
 # gem 'willow_sword', git: "https://github.com/cottagelabs/willow_sword.git", branch: "master"
+gem 'wisper', '2.0.0'

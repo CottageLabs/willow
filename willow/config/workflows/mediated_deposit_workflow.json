@@ -50,7 +50,7 @@
                         "Hyrax::Workflow::GrantReadToDepositor",
                         "Hyrax::Workflow::RevokeEditFromDepositor",
                         "Hyrax::Workflow::ActivateObject",
-                        "Hyrax::Notifications::Senders::Approve"
+                        "Rdss::Messaging::Workflow::WorkApprovalPublisher"
                     ]
                 }, {
                     "name": "request_review",

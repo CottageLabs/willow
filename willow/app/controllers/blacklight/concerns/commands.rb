@@ -60,7 +60,7 @@ module Blacklight
                                                                 else
                                                                   [name, name, :stored_searchable, options]
                                                                 end
-          local_params_solr_name = send(index_type, name, *solr_options)
+          local_params_solr_name = send("#{index_type}_name", name, *solr_options)
           config.add_search_field(name.to_s) do |field|
             field.label=default_label(label_name)
             field.solr_local_parameters={ qf: local_params_solr_name, pf: local_params_solr_name }
