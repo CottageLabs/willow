@@ -481,3 +481,8 @@ form .field-wrapper label[required="required"]::after {
   color: #d9534f;
   text-decoration: underline;  
 }
+
+/** style fix for fileupload on form **/
+#fileupload td p.name {
+  word-break: break-all;
+}
