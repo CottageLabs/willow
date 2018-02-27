@@ -1,0 +1,26 @@
+{
+  "id": "https://www.jisc.ac.uk/rdss/schema/messages/body/vocabulary/update/request_schema.json/#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "vocabularyId": {
+      "type": "number"
+    },
+    "vocabularyName": {
+      "$ref": "https://www.jisc.ac.uk/rdss/schema/types.json/#/definitions/nonEmptyString"
+    },
+    "vocabularyTerms": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "https://www.jisc.ac.uk/rdss/schema/types.json/#/definitions/nonEmptyString"
+      }
+    }
+  },
+  "required": [
+    "vocabularyId",
+    "vocabularyName",
+    "vocabularyTerms"
+  ],
+  "additionalProperties": false
+}

@@ -12,7 +12,7 @@ module Cdm
       class << self
         public
         def call(object, event=:create)
-          super(:payload, metadata_request.send(event), object)
+          super(:rdss_cdm, metadata_request[event.to_s], object).values.first
         end
       end
     end

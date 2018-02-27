@@ -7,19 +7,19 @@ create_and_update: &create_and_update
   objectPersonRole:
   - person:
       personUuid:
-  #    personIdentifier:
-  #    - personIdentifierValue:
-  #      personIdentifierType:
-  #    personEntitlement:
-  #    -
-  #    personAffiliation:
-  #    -
+      personIdentifier:
+      - personIdentifierValue:
+        personIdentifierType:
+      personEntitlement:
+      -
+      personAffiliation:
+      -
       personGivenName:
       personCn:
       personSn:
-  #    personTelephoneNumber:
-  #    personMail:
-  #    personOrganisationUnit:
+      personTelephoneNumber:
+      personMail:
+      personOrganisationUnit:
   #      organisationUnitUuid:
   #      organisationUnitName:
   #      organisation:
