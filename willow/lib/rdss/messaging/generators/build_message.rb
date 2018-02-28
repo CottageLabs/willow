@@ -1,6 +1,6 @@
-module Hyrax
-  module Notifications
-    module Subscribers
+module Rdss
+  module Messaging
+    module Generators
       class BuildMessage
         class << self
           def default
@@ -11,7 +11,7 @@ module Hyrax
             }.freeze
           end
 
-          def call(payload, event: :create, version: event, header_generator: default[:header_generator], body_generator: default[:body_generator], error_checker: default[:error_checker])
+          def call(payload, event: :create, version: :current, header_generator: default[:header_generator], body_generator: default[:body_generator], error_checker: default[:error_checker])
             new(event: event, version: version, header_generator: header_generator, body_generator: body_generator, error_checker: error_checker).call(payload)
           end
         end
@@ -31,14 +31,18 @@ module Hyrax
         def to_message(errors)
           {
             messageHeader: header_generator.(version: version, event: event, errors: errors),
-            messageBody: body_generator.(payload: payload, version: version, event: event)
+            messageBody: body(payload: payload, version: version, event: event)
           }
+        end
+
+        def body(payload, event: :create, version: :current)
+          @body||=body_generator.(payload, version: version, event: event)
         end
 
         public
 
         def call(payload)
-          to_message(error_checker.(body: body(payload), event: event, version: version))
+          to_message(error_checker.(body: body(payload, event: event, version: version), event: event, version: version))
         end
       end
     end

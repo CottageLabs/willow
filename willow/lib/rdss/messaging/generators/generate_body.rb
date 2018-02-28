@@ -3,8 +3,8 @@ module Rdss
     module Generators
       class GenerateBody
         class << self
-          def call(payload:, version: :current, event: :create, builder: ::Cdm::Messaging::RdssCdm)
-            new(event: event, version: version).call(payload: payload, builder: builder)
+          def call(object, version: :current, event: :create, builder: ::Cdm::Messaging::RdssCdm)
+            new(event: event, version: version).call(object, builder: builder)
           end
         end
 
@@ -15,8 +15,9 @@ module Rdss
           @event=event
         end
 
-        def call(payload:, builder: ::Cdm::Messaging::RdssCdm)
-          builder.(payload: payload, event: event, version: version)
+        public
+        def call(object, builder: ::Cdm::Messaging::RdssCdm)
+          builder.(object, event: event, version: version)
         end
       end
     end
