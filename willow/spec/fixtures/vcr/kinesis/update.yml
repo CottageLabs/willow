@@ -1,0 +1,54 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://kinesalite:4567/
+    body:
+      encoding: UTF-8
+      string: '{"StreamName":"willow-message-stream","PartitionKey":"willow","Data":"eyJtZXNzYWdlSGVhZGVyIjp7Im1lc3NhZ2VJZCI6ImZlODViOGVhLTMyYjctNGEyZi1hN2VhLTBiYmJmNDg5N2FjYSIsIm1lc3NhZ2VDbGFzcyI6IkV2ZW50IiwibWVzc2FnZVR5cGUiOiJNZXRhZGF0YVVwZGF0ZSIsIm1lc3NhZ2VUaW1pbmdzIjp7InB1Ymxpc2hlZFRpbWVzdGFtcCI6IjIwMTgtMDItMjhUMTU6MDY6MTkrMDA6MDAifSwibWVzc2FnZVNlcXVlbmNlIjp7InNlcXVlbmNlIjoiNDA1MzJiNGMtNmMyMS00OTBjLWJiNGQtZmJiZmMxMTFkNzNkIiwicG9zaXRpb24iOjEsInRvdGFsIjoxfSwidmVyc2lvbiI6bnVsbCwiZXJyb3JEZXNjcmlwdGlvbiI6IlRoZSBwcm9wZXJ0eSAnIy9vYmplY3RVdWlkJyBvZiB0eXBlIG51bGwgZGlkIG5vdCBtYXRjaCB0aGUgZm9sbG93aW5nIHR5cGU6IHN0cmluZyBpbiBzY2hlbWEgaHR0cHM6Ly93d3cuamlzYy5hYy51ay9yZHNzL3NjaGVtYS90eXBlcy5qc29uLyM7IFRoZSBwcm9wZXJ0eSAnIy9vYmplY3RQZXJzb25Sb2xlJyBkaWQgbm90IGNvbnRhaW4gYSBtaW5pbXVtIG51bWJlciBvZiBpdGVtcyAxIGluIHNjaGVtYSBodHRwczovL3d3dy5qaXNjLmFjLnVrL3Jkc3Mvc2NoZW1hL3Jlc2VhcmNoX29iamVjdC5qc29uLyM7IFRoZSBwcm9wZXJ0eSAnIy9vYmplY3REZXNjcmlwdGlvbicgb2YgdHlwZSBudWxsIGRpZCBub3QgbWF0Y2ggdGhlIGZvbGxvd2luZyB0eXBlOiBzdHJpbmcgaW4gc2NoZW1hIGh0dHBzOi8vd3d3Lmppc2MuYWMudWsvcmRzcy9zY2hlbWEvdHlwZXMuanNvbi8jOyBUaGUgcHJvcGVydHkgJyMvb2JqZWN0UmlnaHRzJyBkaWQgbm90IGNvbnRhaW4gYSBtaW5pbXVtIG51bWJlciBvZiBpdGVtcyAxIGluIHNjaGVtYSBodHRwczovL3d3dy5qaXNjLmFjLnVrL3Jkc3Mvc2NoZW1hL3Jlc2VhcmNoX29iamVjdC5qc29uLyM7IFRoZSBwcm9wZXJ0eSAnIy9vYmplY3REYXRlJyBkaWQgbm90IGNvbnRhaW4gYSBtaW5pbXVtIG51bWJlciBvZiBpdGVtcyAxIGluIHNjaGVtYSBodHRwczovL3d3dy5qaXNjLmFjLnVrL3Jkc3Mvc2NoZW1hL3Jlc2VhcmNoX29iamVjdC5qc29uLyM7IFRoZSBwcm9wZXJ0eSAnIy9vYmplY3RSZXNvdXJjZVR5cGUnIG9mIHR5cGUgbnVsbCBkaWQgbm90IG1hdGNoIHRoZSBmb2xsb3dpbmcgdHlwZTogaW50ZWdlciBpbiBzY2hlbWEgaHR0cHM6Ly93d3cuamlzYy5hYy51ay9yZHNzL3NjaGVtYS9yZXNlYXJjaF9vYmplY3QuanNvbi8jOyBUaGUgcHJvcGVydHkgJyMvb2JqZWN0VmFsdWUnIG9mIHR5cGUgbnVsbCBkaWQgbm90IG1hdGNoIHRoZSBmb2xsb3dpbmcgdHlwZTogaW50ZWdlciBpbiBzY2hlbWEgaHR0cHM6Ly93d3cuamlzYy5hYy51ay9yZHNzL3NjaGVtYS9yZXNlYXJjaF9vYmplY3QuanNvbi8jOyBUaGUgcHJvcGVydHkgJyMvb2JqZWN0SWRlbnRpZmllcicgZGlkIG5vdCBjb250YWluIGEgbWluaW11bSBudW1iZXIgb2YgaXRlbXMgMSBpbiBzY2hlbWEgaHR0cHM6Ly93d3cuamlzYy5hYy51ay9yZHNzL3NjaGVtYS9yZXNlYXJjaF9vYmplY3QuanNvbi8jOyBUaGUgcHJvcGVydHkgJyMvb2JqZWN0T3JnYW5pc2F0aW9uUm9sZScgZGlkIG5vdCBjb250YWluIGEgbWluaW11bSBudW1iZXIgb2YgaXRlbXMgMSBpbiBzY2hlbWEgaHR0cHM6Ly93d3cuamlzYy5hYy51ay9yZHNzL3NjaGVtYS9yZXNlYXJjaF9vYmplY3QuanNvbi8jIiwiZXJyb3JDb2RlIjoiR0VORVJSMDAxIn0sIm1lc3NhZ2VCb2R5Ijp7Im9iamVjdFV1aWQiOm51bGwsIm9iamVjdFRpdGxlIjoiUkRTUyBDRE0iLCJvYmplY3RQZXJzb25Sb2xlIjpbXSwib2JqZWN0RGVzY3JpcHRpb24iOm51bGwsIm9iamVjdFJpZ2h0cyI6W10sIm9iamVjdERhdGUiOltdLCJvYmplY3RLZXl3b3JkcyI6W10sIm9iamVjdENhdGVnb3J5IjpbXSwib2JqZWN0UmVzb3VyY2VUeXBlIjpudWxsLCJvYmplY3RWYWx1ZSI6bnVsbCwib2JqZWN0SWRlbnRpZmllciI6W10sIm9iamVjdFJlbGF0ZWRJZGVudGlmaWVyIjpbXSwib2JqZWN0T3JnYW5pc2F0aW9uUm9sZSI6W119fQ=="}'
+    headers:
+      Content-Type:
+      - application/x-amz-json-1.1
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby2/2.10.23 ruby/2.3.6 x86_64-linux
+      X-Amz-Target:
+      - Kinesis_20131202.PutRecord
+      X-Amz-Date:
+      - 20180228T150619Z
+      Host:
+      - kinesalite:4567
+      X-Amz-Content-Sha256:
+      - f0fb28e4eb4d36d40d801f9ec98b03733618496deb6e70669ddb4413df805cc2
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ignored/20180228/nowhere/kinesis/aws4_request,
+        SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target,
+        Signature=fb2f8749c0c74e1314d8d01bed4b8a8d5cfeda84af5fdd61a3b981ccbf5065d8
+      Content-Length:
+      - '2716'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - eea33440-1c98-11e8-af0d-b3fbf7e8f61e
+      X-Amz-Id-2:
+      - em2SQsXOu3joXyX4N9B2ezo5P5eKoAROc+0iqK2IhdBjj1HNvK2JM7iPQB1Hax1axxNa383w0n0FAY2POaxX+F+JvlKEf2qu
+      Content-Type:
+      - application/x-amz-json-1.1
+      Content-Length:
+      - '110'
+      Date:
+      - Wed, 28 Feb 2018 15:06:19 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"ShardId":"shardId-000000000000","SequenceNumber":"49581992966770940722284629558815250379294679489792966658"}'
+    http_version: 
+  recorded_at: Wed, 28 Feb 2018 15:06:19 GMT
+recorded_with: VCR 3.0.3

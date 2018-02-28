@@ -5,7 +5,9 @@ RSpec.describe Rdss::Messaging::Workflow::WorkApprovalPublisher do
 
   describe "A work reaching the approval stage" do
     it 'broadcasts a work approval' do
-      expect { described_class.(target: rdss_cdm) }.to broadcast(:work_approval)
+      VCR.use_cassette('kinesis/approve', :match_requests_on => [:method, :host]) do
+        expect { described_class.(target: rdss_cdm) }.to broadcast(:work_approval)
+      end
     end
   end
 

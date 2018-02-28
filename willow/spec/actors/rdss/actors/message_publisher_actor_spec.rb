@@ -20,7 +20,9 @@ RSpec.describe Rdss::Messaging::Actors::MessagePublisherActor do
     let(:rdss_cdm) { create(:rdss_cdm, state: active_state, object_version: "1") }
     let(:env) { Hyrax::Actors::Environment.new(rdss_cdm, ability, attributes) }
     it 'broadcasts a minor update' do
-      expect { middleware.update(env) }.to broadcast(:work_update_minor)
+      VCR.use_cassette('kinesis/update', :match_requests_on => [:method, :host]) do
+        expect { middleware.update(env) }.to broadcast(:work_update_minor)
+      end
     end
   end
 
@@ -29,7 +31,9 @@ RSpec.describe Rdss::Messaging::Actors::MessagePublisherActor do
     let(:rdss_cdm) { create(:rdss_cdm, state: active_state, object_version: "2") }
     let(:env) { Hyrax::Actors::Environment.new(rdss_cdm, ability, attributes) }
     it 'broadcasts a major update' do
-      expect { middleware.update(env) }.to broadcast(:work_update_major)
+      VCR.use_cassette('kinesis/create', :match_requests_on => [:method, :host]) do
+        expect { middleware.update(env) }.to broadcast(:work_update_major)
+      end
     end
   end
 
