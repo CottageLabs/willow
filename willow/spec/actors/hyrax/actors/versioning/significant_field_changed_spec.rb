@@ -6,7 +6,7 @@ RSpec.describe SignificantFieldsChanged do
   let(:depositor) { create(:user) }
 
   describe "Significant fields have changed by title" do
-    let(:attributes) { {:title => "A different test title"} }
+    let(:attributes) { {:title => ["A different test title"]} }
     let(:rdss_cdm) { create(:rdss_cdm, title: ["A test title"] ) }
     let(:env) { Hyrax::Actors::Environment.new(rdss_cdm, ability, attributes) }
     it 'the work title has changed' do
@@ -15,7 +15,7 @@ RSpec.describe SignificantFieldsChanged do
   end
 
   describe "Significant fields have changed by uploaded files" do
-    let(:attributes) { {:title => "A test title", :uploaded_files => [1] } }
+    let(:attributes) { {:title => ["A test title"], :uploaded_files => [1] } }
     let(:rdss_cdm) { create(:rdss_cdm, title: ["A test title"] ) }
     let(:env) { Hyrax::Actors::Environment.new(rdss_cdm, ability, attributes) }
     it 'the work has an uploaded file' do
@@ -24,7 +24,7 @@ RSpec.describe SignificantFieldsChanged do
   end
 
   describe "Significant fields have not changed" do
-    let(:attributes) { {:title => "A test title"} }
+    let(:attributes) { {:title => ["A test title"]} }
     let(:rdss_cdm) { create(:rdss_cdm, title: ["A test title"] ) }
     let(:env) { Hyrax::Actors::Environment.new(rdss_cdm, ability, attributes) }
     it 'the work title has not changed' do
