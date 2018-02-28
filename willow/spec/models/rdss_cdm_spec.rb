@@ -74,7 +74,7 @@ RSpec.describe RdssCdm do
 
     it 'has a single valued title field' do
       obj = build(:rdss_cdm, title: ['test rdss_cdm']) # Note it's actually multivalue so we set it as an array
-      expect(obj.title).to eq 'test rdss_cdm' # but title is returned as a single string
+      expect(obj.title).to eq ['test rdss_cdm'] # it's returned as an array
     end
 
     it 'indexes title' do
