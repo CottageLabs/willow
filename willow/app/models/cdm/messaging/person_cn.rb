@@ -3,7 +3,7 @@ module Cdm
   module Messaging
     class PersonCn < MessageMapper
       include AttributeMapper
-      attribute_name :given_name
+      attribute_name :display_name
     end
   end
 end

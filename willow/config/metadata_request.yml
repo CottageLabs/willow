@@ -1,127 +1,130 @@
 ---
-create_and_update: &create_and_update
-  # NOTE: This document actually directly controls how the message is generated. Adding a new or removing an item needs
-  # to be done in conjunction with the edge
-  objectUuid:
-  objectTitle:
-  objectPersonRole:
-  - person:
-      personUuid:
-      personIdentifier:
-      - personIdentifierValue:
-        personIdentifierType:
-      personEntitlement:
+2.0.0: &latest
+  create_and_update: &create_and_update
+    # NOTE: This document actually directly controls how the message is generated. Adding a new or removing an item needs
+    # to be done in conjunction with the edge
+    objectUuid:
+    objectTitle:
+    objectPersonRole:
+    - person:
+        personUuid:
+        personIdentifier:
+        - personIdentifierValue:
+          personIdentifierType:
+        personEntitlement:
+        -
+        personAffiliation:
+        -
+        personGivenName:
+        personCn:
+        personSn:
+        personTelephoneNumber:
+        personMail:
+        personOrganisationUnit:
+          organisationUnitUuid:
+          organisationUnitName:
+          organisation:
+            organisationJiscId:
+            organisationName:
+            organisationType:
+            organisationAddress:
+      role:
+    objectDescription:
+    objectRights:
+    - rightsStatement:
       -
-      personAffiliation:
+      rightsHolder:
       -
-      personGivenName:
-      personCn:
-      personSn:
-      personTelephoneNumber:
-      personMail:
-      personOrganisationUnit:
-  #      organisationUnitUuid:
-  #      organisationUnitName:
-  #      organisation:
-  #        organisationJiscId:
-  #        organisationName:
-  #        organisationType:
-  #        organisationAddress:
-    role:
-  objectDescription:
-  objectRights:
-  - rightsStatement:
+      licence:
+      - licenceName:
+        licenceIdentifier:
+      access:
+      - accessType:
+        accessStatement:
+    objectDate:
+    - dateValue:
+      dateType:
+    objectKeywords:
     -
-    rightsHolder:
+    objectCategory:
     -
-    licence:
-    - licenceName:
-      licenceIdentifier:
-    access:
-    - accessType:
-      accessStatement:
-  objectDate:
-  - dateValue:
-    dateType:
-  objectKeywords:
-  -
-  objectCategory:
-  -
-  objectResourceType:
-  objectValue:
-  objectIdentifier:
-  - identifierValue:
-    identifierType:
-  objectRelatedIdentifier:
-  - identifierValue:
-    identifierType:
-    relationType:
-  objectOrganisationRole:
-  - organisation:
-      organisationJiscId:
-      organisationName:
-      organisationType:
-      organisationAddress:
-    role:
-  #objectPreservationEvent:
-  #- preservationEventValue:
-  #  preservationEventType:
-  #  preservationEventDetail:
-  #objectFile:
-  #- fileUuid:
-  #  fileIdentifier:
-  #  fileName:
-  #  fileSize:
-  #  fileLabel:
-  #  fileDateCreated:
-  #    dateValue:
-  #    dateType:
-  #  fileRights:
-  #    rightsStatement:
-  #    -
-  #    rightsHolder:
-  #    -
-  #    licence:
-  #    - licenceName:
-  #      licenceIdentifier:
-  #    access:
-  #    - accessType:
-  #      accessStatement:
-  #  fileChecksum:
-  #  - checksumUuid:
-  #    checksumType:
-  #    checksumValue:
-  #  fileFormatType:
-  #  fileCompositionLevel:
-  #  fileHasMimeType:
-  #  fileDateModified:
-  #  - dateValue:
-  #    dateType:
-  #  filePuid:
-  #  -
-  #  fileUse:
-  #  filePreservationEvent:
-  #  - preservationEventValue:
-  #    preservationEventType:
-  #    preservationEventDetail:
-  #  fileUploadStatus:
-  #  fileStorageStatus:
-  #  fileLastDownloaded:
-  #    dateValue:
-  #    dateType:
-  #  fileTechnicalAttributes:
-  #  -
-  #  fileStorageLocation:
-  #  fileStoragePlatform:
-  #    storagePlatformUuid:
-  #    storagePlatformName:
-  #    storagePlatformType:
-  #    storagePlatformCost:
-create:
-  <<: *create_and_update
-read:
-  objectUuid:
-update:
-  <<: *create_and_update
-delete:
-  objectUuid:
+    objectResourceType:
+    objectValue:
+    objectIdentifier:
+    - identifierValue:
+      identifierType:
+    objectRelatedIdentifier:
+    - identifierValue:
+      identifierType:
+      relationType:
+    objectOrganisationRole:
+    - organisation:
+        organisationJiscId:
+        organisationName:
+        organisationType:
+        organisationAddress:
+      role:
+    #objectPreservationEvent:
+    #- preservationEventValue:
+    #  preservationEventType:
+    #  preservationEventDetail:
+    #objectFile:
+    #- fileUuid:
+    #  fileIdentifier:
+    #  fileName:
+    #  fileSize:
+    #  fileLabel:
+    #  fileDateCreated:
+    #    dateValue:
+    #    dateType:
+    #  fileRights:
+    #    rightsStatement:
+    #    -
+    #    rightsHolder:
+    #    -
+    #    licence:
+    #    - licenceName:
+    #      licenceIdentifier:
+    #    access:
+    #    - accessType:
+    #      accessStatement:
+    #  fileChecksum:
+    #  - checksumUuid:
+    #    checksumType:
+    #    checksumValue:
+    #  fileFormatType:
+    #  fileCompositionLevel:
+    #  fileHasMimeType:
+    #  fileDateModified:
+    #  - dateValue:
+    #    dateType:
+    #  filePuid:
+    #  -
+    #  fileUse:
+    #  filePreservationEvent:
+    #  - preservationEventValue:
+    #    preservationEventType:
+    #    preservationEventDetail:
+    #  fileUploadStatus:
+    #  fileStorageStatus:
+    #  fileLastDownloaded:
+    #    dateValue:
+    #    dateType:
+    #  fileTechnicalAttributes:
+    #  -
+    #  fileStorageLocation:
+    #  fileStoragePlatform:
+    #    storagePlatformUuid:
+    #    storagePlatformName:
+    #    storagePlatformType:
+    #    storagePlatformCost:
+  create:
+    <<: *create_and_update
+  read:
+    objectUuid:
+  update:
+    <<: *create_and_update
+  delete:
+    objectUuid:
+current:
+  <<: *latest

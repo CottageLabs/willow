@@ -23,12 +23,5 @@ module Cdm
         end
       end
     end
-
-    PersonIdentifier = DefaultMapper
-    PersonEntitlement = DefaultMapper
-    PersonAffiliation = DefaultMapper
-    PersonTelephoneNumber = DefaultMapper
-    PersonMail = DefaultMapper
-    PersonOrganisationUnit = DefaultMapper
   end
 end

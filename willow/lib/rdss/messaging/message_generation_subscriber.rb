@@ -1,7 +1,6 @@
 module Rdss
   module Messaging
     class MessageGenerationSubscriber
-
       def work_approval(rdss_cdm)
         work_logger.info("Approved: #{rdss_cdm.id}")
       end
