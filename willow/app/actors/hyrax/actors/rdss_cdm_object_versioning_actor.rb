@@ -2,7 +2,7 @@ module Hyrax
   module Actors
     class RdssCdmObjectVersioningActor < AbstractActor
       def create(env)
-        env.attributes[:object_version]='1' if env.attributes[:object_version].empty?
+        env.attributes[:object_version]='1' if env.attributes[:object_version].blank?
         next_actor.create(env)
       end
 

@@ -4,7 +4,7 @@ RSpec.describe ::Cdm::Messaging::RdssCdm do
   describe 'generates a message body with a passed CDM object' do
     let(:attributes) {
       {
-        id: '5680e8e0-28a5-4b20-948e-fd0d08781e0b',
+        object_uuid: '5680e8e0-28a5-4b20-948e-fd0d08781e0b',
         title: ['title'],
         object_category: ['category'],
         object_dates_attributes: [{ date_value: "2002-10-02T10:00:00-05:00", date_type: 'accepted' }],
@@ -50,7 +50,7 @@ RSpec.describe ::Cdm::Messaging::RdssCdm do
             accesses_attributes: [{ access_type: 'controlled', access_statement: 'Statement 1' }]
           },
         ],
-        object_value: 1
+        object_value: 'normal'
       }
     }
     let(:final_body) {
@@ -67,9 +67,26 @@ RSpec.describe ::Cdm::Messaging::RdssCdm do
           {
             "person": {
               "personUuid": nil,
+              "personIdentifier": [
+                "personIdentifierType": 1,
+                "personIdentifierValue": 'deprecated'
+              ],
+              "personEntitlement": [1],
+              "personAffiliation": [1],
               "personGivenName": "Paul",
-              "personCn": "Paul",
+              "personCn": "Mr. Paul Mak",
               "personSn": "Mak",
+              :personTelephoneNumber=>"1",
+              :personMail=>"",
+              :personOrganisationUnit=>{
+                :organisation=>{
+                  :organisationJiscId=>1,
+                  :organisationName=>"deprecated",
+                  :organisationType=>1,
+                  :organisationAddress=>"deprecated"
+                },
+                :organisationUnitUuid=>"470956e0-56de-4cdc-b182-c0334851a170",
+                :organisationUnitName=>"deprecated"}
             },
             "role": 20
           }
@@ -121,7 +138,7 @@ RSpec.describe ::Cdm::Messaging::RdssCdm do
 
     it 'should generate a message body hash as the payload' do
       VCR.use_cassette('rdss_cdm_messaging', match_requests_on: [:method, :host]) do
-        expect(described_class.(cdm_object)[:payload]).to eq(final_body)
+        expect(described_class.(cdm_object)).to eq(final_body)
       end
     end
   end

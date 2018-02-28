@@ -2,7 +2,7 @@
 
 module Cdm
   module Messaging
-    class DefaultMapper < MessageMapper
+    class EmptyMapper < MessageMapper
       def hash_value(*)
         {}
       end
