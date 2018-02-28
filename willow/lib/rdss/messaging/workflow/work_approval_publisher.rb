@@ -10,7 +10,6 @@ module Rdss
           end
         end
 
-        private
         def call(target:)
           broadcast(:work_approval, target)
         end
