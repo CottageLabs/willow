@@ -1,7 +1,7 @@
 module Rdss
   module Messaging
     module Schema
-      class GetPayloadErrors
+      class Validation
         class << self
           def call(body:, event: :create, version: :current, schema_file: ::Rdss::Messaging::Schema::SchemaFile, schema_reader: ::Rdss::Messaging::Schema::VersionedSchemaReader, schema_validator: ::Rdss::Messaging::Schema::Validator)
             new(version: version, event: event, schema_file: schema_file, schema_reader: schema_reader, schema_validator: schema_validator).call(body: body)
@@ -20,7 +20,7 @@ module Rdss
         end
 
         public
-        def call(body)
+        def call(body:)
           schema_validator.fully_validate(schema, body, schema_reader: schema_reader.new(version: version))
         end
       end

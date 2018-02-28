@@ -11,19 +11,20 @@ module Rdss
         end
 
         private
+        attr_reader :event, :version
+
         def initialize(event: :create, version: :current)
           @event=event
           @version=version
         end
 
         def default_version
-          version_map['2.0.0']
+          version_map['current']
         end
 
         def version_map
           {
-            current: '2.0.1-SNAPSHOT',
-            '2.0.1': '2.0.1-SNAPSHOT',
+            'current': '2.0.0-SNAPSHOT',
             '2.0.0': '2.0.0-SNAPSHOT'
           }
         end
@@ -35,18 +36,27 @@ module Rdss
           }
         end
 
-        def call(errors:)
+        def errors_hash(errors)
+          errors.present? ? decode_errors(errors) : {}
+        end
+        
+        def default_hash
           {
             messageId: ::SecureRandom.uuid,
             messageClass: 'Event',
-            messageType: "Metadata#{event.camelize}",
+            messageType: "Metadata#{event.to_s.camelize}",
             messageTimings: { publishedTimestamp: DateTime.now.rfc3339 },
             messageSequence: { sequence:SecureRandom.uuid,
                                position: 1,
                                total: 1
             },
-            version: version_map[version]||default_version
-          }.tap{|x| x.merge(decode_errors(errors)) if errors.present? }
+            version: version_map[version.to_s]||default_version
+          }
+        end
+        
+        public
+        def call(errors:)
+          default_hash.merge( errors_hash(errors) )
         end
       end
     end

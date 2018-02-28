@@ -4,7 +4,7 @@ RSpec.describe ::Cdm::Messaging::RdssCdm do
   describe 'generates a message body with a passed CDM object' do
     let(:attributes) {
       {
-        object_uuid: '5680e8e0-28a5-4b20-948e-fd0d08781e0b',
+        object_uuid: nil,
         title: ['title'],
         object_category: ['category'],
         object_dates_attributes: [{ date_value: "2002-10-02T10:00:00-05:00", date_type: 'accepted' }],
@@ -55,7 +55,7 @@ RSpec.describe ::Cdm::Messaging::RdssCdm do
     }
     let(:final_body) {
       {
-        "objectUuid": "5680e8e0-28a5-4b20-948e-fd0d08781e0b",
+        "objectUuid": nil,
         "objectTitle": "title",
         "objectCategory": ["category"],
         "objectDate": [{ "dateValue": "2002-10-02T10:00:00-05:00", "dateType": 1 }],

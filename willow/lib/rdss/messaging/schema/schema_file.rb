@@ -10,7 +10,7 @@ module Rdss
         end
 
         private
-        def initialize(schema_root: 'config/schema', schema_path: 'body/metadata', schema_file: 'request.json')
+        def initialize(schema_root: 'config/schema', schema_path: 'messages/body/metadata', schema_file: 'request_schema.json')
           @schema_root=schema_root
           @schema_path=schema_path
           @schema_file=schema_file

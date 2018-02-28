@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe Rdss::Messaging::Schema::SchemaFile do
   let(:default_root) { "#{Rails.root}/config/schema" }
   let(:default_version) { "current" }
-  let(:default_path) { 'body/metadata' }
+  let(:default_path) { 'messages/body/metadata' }
   let(:default_event) { :create }
-  let(:default_file) { 'request.json' }
+  let(:default_file) { 'request_schema.json' }
 
   describe 'empty parameter block' do
     it "Class called with no parameters to return current create path" do

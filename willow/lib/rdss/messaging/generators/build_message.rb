@@ -7,7 +7,7 @@ module Rdss
             {
               header_generator: ::Rdss::Messaging::Generators::GenerateHeader,
               body_generator: ::Rdss::Messaging::Generators::GenerateBody,
-              error_checker: ::Rdss::Messaging::Schema::GetPayloadErrors
+              error_checker: ::Rdss::Messaging::Schema::Validation
             }.freeze
           end
 
@@ -18,7 +18,7 @@ module Rdss
 
         private
 
-        attr_reader :version, :event, :header_generator, :body_generator, :error_checker
+        attr_reader :version, :event, :body, :header_generator, :body_generator, :error_checker
 
         def initialize(version: :current, event: :create, header_generator: self.default[:header_generator], body_generator: self.default[:body_generator], error_checker: self.default[:error_checker])
           @event = event
@@ -31,18 +31,19 @@ module Rdss
         def to_message(errors)
           {
             messageHeader: header_generator.(version: version, event: event, errors: errors),
-            messageBody: body(payload: payload, version: version, event: event)
+            messageBody: @body
           }
         end
 
-        def body(payload, event: :create, version: :current)
-          @body||=body_generator.(payload, version: version, event: event)
+        def body(payload)
+          body_generator.(payload, version: version, event: event)
         end
 
         public
 
         def call(payload)
-          to_message(error_checker.(body: body(payload, event: event, version: version), event: event, version: version))
+          @body=body(payload)
+          to_message(error_checker.(body: @body, event: event, version: version))
         end
       end
     end

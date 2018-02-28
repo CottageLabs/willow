@@ -6,19 +6,19 @@ module Rdss
       end
 
       def work_approval(rdss_cdm)
-        ActiveSupport::Notifications.instrument(::Hyrax::Notifications::Events::METADATA_CREATE, {message: message_builder(rdss_cdm, event: :create)})
+        ActiveSupport::Notifications.instrument(::Hyrax::Notifications::Events::METADATA_CREATE, message_builder(rdss_cdm, event: :create))
       end
 
       def work_update_minor(rdss_cdm)
-        ActiveSupport::Notifications.instrument(::Hyrax::Notifications::Events::METADATA_UPDATE, {message: message_builder(rdss_cdm, event: :update)})
+        ActiveSupport::Notifications.instrument(::Hyrax::Notifications::Events::METADATA_UPDATE, message_builder(rdss_cdm, event: :update))
       end
 
       def work_update_major(rdss_cdm)
-        ActiveSupport::Notifications.instrument(::Hyrax::Notifications::Events::METADATA_CREATE, {message: message_builder(rdss_cdm, event: :create)})
+        ActiveSupport::Notifications.instrument(::Hyrax::Notifications::Events::METADATA_CREATE, message_builder(rdss_cdm, event: :create))
       end
 
       def work_destroy(rdss_cdm)
-        ActiveSupport::Notifications.instrument(::Hyrax::Notifications::Events::METADATA_DELETE, {message: message_builder(rdss_cdm, event: :delete)})
+        ActiveSupport::Notifications.instrument(::Hyrax::Notifications::Events::METADATA_DELETE, message_builder(rdss_cdm, event: :delete))
       end
     end
   end

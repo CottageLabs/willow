@@ -6,8 +6,9 @@ module Rdss
         private
         attr_reader :version
 
-        def initialize(version: :current)
+        def initialize(version: :current, options: {})
           @version=version
+          super(options)
         end
 
         def uri_to_file(string)
