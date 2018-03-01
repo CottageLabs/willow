@@ -2,7 +2,10 @@
 2.0.0: &latest
   create_and_update: &create_and_update
     # NOTE: This document actually directly controls how the message is generated. Adding a new or removing an item needs
-    # to be done in conjunction with the edge
+    # to be done in conjunction with the attribute rendering endpoint. So for example, if you were to add a new
+    # objectWiggler in here, you would probably need to have a file in app/models/cdm/messaging called object_wibble.rb
+    # defining the class ObjectWibble < MessageMapper and exposing a value method to return what the value you would
+    # want the passed in object (the model instance) to expose in the message.
     objectUuid:
     objectTitle:
     objectPersonRole:
