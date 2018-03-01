@@ -50,8 +50,7 @@ module Hyrax
           create_stream_if_not_exists
         end
 
-        def notify(event, start, finish, id, payload)
-          message = BuildMessage.new(event, payload).to_message
+        def notify(event, start, finish, id, message)
           Rails.logger.info("Sending Hyrax event to stream #{@stream_name}: #{message}")
           @client.put_record(stream_name: @stream_name,
                               partition_key: @partition_key,

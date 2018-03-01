@@ -1,0 +1,14 @@
+{
+  "id": "https://www.jisc.ac.uk/rdss/schema/messages/body/vocabulary/read/request_schema.json/#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "vocabularyId": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "vocabularyId"
+  ],
+  "additionalProperties": false
+}

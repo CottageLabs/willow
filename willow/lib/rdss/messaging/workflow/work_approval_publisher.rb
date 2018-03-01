@@ -6,14 +6,13 @@ module Rdss
 
         class << self
           def call(target:, **)
-            new.call(target)
+            new.call(target: target)
           end
         end
 
-        def call(target)
-            broadcast(:work_approval, target)
+        def call(target:)
+          broadcast(:work_approval, target)
         end
-
       end
     end
   end

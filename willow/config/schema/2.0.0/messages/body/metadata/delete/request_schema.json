@@ -1,0 +1,14 @@
+{
+  "id": "https://www.jisc.ac.uk/rdss/schema/messages/body/metadata/delete/request_schema.json/#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "objectUuid": {
+      "$ref": "https://www.jisc.ac.uk/rdss/schema/types.json/#/definitions/uuid"
+    }
+  },
+  "required": [
+    "objectUuid"
+  ],
+  "additionalProperties": false
+}

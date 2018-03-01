@@ -30,6 +30,8 @@ module Cdm
       ].join(' ').squish
     end
 
+    alias_method :person_cn, :display_name
+
     def object_person_roles_blank?(attributes)
       any_blank?(attributes, :role_type)
     end

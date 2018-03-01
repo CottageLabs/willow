@@ -2,9 +2,10 @@ module Hyrax
   module Notifications
     module Subscribers
       class Subscriber
-
-        def self.register(events: [Events::METADATA_CREATE, Events::METADATA_UPDATE, Events::METADATA_DELETE])
-          @subscriber = self.new().subscribe(events)
+        class << self
+          def register(events: [Hyrax::Notifications::Events::METADATA_CREATE, Hyrax::Notifications::Events::METADATA_UPDATE, Hyrax::Notifications::Events::METADATA_DELETE])
+            @subscriber = new.subscribe(events)
+          end
         end
 
         def subscribe(events)

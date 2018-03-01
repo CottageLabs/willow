@@ -7,7 +7,6 @@ module Hyrax
     include Hyrax::WorksControllerBehavior
     include Hyrax::BreadcrumbsForWorks
     # Adds Hyrax work notifications to the controller
-    include Hyrax::Notifications::Notifiers
     self.curation_concern_type = ::RdssCdm
 
     # Use this line if you want to use a custom presenter

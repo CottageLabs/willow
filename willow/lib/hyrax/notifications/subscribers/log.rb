@@ -2,11 +2,9 @@ module Hyrax
   module Notifications
     module Subscribers
       class Log < Subscriber
-
-        def notify(event, start, finish, id, payload)
-          Rails.logger.info("Logging Hyrax event: #{BuildMessage.new(event, payload).to_message}")
+        def notify(event, start, finish, id, message)
+          Rails.logger.info("Logging Hyrax event: #{message}")
         end
-
       end
     end
   end

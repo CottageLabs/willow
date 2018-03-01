@@ -1,0 +1,18 @@
+{
+  "id": "https://www.jisc.ac.uk/rdss/schema/messages/message_schema.json/#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "messageHeader": {
+      "$ref": "https://www.jisc.ac.uk/rdss/schema/messages/header/header_schema.json/#/definitions/header"
+    },
+    "messageBody": {
+      "$ref": "https://www.jisc.ac.uk/rdss/schema/research_object.json/#/definitions/object"
+    }
+  },
+  "required": [
+    "messageHeader",
+    "messageBody"
+  ],
+  "additionalProperties": false
+}

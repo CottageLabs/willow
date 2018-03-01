@@ -1,0 +1,27 @@
+{
+  "messageId": "c677641b-c70e-4a7f-9807-ea20742c346e",
+  "correlationId": "4501437a-ce95-4372-be5c-277cb6a826eb",
+  "messageClass": "Command",
+  "messageType": "MetadataCreate",
+  "returnAddress": "string",
+  "messageTimings": {
+    "publishedTimestamp": "2004-08-01T10:00:00-00:00",
+    "expirationTimestamp": "2004-08-01T10:00:00-00:00"
+  },
+  "messageSequence": {
+    "sequence": "570e54de-ddeb-47a9-b629-2a1ec2f85726",
+    "position": 1,
+    "total": 1
+  },
+  "messageHistory": [
+    {
+      "machineId": "string",
+      "machineAddress": "fd1e:9f02:b2a0:5067:ffff:ffff:ffff:ffff",
+      "timestamp": "2004-08-01T10:00:00-00:00"
+    }
+  ],
+  "version": "1.2.3-pre.release-1+bui.ld-2",
+  "errorCode": "GENERR001",
+  "errorDescription": "string",
+  "generator": "string"
+}
