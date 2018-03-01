@@ -3,7 +3,7 @@ en:
     search:
       fields:
         facet:
-          based_near_sim: Location
+          based_near_label_sim: Location
           creator_sim: Creator
           file_format_sim: Format
           generic_type_sim: Type
@@ -23,8 +23,9 @@ en:
           identifier_tesim: Identifier
           keyword_tesim: Keyword
           language_tesim: Language
+          license_tesim: Licence
           publisher_tesim: Publisher
-          rights_tesim: Rights
+          rights_tesim: Rights statement
           subject_tesim: Subject
         show:
           title: Title
@@ -47,8 +48,9 @@ en:
           identifier_tesim: Identifier
           keyword_tesim: Keyword
           language_tesim: Language
+          license_tesim: Licence
           publisher_tesim: Publisher
-          rights_tesim: Rights
+          rights_statement_tesim: Rights statement
           subject_tesim: Subject
           title_tesim: Title
           object_identifiers: Identifiers

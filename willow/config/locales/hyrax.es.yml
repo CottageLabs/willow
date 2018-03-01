@@ -4,7 +4,7 @@ es:
     search:
       fields:
         facet:
-          based_near_sim: Ubicación
+          based_near_label_sim: Ubicación
           creator_sim: Creador
           file_format_sim: Formato
           generic_type_sim: Tipo
@@ -24,8 +24,9 @@ es:
           identifier_tesim: Identificador
           keyword_tesim: Palabra clave
           language_tesim: Idioma
+          license_tesim: Licencia
           publisher_tesim: Editor
-          rights_tesim: Derechos
+          rights_statement_tesim: Derechos
           subject_tesim: Tema
         show:
           based_near_tesim: Ubicación
@@ -39,8 +40,9 @@ es:
           identifier_tesim: Identificador
           keyword_tesim: Palabra clave
           language_tesim: Idioma
+          license_tesim: Licencia
           publisher_tesim: Editor
-          rights_tesim: Derechos
+          rights_statement_tesim: Derechos
           subject_tesim: Tema
           title_tesim: Título
   hyrax:
@@ -52,5 +54,5 @@ es:
       service_html: Un servicio de <a href="http://samvera.org/" class="navbar-link" target="_blank">Samvera/a>.
     institution_name:       "%{institution_name}"
     institution_name_full:  "%{institution_name_full}"
-    product_name: Willow
+    product_name: RDSS Samvera
     product_twitter_handle: "@SamveraRepo"
