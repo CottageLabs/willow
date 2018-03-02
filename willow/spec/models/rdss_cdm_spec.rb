@@ -29,6 +29,7 @@ RSpec.describe RdssCdm do
         {
           given_name: 'Peggy',
           family_name: 'Sue',
+          mail: 'peggysue@example.com',
           object_person_roles_attributes: [
             { role_type: 'author' },
             { role_type: 'editor' }
@@ -36,6 +37,7 @@ RSpec.describe RdssCdm do
         },
         {
           given_name: 'Brian',
+          mail: 'brian@example.com',
           object_person_roles_attributes: [
             { role_type: 'messiah' },
             { role_type: 'very naughty boy' }

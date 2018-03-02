@@ -17,6 +17,10 @@ class ObjectPersonFormBuilder < RdssFields
     input :_destroy, as: :hidden, input_html:{ data: { destroy: true }, class: 'form-control remove-hidden', value: false}
   end
 
+  def mail
+    input :mail, as: :email, required: object.required?(:mail)
+  end
+
   def object_person_roles
     build_if_blank(object.object_person_roles).to_a
   end
