@@ -7,11 +7,13 @@ RSpec.describe Cdm::ObjectPerson do
     let(:honorific_prefix) { 'Mr.' }
     let(:given_name) { 'Raymond' }
     let(:family_name) { 'Luxury - Ya Ch t' }
+    let(:mail) { 'my@email.com'}
     let(:build_attributes) {
       {
         honorific_prefix: honorific_prefix,
         given_name: given_name,
         family_name: family_name,
+        mail: mail,
         object_person_roles_attributes: roles_attributes
       }
     }
@@ -30,6 +32,11 @@ RSpec.describe Cdm::ObjectPerson do
     it 'has a single family name' do
       expect(built_object.family_name).to be_kind_of String
       expect(built_object.family_name).to eq family_name
+    end
+
+    it 'has a single email' do
+      expect(built_object.mail).to be_kind_of String
+      expect(built_object.mail).to eq mail
     end
 
     it 'has multiple roles' do
