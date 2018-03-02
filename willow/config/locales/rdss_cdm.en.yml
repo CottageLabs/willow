@@ -69,3 +69,6 @@ en:
       organisation_name:  Name
       address: Address
       organisation_type: Organisation type
+      person_name: Name
+      person_email: Email
+      person_roles: Roles
