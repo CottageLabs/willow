@@ -32,6 +32,7 @@ en:
       defaults:
         accesses: Access
         jisc_id: Identifier
+        mail: Email Address
     hints:
       rdss_cdm:
         object_resource_type: Pre-defined categories to describe the type of content being uploaded, such as &quot;article&quot; or &quot;dataset.&quot;
