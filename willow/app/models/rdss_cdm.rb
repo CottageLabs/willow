@@ -76,26 +76,6 @@ class RdssCdm < ActiveFedora::Base
   accepts_nested_attributes_for :object_identifiers, allow_destroy: true, reject_if: :object_identifiers_blank?
   accepts_nested_attributes_for :object_related_identifiers, allow_destroy: true, reject_if: :object_related_identifiers_blank?
 
-  def self.multiple?(field)
-    # Overriding to return false for `title` (as we can't set multiple: false)
-    if [:title].include? field.to_sym
-      false
-    else
-      super
-    end
-  end
-
-  def self.model_attributes(_)
-    # Overriding to cast title back to multivalue when saving.
-    attrs = super
-    attrs[:title] = Array(attrs[:title]) if attrs[:title]
-    attrs
-  end
-
-  def title
-    # Return a single value for form field population.
-    super.first || ""
-  end
 
   # The following properties are also inherited from Hyrax::CoreMetadata
   # along with :title and are required by Hyrax:
