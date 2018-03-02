@@ -37,7 +37,7 @@ RSpec.describe ::Cdm::Messaging::RdssCdm do
             honorific_prefix: 'Mr.',
             given_name: 'Paul',
             family_name: 'Mak',
-            mail: 'paul@mak.com',
+            mail: 'paul@example.com',
             object_person_roles_attributes: [
               { role_type: 'author' }
             ]
@@ -78,7 +78,7 @@ RSpec.describe ::Cdm::Messaging::RdssCdm do
               "personCn": "Mr. Paul Mak",
               "personSn": "Mak",
               :personTelephoneNumber=>"1",
-              :personMail=>"paul@mak.com",
+              :personMail=>"paul@example.com",
               :personOrganisationUnit=>{
                 :organisation=>{
                   :organisationJiscId=>1,
