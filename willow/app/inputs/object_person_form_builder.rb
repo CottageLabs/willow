@@ -18,7 +18,7 @@ class ObjectPersonFormBuilder < RdssFields
   end
 
   def mail
-    input :mail, required: object.required?(:mail)
+    input :mail, as: :email, required: object.required?(:mail)
   end
 
   def object_person_roles
