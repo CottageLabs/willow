@@ -46,9 +46,6 @@ Hyrax.config do |config|
   # How many notifications should be displayed on the dashboard
   # config.max_notifications_for_dashboard = 5
 
-  # How often clients should poll for notifications
-  config.notifications_update_poll_interval = 30.minutes if Rails.env.development?
-
   # How frequently should a file be fixity checked
   # config.max_days_between_fixity_checks = 7
 
@@ -93,7 +90,7 @@ Hyrax.config do |config|
   # config.noid_template = ".reeddeeddk"
 
   # Use the database-backed minter class
-  # config.noid_minter_class = ActiveFedora::Noid::Minter::Db
+  # config.noid_minter_class = Noid::Rails::Minter::Db
 
   # Store identifier minter's state in a file for later replayability
   # config.minter_statefile = '/tmp/minter-state'
@@ -118,6 +115,9 @@ Hyrax.config do |config|
   # of Zotero-managed research items.
   # config.arkivo_api = false
 
+  # Stream realtime notifications to users in the browser
+  # config.realtime_notifications = true
+
   # Location autocomplete uses geonames to search for named regions
   # Username for connecting to geonames
   # config.geonames_username = ''
@@ -131,6 +131,48 @@ Hyrax.config do |config|
   # and a file added at a later time?
   # The default is true.
   # config.work_requires_files = true
+
+  # Enable IIIF image service. This is required to use the
+  # UniversalViewer-ified show page
+  #
+  # If you have run the riiif generator, an embedded riiif service
+  # will be used to deliver images via IIIF. If you have not, you will
+  # need to configure the following other configuration values to work
+  # with your image server:
+  #
+  #   * iiif_image_url_builder
+  #   * iiif_info_url_builder
+  #   * iiif_image_compliance_level_uri
+  #   * iiif_image_size_default
+  #
+  # Default is false
+  # config.iiif_image_server = false
+
+  # Returns a URL that resolves to an image provided by a IIIF image server
+  config.iiif_image_url_builder = lambda do |file_id, base_url, size|
+    Riiif::Engine.routes.url_helpers.image_url(file_id, host: base_url, size: size)
+  end
+  # config.iiif_image_url_builder = lambda do |file_id, base_url, size|
+  #   "#{base_url}/downloads/#{file_id.split('/').first}"
+  # end
+
+  # Returns a URL that resolves to an info.json file provided by a IIIF image server
+  config.iiif_info_url_builder = lambda do |file_id, base_url|
+    uri = Riiif::Engine.routes.url_helpers.info_url(file_id, host: base_url)
+    uri.sub(%r{/info\.json\Z}, '')
+  end
+  # config.iiif_info_url_builder = lambda do |_, _|
+  #   ""
+  # end
+
+  # Returns a URL that indicates your IIIF image server compliance level
+  # config.iiif_image_compliance_level_uri = 'http://iiif.io/api/image/2/level2.json'
+
+  # Returns a IIIF image size default
+  # config.iiif_image_size_default = '600,'
+
+  # Fields to display in the IIIF metadata section; default is the required fields
+  # config.iiif_metadata_fields = Hyrax::Forms::WorkForm.required_fields
 
   # Should a button with "Share my work" show on the front page to all users (even those not logged in)?
   config.display_share_button_when_not_logged_in = false
@@ -207,8 +249,13 @@ Hyrax.config do |config|
   # config.lock_time_to_live = 60_000
 
   ## Do not alter unless you understand how ActiveFedora handles URI/ID translation
-  # config.translate_id_to_uri = ActiveFedora::Noid.config.translate_id_to_uri
-  # config.translate_uri_to_id = ActiveFedora::Noid.config.translate_uri_to_id
+  # config.translate_id_to_uri = lambda do |uri|
+  #                                baseparts = 2 + [(Noid::Rails::Config.template.gsub(/\.[rsz]/, '').length.to_f / 2).ceil, 4].min
+  #                                uri.to_s.sub(baseurl, '').split('/', baseparts).last
+  #                              end
+  # config.translate_uri_to_id = lambda do |id|
+  #                                "#{ActiveFedora.fedora.host}#{ActiveFedora.fedora.base_path}/#{Noid::Rails.treeify(id)}"
+  #                              end
 
   ## Fedora import/export tool
   #

@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'active_fedora/noid/rspec'
 require 'wisper/rspec/matchers'
 
 
@@ -13,12 +12,6 @@ RSpec.configure do |config|
   end
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
-
-  # Excepton for deleting database-backed minter 
-  include ActiveFedora::Noid::RSpec
-
-  config.before(:suite) { disable_production_minter! }
-  config.after(:suite)  { enable_production_minter! }
 
   config.include(Wisper::RSpec::BroadcastMatcher)
 end

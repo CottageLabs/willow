@@ -16,15 +16,13 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 
-gem 'hyrax', github: 'cottagelabs/hyrax'
-
+gem 'hyrax', '2.1.0.beta1'
+gem 'blacklight', '~> 6.14'
 gem 'blacklight_advanced_search', '~> 6.0'
 gem 'blackrat_yaml_config'
 gem 'json-schema', '~> 2.8.0'
@@ -57,6 +55,7 @@ group :test do
 end
 
 gem 'rsolr', '>= 1.0'
+gem 'jquery-rails'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'hydra-role-management'
@@ -65,3 +64,6 @@ gem 'aws-sdk', '>= 2.9.15'
 gem 'tinymce-rails-imageupload', '4.0.17.beta.2' # we need this specific version to fix an asset compilation problem
 # gem 'willow_sword', git: "https://github.com/cottagelabs/willow_sword.git", branch: "master"
 gem 'wisper', '2.0.0'
+
+gem 'riiif', '~> 1.1'
+gem 'noid-rails'

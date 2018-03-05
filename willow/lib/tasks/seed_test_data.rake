@@ -84,7 +84,7 @@ namespace :willow do
 
         if administrative_set.has_key?("permission_template")
           pt = Hyrax::PermissionTemplate
-                   .where(admin_set_id: administrative_set["id"])
+                   .where(source_id: administrative_set["id"])
                    .first_or_create!
 
           if administrative_set["permission_template"].has_key?("permission_template_access")
