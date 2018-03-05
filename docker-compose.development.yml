@@ -9,11 +9,11 @@ services:
 
   solr:
     ports:
-      - "8984:8983"
+      - "8983:8983"
 
   fedora:
     ports:
-      - "8081:8080"
+      - "8080:8080"
     restart: "no"
 
   willow:
