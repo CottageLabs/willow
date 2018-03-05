@@ -74,10 +74,10 @@ RUN cd $APP_PRODUCTION \
     && bundle check
 
 # generate production assets if production environment
-#RUN if [ "$RAILS_ENV" = "production" ]; then \
-#        cd $APP_PRODUCTION \
-#        && SECRET_KEY_BASE_PRODUCTION=0 bundle exec rake assets:clean assets:precompile; \
-#    fi
+RUN if [ "$RAILS_ENV" = "production" ]; then \
+        cd $APP_PRODUCTION \
+        && SECRET_KEY_BASE_PRODUCTION=0 bundle exec rake assets:clean assets:precompile; \
+    fi
 
 WORKDIR $APP_WORKDIR
 
