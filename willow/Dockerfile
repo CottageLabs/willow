@@ -73,13 +73,11 @@ RUN cd $APP_PRODUCTION \
     && mv Gemfile.lock.built_by_docker Gemfile.lock \
     && bundle check
 
-## Moved this to docker-entrypoint.sh, since Hyrax is now doing database things as part of the initialization step, which
-## fail since there is no db connection yet.
-## generate production assets if production environment
-#RUN if [ "$RAILS_ENV" = "production" ]; then \
-#        cd $APP_PRODUCTION \
-#        && SECRET_KEY_BASE_PRODUCTION=0 bundle exec rake assets:clean assets:precompile; \
-#    fi
+# generate production assets if production environment
+RUN if [ "$RAILS_ENV" = "production" ]; then \
+        cd $APP_PRODUCTION \
+        && SECRET_KEY_BASE_PRODUCTION=0 bundle exec rake -v --trace=stdout assets:clean assets:precompile; \
+    fi
 
 WORKDIR $APP_WORKDIR
 
