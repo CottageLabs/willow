@@ -28,18 +28,15 @@
         path: "./src/willow/fedora_commons/"
         dockerfile: "Dockerfile"
         tag: "{{ tag }}"
-      - name: "{{ registry }}willow"
-        path: "./src/willow/willow/"
-        dockerfile: "Dockerfile"
-        tag: "{{ tag }}"
-      - name: "{{ registry }}willow-geoblacklight"
-        path: "./src/willow/geoblacklight/"
-        dockerfile: "Dockerfile"
-        tag: "{{ tag }}"
       - name: "{{ registry }}willow-db"
         path: "./src/willow/db/"
         dockerfile: "Dockerfile"
         tag: "{{ tag }}"
+      - name: "{{ registry }}willow"
+        path: "./src/willow/willow/"
+        dockerfile: "Dockerfile"
+        tag: "{{ tag }}"
+
 
   tasks:
 
