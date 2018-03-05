@@ -67,3 +67,4 @@ gem 'wisper', '2.0.0'
 
 gem 'riiif', '~> 1.1'
 gem 'noid-rails'
+gem 'sqlite3'
