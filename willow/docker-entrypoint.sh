@@ -5,6 +5,7 @@ mkdir -p $APP_WORKDIR/log
 
 
 if [ "$RAILS_ENV" = "production" ]; then
+    SECRET_KEY_BASE_PRODUCTION=0 bundle exec rake assets:clean assets:precompile;
     # Verify all the production gems are installed
     bundle check
 else

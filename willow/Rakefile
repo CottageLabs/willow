@@ -7,7 +7,6 @@ Rails.application.load_tasks
 
 require 'solr_wrapper/rake_task' unless Rails.env.production?
 
-
 task :default_admin_set do
   with_server :development do
     Rake::Task['hyrax:default_admin_set:create'].invoke
