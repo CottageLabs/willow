@@ -54,6 +54,14 @@ group :test do
   gem 'wisper-rspec'
 end
 
+# This is horrible and a nasty hacky workaround to make hyrax work in a dockerised production environment for asset
+# precompilation. Since it tries to hit the database to populate at initialisation time and we are running in
+# containers without access when the rails assets:precompile is run, we spin up a temporary local db to prevent it
+# failing. A question has been raised on the hyrax forum and hopefully this will be fixed soon. For now:
+group :production do
+  gem 'sqlite3'
+end
+
 gem 'rsolr', '>= 1.0'
 gem 'jquery-rails'
 gem 'devise'
@@ -67,4 +75,3 @@ gem 'wisper', '2.0.0'
 
 gem 'riiif', '~> 1.1'
 gem 'noid-rails'
-gem 'sqlite3'

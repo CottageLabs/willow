@@ -5,13 +5,19 @@
 module Cdm
   module Messaging
     class EnumerationMapper < MessageMapper
+      private
       def mapper
         Enumerations::const_get(self.class.name.demodulize)
       end
 
+      def mapped_attribute_value(value)
+        mapper.send(value.underscore.downcase) unless value.blank?
+      end
+
+      public
       def value(object, attribute)
         begin
-          mapper.send(object.send(attribute).underscore.downcase)
+          mapped_attribute_value(object.send(attribute))
         rescue Exception => e
           puts("Exception in decoding #{attribute} in #{self.class.name} for #{object}")
         end

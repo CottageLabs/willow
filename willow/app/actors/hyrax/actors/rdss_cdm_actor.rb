@@ -3,8 +3,17 @@
 module Hyrax
   module Actors
     class RdssCdmActor < Hyrax::Actors::BaseActor
+#TODO #PMAK Should we set initial value for :object_version here too?
+      def default_values
+        {
+          object_value:   :normal,
+          object_uuid:    SecureRandom.uuid
+        }
+      end
+
+      public
       def create(env)
-        add_object_uuid(env)
+        ::Rdss::Actors::SetAttributeValuesIfBlank.(env, default_values)
         super
       end
 
@@ -16,13 +25,6 @@ module Hyrax
       def update(env)
         super
       end
-
-      private
-        def add_object_uuid(env)
-          unless env.attributes.key?(:object_uuid)
-            env.attributes[:object_uuid] = SecureRandom.uuid
-          end
-        end
     end
   end
 end

@@ -1,8 +1,8 @@
 module Cdm
   module Messaging
     class RightsHolder < MessageMapper
-      def value(object, attribute)
-        super.to_a
+      def array_value(_, object)
+        object.rights_holder.to_a
       end
     end
   end

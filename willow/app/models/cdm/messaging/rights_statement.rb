@@ -1,8 +1,8 @@
 module Cdm
   module Messaging
     class RightsStatement < MessageMapper
-      def value(object, attribute)
-        super.to_a
+      def array_value(_, object)
+        object.rights_statement.to_a
       end
     end
   end
