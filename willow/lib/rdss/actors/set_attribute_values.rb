@@ -2,8 +2,8 @@ module Rdss
   module Actors
     class SetAttributeValues < SetHashValues
       private
-      def initialize(env)
-        @attributes=env.attributes
+      def initialize(attributes)
+        @attributes=attributes
       end
 
       public
