@@ -5,8 +5,8 @@ module Cdm
       include AttributeMapper
       attribute_name :object_keywords
 
-      def value(object, attribute)
-        super.to_a
+      def array_value(_, object)
+        value(object).to_a
       end
     end
   end

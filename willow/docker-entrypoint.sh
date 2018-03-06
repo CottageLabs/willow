@@ -3,7 +3,6 @@
 echo "Creating log folder"
 mkdir -p $APP_WORKDIR/log
 
-
 if [ "$RAILS_ENV" = "production" ]; then
     # Verify all the production gems are installed
     bundle check

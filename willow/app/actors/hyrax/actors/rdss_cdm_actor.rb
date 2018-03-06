@@ -3,8 +3,22 @@
 module Hyrax
   module Actors
     class RdssCdmActor < Hyrax::Actors::BaseActor
+      private
+      def set_if_blank(env, key, value)
+        env.attributes[key]=value.to_s if env.attributes[key].blank?
+      end
+
+#TODO #PMAK Should we set initial value for :object_version here too?
+      def default_values
+        {
+          object_value:   :normal,
+          object_uuid:    SecureRandom.uuid
+        }
+      end
+
+      public
       def create(env)
-        add_object_uuid(env)
+        default_values.each { |key, value| set_if_blank(env, key, value) }
         super
       end
 
@@ -16,13 +30,6 @@ module Hyrax
       def update(env)
         super
       end
-
-      private
-        def add_object_uuid(env)
-          unless env.attributes.key?(:object_uuid)
-            env.attributes[:object_uuid] = SecureRandom.uuid
-          end
-        end
     end
   end
 end

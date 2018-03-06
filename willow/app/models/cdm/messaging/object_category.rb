@@ -2,8 +2,8 @@
 module Cdm
   module Messaging
     class ObjectCategory < MessageMapper
-      def value(object, attribute)
-        super.to_a
+      def array_value(_, object)
+        value(object).to_a
       end
     end
   end

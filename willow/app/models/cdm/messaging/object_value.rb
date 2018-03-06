@@ -1,4 +1,4 @@
-# Endpoint for objectTitle message element. This is called :title in the model.
+# Endpoint for objectValue message element. This is an enumeration
 module Cdm
   module Messaging
     class ObjectValue < EnumerationMapper

@@ -12,7 +12,7 @@ module Cdm
 
       def hash_value(_, object)
         {
-          licenceName: I18n.t("rdss.licences.#{normalize(object)}"),
+          licenceName: object.present? && I18n.t("rdss.licences.#{normalize(object)}") || '',
           licenceIdentifier: object
         }
       end
