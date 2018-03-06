@@ -1,24 +1,8 @@
 module Rdss
   module Actors
-    class SetAttributeValuesIfBlank
-      class << self
-        public
-        def call(env, hash)
-          new(env).(hash)
-        end
-      end
-
-      private
-      attr_reader :attributes
-      def initialize(env)
-        @attributes=env.attributes
-      end
-
-      public
+    class SetAttributeValuesIfBlank < SetAttributeValues
       def call(hash)
-        hash.each do |key, value|
-          attributes[key]=value if attributes[key].blank?
-        end
+        SetHashValuesIfBlank.(attributes, hash)
       end
     end
   end
