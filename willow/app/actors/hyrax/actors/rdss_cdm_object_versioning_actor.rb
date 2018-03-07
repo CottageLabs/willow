@@ -11,7 +11,7 @@ module Hyrax
 
       public
       def create(env)
-        ::Rdss::Actors::SetAttributeValuesIfBlank.(env.attributes, create_default_values)
+        ::Rdss::Actors::SetAttributeValuesIfBlank.(env, create_default_values)
         next_actor.create(env)
       end
       
