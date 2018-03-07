@@ -12,7 +12,7 @@ module Hyrax
 
       public
       def create(env)
-        ::Rdss::Actors::SetAttributeValuesIfBlank.(env.attributes, default_values)
+        ::Rdss::Actors::SetAttributeValuesIfBlank.(env, default_values)
         super
       end
     end
