@@ -3,9 +3,10 @@ module Rdss
     class AnyFieldsChanged
       class << self
         def call(env)
-          work_copy = env.curation_concern.clone
-          work_copy.attributes = env.attributes.except(:version).except(:remote_files).except(:uploaded_files)
-          work_copy.changed?
+          env.curation_concern.attributes = env.attributes.except(:version).except(:remote_files).except(:uploaded_files)
+          changed = env.curation_concern.changed?
+          env.curation_concern.reload
+          changed
         end
       end
     end
