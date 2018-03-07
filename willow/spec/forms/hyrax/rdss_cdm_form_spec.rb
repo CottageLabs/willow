@@ -3,7 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe Hyrax::RdssCdmForm do
-  it "has tests" do
-    skip "Add your tests here"
+  describe 'permitted params' do
+    subject { described_class.permitted_params }
+
+    it 'permits :visibility' do
+      expect(subject.include?(:visibility)).to be_truthy
+    end
   end
 end

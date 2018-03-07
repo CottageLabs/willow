@@ -27,7 +27,7 @@ module Hyrax
       :object_resource_type,
       :object_value,
       :object_people,
-      :object_dates,      
+      :object_dates,
       :object_rights,
       :object_organisation_roles,
       :object_identifiers,
@@ -137,7 +137,6 @@ module Hyrax
       ]
     end
 
-
     def self.permitted_object_organisation_roles_params
       [
         :id,
@@ -146,7 +145,6 @@ module Hyrax
         organisation_attributes: %i[jisc_id name address organisation_type]
       ]
     end
-
 
     def self.permitted_object_identifier_params
       [
@@ -175,6 +173,7 @@ module Hyrax
       permitted << { object_organisation_roles_attributes: permitted_object_organisation_roles_params }
       permitted << { object_identifiers_attributes: permitted_object_identifier_params }
       permitted << { object_related_identifiers_attributes: permitted_object_related_identifier_params }
+      permitted << :visibility
       permitted
     end
   end
