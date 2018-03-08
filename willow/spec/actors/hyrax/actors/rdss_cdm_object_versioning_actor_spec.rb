@@ -42,7 +42,7 @@ RSpec.describe Hyrax::Actors::RdssCdmObjectVersioningActor do
       middleware.update(env)
 
       last_recorded_object_uuid = last_recorded_object_uuid(env)
-      expect(recorded_uuid).to eq(original_uuid)
+      expect(last_recorded_object_uuid).to eq(original_uuid)
 
       last_recorded_relation_type = last_recorded_relation_type(env)
       expect(last_recorded_relation_type).to eq('is_new_version_of')
