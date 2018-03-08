@@ -4,7 +4,6 @@ RSpec.describe Hyrax::Actors::RdssCdmObjectVersioningActor do
   let(:ability) { ::Ability.new(depositor) }
   let(:terminator) { Hyrax::Actors::Terminator.new }
   let(:depositor) { create(:user) }
-
   let(:active_state) {Vocab::FedoraResourceStatus.active}
   let(:inactive_state) {Vocab::FedoraResourceStatus.inactive}
 
@@ -19,18 +18,47 @@ RSpec.describe Hyrax::Actors::RdssCdmObjectVersioningActor do
     let(:attributes) { {:object_version => "", :title => ["test title"]} }
     let(:rdss_cdm) { create(:rdss_cdm) }
     let(:env) { Hyrax::Actors::Environment.new(rdss_cdm, ability, attributes) }
+
     it 'set object version to 1' do
       expect { middleware.create(env) }.to change { env.attributes[:object_version] }.to "1"
+    end
+
+    it 'adds an object_uuid' do 
+      expect { middleware.create(env) }.to change { env.attributes[:object_uuid] }.to match(/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/)      
     end
   end
 
   describe "minor update" do
+    let(:original_uuid) { SecureRandom.uuid }
     let(:attributes) { {:object_version => "1", :title => ["test title"]} }
-    let(:rdss_cdm) { create(:rdss_cdm, title: ["test title"], object_version: "1", state: active_state) }
+    let(:rdss_cdm) { create(:rdss_cdm, title: ["test title"], object_version: "1", object_uuid: original_uuid, state: active_state) }
     let(:env) { Hyrax::Actors::Environment.new(rdss_cdm, ability, attributes) }
-    it 'object version remains 1' do
-      expect { middleware.update(env) }.not_to change { env.attributes[:object_version] }
+    
+    it 'object version increments to 2' do
+      expect { middleware.update(env) }.to change { env.attributes[:object_version] }.to "2"
     end
+
+    it "object related identifiers change to include previous object_uuid as is_new_version_of" do
+      middleware.update(env)
+
+      last_recorded_object_uuid = last_recorded_object_uuid(env)
+      expect(recorded_uuid).to eq(original_uuid)
+
+      last_recorded_relation_type = last_recorded_relation_type(env)
+      expect(last_recorded_relation_type).to eq('is_new_version_of')
+    end
+  end
+
+  def last_recorded_relation_type env
+    env.attributes[:object_related_identifiers_attributes][last_recorded_identifier_index(env)]['relation_type']
+  end
+
+  def last_recorded_object_uuid env
+    env.attributes[:object_related_identifiers_attributes][last_recorded_identifier_index(env)]['identifier_attributes']['identifier_value'] 
+  end
+
+  def last_recorded_identifier_index env            
+    (env.attributes[:object_related_identifiers_attributes].values.count-1).to_s
   end
 
   describe "major update to title" do
@@ -59,7 +87,4 @@ RSpec.describe Hyrax::Actors::RdssCdmObjectVersioningActor do
       expect { middleware.update(env) }.not_to change { env.attributes[:object_version] }
     end
   end
-
-
-
 end

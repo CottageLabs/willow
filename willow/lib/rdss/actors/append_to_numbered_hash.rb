@@ -11,12 +11,11 @@ module Rdss
       public
       def call(hash)
         hash.each { |key, value|
-          current_values = attributes[key].values
+          current_values = attributes[key].nil? ? [] : attributes[key].values
           current_values << value
           attributes[key]=to_numbered_hash(current_values) 
         }
       end
-
     end
   end
 end

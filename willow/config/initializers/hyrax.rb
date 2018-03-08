@@ -281,7 +281,6 @@ Hyrax.config do |config|
   Rdss::Messaging::Workflow::WorkApprovalPublisher.subscribe(Rdss::Messaging::MessageGenerationSubscriber.new)
   
   Hyrax::CurationConcern.actor_factory.insert_after Hyrax::Actors::TransactionalRequest, Hyrax::Actors::RdssCdmObjectVersioningActor
-
   Hyrax::CurationConcern.actor_factory.insert_before Hyrax::Actors::CreateWithFilesActor, Rdss::Messaging::Actors::MessagePublisherActor
 
 end
