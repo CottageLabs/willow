@@ -183,7 +183,6 @@ module Hyrax
       }
       permitted << :admin_set_id
       permitted << :embargo_release_date
-      permitted << :member_of_collection_ids
       permitted << :visibility
       permitted << :visibility_after_embargo
       permitted << :visibility_during_embargo
