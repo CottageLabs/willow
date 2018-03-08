@@ -1,6 +1,6 @@
 module Cdm
   module Messaging
-    class FileFormatType < MessageMapper
+    class FileHasMimeType < MessageMapper
       include AttributeMapper
       attribute_name :mime_type
     end
