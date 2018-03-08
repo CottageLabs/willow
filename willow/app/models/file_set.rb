@@ -4,6 +4,8 @@ class FileSet < ActiveFedora::Base
   property :checksum_uuid, predicate: ::RDF::URI.new("http://lib.my.edu/checksum_uuid"), multiple: false
   include ::Hyrax::FileSetBehavior
 
+  delegate :file_name,
+           to: :original_file
   before_create :set_uuids
 
   def set_uuids
