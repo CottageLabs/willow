@@ -6,7 +6,7 @@ module Cdm
         [
           {
             personIdentifierType: 1,
-            personIdentifierValue: 'deprecated'
+            personIdentifierValue: 'not yet implemented'
           }
         ]
       end
