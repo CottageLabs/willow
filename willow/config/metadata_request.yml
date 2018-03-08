@@ -76,17 +76,17 @@
       fileDateCreated:
         dateValue:
         dateType:
-      fileRights:
-        rightsStatement:
-        -
-        rightsHolder:
-        -
-        licence:
-        - licenceName:
-          licenceIdentifier:
-        access:
-        - accessType:
-          accessStatement:
+#      fileRights:
+#        rightsStatement:
+#        -
+#        rightsHolder:
+#        -
+#        licence:
+#        - licenceName:
+#          licenceIdentifier:
+#        access:
+#        - accessType:
+#          accessStatement:
       fileChecksum:
       - checksumUuid:
         checksumType:
@@ -97,8 +97,8 @@
       fileDateModified:
       - dateValue:
         dateType:
-      filePuid:
-      -
+#      filePuid:
+#      -
       fileUse:
       filePreservationEvent:
       - preservationEventValue:
