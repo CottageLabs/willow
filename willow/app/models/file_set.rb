@@ -5,6 +5,7 @@ class FileSet < ActiveFedora::Base
   include ::Hyrax::FileSetBehavior
 
   delegate :file_name,
+           :compression,
            to: :original_file
   before_create :set_uuids
 

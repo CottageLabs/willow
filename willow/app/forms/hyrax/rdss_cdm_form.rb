@@ -166,17 +166,31 @@ module Hyrax
       ]
     end
 
+    # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/MethodLength
     def self.build_permitted_params
       permitted = super
       # add in object_date attributes
-      permitted << { object_dates_attributes: permitted_object_date_params }
+      permitted << {
+        object_dates_attributes: permitted_object_date_params
+      }
       permitted << { object_people_attributes: permitted_object_person_nested }
       permitted << { object_rights_attributes: permitted_object_rights_params }
-      permitted << { object_organisation_roles_attributes: permitted_object_organisation_roles_params }
+      permitted << {
+        object_organisation_roles_attributes: permitted_object_organisation_roles_params
+      }
       permitted << { object_identifiers_attributes: permitted_object_identifier_params }
-      permitted << { object_related_identifiers_attributes: permitted_object_related_identifier_params }
+      permitted << {
+        object_related_identifiers_attributes: permitted_object_related_identifier_params
+      }
+      permitted << :admin_set_id
+      permitted << :embargo_release_date
+      permitted << :member_of_collection_ids
       permitted << :visibility
-      permitted
+      permitted << :visibility_after_embargo
+      permitted << :visibility_during_embargo
+      permitted << :visibility_after_lease
+      permitted << :visibility_during_lease
     end
   end
 end
