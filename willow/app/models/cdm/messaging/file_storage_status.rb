@@ -1,7 +1,7 @@
 module Cdm
   module Messaging
     class FileStorageStatus < MessageMapper
-      def value(object)
+      def value(object, _)
         Enumerations::StorageStatus.online
       end
     end

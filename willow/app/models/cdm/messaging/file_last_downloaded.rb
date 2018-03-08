@@ -1,9 +1,9 @@
 module Cdm
   module Messaging
-    class FileDateModified < MessageMapper
+    class FileLastDownloaded < MessageMapper
       def hash_value(_, object)
         {
-          dateType: Enumerations::DateType.modified,
+          dateType: Enumerations::DateType.published,
           dateValue: object.date_modified.rfc3339
         }
       end

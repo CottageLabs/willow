@@ -2,12 +2,16 @@
 module Cdm
   module Messaging
     class PersonIdentifier < MessageMapper
-      def array_value(*)
+      def hash_value(*)
+        {
+          personIdentifierType: 1,
+          personIdentifierValue: 'not yet implemented'
+        }
+      end
+
+      def array_value(message_mapper, object)
         [
-          {
-            personIdentifierType: 1,
-            personIdentifierValue: 'not yet implemented'
-          }
+          hash_value(message_mapper, object)
         ]
       end
     end

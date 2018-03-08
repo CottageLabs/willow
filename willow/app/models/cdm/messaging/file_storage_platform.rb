@@ -6,7 +6,7 @@ module Cdm
         {
           storagePlatformUuid: '00000000-0000-0000-0000-000000000000',
           storagePlatformName: 'not yet implemented',
-          storagePlatformType: Enumerations::UploadStatus.http,
+          storagePlatformType: Enumerations::StorageType.http,
           storagePlatformCost: 'not yet implemented'
         }
       end

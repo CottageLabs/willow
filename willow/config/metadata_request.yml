@@ -109,8 +109,8 @@
       fileLastDownloaded:
         dateValue:
         dateType:
-      fileTechnicalAttributes:
-      -
+#      fileTechnicalAttributes:
+#      -
       fileStorageLocation:
       fileStoragePlatform:
         storagePlatformUuid:
