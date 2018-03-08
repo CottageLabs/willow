@@ -3,8 +3,8 @@ module Cdm
     class FileChecksum < MessageMapper
       def hash_value(message_mapper, object)
         {
-          checksumUuid: SecureRandom.uuid,
-          checksumType: 'md5',
+          checksumUuid: object.checksum_uuid,
+          checksumType: Enumerations::ChecksumType.md5,
           checksumValue: object.original_file.original_checksum
         }
       end
