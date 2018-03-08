@@ -16,7 +16,7 @@ module Hyrax
       end
       
       def update(env)
-        ::Rdss::Actors::PerformCdmVersioning.(env) if ::Rdss::Actors::AnyFieldsChanged.(env) && CurationConcernApproved.(env)
+        ::Rdss::Actors::PerformCdmVersioning.(env) if CurationConcernApproved.(env)
         next_actor.update(env)
       end
     end
