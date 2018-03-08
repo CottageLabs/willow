@@ -88,7 +88,7 @@ RSpec.describe ::Cdm::Messaging::RdssCdm do
                   :organisationAddress=>"not yet implemented"
                 },
                 :organisationUnitUuid=>"470956e0-56de-4cdc-b182-c0334851a170",
-                :organisationUnitName=>"deprecated"}
+                :organisationUnitName=>"not yet implemented"}
             },
             "role": 20
           }
