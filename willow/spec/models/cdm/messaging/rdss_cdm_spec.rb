@@ -61,6 +61,7 @@ RSpec.describe ::Cdm::Messaging::RdssCdm do
         "objectCategory": ["category"],
         "objectDate": [{ "dateValue": "2002-10-02T10:00:00-05:00", "dateType": 1 }],
         "objectDescription": "description",
+        "objectFile": [],
         "objectIdentifier": [{ "identifierValue": "http://example.com", "identifierType": 18 }],
         "objectKeywords": ["keyword"],
         "objectValue": 1,
@@ -70,7 +71,7 @@ RSpec.describe ::Cdm::Messaging::RdssCdm do
               "personUuid": nil,
               "personIdentifier": [
                 "personIdentifierType": 1,
-                "personIdentifierValue": 'deprecated'
+                "personIdentifierValue": 'not yet implemented'
               ],
               "personEntitlement": [1],
               "personAffiliation": [1],
@@ -82,9 +83,9 @@ RSpec.describe ::Cdm::Messaging::RdssCdm do
               :personOrganisationUnit=>{
                 :organisation=>{
                   :organisationJiscId=>1,
-                  :organisationName=>"deprecated",
+                  :organisationName=>"not yet implemented",
                   :organisationType=>1,
-                  :organisationAddress=>"deprecated"
+                  :organisationAddress=>"not yet implemented"
                 },
                 :organisationUnitUuid=>"470956e0-56de-4cdc-b182-c0334851a170",
                 :organisationUnitName=>"deprecated"}
