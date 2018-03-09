@@ -3,7 +3,8 @@ module Cdm
     class FileDateCreated < MessageMapper
       private
       def rfc3339_value_from_fits_date(date_value)
-        date_value.present? ? DateTime.strptime(date_value, "%Y:%m:%d %H:%M:%S%Z").rfc3339 : ''
+        # Default timestamp until JSON Schema is updated. 
+        date_value.present? ? DateTime.strptime(date_value, "%Y:%m:%d %H:%M:%S%Z").rfc3339 : Time.at(0).rfc3339
       end
 
       public

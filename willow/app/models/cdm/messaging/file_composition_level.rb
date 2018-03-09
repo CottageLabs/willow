@@ -1,8 +1,9 @@
 module Cdm
   module Messaging
     class FileCompositionLevel < MessageMapper
-      include AttributeMapper
-      attribute_name :compression
+      def value(object, _)
+        object.compression.first
+      end
     end
   end
 end

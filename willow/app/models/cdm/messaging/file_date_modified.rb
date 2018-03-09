@@ -4,7 +4,8 @@ module Cdm
       def hash_value(_, object)
         {
           dateType: Enumerations::DateType.modified,
-          dateValue: object.date_modified.rfc3339
+          # Default timestamp until JSON Schema is updated. 
+          dateValue: object.date_modified.rfc3339 || Time.at(0).rfc3339
         }
       end
 

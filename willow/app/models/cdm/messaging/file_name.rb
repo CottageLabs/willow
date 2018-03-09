@@ -1,8 +1,8 @@
 module Cdm
   module Messaging
-    class FileHasMimeType < MessageMapper
+    class FileName < MessageMapper
       def value(object, _)
-        object&.mime_type.present? 
+        object.file_name.first
       end
     end
   end

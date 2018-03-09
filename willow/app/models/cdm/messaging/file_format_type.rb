@@ -1,8 +1,9 @@
 module Cdm
   module Messaging
     class FileFormatType < MessageMapper
-      include AttributeMapper
-      attribute_name :format_label
+      def value(object, _)
+        object.format_label.first 
+      end
     end
   end
 end
