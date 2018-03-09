@@ -53,7 +53,7 @@ RSpec.describe Hyrax::Actors::RdssCdmObjectVersioningActor do
     end
 
     it "object related identifiers change to include previous object_uuid as is_new_version_of" do
-      object_uuid_recorded_in_related_identifiers_as_is_new_version_of?(env)
+      object_uuid_recorded_in_related_identifiers_as_is_new_version_of_after_update?(env)
     end
   end
 
@@ -66,7 +66,7 @@ RSpec.describe Hyrax::Actors::RdssCdmObjectVersioningActor do
     end
 
     it "object related identifiers change to include previous object_uuid as is_new_version_of" do
-      object_uuid_recorded_in_related_identifiers_as_is_new_version_of?(env)
+      object_uuid_recorded_in_related_identifiers_as_is_new_version_of_after_update?(env)
     end
   end
 
@@ -79,7 +79,7 @@ RSpec.describe Hyrax::Actors::RdssCdmObjectVersioningActor do
     end
 
     it "object related identifiers change to include previous object_uuid as is_new_version_of" do
-      object_uuid_recorded_in_related_identifiers_as_is_new_version_of?(env)
+      object_uuid_recorded_in_related_identifiers_as_is_new_version_of_after_update?(env)
     end
   end
 
@@ -92,11 +92,11 @@ RSpec.describe Hyrax::Actors::RdssCdmObjectVersioningActor do
     end
 
     it "object related identifiers change to not include previous object_uuid as is_new_version_of" do
-      !object_uuid_recorded_in_related_identifiers_as_is_new_version_of?(env)
+      !object_uuid_recorded_in_related_identifiers_as_is_new_version_of_after_update?(env)
     end
   end
 
-  def object_uuid_recorded_in_related_identifiers_as_is_new_version_of? env
+  def object_uuid_recorded_in_related_identifiers_as_is_new_version_of_after_update? env
     middleware.update(env)
 
     unless env.attributes[:object_related_identifiers_attributes].nil?
