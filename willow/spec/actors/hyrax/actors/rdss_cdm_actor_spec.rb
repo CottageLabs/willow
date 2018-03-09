@@ -19,10 +19,8 @@ RSpec.describe Hyrax::Actors::RdssCdmActor do
   end 
 
   describe "create" do
-    it 'adds an object_uuid' do 
-      VCR.use_cassette('rdss_cdm_actor/create_object_uuid', :match_requests_on => [:method, :host]) do
-        expect { middleware.create(env) }.to change { env.attributes[:object_uuid] }.to match(/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/)
-      end
+    it 'set object_value to :normal' do 
+      expect { middleware.create(env) }.to change { env.attributes[:object_value] }.to 'normal'
     end
   end
 end

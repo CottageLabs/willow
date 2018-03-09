@@ -6,9 +6,9 @@ module Rdss
         
         def update(env)
           #Do this while the old creation_concern is still in scope before calling the next_actor which will persist it.
-          update_type = ObjectVersionChanged.(env) ? :work_update_major : :work_update_minor
+          update_occurred = ObjectVersionChanged.(env)
           next_actor.update(env)
-          broadcast(update_type, env.curation_concern) if CurationConcernApproved.(env)
+          broadcast(:work_update, env.curation_concern) if update_occurred && CurationConcernApproved.(env)
         end
 
         def destroy(env)

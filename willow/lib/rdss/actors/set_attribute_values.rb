@@ -1,3 +1,4 @@
+#This takes an object with attributes, e.g. a model instance or an actor env and sets the values from it.
 module Rdss
   module Actors
     class SetAttributeValues < SetHashValues
