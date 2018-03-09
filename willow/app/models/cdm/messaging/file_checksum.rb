@@ -5,7 +5,7 @@ module Cdm
         {
            checksumUuid: object.checksum_uuid,
            checksumType: Enumerations::ChecksumType.md5,
-           checksumValue: object.original_file.original_checksum
+           checksumValue: object.original_file.original_checksum.first
         }
       end
 

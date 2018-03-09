@@ -4,7 +4,7 @@ module Cdm
       def hash_value(_, object)
         {
           dateType: Enumerations::DateType.issued,
-          dateValue: begin FileDownloadStat.where(file_id: object.original_file.id).first.downloads rescue 0 end
+          dateValue: begin FileDownloadStat.where(file_id: object.original_file.id).first.downloads rescue "0" end
         }
       end
 
