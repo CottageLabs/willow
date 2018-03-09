@@ -23,7 +23,7 @@ module Cdm
 
       included do
         def initialize(name)
-          self.class.attribute_name_in_model||=name.to_s.underscore.downsize.intern
+          self.class.attribute_name_in_model||=name.to_s.underscore.downcase.intern
           super
         end
 

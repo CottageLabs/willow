@@ -27,7 +27,7 @@ module Hyrax
       :object_resource_type,
       :object_value,
       :object_people,
-      :object_dates,      
+      :object_dates,
       :object_rights,
       :object_organisation_roles,
       :object_identifiers,
@@ -36,7 +36,9 @@ module Hyrax
     mapped_arrays :object_dates,
                   :object_organisation_roles,
                   :object_identifiers,
-                  :object_related_identifiers
+                  :object_related_identifiers,
+                  :object_people,
+                  :object_licence
 
 
     def object_people
@@ -137,7 +139,6 @@ module Hyrax
       ]
     end
 
-
     def self.permitted_object_organisation_roles_params
       [
         :id,
@@ -146,7 +147,6 @@ module Hyrax
         organisation_attributes: %i[jisc_id name address organisation_type]
       ]
     end
-
 
     def self.permitted_object_identifier_params
       [
@@ -166,16 +166,30 @@ module Hyrax
       ]
     end
 
+    # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/MethodLength
     def self.build_permitted_params
       permitted = super
       # add in object_date attributes
-      permitted << { object_dates_attributes: permitted_object_date_params }
+      permitted << {
+        object_dates_attributes: permitted_object_date_params
+      }
       permitted << { object_people_attributes: permitted_object_person_nested }
       permitted << { object_rights_attributes: permitted_object_rights_params }
-      permitted << { object_organisation_roles_attributes: permitted_object_organisation_roles_params }
+      permitted << {
+        object_organisation_roles_attributes: permitted_object_organisation_roles_params
+      }
       permitted << { object_identifiers_attributes: permitted_object_identifier_params }
-      permitted << { object_related_identifiers_attributes: permitted_object_related_identifier_params }
-      permitted
+      permitted << {
+        object_related_identifiers_attributes: permitted_object_related_identifier_params
+      }
+      permitted << :admin_set_id
+      permitted << :embargo_release_date
+      permitted << :visibility
+      permitted << :visibility_after_embargo
+      permitted << :visibility_during_embargo
+      permitted << :visibility_after_lease
+      permitted << :visibility_during_lease
     end
   end
 end
