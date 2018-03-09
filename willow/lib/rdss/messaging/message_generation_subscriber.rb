@@ -9,12 +9,8 @@ module Rdss
         ActiveSupport::Notifications.instrument(::Hyrax::Notifications::Events::METADATA_CREATE, message_builder(rdss_cdm, event: :create))
       end
 
-      def work_update_minor(rdss_cdm)
+      def work_update(rdss_cdm)
         ActiveSupport::Notifications.instrument(::Hyrax::Notifications::Events::METADATA_UPDATE, message_builder(rdss_cdm, event: :update))
-      end
-
-      def work_update_major(rdss_cdm)
-        ActiveSupport::Notifications.instrument(::Hyrax::Notifications::Events::METADATA_CREATE, message_builder(rdss_cdm, event: :create))
       end
 
       def work_destroy(rdss_cdm)

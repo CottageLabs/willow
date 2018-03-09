@@ -15,43 +15,23 @@ RSpec.describe Rdss::Messaging::Actors::MessagePublisherActor do
     stack.build(terminator)
   end
 
-  describe "Approved update with minor changes" do
-    let(:attributes) { {:object_version => "1"} }
-    let(:rdss_cdm) { create(:rdss_cdm, state: active_state, object_version: "1") }
-    let(:env) { Hyrax::Actors::Environment.new(rdss_cdm, ability, attributes) }
-    it 'broadcasts a minor update' do
-      VCR.use_cassette('kinesis/update', :match_requests_on => [:method, :host]) do
-        expect { middleware.update(env) }.to broadcast(:work_update_minor)
-      end
-    end
-  end
-
-  describe "Approved update with major changes" do
+  describe "Approved update" do
     let(:attributes) { {:object_version => "1"} }
     let(:rdss_cdm) { create(:rdss_cdm, state: active_state, object_version: "2") }
     let(:env) { Hyrax::Actors::Environment.new(rdss_cdm, ability, attributes) }
-    it 'broadcasts a major update' do
+    it 'broadcasts an update' do
       VCR.use_cassette('kinesis/create', :match_requests_on => [:method, :host]) do
-        expect { middleware.update(env) }.to broadcast(:work_update_major)
+        expect { middleware.update(env) }.to broadcast(:work_update)
       end
     end
   end
 
-  describe "Unapproved update with minor changes" do
-    let(:attributes) { {:object_version => "1"} }
-    let(:rdss_cdm) { create(:rdss_cdm, state: inactive_state, object_version: "1") }
-    let(:env) { Hyrax::Actors::Environment.new(rdss_cdm, ability, attributes) }
-    it 'does not broadcast a minor update' do
-      expect { middleware.update(env) }.not_to broadcast(:work_update_minor)
-    end
-  end
-
-  describe "Unapproved update with major changes" do
+  describe "Unapproved update" do
     let(:attributes) { {:object_version => "1"} }
     let(:rdss_cdm) { create(:rdss_cdm, state: inactive_state, object_version: "2") }
     let(:env) { Hyrax::Actors::Environment.new(rdss_cdm, ability, attributes) }
-    it 'does not broadcast a major update' do
-      expect { middleware.update(env) }.not_to broadcast(:work_update_major)
+    it 'does not broadcast an update' do
+      expect { middleware.update(env) }.not_to broadcast(:work_update)
     end
   end
 
