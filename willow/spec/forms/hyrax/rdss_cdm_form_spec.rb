@@ -33,9 +33,5 @@ RSpec.describe Hyrax::RdssCdmForm do
     it 'permits :embargo_release_date' do
       expect(subject.include?(:embargo_release_date)).to be_truthy
     end
-
-    it 'permits :member_of_collection_ids' do
-      expect(subject.include?(:member_of_collection_ids)).to be_truthy
-    end
   end
 end
