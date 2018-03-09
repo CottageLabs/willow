@@ -67,60 +67,60 @@
         organisationType:
         organisationAddress:
       role:
+    objectFile:
+    - fileUuid:
+      fileIdentifier:
+      fileName:
+      fileSize:
+      fileLabel:
+      fileDateCreated:
+        dateValue:
+        dateType:
+#      fileRights:
+#        rightsStatement:
+#        -
+#        rightsHolder:
+#        -
+#        licence:
+#        - licenceName:
+#          licenceIdentifier:
+#        access:
+#        - accessType:
+#          accessStatement:
+      fileChecksum:
+      - checksumUuid:
+        checksumType:
+        checksumValue:
+      fileFormatType:
+      fileCompositionLevel:
+      fileHasMimeType:
+      fileDateModified:
+      - dateValue:
+        dateType:
+#      filePuid:
+#      -
+      fileUse:
+      filePreservationEvent:
+      - preservationEventValue:
+        preservationEventType:
+        preservationEventDetail:
+      fileUploadStatus:
+      fileStorageStatus:
+      fileLastDownloaded:
+        dateValue:
+        dateType:
+#      fileTechnicalAttributes:
+#      -
+      fileStorageLocation:
+      fileStoragePlatform:
+        storagePlatformUuid:
+        storagePlatformName:
+        storagePlatformType:
+        storagePlatformCost:
     #objectPreservationEvent:
     #- preservationEventValue:
     #  preservationEventType:
     #  preservationEventDetail:
-    #objectFile:
-    #- fileUuid:
-    #  fileIdentifier:
-    #  fileName:
-    #  fileSize:
-    #  fileLabel:
-    #  fileDateCreated:
-    #    dateValue:
-    #    dateType:
-    #  fileRights:
-    #    rightsStatement:
-    #    -
-    #    rightsHolder:
-    #    -
-    #    licence:
-    #    - licenceName:
-    #      licenceIdentifier:
-    #    access:
-    #    - accessType:
-    #      accessStatement:
-    #  fileChecksum:
-    #  - checksumUuid:
-    #    checksumType:
-    #    checksumValue:
-    #  fileFormatType:
-    #  fileCompositionLevel:
-    #  fileHasMimeType:
-    #  fileDateModified:
-    #  - dateValue:
-    #    dateType:
-    #  filePuid:
-    #  -
-    #  fileUse:
-    #  filePreservationEvent:
-    #  - preservationEventValue:
-    #    preservationEventType:
-    #    preservationEventDetail:
-    #  fileUploadStatus:
-    #  fileStorageStatus:
-    #  fileLastDownloaded:
-    #    dateValue:
-    #    dateType:
-    #  fileTechnicalAttributes:
-    #  -
-    #  fileStorageLocation:
-    #  fileStoragePlatform:
-    #    storagePlatformUuid:
-    #    storagePlatformName:
-    #    storagePlatformType:
-    #    storagePlatformCost:
   create:
     <<: *create_and_update
   read:

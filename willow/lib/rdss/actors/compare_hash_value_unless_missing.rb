@@ -2,8 +2,8 @@ module Rdss
   module Actors
     class CompareHashValueUnlessMissing
       class << self
-        def call(hash_value, value)
-          hash_value.nil? || hash_value == value
+        def call(attribute, value)
+          attribute.nil? || attribute == value
         end
       end
     end

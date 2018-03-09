@@ -6,12 +6,12 @@ module Cdm
         {
           organisation: {
             organisationJiscId: 1,
-            organisationName: 'deprecated',
+            organisationName: 'not yet implemented',
             organisationType: 1,
-            organisationAddress: 'deprecated'
+            organisationAddress: 'not yet implemented'
           },
           organisationUnitUuid: "470956e0-56de-4cdc-b182-c0334851a170",
-          organisationUnitName: 'deprecated'
+          organisationUnitName: 'not yet implemented'
         }
       end
     end

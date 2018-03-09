@@ -2,8 +2,8 @@ module Rdss
   module Actors
     class HashChanged
       class << self
-        def call(hash_value, value)
-          !::Rdss::Actors::CompareHashValueUnlessMissing.(hash_value, value)
+        def call(attribute, value)
+          !::Rdss::Actors::CompareHashValueUnlessMissing.(attribute, value)
         end
       end
     end

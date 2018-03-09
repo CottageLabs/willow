@@ -4,6 +4,8 @@ version: '3'
 
 services:
   db:
+    ports:
+      - "5432:5432"
     volumes:
       - ./db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
 

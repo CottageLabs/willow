@@ -2,12 +2,8 @@
 module Cdm
   module Messaging
     class ObjectFile < MessageMapper
-      class << self
-        def call(name, mapping, object)
-          # TODO We're throwing this away for now. Fix once file is completed.
-          {}
-        end
-      end
+      include AttributeMapper
+      attribute_name :file_sets
     end
   end
 end
