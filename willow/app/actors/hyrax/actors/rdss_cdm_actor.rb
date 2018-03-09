@@ -6,7 +6,7 @@ module Hyrax
 #TODO #PMAK Should we set initial value for :object_version here too?
       def default_values
         {
-          object_value:   :normal,
+          object_value:   'normal',
         }
       end
 

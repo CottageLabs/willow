@@ -8,8 +8,16 @@ module Rdss
           env.attributes[:object_version] = env.curation_concern.object_version.succ 
         end
 
+        private
         def current_uuid(env)
           env.curation_concern.object_uuid
+        end
+
+        def record_current_uuid(env)
+          ::Rdss::Actors::AppendToNumberedHash.(
+            env.attributes, 
+            {object_related_identifiers_attributes: build_is_new_version_of(current_uuid(env))}
+          )
         end
 
         def build_is_new_version_of(uuid) 
@@ -21,13 +29,6 @@ module Rdss
               identifier_type: 'source_id'
             }
           }
-        end
-
-        def record_current_uuid(env)
-          ::Rdss::Actors::AppendToNumberedHash.(
-            env.attributes, 
-            {object_related_identifiers_attributes: build_is_new_version_of(current_uuid(env))}
-          )
         end
       end
     end

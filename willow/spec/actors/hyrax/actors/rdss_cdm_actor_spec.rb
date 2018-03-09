@@ -8,7 +8,7 @@ RSpec.describe Hyrax::Actors::RdssCdmActor do
   let(:env) { Hyrax::Actors::Environment.new(rdss_cdm, ability, attributes) }
   let(:terminator) { Hyrax::Actors::Terminator.new }
   let(:depositor) { create(:user) }
-  let(:attributes) { {:title => ["a test title"], object_value: nil} }
+  let(:attributes) { {:title => ["a test title"]} }
   let(:rdss_cdm) { create(:rdss_cdm) }
 
   subject(:middleware) do
@@ -20,7 +20,7 @@ RSpec.describe Hyrax::Actors::RdssCdmActor do
 
   describe "create" do
     it 'set object_value to :normal' do 
-      expect { middleware.create(env) }.to change { env.attributes[:object_value] }.to :normal
+      expect { middleware.create(env) }.to change { env.attributes[:object_value] }.to 'normal'
     end
   end
 end

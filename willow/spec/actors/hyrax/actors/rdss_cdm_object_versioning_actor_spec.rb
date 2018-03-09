@@ -31,7 +31,7 @@ RSpec.describe Hyrax::Actors::RdssCdmObjectVersioningActor do
   end
 
   describe "create" do
-    let(:attributes) { {:object_version => "", :title => ["test title"]} }
+    let(:attributes) { {:title => ["test title"]} }
     let(:rdss_cdm) { create(:rdss_cdm) }
     let(:env) { Hyrax::Actors::Environment.new(rdss_cdm, ability, attributes) }
 
@@ -44,33 +44,33 @@ RSpec.describe Hyrax::Actors::RdssCdmObjectVersioningActor do
     end
   end
 
-  describe "minor update" do
-    let(:attributes) { {:object_version => "1", :title => ["test title"]} }    
+  describe "update with no changes" do
+    let(:attributes) { {:title => ["test title"]} }    
     let(:env) { Hyrax::Actors::Environment.new(approved_rdss_cdm, ability, attributes) }
     
     it 'object version increments to 2' do
       expect { middleware.update(env) }.to change { env.attributes[:object_version] }.to "2"
     end
 
-    it "object related identifiers change to include previous object_uuid as is_new_version_of" do
+    it 'object related identifiers change to include previous object_uuid as is_new_version_of' do
       object_uuid_recorded_in_related_identifiers_as_is_new_version_of_after_update?(env)
     end
   end
 
-  describe "major update to title" do
-    let(:attributes) { {:object_version => "1", :title => ["another test title"]} }
+  describe "update to title" do
+    let(:attributes) { {:title => ["another test title"]} }
     let(:env) { Hyrax::Actors::Environment.new(approved_rdss_cdm, ability, attributes) }
 
     it 'object version increments to 2' do
       expect { middleware.update(env) }.to change { env.attributes[:object_version] }.to "2"
     end
 
-    it "object related identifiers change to include previous object_uuid as is_new_version_of" do
+    it 'object related identifiers change to include previous object_uuid as is_new_version_of' do
       object_uuid_recorded_in_related_identifiers_as_is_new_version_of_after_update?(env)
     end
   end
 
-  describe "major update to uploaded files" do
+  describe "update to uploaded files" do
     let(:attributes) { {:uploaded_files => [1,2]} }
     let(:env) { Hyrax::Actors::Environment.new(approved_rdss_cdm, ability, attributes) }
 
@@ -78,20 +78,20 @@ RSpec.describe Hyrax::Actors::RdssCdmObjectVersioningActor do
       expect { middleware.update(env) }.to change { env.attributes[:object_version] }.to "2"
     end
 
-    it "object related identifiers change to include previous object_uuid as is_new_version_of" do
+    it 'object related identifiers change to include previous object_uuid as is_new_version_of' do
       object_uuid_recorded_in_related_identifiers_as_is_new_version_of_after_update?(env)
     end
   end
 
-  describe "major unpublished update" do
-    let(:attributes) { {:object_version => "1", :title => ["another test title"]} }
+  describe "unpublished update to title" do
+    let(:attributes) { {:title => ["another test title"]} }
     let(:env) { Hyrax::Actors::Environment.new(unapproved_rdss_cdm, ability, attributes) }
 
     it 'object version increments to 2' do
       expect { middleware.update(env) }.not_to change { env.attributes[:object_version] }
     end
 
-    it "object related identifiers change to not include previous object_uuid as is_new_version_of" do
+    it 'object related identifiers change to not include previous object_uuid as is_new_version_of' do
       !object_uuid_recorded_in_related_identifiers_as_is_new_version_of_after_update?(env)
     end
   end
