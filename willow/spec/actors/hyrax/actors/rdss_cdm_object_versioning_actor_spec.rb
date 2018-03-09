@@ -71,7 +71,7 @@ RSpec.describe Hyrax::Actors::RdssCdmObjectVersioningActor do
   end
 
   describe "major update to uploaded files" do
-    let(:attributes) { {:object_version => "1", :title => ["test title"], :uploaded_files => [1,2]} }
+    let(:attributes) { {:uploaded_files => [1,2]} }
     let(:env) { Hyrax::Actors::Environment.new(approved_rdss_cdm, ability, attributes) }
 
     it 'object version increments to 2' do
