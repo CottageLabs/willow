@@ -30,6 +30,7 @@ module Hyrax
       :object_dates,
       :object_rights,
       :object_organisation_roles,
+      :object_organisation_types,
       :object_identifiers,
     ]
 
