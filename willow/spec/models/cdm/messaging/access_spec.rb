@@ -7,7 +7,6 @@ class DummyAccesses
   end
 end
 
-
 class Dummy
   def accesses
     [
@@ -16,7 +15,6 @@ class Dummy
     ]
   end
 end
-
 
 RSpec.describe ::Cdm::Messaging::Access do
   describe 'decodes messaging sections' do
