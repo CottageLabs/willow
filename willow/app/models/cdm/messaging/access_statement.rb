@@ -5,7 +5,7 @@ module Cdm
   module Messaging
     class AccessStatement < MessageMapper
       def value(object, _)
-        object.access_statement || Enumerations::AccessType.send(object.access_type)
+        object.access_statement || I18n.t("rdss.access_types.#{object.access_type}")
       end
     end
   end

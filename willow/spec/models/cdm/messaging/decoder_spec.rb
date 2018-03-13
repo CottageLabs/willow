@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe ::Cdm::Messaging::Enumerations::Decoder do
   describe 'decodes messaging sections' do
