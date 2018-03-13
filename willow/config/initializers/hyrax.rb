@@ -276,13 +276,11 @@ Hyrax.config do |config|
     config.browse_everything = nil
   end
 
-
   Rdss::Messaging::Actors::MessagePublisherActor.subscribe(Rdss::Messaging::MessageGenerationSubscriber.new)
   Rdss::Messaging::Workflow::WorkApprovalPublisher.subscribe(Rdss::Messaging::MessageGenerationSubscriber.new)
-  
-  Hyrax::CurationConcern.actor_factory.insert_after Hyrax::Actors::TransactionalRequest, Hyrax::Actors::RdssCdmObjectVersioningActor
-  Hyrax::CurationConcern.actor_factory.insert_before Hyrax::Actors::CreateWithFilesActor, Rdss::Messaging::Actors::MessagePublisherActor
 
+  Hyrax::CurationConcern.actor_factory.insert_before Hyrax::Actors::CreateWithFilesActor, Rdss::Messaging::Actors::MessagePublisherActor
+  Hyrax::CurationConcern.actor_factory.insert_before Rdss::Messaging::Actors::MessagePublisherActor, Hyrax::Actors::RdssCdmObjectVersioningActor
 end
 
 DEFAULT_DATE_FORMAT = ENV['DEFAULT_DATE_FORMAT'] || '%d/%m/%Y'
