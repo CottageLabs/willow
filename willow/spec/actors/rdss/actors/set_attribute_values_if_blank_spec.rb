@@ -1,5 +1,5 @@
 require 'spec_helper'
-class Dummy
+class SetAttributeValuesIfBlankDummy
   attr_reader :attributes
 
   def initialize(attr={})
@@ -8,9 +8,9 @@ class Dummy
 end
 
 describe ::Rdss::Actors::SetAttributeValuesIfBlank do
-  let(:env) { Dummy.new }
-  let(:empty_env) { Dummy.new({ first: '', second: nil })}
-  let(:populated_env) { Dummy.new({first: 'populated', third: 'also populated', forth: nil, fifth: ''})}
+  let(:env) { SetAttributeValuesIfBlankDummy.new }
+  let(:empty_env) { SetAttributeValuesIfBlankDummy.new({ first: '', second: nil })}
+  let(:populated_env) { SetAttributeValuesIfBlankDummy.new({first: 'populated', third: 'also populated', forth: nil, fifth: ''})}
   let(:default_values) { {first: 'one', second: 'two'} }
 
   it 'sets values if missing' do
