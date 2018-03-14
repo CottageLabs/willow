@@ -2,9 +2,28 @@ module Cdm
   module Messaging
     class FileDateCreated < MessageMapper
       private
+      def candidate_regexen
+        %w(
+          %Y:%m:%d %H:%M:%S%Z
+          %Y:%m:%d %H:%M:%S
+          %Y:%m:%d
+          %Y:%m
+          %Y
+        )
+      end
+
+
       def rfc3339_value_from_fits_date(date_value)
-        # Default timestamp until JSON Schema is updated. 
-        date_value.present? ? DateTime.strptime(date_value, "%Y:%m:%d %H:%M:%S%Z").rfc3339 : Time.at(0).rfc3339
+        candidate_regexen.each do |format|
+          begin
+            return DateTime.strptime(date_value, format).rfc3339
+          rescue ArgumentError
+            next
+          rescue TypeError
+            break
+          end
+        end
+        Time.at(0).rfc3339
       end
 
       public
