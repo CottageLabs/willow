@@ -1,6 +1,6 @@
 module Cdm
   module Messaging
-    class FileDateModified < MessageMapper
+    class FilePuid < MessageMapper
       def array_value(_, object)
         []
       end
