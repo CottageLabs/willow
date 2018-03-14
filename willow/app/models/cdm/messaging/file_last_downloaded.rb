@@ -15,7 +15,6 @@ module Cdm
           hash_value(_, object)
         ]
       end
-
     end
   end
 end

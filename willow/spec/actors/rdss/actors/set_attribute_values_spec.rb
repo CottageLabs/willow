@@ -1,5 +1,5 @@
 require 'spec_helper'
-class Dummy
+class SetAttributeValuesDummy
   attr_reader :attributes
 
   def initialize(attr={})
@@ -8,9 +8,9 @@ class Dummy
 end
 
 describe ::Rdss::Actors::SetAttributeValues do
-  let(:env) { Dummy.new }
-  let(:empty_env) { Dummy.new({ first: '', second: nil })}
-  let(:populated_env) { Dummy.new({first: 'populated', third: 'also populated', forth: nil, fifth: ''})}
+  let(:env) { SetAttributeValuesDummy.new }
+  let(:empty_env) { SetAttributeValuesDummy.new({ first: '', second: nil })}
+  let(:populated_env) { SetAttributeValuesDummy.new({first: 'populated', third: 'also populated', forth: nil, fifth: ''})}
   let(:default_values) { {first: 'one', second: 'two'} }
 
   it 'sets values if missing' do

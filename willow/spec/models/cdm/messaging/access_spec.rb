@@ -7,8 +7,7 @@ class DummyAccesses
   end
 end
 
-
-class Dummy
+class AccessDummy
   def accesses
     [
       DummyAccesses.new(access_type: 'open', access_statement: nil),
@@ -17,11 +16,10 @@ class Dummy
   end
 end
 
-
 RSpec.describe ::Cdm::Messaging::Access do
   describe 'decodes messaging sections' do
     let(:access_map) { { access: [{ accessType: nil, accessStatement: nil}] } }
-    let(:test_object) { Dummy.new }
+    let(:test_object) { AccessDummy.new }
     let(:decoded_class) { described_class.('test', access_map, test_object) }
     let(:access_result) { { access: [
       {
