@@ -5,7 +5,7 @@ module Cdm
         {
           dateType: Enumerations::DateType.modified,
           # Default timestamp until JSON Schema is updated. 
-          dateValue: (object&.date_modified&.rfc3339 || Time.at(0).rfc3339)
+          dateValue: object&.date_modified&.rfc3339 || Time.at(0).rfc3339
         }
       end
 
