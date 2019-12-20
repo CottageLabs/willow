@@ -513,7 +513,7 @@ GEM
       nokogiri (~> 1.6)
       rails (>= 4.2.0, < 6.0)
       rdf
-    rack (2.0.3)
+    rack (2.0.8)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.1.3)
